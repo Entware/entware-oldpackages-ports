@@ -1,2 +1,5 @@
 # entware-oldpackages-ports
-Renewed packages from openwrt-oldpackages feed modified for entware
+Renewed packages from openwrt-oldpackages feed which was abandoned by OpenWrt guys modified for entware.
+
+this version of feed is based on
+https://github.com/Entware/openwrt-oldpackages-ports and https://github.com/zyxmon/openwrt-oldpackages-ports
