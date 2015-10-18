@@ -1,0 +1,11 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -46,7 +46,7 @@
+ 
+ # make 'modegg'
+ MOD_CC = @MOD_CC@
+-MOD_LD = @MOD_LD@
++MOD_LD = @MOD_LD@ @LDFLAGS@
+ MOD_STRIP = @MOD_STRIP@
+ 
+ # make 'modules'

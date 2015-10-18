@@ -1,0 +1,22 @@
+--- a/src/knockd.c
++++ b/src/knockd.c
+@@ -133,8 +133,8 @@
+ int  o_daemon    = 0;
+ int  o_lookup    = 0;
+ char o_int[32]           = "";		/* default (eth0) is set after parseconfig() */
+-char o_cfg[PATH_MAX]     = "/etc/knockd.conf";
+-char o_pidfile[PATH_MAX] = "/var/run/knockd.pid";
++char o_cfg[PATH_MAX]     = "/opt/etc/knockd.conf";
++char o_pidfile[PATH_MAX] = "/opt/var/run/knockd.pid";
+ char o_logfile[PATH_MAX] = "";
+ 
+ int main(int argc, char **argv)
+--- a/knockd.conf
++++ b/knockd.conf
+@@ -1,5 +1,5 @@
+ [options]
+-	logfile = /var/log/knockd.log
++	logfile = /opt/var/log/knockd.log
+ 
+ [openSSH]
+ 	sequence    = 7000,8000,9000

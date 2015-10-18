@@ -1,0 +1,11 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -77,7 +77,7 @@
+ 
+ modconf = $(top_srcdir)/misc/modconfig --top_srcdir=$(top_srcdir)
+ 
+-egg_test_run = EGG_LANGDIR=$(top_srcdir)/language ./$(EGGEXEC) -v
++egg_test_run = EGG_LANGDIR=$(top_srcdir)/language #./$(EGGEXEC) -v
+ 
+ post_config  =  echo "" && \
+ 		echo "You can now compile the bot, using \"make\"." && \
