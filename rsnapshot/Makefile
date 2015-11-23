@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rsnapshot
 PKG_VERSION:=1.4.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://rsnapshot.org/downloads
@@ -36,9 +36,9 @@ define Package/rsnapshot
 		+perlbase-file \
 		+perlbase-getopt \
 		+perlbase-io \
+		+perlbase-ipc \
 		+perlbase-posix \
 		+perlbase-selectsaver \
-		+perlbase-symbol \
 		+perlbase-tie \
 		+perlbase-xsloader \
 		+coreutils-cp \
