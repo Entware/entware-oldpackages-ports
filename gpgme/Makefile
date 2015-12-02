@@ -19,7 +19,7 @@ PKG_INSTALL:=1
 
 PKG_USE_MIPS16:=0
 
-PKG_BUILD_DEPENDS:=argp-standalone
+PKG_BUILD_DEPENDS:=USE_UCLIBC:argp-standalone USE_MUSL:argp-standalone
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -39,8 +39,11 @@ define Package/libgpgme/description
   for CMS (S/MIME).
 endef
 
-CONFIGURE_VARS += \
-    LIBS="-largp"
+ifneq ($(CONFIG_USE_GLIBC),y)
+  CONFIGURE_VARS += LIBS="-largp"
+endif
+
+
 
 CONFIGURE_ARGS += \
 	--enable-shared \
