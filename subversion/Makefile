@@ -12,8 +12,7 @@ PKG_VERSION:=1.8.13
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://apache-mirror.rbc.ru/pub/apache/subversion
-http://subversion.tigris.org/downloads
+PKG_SOURCE_URL:=http://archive.apache.org/dist/subversion
 PKG_MD5SUM:=4413417b529d7bdf82f74e50df02e88b
 
 PKG_FIXUP:=autoreconf
