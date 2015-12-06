@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=wview
 PKG_VERSION:=5.21.5
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/$(PKG_NAME)
+PKG_SOURCE_URL:=http://ftp.mirrorservice.org/sites/distfiles.macports.org/wview
 PKG_MD5SUM:=7e615df10e2a52a84572ac82a32ae146
 
 PKG_FIXUP:=autoreconf
