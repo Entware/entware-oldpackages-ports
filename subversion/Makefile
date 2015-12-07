@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=subversion
-PKG_VERSION:=1.8.13
+PKG_VERSION:=1.9.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://archive.apache.org/dist/subversion
-PKG_MD5SUM:=4413417b529d7bdf82f74e50df02e88b
+PKG_MD5SUM:=0a7e55bb58fe77072f19e108a56b468b
 
 PKG_FIXUP:=autoreconf
 PKG_MACRO_PATHS:=build/ac-macros
@@ -111,7 +111,7 @@ endef
 define Package/subversion-client/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) \
-	    $(PKG_INSTALL_DIR)/opt/bin/svn{,mucc,version,sync} \
+	    $(PKG_INSTALL_DIR)/opt/bin/svn{,mucc,version,sync,bench,fsfs} \
 	    $(1)/opt/bin
 endef
 
