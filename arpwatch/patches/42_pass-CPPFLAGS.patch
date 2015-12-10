@@ -1,0 +1,17 @@
+Description: Pass $CPPFLAGS to C compiler, too.
+ Fixes lintian warning hardening-no-fortify-functions.
+Author: Axel Beckert <abe@debian.org>
+
+Index: arpwatch/Makefile.in
+===================================================================
+--- arpwatch.orig/Makefile.in	2015-06-13 19:39:11.774000452 +0200
++++ arpwatch/Makefile.in	2015-06-13 19:39:58.033453505 +0200
+@@ -50,7 +50,7 @@
+ 	-DETHERCODES=\"$(ETHERCODES)\"
+ 
+ # Standard CFLAGS
+-CFLAGS = $(CCOPT) $(DEFS) $(INCLS)
++CFLAGS = $(CCOPT) $(DEFS) $(INCLS) $(CPPFLAGS)
+ LDFLAGS = @LDFLAGS@
+ 
+ # Standard LIBS

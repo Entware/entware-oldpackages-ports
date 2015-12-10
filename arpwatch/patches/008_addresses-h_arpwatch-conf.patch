@@ -1,0 +1,10 @@
+Description: a file that likely shouldn't be here
+
+diff --git a/addresses.h b/addresses.h
+new file mode 100644
+index 0000000..3071abf
+--- /dev/null
++++ b/addresses.h
+@@ -0,0 +1,2 @@
++#define WATCHER "root"
++#define WATCHEE "arpwatch (Arpwatch)"

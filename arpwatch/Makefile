@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=arpwatch
 PKG_VERSION:=2.1a15
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.free.fr/.mirrors1/ftp.gentoo.org/distfiles/
@@ -33,34 +33,20 @@ define Package/arpwatch/description
 	pairings.
 endef
 
-define Package/arpwatch/conffiles
-/opt/etc/arpwatch/arp.dat
-endef
-
-define Build/Prepare
-	$(call Build/Prepare/Default)
-	chmod -R u+w $(PKG_BUILD_DIR)
-endef
-
 CONFIGURE_VARS += \
-	ac_cv_path_V_SENDMAIL="/usr/sbin/sendmail"
+	ac_cv_path_V_SENDMAIL="/opt/sbin/sendmail"
 
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		ARPDIR=/opt/etc/arpwatch \
-		CCOPT="$(TARGET_CFLAGS)" \
-		INCLS="-I. $(TARGET_CPPFLAGS)" \
-		LIBS="$(TARGET_LDFLAGS) -lpcap" \
-		SLIBS="$(TARGET_LDFLAGS)"
-endef
+MAKE_FLAGS += \
+	CCOPT="$(TARGET_CFLAGS)" \
+	INCLS="-I. $(TARGET_CPPFLAGS)"
 
 define Package/arpwatch/install
-	$(INSTALL_DIR) $(1)/opt/etc/arpwatch
-	$(CP) $(PKG_BUILD_DIR)/arp.dat $(1)/opt/etc/arpwatch/
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/arp{watch,snmp} $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/arp{watch,snmp} $(1)/opt/sbin
+	$(INSTALL_DIR) $(1)/opt/{lib,share}/arpwatch
+	$(CP) $(PKG_BUILD_DIR)/ethercodes.dat $(1)/opt/share/arpwatch
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
-	$(INSTALL_BIN) ./files/S04arpwatch $(1)/opt/etc/init.d/
+	$(INSTALL_BIN) ./files/S04arpwatch $(1)/opt/etc/init.d
 endef
 
 $(eval $(call BuildPackage,arpwatch))
