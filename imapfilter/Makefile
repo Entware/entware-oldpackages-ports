@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=imapfilter
-PKG_VERSION:=2.6.2
-PKG_REV:=cf5ad7135df90bc9c82207a55adc3bcb13c8ad8d
+PKG_VERSION:=2.6.4
+PKG_REV:=426844e73eff0f308d5ebdfd1f4ecd6b976a538c
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
