@@ -4,12 +4,13 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2008
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dtach
 PKG_VERSION:=0.8
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/dtach
@@ -32,17 +33,9 @@ define Package/dtach/description
 	that know how to redraw themselves.
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default)
-endef
-
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR)
-endef
-
 define Package/dtach/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dtach $(1)/opt/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dtach $(1)/opt/bin
 endef
 
 $(eval $(call BuildPackage,dtach))
