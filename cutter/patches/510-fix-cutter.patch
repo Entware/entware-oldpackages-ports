@@ -1,0 +1,65 @@
+Description: Fix some issues in main code. (Closes: #372251)
+Author: Christian 'Greek0' Aichinger <Greek0@gmx.net>
+Reviewed-by: Adilson dos Reis <adilsondosreis@yahoo.com.br>
+Last-Update: 2015-08-31
+
+Description: Fix argument type from '%lx' (long unsigned int) to '%x' (unsigned int)
+Author: Adilson dos Reis <adilsondosreis@yahoo.com.br>
+Last-Update: 2015-08-20
+Index: cutter-1.03/cutter.c
+===================================================================
+--- cutter-1.03.orig/cutter.c
++++ cutter-1.03/cutter.c
+@@ -54,6 +54,7 @@
+ #include <arpa/inet.h>
+ #include <net/if.h>
+ #include <errno.h>
++#include <time.h>
+ 
+ #define ETHHDR	 sizeof(struct ethhdr)
+ #define TCPHDR	 sizeof(struct tcphdr)
+@@ -129,7 +129,7 @@ int getnexthop(in_addr_t ip, char *intf,
+ 		dest_ip = gateway_ip = flags = refcnt = use
+ 			= metric = mask = mtu = window = irtt = -1;
+ 
+-		if (sscanf(buff, "%s %8lx %8lx %4x %d %d %d %8lx %d %d %d",
++		if (sscanf(buff, "%s %8x %8x %4x %d %d %d %8x %d %d %d",
+ 			iface, &dest_ip, &gateway_ip, &flags, &refcnt,
+ 			&use, &metric, &mask, &mtu, &window, &irtt
+ 		) == 11) {
+@@ -168,7 +168,6 @@ int getnexthop(in_addr_t ip, char *intf,
+ int getmac(in_addr_t ip, uchar *mac)
+ {
+ 	FILE *id = fopen( "/proc/net/arp", "r" );
+-	union { uchar c[4]; in_addr_t n; } ipu;
+ 	in_addr_t ipn;
+ 	int mac0, mac1, mac2, mac3, mac4, mac5;
+ 	int hwtype, flags;
+@@ -262,7 +262,7 @@ int send_rst(
+ 	u_short toport
+ )
+ {
+-	int i_result, raw_sock, rtn;
++	int i_result, raw_sock;
+ 	in_addr_t gateway_ip;
+ 	struct sockaddr_ll myaddr, hisaddr;
+ 	struct tpack tpack;
+@@ -399,7 +399,7 @@ int send_rst(
+ 
+ 	for ( ; time(0) < tstart + 15; ) {	// give the peer 15 seconds to respond
+ 		struct sockaddr_ll gotaddr;
+-		int addrlen = sizeof(gotaddr);
++		unsigned int addrlen = sizeof(gotaddr);
+ 		fd_set readfds;
+ 		struct timeval tv;
+ 
+@@ -563,8 +563,7 @@ int scan_conntrack(in_addr_t ip1, int po
+ 	char *file2 = "/proc/self/net/nf_conntrack";
+ 	FILE *id = NULL;
+ 	char src1[32], dst1[32], src2[32], dst2[32];
+-	int sport1, dport1, sport2, dport2, i;
+-	int packets1, packets2, bytes1, bytes2;
++	int sport1, dport1, sport2, dport2;
+ 	in_addr_t src1n, src2n, dst1n, dst2n;
+ 	char buff[1024], *p;
+ 	int found = 0;

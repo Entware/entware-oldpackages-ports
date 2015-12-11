@@ -1,0 +1,18 @@
+Description: Add hardening 'CFLAGS'. (Closes: #372251)
+Author: Christian 'Greek0' Aichinger <Greek0@gmx.net>
+Last-Update: 2006-06-09
+
+Description: Add hardening 'CPPFLAGS' - 'LDFLAGS'
+Author: Adilson dos Reis <adilsondosreis@yahoo.com.br>
+Last-Update: 2015-08-20
+Index: cutter-1.03/Makefile
+===================================================================
+--- cutter-1.03.orig/Makefile
++++ cutter-1.03/Makefile
+@@ -1,5 +1,5 @@
+ cutter: cutter.c
+-	cc cutter.c -o cutter
++	cc $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) cutter.c -o cutter
+ 
+ clean:
+ 	rm -f cutter.o cutter
