@@ -1,0 +1,14 @@
+Fixing IMDB links
+Index: elinks-0.12~pre6/src/protocol/rewrite/rewrite.c
+===================================================================
+--- elinks-0.12~pre6.orig/src/protocol/rewrite/rewrite.c	2012-10-28 13:57:15.000000000 +0100
++++ elinks-0.12~pre6/src/protocol/rewrite/rewrite.c	2013-11-20 11:35:54.286213456 +0100
+@@ -198,7 +198,7 @@
+ 	INIT_OPT_SMART_PREFIX("dict", "http://dictionary.reference.com/search?q=%s"),
+ 	INIT_OPT_SMART_PREFIX("thes", "http://thesaurus.reference.com/search?q=%s"),
+ 	INIT_OPT_SMART_PREFIX("a", "http://acronymfinder.com/af-query.asp?String=exact&Acronym=%s"),
+-	INIT_OPT_SMART_PREFIX("imdb", "http://imdb.com/Find?%s"),
++	INIT_OPT_SMART_PREFIX("imdb", "http://www.imdb.com/find?s=all&q=%s"),
+ 	INIT_OPT_SMART_PREFIX("mw", "http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=%s"),
+ 	INIT_OPT_SMART_PREFIX("mwt", "http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=%s"),
+ 	INIT_OPT_SMART_PREFIX("whatis", "http://uptime.netcraft.com/up/graph/?host=%s"),

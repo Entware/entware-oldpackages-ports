@@ -1,0 +1,18 @@
+--- a/configure.in
++++ b/configure.in
+@@ -44,15 +44,6 @@
+ fi
+ 
+ # ===================================================================
+-# Load feature configuration file and start logging features.
+-# ===================================================================
+-
+-features="features.conf"
+-AC_CHECK_FILE("$srcdir/$features", [ . $srcdir/$features ])
+-AC_CHECK_FILE("$builddir/$features", [ . $builddir/$features ])
+-echo "Feature summary:" > features.log
+-
+-# ===================================================================
+ # Checks for programs.
+ # ===================================================================
+ 

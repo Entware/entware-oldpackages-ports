@@ -1,0 +1,43 @@
+Set ui.leds.enable to 0 by default for #459467.  No frequent wakeups on
+laptops and desktop folks can enable this if they like it.  Patch based
+on suggestion from أحمد المحمودي (Ahmed El-Mahmoudy).
+
+Index: elinks-0.12~pre6/doc/html/elinks.conf.5.html
+===================================================================
+--- elinks-0.12~pre6.orig/doc/html/elinks.conf.5.html	2012-10-28 14:01:58.000000000 +0100
++++ elinks-0.12~pre6/doc/html/elinks.conf.5.html	2013-11-20 11:35:53.586205845 +0100
+@@ -1445,7 +1445,7 @@
+ Requires that underlining is enabled for the terminal.
+ </dd></dl><h3 id="ui.leds">ui.leds (LEDs)</h3>
+ <p>LEDs (visual indicators) options.
+-</p><dl><dt id="ui.leds.enable">ui.leds.enable [0|1] (default: 1)</dt><dd>Enable LEDs. These visual indicators will inform you about various
++</p><dl><dt id="ui.leds.enable">ui.leds.enable [0|1] (default: 0)</dt><dd>Enable LEDs. These visual indicators will inform you about various
+ states.
+ </dd></dl><h3 id="ui.sessions">ui.sessions (Sessions)</h3>
+ <p>Sessions settings.
+Index: elinks-0.12~pre6/doc/man/man5/elinks.conf.5
+===================================================================
+--- elinks-0.12~pre6.orig/doc/man/man5/elinks.conf.5	2012-10-28 13:57:15.000000000 +0100
++++ elinks-0.12~pre6/doc/man/man5/elinks.conf.5	2013-11-20 11:35:53.586205845 +0100
+@@ -3712,7 +3712,7 @@
+ .sp
+ LEDs (visual indicators) options\&.
+ .PP
+-ui\&.leds\&.enable \fB[0|1]\fR (default: 1)
++ui\&.leds\&.enable \fB[0|1]\fR (default: 0)
+ .RS 4
+ Enable LEDs\&. These visual indicators will inform you about various states\&.
+ .RE
+Index: elinks-0.12~pre6/src/bfu/leds.c
+===================================================================
+--- elinks-0.12~pre6.orig/src/bfu/leds.c	2012-10-28 13:57:15.000000000 +0100
++++ elinks-0.12~pre6/src/bfu/leds.c	2013-11-20 11:35:53.586205845 +0100
+@@ -92,7 +92,7 @@
+ 		N_("LEDs (visual indicators) options.")),
+ 
+ 	INIT_OPT_BOOL("ui.leds", N_("Enable"),
+-		"enable", 0, 1,
++		"enable", 0, 0,
+ 		N_("Enable LEDs. These visual indicators will inform you "
+ 		"about various states.")),
+ 
