@@ -1,0 +1,11 @@
+--- a/configure
++++ b/configure
+@@ -438,7 +438,7 @@
+ 
+ if detect_resolv_dynamic || detect_resolv_static; then
+ 	echo '#define HAVE_RESOLV_A' >> config.h
+-	if [ "$noresolv" == "0" ]; then
++	if [ "$noresolv" = "0" ]; then
+ 		echo '#define HAVE_RESOLV_A' >> config.h
+ 	else
+ 		echo '#undef HAVE_RESOLV_A' >> config.h

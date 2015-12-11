@@ -4,11 +4,12 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# The newer versions requires libotr 4.0.0 https://wiki.bitlbee.org/bitlbee-otr
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bitlbee
-PKG_VERSION:=3.2
+PKG_VERSION:=3.2.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -16,7 +17,7 @@ PKG_SOURCE_URL:=http://get.bitlbee.org/src \
 	http://get.bitlbee.be/src \
 	http://get.us.bitlbee.org/src \
 	http://ftp.snt.utwente.nl/pub/software/bitlbee/src
-PKG_MD5SUM:=6a8fe98e96a47c636004a245075d5d7c
+PKG_MD5SUM:=6ee7c7a99eb59dfcf0307fcf44c14105
 
 PKG_BUILD_DEPENDS:=glib2
 
