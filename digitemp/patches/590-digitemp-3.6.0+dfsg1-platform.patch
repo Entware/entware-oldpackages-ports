@@ -1,0 +1,135 @@
+Platform adjustments
+Patch author: Ryan Finnie <ryan@finnie.org>
+
+Remove detection of getopt positions.  optind can be left untouched and
+will default to the appropriate platform value, and getopt eof is -1
+across all platforms tested.
+
+Remove include of endian.h as hto* and *toh are not used.
+
+Remove -D defines for platforms without special handling left.
+
+--- a/Makefile
++++ b/Makefile
+@@ -52,10 +52,6 @@
+ # -----------------------------------------------------------------------
+ SYSTYPE := $(shell uname -s)
+ 
+-ifeq ($(SYSTYPE), Linux)
+-  EXTRACFLAGS += -DLINUX
+-endif
+-
+ ifneq (, $(findstring CYGWIN,$(SYSTYPE)))
+   EXTRACFLAGS += -DCYGWIN
+   LIBS   += -static -static-libgcc
+@@ -70,15 +66,6 @@
+   EXTRACFLAGS += -DFREEBSD
+ endif
+ 
+-ifeq ($(SYSTYPE), OpenBSD)
+-  EXTRACFLAGS += -DOPENBSD
+-endif
+-
+-# Untested, but should work.
+-ifeq ($(SYSTYPE), NetBSD)
+-  EXTRACFLAGS += -DNETBSD
+-endif
+-
+ ifeq ($(SYSTYPE), Darwin)
+   EXTRACFLAGS += -DDARWIN
+ endif
+--- a/src/digitemp.c
++++ b/src/digitemp.c
+@@ -75,80 +75,18 @@
+ #include <stdint.h>
+ #include "ad26.h"
+ 
+-// Include endian.h
+-#if DARWIN
+-#include <machine/endian.h>
+-#endif
+-#if FREEBSD
+-#include <sys/endian.h>
+-#endif
+-#if !defined(DARWIN) && !defined(FREEBSD)
+-#include <endian.h>
+-#endif
+-
+ #include "digitemp.h"
+ #include "device_name.h"
+ #include "ownet.h"
+ #include "owproto.h"
+ 
+ 
+-/* Setup the correct getopt starting point */
+-#ifdef LINUX
+-#define GETOPTEOF -1
+-#define OPTINDSTART 0
+-#endif
+-
+-#ifdef CYGWIN
+-#define GETOPTEOF -1
+-#define OPTINDSTART 0
+-#endif
+-
+-#ifdef AIX
+-#define OPTINDSTART 0
+-#define GETOPTEOF 255
+-#endif
+- 
+-#ifdef SOLARIS
+-#define GETOPTEOF EOF
+-#define OPTINDSTART 1
+-#endif
+-
+-#ifdef FREEBSD
+-#define GETOPTEOF EOF
+-#define OPTINDSTART 1
+-#endif
+-
+-#ifdef OPENBSD
+-#define GETOPTEOF EOF
+-#define OPTINDSTART 1
+-#endif
+-
+-#ifdef NETBSD
+-#define GETOPTEOF EOF
+-#define OPTINDSTART 1
+-#endif
+-
+-#ifdef DARWIN
+-#define GETOPTEOF EOF
+-#define OPTINDSTART 1
+-#endif
+- 
+-#ifdef OTHER
+-#define GETOPTEOF EOF
+-#define OPTINDSTART 1
+-#endif 
+-
+-
+ /* For tracking down strange errors */
+ #undef BCL_DEBUG
+ 
+ extern char 	*optarg;              
+ extern int	optind, opterr, optopt;
+ 
+-#if defined(FREEBSD) || defined(DARWIN)
+-extern int optreset;
+-#endif /* FREEBSD or DARWIN */
+-
+ extern const char dtlib[];			/* Library Used            */
+  
+ char serial_port[1024],                        /* Path to the serial port */
+@@ -2462,10 +2400,9 @@
+   /* Unless the -i parameter is specified, then changes are saved to    */
+   /* .digitemprc file                                                   */
+ 
+-  optind = OPTINDSTART;
+   opterr = 1;
+ 
+-  while( (c = getopt(argc, argv, option_list)) != GETOPTEOF )
++  while( (c = getopt(argc, argv, option_list)) != -1 )
+   {
+     /* Process the command line arguments */
+     switch( c )

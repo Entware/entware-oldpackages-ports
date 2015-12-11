@@ -1,0 +1,220 @@
+Replace lockdev usage with flock
+Patch author: Ryan Finnie <ryan@finnie.org>
+
+http://bugs.debian.org/728018
+
+Index: digitemp-3.6.0+dfsg1/Makefile
+===================================================================
+--- digitemp-3.6.0+dfsg1.orig/Makefile	2013-11-09 20:23:28.000000000 +0000
++++ digitemp-3.6.0+dfsg1/Makefile	2013-11-09 20:52:58.118965186 +0000
+@@ -6,8 +6,6 @@
+ #
+ # Please note that this Makefile *needs* GNU make. BSD make won't do.
+ #
+-# To disable Lockfile support on Linux, chenage LOCK to no
+-#
+ 
+ VERSION = 3.6.0
+ 
+@@ -56,10 +54,6 @@
+ 
+ ifeq ($(SYSTYPE), Linux)
+   EXTRACFLAGS += -DLINUX
+-
+-  # Set LOCK to yes for serial port locking support
+-  LOCK = no
+-
+ endif
+ 
+ ifneq (, $(findstring CYGWIN,$(SYSTYPE)))
+@@ -93,11 +87,6 @@
+   EXTRACFLAGS += -DAIX
+ endif
+ 
+-ifeq ($(LOCK), yes)
+-  EXTRACFLAGS += -DLOCKDEV
+-  LIBS   += -llockdev
+-endif
+-
+ 
+ # USB specific flags
+ ds2490:  EXTRACFLAGS += -DOWUSB
+Index: digitemp-3.6.0+dfsg1/src/digitemp.c
+===================================================================
+--- digitemp-3.6.0+dfsg1.orig/src/digitemp.c	2013-11-09 20:23:28.000000000 +0000
++++ digitemp-3.6.0+dfsg1/src/digitemp.c	2013-11-09 20:54:24.318993659 +0000
+@@ -86,14 +86,6 @@
+ #include <endian.h>
+ #endif
+ 
+-#ifdef LINUX
+-#ifndef OWUSB
+-#ifdef LOCKDEV
+-#include <lockdev.h>
+-#endif
+-#endif
+-#endif
+-
+ #include "digitemp.h"
+ #include "device_name.h"
+ #include "ownet.h"
+@@ -2658,46 +2650,6 @@
+ 
+     exit(EXIT_NOPERM);
+   }
+-
+-  /* Lock our use of the serial port, exit if it is in use */
+-#ifdef LINUX
+-#ifndef OWUSB
+-#ifdef LOCKDEV
+-  /* First turn serial_port into just the final device name */
+-  if( !(p = strrchr( serial_port, '/' )) )
+-  {
+-    fprintf( stderr, "Error getting serial device from %s\n", serial_port );
+-    
+-    if( sensor_list.roms != NULL )
+-      free( sensor_list.roms );
+-
+-    if( coupler_top != NULL )
+-      free_coupler(1);
+-
+-    exit(EXIT_DEVERR);
+-  }
+-  strncpy( serial_dev, p+1, sizeof(serial_dev)-1 );
+-
+-  if( (pid = dev_lock( serial_dev )) != 0 )
+-  {
+-    if( pid == -1 )
+-    {
+-      fprintf( stderr, "Error locking %s. Do you have permission to write to /var/lock?\n", serial_dev );
+-    } else {
+-      fprintf( stderr, "Error, %s is locked by process %d\n", serial_dev, pid );
+-    }
+-      
+-    if( sensor_list.roms != NULL )
+-      free( sensor_list.roms );
+-
+-    if( coupler_top != NULL )
+-      free_coupler(1);
+-
+-    exit(EXIT_LOCKED);
+-  }
+-#endif		/* LOCKDEV	*/
+-#endif		/* OWUSB	*/
+-#endif		/* LINUX 	*/
+ #endif		/* !OWUSB 	*/
+ 
+   /* Connect to the MLan network */
+@@ -2719,13 +2671,6 @@
+     if( coupler_top != NULL )
+       free_coupler(0);
+ 
+-#ifdef LINUX
+-#ifndef OWUSB
+-#ifdef LOCKDEV
+-    dev_unlock( serial_dev, 0 );
+-#endif		/* LOCKDEV	*/
+-#endif		/* OWUSB	*/
+-#endif		/* LINUX	*/
+     exit(EXIT_ERR);
+   }
+ 
+@@ -2747,14 +2692,6 @@
+       owRelease(0, temp );
+ #endif /* OWUSB */
+ 
+-#ifdef LINUX
+-#ifndef OWUSB
+-#ifdef LOCKDEV
+-    dev_unlock( serial_dev, 0 );
+-#endif		/* LOCKDEV	*/
+-#endif		/* OWUSB	*/
+-#endif		/* LINUX	*/
+-
+     exit(EXIT_OK);
+   }
+ 
+@@ -2780,14 +2717,6 @@
+       fprintf( stderr, "USB ERROR: %s\n", temp );
+ #endif /* OWUSB */
+ 
+-#ifdef LINUX
+-#ifndef OWUSB
+-#ifdef LOCKDEV
+-      dev_unlock( serial_dev, 0 );
+-#endif		/* LOCKDEV	*/
+-#endif		/* OWUSB	*/
+-#endif		/* LINUX	*/
+-
+       exit(EXIT_ERR);
+     }
+   }
+@@ -2872,14 +2801,6 @@
+   owRelease(0, temp );
+ #endif /* OWUSB */
+ 
+-#ifdef LINUX
+-#ifndef OWUSB
+-#ifdef LOCKDEV
+-  dev_unlock( serial_dev, 0 );
+-#endif		/* LOCKDEV	*/
+-#endif		/* OWUSB	*/
+-#endif		/* LINUX	*/
+-
+   exit(EXIT_OK);
+ }
+ 
+Index: digitemp-3.6.0+dfsg1/userial/ds9097/linuxses.c
+===================================================================
+--- digitemp-3.6.0+dfsg1.orig/userial/ds9097/linuxses.c	2007-06-07 21:25:58.000000000 +0000
++++ digitemp-3.6.0+dfsg1/userial/ds9097/linuxses.c	2013-11-09 21:21:55.843565700 +0000
+@@ -39,6 +39,7 @@
+ #include <termios.h>
+ #include <fcntl.h>
+ #include <ownet.h>
++#include <sys/file.h>
+ 
+ /* local function prototypes */
+ SMALLINT owAcquire(int,char *);
+@@ -62,6 +63,14 @@
+ 	return FALSE;
+      }
+    
++   /* Lock the device */
++   if(flock(fd[portnum], LOCK_EX|LOCK_NB))
++     {
++	OWERROR(OWERROR_GET_SYSTEM_RESOURCE_FAILED);
++	perror("owAcquire: failed to open device");
++	return FALSE;
++     }
++
+    /* Get device settings */
+    if(tcgetattr(fd[portnum], &term[portnum] ) < 0 )
+      {
+Index: digitemp-3.6.0+dfsg1/userial/ds9097u/linuxlnk.c
+===================================================================
+--- digitemp-3.6.0+dfsg1.orig/userial/ds9097u/linuxlnk.c	2007-06-07 21:25:58.000000000 +0000
++++ digitemp-3.6.0+dfsg1/userial/ds9097u/linuxlnk.c	2013-11-09 21:21:40.195561463 +0000
+@@ -93,6 +93,7 @@
+ #include <termios.h>
+ #include <errno.h>
+ #include <sys/time.h>
++#include <sys/file.h>
+ 
+ #include "ds2480.h"
+ #include "ownet.h"
+@@ -138,6 +139,14 @@
+       OWERROR(OWERROR_GET_SYSTEM_RESOURCE_FAILED);
+       return FALSE;  // changed (2.00), used to return fd;
+    }
++
++   /* Lock the device */
++   if(flock(fd[portnum], LOCK_EX|LOCK_NB))
++     {
++        OWERROR(OWERROR_GET_SYSTEM_RESOURCE_FAILED);
++        return FALSE;
++     }
++
+    rc = tcgetattr (fd[portnum], &t);
+    if (rc < 0)
+    {
