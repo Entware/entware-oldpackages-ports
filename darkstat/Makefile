@@ -35,7 +35,6 @@ endef
 
 CONFIGURE_ARGS += \
 	--disable-debug \
-	--with-chroot-dir=/opt/var/empty
 
 TARGET_CFLAGS += -std=gnu99
 
