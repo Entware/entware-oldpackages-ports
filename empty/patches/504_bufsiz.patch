@@ -1,0 +1,12 @@
+diff -ruN -x '*.png' -x '*.jpg' -x '*.ogg' -x '*_image_archive' ../orig/empty-expect-0.6.18b/empty.c ./empty.c
+--- ../orig/empty-expect-0.6.18b/empty.c	2009-07-27 17:26:42.000000000 +0000
++++ ./empty.c	2011-08-28 10:59:46.000000000 +0000
+@@ -687,7 +687,7 @@
+ 	while ((dent = readdir(dir)) != NULL) {
+ 		if (!strncmp(fmask, dent->d_name, len)) {
+ 			strncpy(fname, dent->d_name, sizeof(fname) - 1);
+-			fname[sizeof(buf) - 1] = '\0';
++			fname[sizeof(fname) - 1] = '\0';
+ 
+ 			strtok(fname, sep);		/* empty */
+ 			strtok(NULL, sep);		/* PPID */

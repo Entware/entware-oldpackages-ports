@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=empty
-PKG_VERSION:=0.6.19b
+PKG_VERSION:=0.6.20b
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=@SF/empty
-PKG_MD5SUM:=a0729eb35dc607e463d86b681b8c1711
+PKG_MD5SUM:=d576754795ab4eb1c528ca2a98b5d545
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -33,12 +33,9 @@ define Package/empty/description
  programming tools.
 endef
 
-MAKE_FLAGS += \
-	LIBS="$(TARGET_LDFLAGS) -lutil"
-
 define Package/empty/install
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/opt/sbin
 endef
 
 $(eval $(call BuildPackage,empty))
