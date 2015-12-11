@@ -4,12 +4,13 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2002
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dsniff
 PKG_VERSION:=2.4b1
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.monkey.org/~dugsong/dsniff/beta
@@ -22,7 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/dsniff
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libpcap +libnids +libnet0 +libopenssl +libgdbm
+  DEPENDS:=+libpcap +libnids +libopenssl +libgdbm
   TITLE:=A collection of tools for network auditing and penetration testing
   URL:=http://www.monkey.org/~dugsong/dsniff/
 endef
@@ -31,22 +32,19 @@ define Package/dsniff/description
 	A collection of tools for network auditing and penetration testing.
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
-		--with-gdbm="$(STAGING_DIR)/opt" \
-		--with-libnids="$(STAGING_DIR)/opt" \
-		--with-libpcap="$(STAGING_DIR)/opt" \
-		--with-libnet="$(STAGING_DIR)/opt/lib/libnet-1.0.x" \
-		--with-openssl="$(STAGING_DIR)/opt" \
-		--without-db \
-		--without-x \
-	)
-endef
+CONFIGURE_ARGS += \
+	--with-gdbm="$(STAGING_DIR)/opt" \
+	--with-libnids="$(STAGING_DIR)/opt" \
+	--with-libpcap="$(STAGING_DIR)/opt" \
+	--with-libnet="$(STAGING_DIR)/opt/lib/libnet-1.0.x" \
+	--with-openssl="$(STAGING_DIR)/opt" \
+	--without-db \
+	--without-x
 
 # There is a problem, that crosscompiled rpcgen binary is the first in the path
 # in case of glibc. The path is modified to use host compiled rpcgen!
 
-define Build/Compile	
+define Build/Compile
 	PATH="$(TOPDIR)/staging_dir/host/bin:$(TARGET_PATH)" \
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		$(TARGET_CONFIGURE_OPTS) \
@@ -54,11 +52,11 @@ define Build/Compile
 		all install
 endef
 
-define Package/dsniff/install	
+define Package/dsniff/install
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/* $(1)/opt/sbin
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP)  $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/lib/
+	$(CP)  $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/lib
 endef
 
 $(eval $(call BuildPackage,dsniff))
