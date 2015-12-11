@@ -4,12 +4,13 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2010
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dstat
 PKG_VERSION:=0.7.2
-PKG_RELEASE:=1a
+PKG_RELEASE:=1b
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://dag.wieers.com/home-made/dstat/
@@ -39,7 +40,6 @@ endef
 define Package/dstat/install
 	$(INSTALL_DIR) $(1)/opt/share/dstat
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dstat $(1)/opt/share/dstat/dstat.py
-	$(SED) 's!/usr/share/dstat/!/opt/share/dstat/!' $(1)/opt/share/dstat/dstat.py
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/plugins/dstat_*.py $(1)/opt/share/dstat/
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(LN) -sf ../share/dstat/dstat.py $(1)/opt/bin/dstat
