@@ -1,6 +1,6 @@
 --- a/backend/ipp.c
 +++ b/backend/ipp.c
-@@ -1734,6 +1734,10 @@
+@@ -1744,6 +1744,10 @@
  	  ippAddString(request, IPP_TAG_OPERATION, IPP_TAG_KEYWORD,
  		       "compression", NULL, compression);
  
