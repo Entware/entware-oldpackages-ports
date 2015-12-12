@@ -1,0 +1,11 @@
+--- a/configure
++++ b/configure
+@@ -6991,7 +6991,7 @@
+                   /usr/share/terminfo \
+                   /usr/share/lib/terminfo \
+ 		  /usr/local/lib/terminfo"
+-TERMCAP=-ltermcap
++TERMCAP=""
+ 
+ for terminfo_dir in $JD_Terminfo_Dirs
+ do
