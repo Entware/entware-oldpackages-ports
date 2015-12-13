@@ -4,15 +4,16 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=flite
-PKG_VERSION:=1.4-release
+PKG_VERSION:=2.0.0-release
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://www.speech.cs.cmu.edu/flite/packed/flite-1.4/
-PKG_MD5SUM:=b7c3523b3bbc6f29ce61e6650cd9a428
+PKG_SOURCE_URL:=http://www.festvox.org/flite/packed/flite-2.0
+PKG_MD5SUM:=645db96ffc296cbb6d37f231cc1cc6b2
 
 PKG_INSTALL:=1
 
@@ -32,24 +33,16 @@ Festival Lite is a stripped down version of Festival,
 	This program is written in C to keep memory usage low.
 endef
 
-TARGET_LDFLAGS += -lm
-
-define Build/Configure
-	$(call Build/Configure/Default, \
-		--enable-shared \
-		--with-audio="alsa" \
-		--with-vox="cmu_us_kal16" \
-		--prefix="$(PKG_INSTALL_DIR)/opt" \
-		--exec-prefix="$(PKG_INSTALL_DIR)/opt" \
-		--bindir="$(PKG_INSTALL_DIR)/opt/bin" \
-	)
-endef
+CONFIGURE_ARGS += \
+	--enable-shared \
+	--with-audio="alsa" \
+	--with-vox="cmu_us_kal16" \
 
 define Package/flite/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/bin/flite* $(1)/opt/bin/
+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/flite* $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libflite*.so.* $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libflite*.so* $(1)/opt/lib
 endef
 
 $(eval $(call BuildPackage,flite))
