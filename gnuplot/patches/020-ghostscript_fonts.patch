@@ -6,7 +6,7 @@
      /* Ghostscript */
 -    { "/usr/share/ghostscript/fonts" },
 -    { "/usr/local/share/ghostscript/fonts" },
-+    { "/opt//share/ghostscript/fonts" },
++    { "/opt/share/ghostscript/fonts" },
      { NULL }
  };
  #endif
