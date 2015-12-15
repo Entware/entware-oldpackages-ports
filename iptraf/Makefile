@@ -4,6 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2007
 
 include $(TOPDIR)/rules.mk
 
@@ -49,8 +50,7 @@ endef
 
 define Package/iptraf/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/iptraf $(1)/opt/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/rvnamed $(1)/opt/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/{iptraf,rvnamed} $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/var/{log,lib}/iptraf
 endef
 

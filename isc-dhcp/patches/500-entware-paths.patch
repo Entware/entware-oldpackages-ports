@@ -1,6 +1,6 @@
 --- a/includes/dhcpd.h
 +++ b/includes/dhcpd.h
-@@ -1440,15 +1440,15 @@
+@@ -1500,61 +1500,61 @@
  #else /* !DEBUG */
  
  #ifndef _PATH_DHCPD_CONF
@@ -19,7 +19,15 @@
  #endif
  
  #ifndef _PATH_DHCPD_PID
-@@ -1462,11 +1462,11 @@
+-#define _PATH_DHCPD_PID		LOCALSTATEDIR"/run/dhcpd.pid"
++#define _PATH_DHCPD_PID		"/opt/var/run/dhcpd.pid"
+ #endif
+ 
+ #ifndef _PATH_DHCPD6_PID
+-#define _PATH_DHCPD6_PID	LOCALSTATEDIR"/run/dhcpd6.pid"
++#define _PATH_DHCPD6_PID	"/opt/var/run/dhcpd6.pid"
+ #endif
+ 
  #endif /* DEBUG */
  
  #ifndef _PATH_DHCLIENT_CONF
@@ -33,7 +41,13 @@
  #endif
  
  #ifndef _PATH_DHCLIENT_PID
-@@ -1478,11 +1478,11 @@
+-#define _PATH_DHCLIENT_PID	LOCALSTATEDIR"/run/dhclient.pid"
++#define _PATH_DHCLIENT_PID	"/opt/var/run/dhclient.pid"
+ #endif
+ 
+ #ifndef _PATH_DHCLIENT6_PID
+-#define _PATH_DHCLIENT6_PID	LOCALSTATEDIR"/run/dhclient6.pid"
++#define _PATH_DHCLIENT6_PID	"/opt/var/run/dhclient6.pid"
  #endif
  
  #ifndef _PATH_DHCLIENT_DB
@@ -47,3 +61,18 @@
  #endif
  
  #ifndef _PATH_RESOLV_CONF
+-#define _PATH_RESOLV_CONF	"/etc/resolv.conf"
++#define _PATH_RESOLV_CONF	"/opt/etc/resolv.conf"
+ #endif
+ 
+ #ifndef _PATH_DHCRELAY_PID
+-#define _PATH_DHCRELAY_PID	LOCALSTATEDIR"/run/dhcrelay.pid"
++#define _PATH_DHCRELAY_PID	"/opt/var/run/dhcrelay.pid"
+ #endif
+ 
+ #ifndef _PATH_DHCRELAY6_PID
+-#define _PATH_DHCRELAY6_PID	LOCALSTATEDIR"/run/dhcrelay6.pid"
++#define _PATH_DHCRELAY6_PID	"/opt/var/run/dhcrelay6.pid"
+ #endif
+ 
+ #ifndef DHCPD_LOG_FACILITY
