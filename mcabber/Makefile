@@ -9,13 +9,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mcabber
 PKG_VERSION:=1.0.0
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://mcabber.com/files/
+PKG_SOURCE_URL:=http://mcabber.com/files
 PKG_MD5SUM:=529d720540981d334cf43cb74395ca93
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -40,21 +40,18 @@ endef
 CONFIGURE_ARGS += \
 	--with-libidn=$(STAGING_DIR)/opt/lib \
 	--with-gpgme-prefix=$(STAGING_DIR)/opt \
-	--enable-otr
+	--enable-otr \
+	--disable-hgcset
 
 define Package/mcabber/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mcabber/mcabber $(1)/opt/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/mcabber $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/lib/mcabber
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/beep/.libs/libbeep.so $(1)/opt/lib/mcabber
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/xttitle/.libs/libxttitle.so $(1)/opt/lib/mcabber
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/urlregex/.libs/liburlregex.so $(1)/opt/lib/mcabber
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/modules/fifo/.libs/libfifo.so $(1)/opt/lib/mcabber
-	$(INSTALL_DIR) $(1)/opt/share/mcabber/{histo,event_files} $(1)/opt/share/mcabber/help/en $(1)/opt/share/mcabber/help/ru
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/mcabberrc.example $(1)/opt/share/mcabber/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/mcabber/*.so $(1)/opt/lib/mcabber
+	$(INSTALL_DIR) $(1)/opt/share/mcabber/help
+	$(CP) $(PKG_INSTALL_DIR)/opt/share/mcabber/help/en $(1)/opt/share/mcabber/help
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/mcabberrc.example $(1)/opt/share/mcabber
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/contrib/events/eventcmd $(1)/opt/share/mcabber/eventcmd.example
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/doc/help/en/*.txt $(1)/opt/share/mcabber/help/en/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/doc/help/ru/*.txt $(1)/opt/share/mcabber/help/ru/
 endef
 
 $(eval $(call BuildPackage,mcabber))
