@@ -1,6 +1,7 @@
 #
 # Copyright (C) 2008-2014 OpenWrt.org
 #
+# Abandoned in 2009
 
 include $(TOPDIR)/rules.mk
 
