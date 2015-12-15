@@ -4,16 +4,17 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Used by mcabber only
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gpgme
-PKG_VERSION:=1.5.5
+PKG_VERSION:=1.6.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=ftp://ftp.gnupg.org/gcrypt/gpgme/
-PKG_MD5SUM:=a56df7028a0814ef57d77262898ca040
+PKG_SOURCE_URL:=ftp://ftp.gnupg.org/gcrypt/gpgme
+PKG_MD5SUM:=60d730d22e8065fd5de309e8b98e304b
 
 PKG_INSTALL:=1
 
@@ -27,7 +28,7 @@ define Package/libgpgme
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=GnuPG Made Easy library
-  DEPENDS:=+gnupg +libassuan +libpthread
+  DEPENDS:=+libassuan +libpthread
   URL:=http://www.gnupg.org/
 endef
 
@@ -43,18 +44,11 @@ ifneq ($(CONFIG_USE_GLIBC),y)
   CONFIGURE_VARS += LIBS="-largp"
 endif
 
-
-
 CONFIGURE_ARGS += \
 	--enable-shared \
 	--enable-static \
-	--with-gpg="/opt/bin/gpg" \
 	--with-gpg-error-prefix="$(STAGING_DIR)/opt" \
 	--with-libassuan-prefix="$(STAGING_DIR)/opt" \
-	--without-g13 \
-	--without-gpgconf \
-	--without-gpgsm \
-	--without-pth \
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
