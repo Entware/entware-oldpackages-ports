@@ -4,20 +4,20 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# The newer versions requires libotr 4.0.0 https://wiki.bitlbee.org/bitlbee-otr
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bitlbee
-PKG_VERSION:=3.2.1
+PKG_VERSION:=3.4.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://get.bitlbee.org/src \
 	http://get.bitlbee.be/src \
 	http://get.us.bitlbee.org/src \
-	http://ftp.snt.utwente.nl/pub/software/bitlbee/src
-PKG_MD5SUM:=6ee7c7a99eb59dfcf0307fcf44c14105
+	http://ftp.snt.utwente.nl/pub/software/bitlbee/src \
+	http://bitlbee.intergenia.de/src
+PKG_MD5SUM:=dc2d66c0b01d450ce8b44e1f8baf0378
 
 PKG_BUILD_DEPENDS:=glib2
 
@@ -28,7 +28,7 @@ define Package/bitlbee
   SUBMENU:=Instant Messaging
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libgnutls +glib2 +libgcrypt +libotr $(ICONV_DEPENDS)
+  DEPENDS:=+glib2 +libgcrypt +BITLBEE_OTR:libotr +BITLBEE_ENABLE_SSL:libgnutls
   TITLE:=IRC gateway to IM chat networks
   URL:=http://www.bitlbee.org/
 endef
@@ -44,23 +44,21 @@ endef
 
 ifeq ($(CONFIG_BITLBEE_ENABLE_SSL),y)
 	EXTRA_CONF_OPTS+= \
-        --ssl=gnutls
-	PKG_BUILD_DEPENDS+= \
-	libgnutls
+	--ssl=gnutls
 else
 	EXTRA_CONF_OPTS:=--ssl=bogus
 endif
 ifneq ($(CONFIG_BITLBEE_MSN),y)
 	EXTRA_CONF_OPTS+= \
-	--msn=0 
+	--msn=0
 endif
 ifneq ($(CONFIG_BITLBEE_JABBER),y)
 	EXTRA_CONF_OPTS+= \
-	--jabber=0 
+	--jabber=0
 endif
 ifneq ($(CONFIG_BITLBEE_OSCAR),y)
 	EXTRA_CONF_OPTS+= \
-	--oscar=0 
+	--oscar=0
 endif
 ifneq ($(CONFIG_BITLBEE_YAHOO),y)
 	EXTRA_CONF_OPTS+= \
@@ -77,8 +75,6 @@ endif
 ifeq ($(CONFIG_BITLBEE_OTR),y)
 	EXTRA_CONF_OPTS+= \
 	--otr=1
-	PKG_BUILD_DEPENDS+= \
-	libotr
 endif
 
 define Build/Configure
@@ -95,13 +91,11 @@ define Build/Configure
 			--bindir=/opt/sbin/ \
 			--etcdir=/opt/etc/bitlbee/ \
 			--datadir=/opt/share/bitlbee/ \
-			--plugins=/opt/lib/bitlbee/ \
+			--plugindir=/opt/lib/bitlbee/ \
+			--pidfile=/opt/var/run/bitlbee.pid \
 			--config=/opt/var/lib/bitlbee/ \
-			--arch=OpenWrt \
-			--cpu="$(ARCH)" \
 			--debug=0 \
 			--strip=1 \
-			--ipv6=1 \
 			$(EXTRA_CONF_OPTS) \
 	);
 	$(SED) 's,^CFLAGS=.*,CFLAGS=$(TARGET_CFLAGS),g'\
@@ -120,10 +114,6 @@ define Build/Configure
 		$(PKG_BUILD_DIR)/Makefile.settings
 endef
 
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR)
-endef
-
 define Package/bitlbee/install
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		DESTDIR="$(PKG_INSTALL_DIR)" install-etc install-bin
@@ -131,7 +121,10 @@ define Package/bitlbee/install
 		DESTDIR="$(PKG_INSTALL_DIR)" install
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S72bitlbee $(1)/opt/etc/init.d
-	$(CP) $(PKG_INSTALL_DIR)/opt/* $(1)/opt/
+	$(INSTALL_DIR) $(1)/opt/etc/bitlbee $(1)/opt/sbin $(1)/opt/share/bitlbee
+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/bitlbee/* $(1)/opt/etc/bitlbee
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/bitlbee $(1)/opt/sbin
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/opt/share/bitlbee/help.txt $(1)/opt/share/bitlbee
 endef
 
 $(eval $(call BuildPackage,bitlbee))
