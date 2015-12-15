@@ -4,6 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Used by isakmpd only which is abandoned in 2004
 
 include $(TOPDIR)/rules.mk
 
