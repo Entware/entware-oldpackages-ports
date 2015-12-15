@@ -1,15 +1,14 @@
-# Can't upgrade to 4.x because API has changed significantly
-# https://otr.cypherpunks.ca/UPGRADING-libotr-4.1.0.txt
+
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libotr
-PKG_VERSION:=3.2.1
+PKG_VERSION:=4.1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.cypherpunks.ca/otr/
-PKG_MD5SUM:=974acf937d2ce0ee89b27a9815c17a3f
+PKG_SOURCE_URL:=https://otr.cypherpunks.ca
+PKG_MD5SUM:=6589f81e7ccbe244f265e8db372814a2
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -30,13 +29,8 @@ define Package/libotr/description
   instant messaging.
 endef
 
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		CC='$(TARGET_CC) $(FPIC)' \
-		CFLAGS='$(TARGET_CFLAGS) -Wall -D_GNU_SOURCE' \
-		LDFLAGS='$(TARGET_LDFLAGS)' \
-		all
-endef
+TARGET_LDFLAGS += \
+	-lssp
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include $(1)/opt/lib $(1)/opt/lib/pkgconfig
@@ -47,7 +41,7 @@ endef
 
 define Package/libotr/install
 	$(INSTALL_DIR) $(1)/opt/lib $(1)/opt/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libotr.so.* $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libotr.so* $(1)/opt/lib
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
 endef
 
