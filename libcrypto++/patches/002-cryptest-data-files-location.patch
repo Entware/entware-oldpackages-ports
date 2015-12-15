@@ -2,11 +2,9 @@
 ##
 ## Prefix data file names by PACKAGE_DATA_DIR which is set during build.
 
-Index: libcrypto++/bench2.cpp
-===================================================================
---- libcrypto++.orig/bench2.cpp	2010-08-11 17:25:57.000000000 +0200
-+++ libcrypto++/bench2.cpp	2010-08-11 17:26:03.000000000 +0200
-@@ -237,44 +237,44 @@
+--- libcrypto++-5.6.3.orig/bench2.cpp
++++ libcrypto++-5.6.3/bench2.cpp
+@@ -257,44 +257,44 @@ void BenchmarkAll2(double t, double hert
  	cout << "<THEAD><TR><TH>Operation<TH>Milliseconds/Operation" << (g_hertz ? "<TH>Megacycles/Operation" : "") << endl;
  
  	cout << "\n<TBODY style=\"background: yellow\">";
@@ -78,23 +76,21 @@ Index: libcrypto++/bench2.cpp
 +	BenchMarkKeyAgreement<LUC_DH>(PACKAGE_DATA_DIR "TestData/lucd1024.dat", "LUCDIF 1024", t);
 +	BenchMarkKeyAgreement<MQV>(PACKAGE_DATA_DIR "TestData/mqv1024.dat", "MQV 1024", t);
 +	BenchMarkKeyAgreement<MQV>(PACKAGE_DATA_DIR "TestData/mqv2048.dat", "MQV 2048", t);
- #endif
+ 
  	cout << "\n<TBODY style=\"background: white\">";
  	{
-Index: libcrypto++/test.cpp
-===================================================================
---- libcrypto++.orig/test.cpp	2010-08-11 17:25:57.000000000 +0200
-+++ libcrypto++/test.cpp	2010-08-11 17:26:20.000000000 +0200
-@@ -251,7 +251,7 @@
+--- libcrypto++-5.6.3.orig/test.cpp
++++ libcrypto++-5.6.3/test.cpp
+@@ -281,7 +281,7 @@ int CRYPTOPP_API main(int argc, char *ar
  		{
- 			std::string fname = argv[2];
+ 			std::string fname = (argv[2] ? argv[2] : "all");
  			if (fname.find(".txt") == std::string::npos)
 -				fname = "TestVectors/" + fname + ".txt";
 +				fname = PACKAGE_DATA_DIR "TestVectors/" + fname + ".txt";
+ 			
+ 			PrintSeedAndThreads(seed);
  			return !RunTestDataFile(fname.c_str());
- 		}
- 		else if (command == "t")
-@@ -337,7 +337,7 @@
+@@ -369,7 +369,7 @@ int CRYPTOPP_API main(int argc, char *ar
  			AES_CTR_Encrypt(argv[2], argv[3], argv[4], argv[5]);
  		else if (command == "h")
  		{
@@ -103,11 +99,18 @@ Index: libcrypto++/test.cpp
  			return 1;
  		}
  		else if (command == "V")
-Index: libcrypto++/validat1.cpp
-===================================================================
---- libcrypto++.orig/validat1.cpp	2010-08-11 17:25:57.000000000 +0200
-+++ libcrypto++/validat1.cpp	2010-08-11 17:26:03.000000000 +0200
-@@ -93,8 +93,8 @@
+--- libcrypto++-5.6.3.orig/validat1.cpp
++++ libcrypto++-5.6.3/validat1.cpp
+@@ -83,7 +83,7 @@ bool ValidateAll(bool thorough)
+ 	pass=ValidateMD2() && pass;
+ 	pass=ValidateMD5() && pass;
+ 	pass=ValidateSHA() && pass;
+-	pass=RunTestDataFile("TestVectors/sha3.txt") && pass;
++	pass=RunTestDataFile(PACKAGE_DATA_DIR "TestVectors/sha3.txt") && pass;
+ 	pass=ValidateTiger() && pass;
+ 	pass=ValidateRIPEMD() && pass;
+ 	pass=ValidatePanama() && pass;
+@@ -123,8 +123,8 @@ bool ValidateAll(bool thorough)
  	pass=ValidateCCM() && pass;
  	pass=ValidateGCM() && pass;
  	pass=ValidateCMAC() && pass;
@@ -118,7 +121,7 @@ Index: libcrypto++/validat1.cpp
  
  	pass=ValidateBBS() && pass;
  	pass=ValidateDH() && pass;
-@@ -511,12 +511,12 @@
+@@ -735,12 +735,12 @@ bool ValidateDES()
  {
  	cout << "\nDES validation suite running...\n\n";
  
@@ -133,7 +136,7 @@ Index: libcrypto++/validat1.cpp
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<DES_EDE2_Encryption, DES_EDE2_Decryption>(), valdata1, 1) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<DES_EDE3_Encryption, DES_EDE3_Decryption>(), valdata1, 1) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<DES_XEX3_Encryption, DES_XEX3_Decryption>(), valdata1, 1) && pass;
-@@ -858,7 +858,7 @@
+@@ -1084,7 +1084,7 @@ bool ValidateIDEA()
  {
  	cout << "\nIDEA validation suite running...\n\n";
  
@@ -142,7 +145,7 @@ Index: libcrypto++/validat1.cpp
  	return BlockTransformationTest(FixedRoundsCipherFactory<IDEAEncryption, IDEADecryption>(), valdata);
  }
  
-@@ -866,7 +866,7 @@
+@@ -1092,7 +1092,7 @@ bool ValidateSAFER()
  {
  	cout << "\nSAFER validation suite running...\n\n";
  
@@ -151,7 +154,7 @@ Index: libcrypto++/validat1.cpp
  	bool pass = true;
  	pass = BlockTransformationTest(VariableRoundsCipherFactory<SAFER_K_Encryption, SAFER_K_Decryption>(8,6), valdata, 4) && pass;
  	pass = BlockTransformationTest(VariableRoundsCipherFactory<SAFER_K_Encryption, SAFER_K_Decryption>(16,12), valdata, 4) && pass;
-@@ -879,7 +879,7 @@
+@@ -1105,7 +1105,7 @@ bool ValidateRC2()
  {
  	cout << "\nRC2 validation suite running...\n\n";
  
@@ -160,7 +163,7 @@ Index: libcrypto++/validat1.cpp
  	HexEncoder output(new FileSink(cout));
  	SecByteBlock plain(RC2Encryption::BLOCKSIZE), cipher(RC2Encryption::BLOCKSIZE), out(RC2Encryption::BLOCKSIZE), outplain(RC2Encryption::BLOCKSIZE);
  	SecByteBlock key(128);
-@@ -1089,7 +1089,7 @@
+@@ -1315,7 +1315,7 @@ bool ValidateRC5()
  {
  	cout << "\nRC5 validation suite running...\n\n";
  
@@ -169,7 +172,7 @@ Index: libcrypto++/validat1.cpp
  	return BlockTransformationTest(VariableRoundsCipherFactory<RC5Encryption, RC5Decryption>(16, 12), valdata);
  }
  
-@@ -1097,7 +1097,7 @@
+@@ -1323,7 +1323,7 @@ bool ValidateRC6()
  {
  	cout << "\nRC6 validation suite running...\n\n";
  
@@ -178,7 +181,7 @@ Index: libcrypto++/validat1.cpp
  	bool pass = true;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<RC6Encryption, RC6Decryption>(16), valdata, 2) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<RC6Encryption, RC6Decryption>(24), valdata, 2) && pass;
-@@ -1109,7 +1109,7 @@
+@@ -1335,7 +1335,7 @@ bool ValidateMARS()
  {
  	cout << "\nMARS validation suite running...\n\n";
  
@@ -187,7 +190,7 @@ Index: libcrypto++/validat1.cpp
  	bool pass = true;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<MARSEncryption, MARSDecryption>(16), valdata, 4) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<MARSEncryption, MARSDecryption>(24), valdata, 3) && pass;
-@@ -1121,12 +1121,12 @@
+@@ -1347,12 +1347,12 @@ bool ValidateRijndael()
  {
  	cout << "\nRijndael (AES) validation suite running...\n\n";
  
@@ -202,7 +205,7 @@ Index: libcrypto++/validat1.cpp
  	return pass;
  }
  
-@@ -1134,7 +1134,7 @@
+@@ -1360,7 +1360,7 @@ bool ValidateTwofish()
  {
  	cout << "\nTwofish validation suite running...\n\n";
  
@@ -211,16 +214,16 @@ Index: libcrypto++/validat1.cpp
  	bool pass = true;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<TwofishEncryption, TwofishDecryption>(16), valdata, 4) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<TwofishEncryption, TwofishDecryption>(24), valdata, 3) && pass;
-@@ -1146,7 +1146,7 @@
+@@ -1372,7 +1372,7 @@ bool ValidateSerpent()
  {
  	cout << "\nSerpent validation suite running...\n\n";
  
 -	FileSource valdata("TestData/serpentv.dat", true, new HexDecoder);
 +	FileSource valdata(PACKAGE_DATA_DIR "TestData/serpentv.dat", true, new HexDecoder);
  	bool pass = true;
- 	pass = BlockTransformationTest(FixedRoundsCipherFactory<SerpentEncryption, SerpentDecryption>(16), valdata, 4) && pass;
- 	pass = BlockTransformationTest(FixedRoundsCipherFactory<SerpentEncryption, SerpentDecryption>(24), valdata, 3) && pass;
-@@ -1192,7 +1192,7 @@
+ 	pass = BlockTransformationTest(FixedRoundsCipherFactory<SerpentEncryption, SerpentDecryption>(16), valdata, 5) && pass;
+ 	pass = BlockTransformationTest(FixedRoundsCipherFactory<SerpentEncryption, SerpentDecryption>(24), valdata, 4) && pass;
+@@ -1418,7 +1418,7 @@ bool ValidateThreeWay()
  {
  	cout << "\n3-WAY validation suite running...\n\n";
  
@@ -229,7 +232,7 @@ Index: libcrypto++/validat1.cpp
  	return BlockTransformationTest(FixedRoundsCipherFactory<ThreeWayEncryption, ThreeWayDecryption>(), valdata);
  }
  
-@@ -1200,7 +1200,7 @@
+@@ -1426,7 +1426,7 @@ bool ValidateGOST()
  {
  	cout << "\nGOST validation suite running...\n\n";
  
@@ -238,7 +241,7 @@ Index: libcrypto++/validat1.cpp
  	return BlockTransformationTest(FixedRoundsCipherFactory<GOSTEncryption, GOSTDecryption>(), valdata);
  }
  
-@@ -1208,7 +1208,7 @@
+@@ -1434,7 +1434,7 @@ bool ValidateSHARK()
  {
  	cout << "\nSHARK validation suite running...\n\n";
  
@@ -247,7 +250,7 @@ Index: libcrypto++/validat1.cpp
  	return BlockTransformationTest(FixedRoundsCipherFactory<SHARKEncryption, SHARKDecryption>(), valdata);
  }
  
-@@ -1218,14 +1218,14 @@
+@@ -1444,14 +1444,14 @@ bool ValidateCAST()
  
  	cout << "\nCAST-128 validation suite running...\n\n";
  
@@ -264,7 +267,7 @@ Index: libcrypto++/validat1.cpp
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<CAST256Encryption, CAST256Decryption>(16), val256, 1) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<CAST256Encryption, CAST256Decryption>(24), val256, 1) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<CAST256Encryption, CAST256Decryption>(32), val256, 1) && pass;
-@@ -1237,7 +1237,7 @@
+@@ -1463,7 +1463,7 @@ bool ValidateSquare()
  {
  	cout << "\nSquare validation suite running...\n\n";
  
@@ -273,7 +276,7 @@ Index: libcrypto++/validat1.cpp
  	return BlockTransformationTest(FixedRoundsCipherFactory<SquareEncryption, SquareDecryption>(), valdata);
  }
  
-@@ -1245,7 +1245,7 @@
+@@ -1471,7 +1471,7 @@ bool ValidateSKIPJACK()
  {
  	cout << "\nSKIPJACK validation suite running...\n\n";
  
@@ -282,7 +285,7 @@ Index: libcrypto++/validat1.cpp
  	return BlockTransformationTest(FixedRoundsCipherFactory<SKIPJACKEncryption, SKIPJACKDecryption>(), valdata);
  }
  
-@@ -1349,7 +1349,7 @@
+@@ -1575,7 +1575,7 @@ bool ValidateSHACAL2()
  	cout << "\nSHACAL-2 validation suite running...\n\n";
  
  	bool pass = true;
@@ -291,7 +294,7 @@ Index: libcrypto++/validat1.cpp
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<SHACAL2Encryption, SHACAL2Decryption>(16), valdata, 4) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<SHACAL2Encryption, SHACAL2Decryption>(64), valdata, 10) && pass;
  	return pass;
-@@ -1360,7 +1360,7 @@
+@@ -1586,7 +1586,7 @@ bool ValidateCamellia()
  	cout << "\nCamellia validation suite running...\n\n";
  
  	bool pass = true;
@@ -300,7 +303,7 @@ Index: libcrypto++/validat1.cpp
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<CamelliaEncryption, CamelliaDecryption>(16), valdata, 15) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<CamelliaEncryption, CamelliaDecryption>(24), valdata, 15) && pass;
  	pass = BlockTransformationTest(FixedRoundsCipherFactory<CamelliaEncryption, CamelliaDecryption>(32), valdata, 15) && pass;
-@@ -1371,38 +1371,38 @@
+@@ -1597,38 +1597,38 @@ bool ValidateSalsa()
  {
  	cout << "\nSalsa validation suite running...\n";
  
@@ -346,11 +349,9 @@ Index: libcrypto++/validat1.cpp
 -	return RunTestDataFile("TestVectors/cmac.txt");
 +	return RunTestDataFile(PACKAGE_DATA_DIR "TestVectors/cmac.txt");
  }
-Index: libcrypto++/validat2.cpp
-===================================================================
---- libcrypto++.orig/validat2.cpp	2010-08-11 17:25:57.000000000 +0200
-+++ libcrypto++/validat2.cpp	2010-08-11 17:26:03.000000000 +0200
-@@ -268,7 +268,7 @@
+--- libcrypto++-5.6.3.orig/validat2.cpp
++++ libcrypto++-5.6.3/validat2.cpp
+@@ -283,7 +283,7 @@ bool ValidateRSA()
  			"\x69\x94\xac\x04\xf3\x41\xb5\x7d\x05\x20\x2d\x42\x8f\xb2\xa2\x7b"
  			"\x5c\x77\xdf\xd9\xb1\x5b\xfc\x3d\x55\x93\x53\x50\x34\x10\xc1\xe1";
  
@@ -359,7 +360,7 @@ Index: libcrypto++/validat2.cpp
  		Weak::RSASSA_PKCS1v15_MD2_Signer rsaPriv(keys);
  		Weak::RSASSA_PKCS1v15_MD2_Verifier rsaPub(rsaPriv);
  
-@@ -293,7 +293,7 @@
+@@ -308,7 +308,7 @@ bool ValidateRSA()
  		cout << "invalid signature verification\n";
  	}
  	{
@@ -368,7 +369,7 @@ Index: libcrypto++/validat2.cpp
  		RSAES_PKCS1v15_Decryptor rsaPriv(keys);
  		RSAES_PKCS1v15_Encryptor rsaPub(rsaPriv);
  
-@@ -320,8 +320,8 @@
+@@ -335,8 +335,8 @@ bool ValidateRSA()
  		bq.Put(oaepSeed, 20);
  		FixedRNG rng(bq);
  
@@ -379,7 +380,7 @@ Index: libcrypto++/validat2.cpp
  		RSAES_OAEP_SHA_Decryptor rsaPriv;
  		rsaPriv.AccessKey().BERDecodePrivateKey(privFile, false, 0);
  		RSAES_OAEP_SHA_Encryptor rsaPub(pubFile);
-@@ -344,7 +344,7 @@
+@@ -359,7 +359,7 @@ bool ValidateDH()
  {
  	cout << "\nDH validation suite running...\n\n";
  
@@ -388,7 +389,7 @@ Index: libcrypto++/validat2.cpp
  	DH dh(f);
  	return SimpleKeyAgreementValidate(dh);
  }
-@@ -353,7 +353,7 @@
+@@ -368,7 +368,7 @@ bool ValidateMQV()
  {
  	cout << "\nMQV validation suite running...\n\n";
  
@@ -397,7 +398,7 @@ Index: libcrypto++/validat2.cpp
  	MQV mqv(f);
  	return AuthenticatedKeyAgreementValidate(mqv);
  }
-@@ -362,7 +362,7 @@
+@@ -377,7 +377,7 @@ bool ValidateLUC_DH()
  {
  	cout << "\nLUC-DH validation suite running...\n\n";
  
@@ -406,7 +407,7 @@ Index: libcrypto++/validat2.cpp
  	LUC_DH dh(f);
  	return SimpleKeyAgreementValidate(dh);
  }
-@@ -371,7 +371,7 @@
+@@ -386,7 +386,7 @@ bool ValidateXTR_DH()
  {
  	cout << "\nXTR-DH validation suite running...\n\n";
  
@@ -415,7 +416,7 @@ Index: libcrypto++/validat2.cpp
  	XTR_DH dh(f);
  	return SimpleKeyAgreementValidate(dh);
  }
-@@ -381,7 +381,7 @@
+@@ -396,7 +396,7 @@ bool ValidateElGamal()
  	cout << "\nElGamal validation suite running...\n\n";
  	bool pass = true;
  	{
@@ -424,7 +425,7 @@ Index: libcrypto++/validat2.cpp
  		ElGamalDecryptor privC(fc);
  		ElGamalEncryptor pubC(privC);
  		privC.AccessKey().Precompute();
-@@ -399,7 +399,7 @@
+@@ -414,7 +414,7 @@ bool ValidateDLIES()
  	cout << "\nDLIES validation suite running...\n\n";
  	bool pass = true;
  	{
@@ -433,7 +434,7 @@ Index: libcrypto++/validat2.cpp
  		DLIES<>::Decryptor privC(fc);
  		DLIES<>::Encryptor pubC(privC);
  		pass = CryptoSystemValidate(privC, pubC) && pass;
-@@ -422,7 +422,7 @@
+@@ -437,7 +437,7 @@ bool ValidateNR()
  	cout << "\nNR validation suite running...\n\n";
  	bool pass = true;
  	{
@@ -442,19 +443,10 @@ Index: libcrypto++/validat2.cpp
  		NR<SHA>::Signer privS(f);
  		privS.AccessKey().Precompute();
  		NR<SHA>::Verifier pubS(privS);
-@@ -445,7 +445,7 @@
+@@ -459,10 +459,10 @@ bool ValidateDSA(bool thorough)
+ 	cout << "\nDSA validation suite running...\n\n";
  
- 	bool pass = true, fail;
- 	{
--	FileSource fs("TestData/dsa512.dat", true, new HexDecoder());
-+	FileSource fs(PACKAGE_DATA_DIR "TestData/dsa512.dat", true, new HexDecoder());
- 	GDSA<SHA>::Signer priv(fs);
- 	priv.AccessKey().Precompute(16);
- 	GDSA<SHA>::Verifier pub(priv);
-@@ -487,10 +487,10 @@
- 	fail = pub.VerifyMessage((byte *)"xyz", 3, sig, sizeof(sig));
- 	pass = pass && !fail;
- 	}
+ 	bool pass = true;
 -	FileSource fs1("TestData/dsa1024.dat", true, new HexDecoder());
 +	FileSource fs1(PACKAGE_DATA_DIR "TestData/dsa1024.dat", true, new HexDecoder());
  	DSA::Signer priv(fs1);
@@ -464,7 +456,7 @@ Index: libcrypto++/validat2.cpp
  	DSA::Verifier pub1(fs2);
  	assert(pub.GetKey() == pub1.GetKey());
  	pass = SignatureValidate(priv, pub, thorough) && pass;
-@@ -503,7 +503,7 @@
+@@ -477,7 +477,7 @@ bool ValidateLUC()
  	bool pass=true;
  
  	{
@@ -473,7 +465,7 @@ Index: libcrypto++/validat2.cpp
  		LUCSSA_PKCS1v15_SHA_Signer priv(f);
  		LUCSSA_PKCS1v15_SHA_Verifier pub(priv);
  		pass = SignatureValidate(priv, pub) && pass;
-@@ -520,14 +520,14 @@
+@@ -494,14 +494,14 @@ bool ValidateLUC_DL()
  {
  	cout << "\nLUC-HMP validation suite running...\n\n";
  
@@ -490,7 +482,7 @@ Index: libcrypto++/validat2.cpp
  	LUC_IES<>::Decryptor privC(fc);
  	LUC_IES<>::Encryptor pubC(privC);
  	pass = CryptoSystemValidate(privC, pubC) && pass;
-@@ -541,7 +541,7 @@
+@@ -515,7 +515,7 @@ bool ValidateRabin()
  	bool pass=true;
  
  	{
@@ -499,7 +491,7 @@ Index: libcrypto++/validat2.cpp
  		RabinSS<PSSR, SHA>::Signer priv(f);
  		RabinSS<PSSR, SHA>::Verifier pub(priv);
  		pass = SignatureValidate(priv, pub) && pass;
-@@ -558,7 +558,7 @@
+@@ -532,7 +532,7 @@ bool ValidateRW()
  {
  	cout << "\nRW validation suite running...\n\n";
  
@@ -508,7 +500,7 @@ Index: libcrypto++/validat2.cpp
  	RWSS<PSSR, SHA>::Signer priv(f);
  	RWSS<PSSR, SHA>::Verifier pub(priv);
  
-@@ -570,7 +570,7 @@
+@@ -544,7 +544,7 @@ bool ValidateBlumGoldwasser()
  {
  	cout << "\nBlumGoldwasser validation suite running...\n\n";
  
@@ -517,7 +509,7 @@ Index: libcrypto++/validat2.cpp
  	BlumGoldwasserPrivateKey priv(f);
  	BlumGoldwasserPublicKey pub(priv);
  
-@@ -740,7 +740,7 @@
+@@ -828,7 +828,7 @@ bool ValidateESIGN()
  		"\x74\x02\x37\x0E\xED\x0A\x06\xAD\xF4\x15\x65\xB8\xE1\xD1\x45\xAE\x39\x19\xB4\xFF\x5D\xF1\x45\x7B\xE0\xFE\x72\xED\x11\x92\x8F\x61\x41\x4F\x02\x00\xF2\x76\x6F\x7C"
  		"\x79\xA2\xE5\x52\x20\x5D\x97\x5E\xFE\x39\xAE\x21\x10\xFB\x35\xF4\x80\x81\x41\x13\xDD\xE8\x5F\xCA\x1E\x4F\xF8\x9B\xB2\x68\xFB\x28";
  
@@ -526,11 +518,9 @@ Index: libcrypto++/validat2.cpp
  	ESIGN<SHA>::Signer signer(keys);
  	ESIGN<SHA>::Verifier verifier(signer);
  
-Index: libcrypto++/validat3.cpp
-===================================================================
---- libcrypto++.orig/validat3.cpp	2010-08-11 17:25:57.000000000 +0200
-+++ libcrypto++/validat3.cpp	2010-08-11 17:26:20.000000000 +0200
-@@ -168,13 +168,13 @@
+--- libcrypto++-5.6.3.orig/validat3.cpp
++++ libcrypto++-5.6.3/validat3.cpp
+@@ -187,13 +187,13 @@ bool ValidateMD5()
  bool ValidateSHA()
  {
  	cout << "\nSHA validation suite running...\n\n";
@@ -546,7 +536,7 @@ Index: libcrypto++/validat3.cpp
  }
  
  bool ValidateTiger()
-@@ -321,12 +321,12 @@
+@@ -340,12 +340,12 @@ bool ValidateHAVAL()
  
  bool ValidatePanama()
  {
@@ -561,7 +551,7 @@ Index: libcrypto++/validat3.cpp
  }
  
  #ifdef CRYPTOPP_REMOVED
-@@ -393,7 +393,7 @@
+@@ -412,7 +412,7 @@ bool ValidateMD5MAC()
  
  bool ValidateHMAC()
  {
