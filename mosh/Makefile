@@ -35,12 +35,12 @@ endef
 
 define Package/mosh-server
 $(call Package/mosh/Default)
- TITLE+= (client)
+ TITLE+= (server)
 endef
 
 define Package/mosh-full
 $(call Package/mosh/Default)
- TITLE+= (client)
+ TITLE+= (full)
  DEPENDS:= \
     +mosh-client \
     +mosh-server \
