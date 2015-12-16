@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=memtester
-PKG_VERSION:=4.1.3
+PKG_VERSION:=4.3.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://pyropus.ca/software/memtester/old-versions/
-PKG_MD5SUM:=e562451620cf5343016950462bc0dc38
+PKG_SOURCE_URL:=http://pyropus.ca/software/memtester/old-versions
+PKG_MD5SUM:=598f41b7308e1f736164bca3ab84ddbe
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -33,13 +33,9 @@ define Build/Configure
 	$(SED) 's|cc|$(TARGET_CC) $(TARGET_LDFLAGS)|' $(PKG_BUILD_DIR)/conf-ld
 endef
 
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) all
-endef
-
 define Package/memtester/install
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/memtester $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/memtester $(1)/opt/sbin
 endef
 
 $(eval $(call BuildPackage,memtester))
