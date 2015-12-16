@@ -18,3 +18,13 @@
  AM_CONDITIONAL([HAVE_PYTHON], [test "$PYTHON" != ""])
  AC_CHECK_PROG([HAVE_PYTHON3],[python3],[yes],[no])
  LIBUSB_CONFIG="pkg-config libusb"
+@@ -73,8 +68,7 @@
+     AC_DEFINE(HAVE_FORKPTY)])
+ fi
+ 
+-lockdir_default="/var/lock/lockdev"
+-test -d "/var/lock/lockdev" || lockdir_default="/var/lock"
++lockdir_default="/opt/var/lock"
+ 
+ AM_CONDITIONAL([DARWIN], [case $host_os in darwin*) true;; *) false;; esac])
+ 
