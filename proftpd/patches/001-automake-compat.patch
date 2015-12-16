@@ -1,5 +1,5 @@
---- ./configure.in.orig	2015-12-16 16:27:27.000000000 +0300
-+++ ./configure.in	2015-12-16 16:38:54.097432192 +0300
+--- a/configure.in
++++ b/configure.in
 @@ -40,8 +40,8 @@
    platform="\"$ostype\""
  fi

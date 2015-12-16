@@ -54,7 +54,7 @@ define Package/proftpd/install
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ftp{count,dctl,top,who} $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/{ftpscrub,ftpshut,proftpd} $(1)/opt/sbin
-	$(LN) proftpd $(PKG_INSTALL_DIR)/opt/sbin/in.proftpd
+	$(LN) proftpd $(1)/opt/sbin/in.proftpd
 	$(INSTALL_BIN) ./files/S66proftpd $(1)/opt/etc/init.d
 endef
 
