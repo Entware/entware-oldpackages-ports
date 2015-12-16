@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nzbget
 PKG_VERSION:=16.4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://github.com/nzbget/nzbget/releases/download/v$(PKG_VERSION)
@@ -24,13 +24,13 @@ define Package/nzbget
   SECTION:=net
   CATEGORY:=Network
   DEPENDS:=+libxml2 +libopenssl +libncurses +libstdcpp
-  URL:=http://nzbget.sourceforge.net/
+  URL:=http://nzbget.net
   TITLE:=Binary newsgrabber for nzb-files
   MAINTAINER:=Artur Wronowski <arteqw@gmail.com>
 endef
 
 define Package/nzbget/description
-A command-line client/server based binary newsgrabber for nzb-files.
+ A command-line client/server based binary newsgrabber for nzb-files.
 endef
 
 CONFIGURE_ARGS += \
@@ -49,8 +49,9 @@ define Package/nzbget/install
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/nzbget $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S75nzbget $(1)/opt/etc/init.d
-	$(INSTALL_DIR) $(1)/opt/share/nzbget
-	$(CP) $(PKG_INSTALL_DIR)/opt/share/nzbget/* $(1)/opt/share/nzbget
+	$(INSTALL_DIR) $(1)/opt/share/nzbget/scripts
+	$(CP) $(PKG_INSTALL_DIR)/opt/share/nzbget/webui $(1)/opt/share/nzbget
+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/share/nzbget/nzbget.conf $(1)/opt/share/nzbget
 endef
 
 define Package/nzbget/conffiles

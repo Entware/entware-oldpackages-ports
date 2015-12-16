@@ -1,0 +1,14 @@
+--- a/daemon/main/Options.cpp
++++ b/daemon/main/Options.cpp
+@@ -184,10 +184,8 @@
+ const char* PossibleConfigLocations[] =
+ 	{
+ 		"~/.nzbget",
+-		"/etc/nzbget.conf",
+-		"/usr/etc/nzbget.conf",
+-		"/usr/local/etc/nzbget.conf",
+ 		"/opt/etc/nzbget.conf",
++		"/opt/share/nzbget/nzbget.conf",
+ 		NULL
+ 	};
+ #endif
