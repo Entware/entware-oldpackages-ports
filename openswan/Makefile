@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openswan
 PKG_VERSION:=2.6.43
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.openswan.org/download
@@ -20,46 +20,34 @@ PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/openswan/Default
-  TITLE:=Openswan
-  URL:=http://www.openswan.org/
-endef
-
-define Package/openswan/Default/description
- Openswan is an IPsec implementation for Linux.
-endef
-
 define Package/openswan
 $(call Package/openswan/Default)
   SUBMENU:=VPN
   SECTION:=net
   CATEGORY:=Network
-  TITLE+= (daemon)
+  TITLE+= Openswan (daemon)
   DEPENDS+= +libgmp
+  URL:=http://www.openswan.org/
 endef
 
 define Package/openswan/description
-$(call Package/openswan/Default/description)
+ Openswan is an IPsec implementation for Linux.
  This package contains the Openswan user-land daemon.
 endef
-
-TARGET_CPPFLAGS += -I$(LINUX_DIR)/$(LINUX_UAPI_DIR)include -D__EXPORTED_HEADERS__
-TARGET_CFLAGS += $(FPIC)
 
 OPENSWAN_MAKEFLAGS:= \
 	-C $(PKG_BUILD_DIR) \
 	$(TARGET_CONFIGURE_OPTS) \
-	LINUX_RELEASE="$(LINUX_RELEASE)" \
-	KERNELSRC="$(LINUX_DIR)" \
-	ARCH="$(LINUX_KARCH)" \
-	CROSS_COMPILE="$(TARGET_CROSS)" \
+	ARCH=$(CONFIG_ARCH) \
 	USERCOMPILE="$(TARGET_CFLAGS) -I$(PKG_BUILD_DIR)/ports/linux/include -I$(PKG_BUILD_DIR)/linux/include -I$(PKG_BUILD_DIR)/include $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)" \
 	USERLINK="$(TARGET_LDFLAGS)" \
-	IPSECDIR="/opt/lib/ipsec" \
+	IPSECDIR="/opt/etc/ipsec.d" \
 	INC_USRLOCAL="/opt" \
 	FINALCONFDIR="/opt/etc" \
 	INC_RCDEFAULT="/opt/etc/init.d" \
 	MODPROBE="/sbin/insmod" \
+	FINALCONFFILE="/opt/etc/ipsec.conf" \
+	FINALVARDIR="/opt/var" \
 	DESTDIR="$(PKG_INSTALL_DIR)"
 
 define Build/Compile
@@ -70,9 +58,24 @@ define Build/Install
 	$(MAKE) $(OPENSWAN_MAKEFLAGS) install
 endef
 
+define Package/openswan/conffiles
+/opt/etc/ipsec.conf
+/opt/etc/ipsec.conf
+/opt/etc/ipsec.d/policies/private
+/opt/etc/ipsec.d/policies/clear
+/opt/etc/ipsec.d/policies/private-or-clear
+/opt/etc/ipsec.d/policies/block
+/opt/etc/ipsec.d/policies/clear-or-private
+endef
+
 define Package/openswan/install
 	$(CP) $(PKG_INSTALL_DIR)/opt $(1)
-	rm -rf $(1)/opt/{man,share} $(1)/opt/etc/init.d
+	$(RM) -rf \
+	    $(1)/opt/etc/init.d \
+	    $(1)/opt/etc/ipsec.d/examples \
+	    $(1)/opt/libexec/ipsec/setup \
+	    $(1)/opt/man \
+	    $(1)/opt/share
 endef
 
 $(eval $(call BuildPackage,openswan))
