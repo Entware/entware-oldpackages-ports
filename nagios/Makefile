@@ -4,6 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# This is the last release from 3.x fork. We not going to update it in future
 
 include $(TOPDIR)/rules.mk
 
