@@ -1,0 +1,20 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -22,17 +22,12 @@
+   AC_MSG_ERROR([Required program pkg-config is missing])
+ fi
+ AC_CHECK_PROG([XSLTPROC],[xsltproc],[yes],[no])
+-if test x$XSLTPROC != "xyes"; then
+-    AC_MSG_ERROR([
+-      xsltproc is required to build. It usually comes with libxml])
+-fi
+ AC_CHECK_PROG([MAN2HTML],[man2html],[yes],[no])
+ AM_CONDITIONAL(HAVE_MAN2HTML, test x$MAN2HTML = xyes)
+ AC_CHECK_PROG([DOXYGEN],[doxygen],[yes],[no])
+ AM_CONDITIONAL(HAVE_DOXYGEN, test x$DOXYGEN = xyes)
+ AC_PROG_LN_S
+ LT_INIT([disable-static])
+-AM_PATH_PYTHON([3.1],,)
+ AM_CONDITIONAL([HAVE_PYTHON], [test "$PYTHON" != ""])
+ AC_CHECK_PROG([HAVE_PYTHON3],[python3],[yes],[no])
+ LIBUSB_CONFIG="pkg-config libusb"
