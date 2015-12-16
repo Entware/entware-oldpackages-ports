@@ -29,17 +29,11 @@ define Package/oidentd/description
 	A nat aware identd server that will correctly forwared requests to clients.
 endef
 
-# uses GNU configure
-
-define Build/Compile
-	$(call Build/Compile/Default,all)
-endef
-
 define Package/oidentd/install
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/oidentd $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/oidentd $(1)/opt/sbin
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
-	$(INSTALL_BIN) ./files/S39oidentd $(1)/opt/etc/init.d/
+	$(INSTALL_BIN) ./files/S39oidentd $(1)/opt/etc/init.d
 endef
 
 $(eval $(call BuildPackage,oidentd))
