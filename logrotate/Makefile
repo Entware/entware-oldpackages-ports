@@ -7,12 +7,9 @@
 
 include $(TOPDIR)/rules.mk
 
-# This version does not have harcodded root name
-
 PKG_NAME:=logrotate
 PKG_VERSION:=3.9.1
-PKG_RELEASE:=1
-
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:= https://fedorahosted.org/releases/l/o/logrotate
@@ -44,8 +41,9 @@ EXTRA_LDFLAGS += $(TARGET_LDFLAGS)
 
 define Build/Compile
 	$(call Build/Compile/Default, \
-		RPM_OPT_FLAGS:="$(TARGET_CFLAGS) $(EXTRA_CFLAGS)" \
+		RPM_OPT_FLAGS="$(TARGET_CFLAGS) $(EXTRA_CFLAGS)" \
 		LDFLAGS="$(EXTRA_LDFLAGS)" \
+		DEFAULT_MAIL_COMMAND="/opt/bin/mail" \
 		STATEFILE="/opt/var/lib/logrotate.status" \
 		logrotate \
 	)
@@ -53,10 +51,9 @@ endef
 
 define Package/logrotate/install
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/logrotate $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/logrotate $(1)/opt/sbin
 	$(INSTALL_DIR) $(1)/opt/etc/logrotate.d
-	$(INSTALL_DATA) ./files/logrotate.conf $(1)/opt/etc/
-	$(INSTALL_DIR) $(1)/opt/var/lib
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/examples/logrotate-default $(1)/opt/etc/logrotate.conf
 endef
 
 $(eval $(call BuildPackage,logrotate))
