@@ -9,11 +9,10 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pyxdg
 PKG_VERSION:=0.25
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://pypi.python.org/packages/source/p/pyxdg/
-http://people.freedesktop.org/~lanius/
+PKG_SOURCE_URL:=http://pypi.python.org/packages/source/p/pyxdg
 PKG_MD5SUM:=bedcdb3a0ed85986d40044c87f23477c
 
 PKG_BUILD_DEPENDS:=python
