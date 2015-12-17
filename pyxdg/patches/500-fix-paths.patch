@@ -1,0 +1,38 @@
+--- a/xdg/Menu.py
++++ b/xdg/Menu.py
+@@ -558,7 +558,7 @@
+         filename = __getFileName(candidate)
+         
+     if not filename:
+-        raise ParsingError('File not found', "/etc/xdg/menus/%s" % candidate)
++        raise ParsingError('File not found', "/opt/etc/xdg/menus/%s" % candidate)
+ 
+     # check if it is a .menu file
+     if not os.path.splitext(filename)[1] == ".menu":
+--- a/xdg/BaseDirectory.py
++++ b/xdg/BaseDirectory.py
+@@ -32,13 +32,13 @@
+             os.path.join(_home, '.local', 'share')
+ 
+ xdg_data_dirs = [xdg_data_home] + \
+-    (os.environ.get('XDG_DATA_DIRS') or '/usr/local/share:/usr/share').split(':')
++    (os.environ.get('XDG_DATA_DIRS') or '/opt/share').split(':')
+ 
+ xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
+             os.path.join(_home, '.config')
+ 
+ xdg_config_dirs = [xdg_config_home] + \
+-    (os.environ.get('XDG_CONFIG_DIRS') or '/etc/xdg').split(':')
++    (os.environ.get('XDG_CONFIG_DIRS') or '/opt/etc/xdg').split(':')
+ 
+ xdg_cache_home = os.environ.get('XDG_CACHE_HOME') or \
+             os.path.join(_home, '.cache')
+@@ -130,7 +130,7 @@
+             raise
+         
+         import getpass
+-        fallback = '/tmp/pyxdg-runtime-dir-fallback-' + getpass.getuser()
++        fallback = '/opt/tmp/pyxdg-runtime-dir-fallback-' + getpass.getuser()
+         try:
+             os.mkdir(fallback, 0o700)
+         except OSError as e:
