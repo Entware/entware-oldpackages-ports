@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=subversion
-PKG_VERSION:=1.9.2
+PKG_VERSION:=1.9.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://archive.apache.org/dist/subversion
-PKG_MD5SUM:=0a7e55bb58fe77072f19e108a56b468b
+PKG_MD5SUM:=243036eb28b50ce517fc228eb3250add
 
 PKG_FIXUP:=autoreconf
 PKG_MACRO_PATHS:=build/ac-macros
@@ -80,16 +80,13 @@ TARGET_CPPFLAGS += -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE
 CONFIGURE_ARGS += \
 	--with-apr="$(STAGING_DIR)/opt/bin/apr-1-config" \
 	--with-apr-util="$(STAGING_DIR)/opt/bin/apu-1-config" \
-	--with-neon="$(STAGING_DIR)/opt" \
 	--disable-mod-activation \
 	--without-ruby-sitedir \
 	--without-swig \
-	--with-jikes=no \
+	--without-jikes \
 	--without-junit \
 	--without-berkeley-db \
-	--with-ssl \
-	--disable-neon-version-check \
-	--with-apxs=no \
+	--without-apxs \
 	--without-sasl \
 
 define Build/Prepare

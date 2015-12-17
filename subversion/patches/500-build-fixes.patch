@@ -1,0 +1,193 @@
+Fix some build problems:
+
+- SWIG out-of-tree stuff
+- Add aprutil as a direct dependency for libsvn_client and libsvn_ra.
+
+--- a/build/generator/swig/checkout_swig_header.py
++++ b/build/generator/swig/checkout_swig_header.py
+@@ -40,15 +40,14 @@
+ 
+   def write_makefile_rules(self, makefile):
+     """Write makefile rules to checkout files"""
+-    script_path = '$(top_srcdir)/build/generator/swig/checkout_swig_header.py'
+-    conf = '$(abs_srcdir)/build.conf'
+-    makefile.write('CHECKOUT_SWIG = cd $(top_builddir) && $(PYTHON)' +
+-                   ' %s %s $(SWIG)\n\n' % (script_path, conf))
++    script_path = 'build/generator/swig/checkout_swig_header.py'
++    makefile.write('CHECKOUT_SWIG = cd $(top_srcdir) &&' +
++                   ' $(PYTHON) %s build.conf $(SWIG)\n' % script_path)
+     checkout_locations = []
+     for path in self.swig_checkout_files:
+       out = self._output_file(path)
+       checkout_locations.append(out)
+-      makefile.write('%s: %s\n' % (out, script_path) +
++      makefile.write('%s: $(top_srcdir)/%s\n' % (out, script_path) +
+                      '\t$(CHECKOUT_SWIG) %s\n\n' % path)
+     makefile.write('SWIG_CHECKOUT_FILES = %s\n\n\n'
+                    % " ".join(checkout_locations))
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -117,8 +117,8 @@
+ 
+ SHELL = @SHELL@
+ LIBTOOL = @SVN_LIBTOOL@
+-LTFLAGS = --tag=CC --silent
+-LTCXXFLAGS = --tag=CXX --silent
++LTFLAGS = --tag=CC
++LTCXXFLAGS = --tag=CXX
+ LT_CFLAGS = @LT_CFLAGS@
+ LT_LDFLAGS = @LT_LDFLAGS@
+ LT_SO_VERSION = @SVN_LT_SOVERSION@
+@@ -341,14 +341,14 @@
+ 
+ # The path to generated and complementary source files for the SWIG
+ # bindings.
+-SWIG_PL_DIR = $(abs_builddir)/subversion/bindings/swig/perl
+-SWIG_PY_DIR = $(abs_builddir)/subversion/bindings/swig/python
+-SWIG_RB_DIR = $(abs_builddir)/subversion/bindings/swig/ruby
++SWIG_PL_DIR = $(top_builddir)/subversion/bindings/swig/perl
++SWIG_PY_DIR = $(top_builddir)/subversion/bindings/swig/python
++SWIG_RB_DIR = $(top_builddir)/subversion/bindings/swig/ruby
+ 
+ # The path to the source files for the SWIG bindings
+ SWIG_PL_SRC_DIR = $(abs_srcdir)/subversion/bindings/swig/perl
+-SWIG_PY_SRC_DIR = $(abs_srcdir)/subversion/bindings/swig/python
+-SWIG_RB_SRC_DIR = $(abs_srcdir)/subversion/bindings/swig/ruby
++SWIG_PY_SRC_DIR = $(top_srcdir)/subversion/bindings/swig/python
++SWIG_RB_SRC_DIR = $(top_srcdir)/subversion/bindings/swig/ruby
+ 
+ ### Automate JAR creation using Makefile generator's javahl-java.jar
+ ### property.  Enhance generator to support JAR installation.
+@@ -870,8 +870,7 @@
+ 	fi
+ 	for d in $(SWIG_PL_DIR)/libsvn_swig_perl; \
+ 	do \
+-	  cd $$d; \
+-	  rm -rf *.lo *.la *.o .libs; \
++	  (cd $$d && rm -rf *.lo *.la *.o .libs); \
+ 	done
+ 	if [ -f "$(SWIG_PL_DIR)/native/Makefile" ]; then \
+ 	  cd $(SWIG_PL_DIR)/native; $(MAKE) clean; \
+@@ -905,7 +904,7 @@
+ 	fi
+ 	for d in $(SWIG_PY_DIR) $(SWIG_PY_DIR)/libsvn_swig_py; \
+ 	do \
+-	  cd $$d && rm -rf *.lo *.la *.o *.pyc .libs; \
++	  (cd $$d && rm -rf *.lo *.la *.o *.pyc .libs); \
+ 	done
+ 	find $(SWIG_PY_SRC_DIR) $(SWIG_PY_DIR) -name "*.pyc" -exec rm {} ';'
+ 
+@@ -935,8 +934,7 @@
+ 	fi
+ 	for d in $(SWIG_RB_DIR) $(SWIG_RB_DIR)/libsvn_swig_ruby; \
+ 	do \
+-	  cd $$d; \
+-	  rm -rf *.lo *.la *.o .libs; \
++	  (cd $$d && rm -rf *.lo *.la *.o .libs); \
+ 	done
+ 
+ extraclean-swig-rb: clean-swig-rb
+--- a/build/generator/gen_base.py
++++ b/build/generator/gen_base.py
+@@ -511,7 +511,8 @@
+ 
+ class SWIGSource(SourceFile):
+   def __init__(self, filename):
+-    SourceFile.__init__(self, filename, build_path_dirname(filename))
++    SourceFile.__init__(self, filename,
++                        build_path_dirname('$(top_srcdir)/' + filename))
+ 
+ 
+ lang_abbrev = {
+--- a/build/generator/swig/header_wrappers.py
++++ b/build/generator/swig/header_wrappers.py
+@@ -52,7 +52,7 @@
+     """Write makefile rules for generating SWIG wrappers for Subversion
+     header files."""
+     wrapper_fnames = []
+-    python_script = '$(abs_srcdir)/build/generator/swig/header_wrappers.py'
++    python_script = 'build/generator/swig/header_wrappers.py'
+     makefile.write('GEN_SWIG_WRAPPER = cd $(top_srcdir) && $(PYTHON)' +
+                    ' %s build.conf $(SWIG)\n\n'  % python_script)
+     for fname in self.includes:
+--- a/configure.ac
++++ b/configure.ac
+@@ -719,6 +719,7 @@
+ AC_SUBST(SVN_INTL_LIBS)
+ 
+ AH_BOTTOM([
++#undef /* */ _
+ /* Indicate to translators that string X should be translated.  Do not look
+    up the translation at run time; just expand to X.  This macro is suitable
+    for use where a constant string is required at compile time. */
+@@ -1573,6 +1574,11 @@
+                    [Defined to the config.guess name of the build target])
+ 
+ AC_OUTPUT
++if test "$abs_srcdir" != "$abs_builddir"
++then
++  AC_MSG_NOTICE([Creating build directories])
++  (cd "$abs_srcdir"; find subversion tools -type d) | xargs $MKDIR
++fi
+ 
+ # ==== Print final messages to user ==========================================
+ 
+--- a/build.conf
++++ b/build.conf
+@@ -184,7 +184,7 @@
+ install = bin
+ manpages = subversion/svnserve/svnserve.8 subversion/svnserve/svnserve.conf.5
+ libs = libsvn_repos libsvn_fs libsvn_delta libsvn_subr libsvn_ra_svn
+-       apriconv apr sasl
++       aprutil apriconv apr sasl
+ msvc-libs = advapi32.lib ws2_32.lib
+ 
+ [svnsync]
+@@ -241,7 +241,7 @@
+ description = Subversion Client Library
+ type = lib
+ path = subversion/libsvn_client
+-libs = libsvn_wc libsvn_ra libsvn_delta libsvn_diff libsvn_subr apriconv apr
++libs = libsvn_wc libsvn_ra libsvn_delta libsvn_diff libsvn_subr aprutil apriconv apr
+ install = lib
+ msvc-export = svn_client.h private/svn_client_mtcc.h private/svn_client_private.h
+ 
+@@ -315,7 +315,7 @@
+ description = Subversion General Repository Access Library
+ type = lib
+ path = subversion/libsvn_ra
+-libs = libsvn_delta libsvn_subr ra-libs apriconv apr
++libs = libsvn_delta libsvn_subr ra-libs aprutil apriconv apr
+ # conditionally add more dependencies
+ add-deps = $(SVN_RA_LIB_DEPS)
+ add-install-deps = $(SVN_RA_LIB_INSTALL_DEPS)
+--- a/subversion/libsvn_ra_serf/update.c
++++ b/subversion/libsvn_ra_serf/update.c
+@@ -2626,12 +2626,6 @@
+       /* If there is pending REPORT data, process it now. */
+       if (ud->spillbuf)
+         SVN_ERR(process_pending(ud, iterpool));
+-
+-      /* Debugging purposes only! */
+-      for (i = 0; i < sess->num_conns; i++)
+-        {
+-          serf_debug__closed_conn(sess->conns[i]->bkt_alloc);
+-        }
+     }
+ 
+   svn_pool_clear(iterpool);
+--- a/subversion/libsvn_ra_serf/util.c
++++ b/subversion/libsvn_ra_serf/util.c
+@@ -935,12 +935,6 @@
+       svn_pool_clear(iterpool);
+ 
+       SVN_ERR(svn_ra_serf__context_run(sess, &waittime_left, iterpool));
+-
+-      /* Debugging purposes only! */
+-      for (i = 0; i < sess->num_conns; i++)
+-        {
+-          serf_debug__closed_conn(sess->conns[i]->bkt_alloc);
+-        }
+     }
+   svn_pool_destroy(iterpool);
+ 
