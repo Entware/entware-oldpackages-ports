@@ -4,6 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2009
 
 include $(TOPDIR)/rules.mk
 
@@ -11,8 +12,8 @@ PKG_NAME:=radiusclient-ng
 PKG_VERSION:=0.5.6
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://download.berlios.de/radiusclient-ng/
+PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).orig.tar.gz
+PKG_SOURCE_URL:=ftp://ftp.debian.org/debian/pool/main/r/$(PKG_NAME)
 PKG_MD5SUM:=6fb7d4d0aefafaee7385831ac46a8e9c
 
 PKG_FIXUP:=autoreconf
@@ -73,12 +74,12 @@ define Build/Compile
 		all install
 endef
 
-define Build/InstallDev
-	$(INSTALL_DIR) $(1)/opt/include
-	$(CP) $(PKG_INSTALL_DIR)/opt/include/radiusclient-ng.h $(1)/opt/include/
-	$(INSTALL_DIR) $(1)/opt/lib/
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libradiusclient-ng.{a,so}* $(1)/opt/lib/
-endef
+#define Build/InstallDev
+#	$(INSTALL_DIR) $(1)/opt/include
+#	$(CP) $(PKG_INSTALL_DIR)/opt/include/radiusclient-ng.h $(1)/opt/include/
+#	$(INSTALL_DIR) $(1)/opt/lib/
+#	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libradiusclient-ng.{a,so}* $(1)/opt/lib/
+#endef
 
 define Package/libradiusclient-ng/install
 	$(INSTALL_DIR) $(1)/opt/etc
