@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pycurl
-PKG_VERSION:=7.19.5.1
+PKG_VERSION:=7.19.5.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/source/p/pycurl
-PKG_MD5SUM:=f44cd54256d7a643ab7b16e3f409b26b
+PKG_MD5SUM:=611a5423d5c58d273294e5fdf61567e1
 
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
