@@ -1,0 +1,30 @@
+From 5efd532706bf50ce64eeabc32ab7b1c400a0d9dc Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Tue, 15 Dec 2009 18:02:49 +0200
+Subject: [PATCH] src/ftp-ls.c: include <time.h>
+
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ src/ftp-ls.c |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+diff --git a/src/ftp-ls.c b/src/ftp-ls.c
+index 80c6649..011c883 100644
+--- a/src/ftp-ls.c
++++ b/src/ftp-ls.c
+@@ -29,6 +29,11 @@ file, but you are not obligated to do so.  If you do not wish to do
+ so, delete this exception statement from your version.  */
+ 
+ #include "config.h"
++
++#ifdef _XOPEN_SOURCE
++#include <time.h>
++#endif
++
+ #include <stdio.h>
+ #include <stdlib.h>
+ #ifdef HAVE_STRING_H
+-- 
+1.6.5
+

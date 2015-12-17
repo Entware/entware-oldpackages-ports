@@ -1,0 +1,47 @@
+From 4c382426542466eb50f1fdeef6664dc8e9bada62 Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Tue, 15 Dec 2009 18:01:47 +0200
+Subject: [PATCH] src/ftp.c: (open_input_file): initialize variable
+
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ src/ftp.c |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/src/ftp.c b/src/ftp.c
+index dca07af..f4d6f98 100644
+--- a/src/ftp.c
++++ b/src/ftp.c
+@@ -18,6 +18,10 @@
+ 
+ /* This file contains procedures for interacting with the FTP-Server */
+ 
++       //#ifdef _XOPEN_SOURCE
++#include <unistd.h>
++       //#endif
++
+ #include <errno.h>
+ #include "ftp.h"
+ #include "utils.h"
+@@ -89,7 +93,7 @@ int long_do_cwd(_fsession * fsession){
+  * path and change there again */
+ /* error-levels: ERR_RECONNECT, ERR_FAILED, ERR_SKIP (failed for '/'), 1 */
+ int try_do_cwd(ftp_con * ftp, char * path, int mkd) {
+-	int res;
++	int res = 0;
+ 	if(!strcmp(path, "."))
+ 		return mkd;
+ 	if(!strcmp(path, ".."))
+@@ -203,7 +207,7 @@ int check_timestamp(_fsession * fsession) {
+ }
+ 
+ int open_input_file(_fsession * fsession) {
+-	int fd;
++	int fd = 0;
+ 	int oflags = O_RDONLY;
+ 	char * cmd;
+ 	FILE * pipe;
+-- 
+1.6.5
+

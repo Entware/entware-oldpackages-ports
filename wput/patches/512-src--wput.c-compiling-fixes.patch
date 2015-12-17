@@ -1,0 +1,40 @@
+From 6796bfeeb19252acd61e03591b44713543027019 Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Tue, 15 Dec 2009 18:06:07 +0200
+Subject: [PATCH] src/wput.c: fix set_option() abuse and print format
+
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ src/wput.c |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/wput.c b/src/wput.c
+index 3a40370..caecd6a 100644
+--- a/src/wput.c
++++ b/src/wput.c
+@@ -583,9 +583,9 @@ void readwputrc(char * f) {
+     else                 * tmp    = 0;
+ 
+     /* we mis-use tmp to store the ret_val, and print a message if something was not parse-able */
+-    tmp = (char *) set_option(com, val);
+-    if(tmp == (char *) -1) printout(vLESS, _("%s#%d: Option '%s' not recognized\n"), file, ln, com);
+-    if(tmp == (char *) -2) printout(vLESS, _("%s#%d: Unknow value '%s' for '%s'\n"), file, ln, val, com);
++    int status = set_option(com, val);
++    if ( status == -1) printout(vLESS, _("%s#%d: Option '%s' not recognized\n"), file, ln, com);
++    if ( status == -2) printout(vLESS, _("%s#%d: Unknow value '%s' for '%s'\n"), file, ln, val, com);
+     free(line);
+     ln++;
+   }
+@@ -677,7 +677,7 @@ void commandlineoptions(int argc, char * argv[]){
+ #ifdef HAVE_SSL
+                 fprintf(opt.output, "HAVE_SSL\n");
+ #endif
+-                fprintf(opt.output, "\nUsing %d-Bytes for off_t\n", sizeof(off_t));
++                fprintf(opt.output, "\nUsing %lu-Bytes for off_t\n", sizeof(off_t));
+                 exit(0);
+             case 27: //skip-larger
+                 opt.resume_table.small_large = RESUME_TABLE_SKIP;   break;
+-- 
+1.6.5
+
