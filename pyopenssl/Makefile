@@ -18,7 +18,7 @@ PKG_VERSION:=0.13.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=pyOpenSSL-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://pypi.python.org/packages/source/p/pyOpenSSL/
+PKG_SOURCE_URL:=http://pypi.python.org/packages/source/p/pyOpenSSL
 PKG_MD5SUM:=e27a3b76734c39ea03952ca94cc56715
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/pyOpenSSL-$(PKG_VERSION)
