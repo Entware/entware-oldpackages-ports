@@ -1,0 +1,86 @@
+--- a/configure
++++ b/configure
+@@ -5437,11 +5437,11 @@
+     echo "$as_me:$LINENO: checking \"for lzo_asm.h\"" >&5
+ echo $ECHO_N "checking \"for lzo_asm.h\"... $ECHO_C" >&6
+     ac_hdr_found=no
+-    for p in $LZO_HDR_DIR /usr/include/lzo "" /usr/local/include; do
++    for p in $LZO_HDR_DIR ""; do
+ 	if test -n "$p"; then
+ 	  dir="$p"
+ 	else
+-	  dir="/usr/include"
++	  dir="."
+ 	fi
+ 
+     ac_file_found=yes
+@@ -5477,11 +5477,11 @@
+     echo "$as_me:$LINENO: checking \"for lzo1x.h\"" >&5
+ echo $ECHO_N "checking \"for lzo1x.h\"... $ECHO_C" >&6
+     ac_hdr_found=no
+-    for p in $LZO_HDR_DIR /usr/include/lzo "" /usr/local/include; do
++    for p in $LZO_HDR_DIR ""; do
+ 	if test -n "$p"; then
+ 	  dir="$p"
+ 	else
+-	  dir="/usr/include"
++	  dir="."
+ 	fi
+ 
+     ac_file_found=yes
+@@ -5627,11 +5627,11 @@
+     echo "$as_me:$LINENO: checking \"for md5.h\"" >&5
+ echo $ECHO_N "checking \"for md5.h\"... $ECHO_C" >&6
+     ac_hdr_found=no
+-    for p in $SSL_HDR_DIR /usr/include/openssl "" /usr/include /usr/include/ssl /usr/local/include /usr/local/ssl/include /usr/include/sys; do
++    for p in $SSL_HDR_DIR ""; do
+ 	if test -n "$p"; then
+ 	  dir="$p"
+ 	else
+-	  dir="/usr/include"
++	  dir="."
+ 	fi
+ 
+     ac_file_found=yes
+@@ -5680,11 +5680,11 @@
+     echo "$as_me:$LINENO: checking \"for blowfish.h\"" >&5
+ echo $ECHO_N "checking \"for blowfish.h\"... $ECHO_C" >&6
+     ac_hdr_found=no
+-    for p in $BLOWFISH_HDR_DIR /usr/include/ssl /usr/include/openssl /usr/include /usr/local/include /usr/local/ssl/include  /usr/include/crypto; do
++    for p in $BLOWFISH_HDR_DIR ""; do
+ 	if test -n "$p"; then
+ 	  dir="$p"
+ 	else
+-	  dir="/usr/include"
++	  dir="."
+ 	fi
+ 
+     ac_file_found=yes
+@@ -5815,11 +5815,11 @@
+     echo "$as_me:$LINENO: checking \"for aes.h\"" >&5
+ echo $ECHO_N "checking \"for aes.h\"... $ECHO_C" >&6
+     ac_hdr_found=no
+-    for p in $SSL_HDR_DIR /usr/include/ssl /usr/include/openssl /usr/include /usr/local/include /usr/local/ssl/include  /usr/include/crypto; do
++    for p in $SSL_HDR_DIR ""; do
+ 	if test -n "$p"; then
+ 	  dir="$p"
+ 	else
+-	  dir="/usr/include"
++	  dir="."
+ 	fi
+ 
+     ac_file_found=yes
+@@ -5945,11 +5945,11 @@
+     echo "$as_me:$LINENO: checking \"for evp.h\"" >&5
+ echo $ECHO_N "checking \"for evp.h\"... $ECHO_C" >&6
+     ac_hdr_found=no
+-    for p in $SSL_HDR_DIR /usr/include/ssl /usr/include/openssl /usr/include /usr/local/include /usr/local/ssl/include  /usr/include/crypto; do
++    for p in $SSL_HDR_DIR ""; do
+ 	if test -n "$p"; then
+ 	  dir="$p"
+ 	else
+-	  dir="/usr/include"
++	  dir="."
+ 	fi
+ 
+     ac_file_found=yes

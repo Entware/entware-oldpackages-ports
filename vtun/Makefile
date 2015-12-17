@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=vtun
 PKG_VERSION:=3.0.3
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/vtun
@@ -56,7 +56,7 @@ endef
 CONFIGURE_ARGS += \
 	$(if $(CONFIG_VTUN_LZO),--with-lzo-lib="$(STAGING_DIR)/opt/lib/",--disable-zlib) \
 	$(if $(CONFIG_VTUN_LZO),--with-lzo-headers="$(STAGING_DIR)/opt/include/lzo",--disable-lzo) \
-	$(if $(CONFIG_VTUN_SSL),--with-ssl-headers="$(STAGING_DIR)/opt/lib/",--disable-ssl) \
+	$(if $(CONFIG_VTUN_SSL),--with-ssl-headers="$(STAGING_DIR)/opt/include/openssl",--disable-ssl) \
 
 CONFIGURE_VARS += \
 	LIBS="$(TARGET_LDFLAGS)" \
@@ -70,9 +70,9 @@ endef
 
 define Package/vtun/install
 	$(INSTALL_DIR) $(1)/opt/etc
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/vtund.conf $(1)/opt/etc/
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/vtund.conf $(1)/opt/etc
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vtund $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/vtund $(1)/opt/sbin
 endef
 
 $(eval $(call BuildPackage,vtun))
