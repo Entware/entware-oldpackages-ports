@@ -12,7 +12,7 @@ PKG_VERSION:=5.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@KERNEL/software/network/tftp/tftp-hpa/
+PKG_SOURCE_URL:=@KERNEL/software/network/tftp/tftp-hpa
 PKG_MD5SUM:=3de3038e7c2bf6fc5d496825893ac8e7
 
 include $(INCLUDE_DIR)/package.mk
@@ -35,18 +35,18 @@ define Package/tftpd-hpa
   TITLE:=An enhanced version of the BSD TFTP server
 endef
 
-define Build/Configure	
+define Build/Configure
 	$(call Build/Configure/Default, \
 		--without-tcpwrappers, \
 		CFLAGS="$$$$CFLAGS $$$$CPPFLAGS" \
 	)
 endef
 
-define Build/Compile	
+define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR)
 endef
 
-define Package/tftp-hpa/install	
+define Package/tftp-hpa/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tftp/tftp $(1)/opt/bin/tftp-hpa
 endef
