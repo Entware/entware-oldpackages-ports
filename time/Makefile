@@ -4,12 +4,13 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 1996
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=time
 PKG_VERSION:=1.7
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@GNU/time
@@ -37,7 +38,7 @@ endef
 
 define Package/time/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/time $(1)/opt/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/time $(1)/opt/bin
 endef
 
 $(eval $(call BuildPackage,time))
