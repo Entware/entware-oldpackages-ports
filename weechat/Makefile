@@ -4,12 +4,13 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Dependencies checker was turned off here to avoid pulling optional deps
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
 PKG_VERSION:=1.3
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://www.weechat.org/files/src
@@ -19,57 +20,18 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-define Package/weechat/default
+define Package/weechat
   SUBMENU:=Instant Messaging
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Lightweight IRC client
   URL:=http://www.weechat.org/
-endef
-
-define Package/weechat
-    $(call Package/weechat/default)
-    DEPENDS:=+libcurl +libgnutls +libgcrypt +libncursesw $(ICONV_DEPENDS) $(INTL_DEPENDS)
-endef
-
-define Package/weechat-plugin-aspell
-    $(call Package/weechat/default)
-    DEPENDS:=+weechat +libaspell
-endef
-
-define Package/weechat-plugin-perl
-    $(call Package/weechat/default)
-    DEPENDS:=+weechat +perl
-endef
-
-define Package/weechat-plugin-python
-    $(call Package/weechat/default)
-    DEPENDS:=+weechat +python-light
-endef
-
-
-define Package/weechat/default/description
- Weechat is fast, light & extensible IRC client.
+  DEPENDS:= +libcurl +libgnutls +libgcrypt +libaspell +libncursesw \
+	$(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
 
 define Package/weechat/description
- $(call Package/weechat/default/description)
- Weechat and basic plugins.
-endef
-
-define Package/weechat-plugin-apsell/description
- $(call Package/weechat/default/description)
- Aspell plugin.
-endef
-
-define Package/weechat-plugin-perl/description
- $(call Package/weechat/default/description)
- Perl plugin.
-endef
-
-define Package/weechat-plugin-python/description
- $(call Package/weechat/default/description)
- Python plugin.
+ Weechat is fast, light & extensible IRC client.
 endef
 
 TARGET_LDFLAGS += \
@@ -90,38 +52,30 @@ CMAKE_OPTIONS+= \
 	-DENABLE_RUBY=OFF \
 	-DENABLE_TCL=OFF
 
+define CheckDependencies
+endef
+
 define Package/weechat/install
 	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/var/weechat
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/weechat-curses $(1)/opt/bin
 	ln -sf weechat-curses $(1)/opt/bin/weechat
 	$(INSTALL_DIR) $(1)/opt/lib/weechat/plugins
-	$(INSTALL_BIN) \
-		$(PKG_INSTALL_DIR)/opt/lib/weechat/plugins/{alias,exec,fifo,irc,logger,relay,script,trigger,xfer}.so \
+	$(CP) \
+		$(PKG_INSTALL_DIR)/opt/lib/weechat/plugins/*.so \
 		$(1)/opt/lib/weechat/plugins
 endef
 
-define Package/weechat-plugin-aspell/install
-	$(INSTALL_DIR) $(1)/opt/lib/weechat/plugins
-	$(INSTALL_BIN) \
-		$(PKG_INSTALL_DIR)/opt/lib/weechat/plugins/aspell.so \
-		$(1)/opt/lib/weechat/plugins
-endef
+define Package/weechat/postinst
+#!/bin/sh
+cat << EOF
+Please install optional dependencies first if you want to use weechat scripts.
 
-define Package/weechat-plugin-perl/install
-	$(INSTALL_DIR) $(1)/opt/lib/weechat/plugins
-	$(INSTALL_BIN) \
-		$(PKG_INSTALL_DIR)/opt/lib/weechat/plugins/perl.so \
-		$(1)/opt/lib/weechat/plugins
-endef
+* for Perl scripts:
+opkg install perl
 
-define Package/weechat-plugin-python/install
-	$(INSTALL_DIR) $(1)/opt/lib/weechat/plugins
-	$(INSTALL_BIN) \
-		$(PKG_INSTALL_DIR)/opt/lib/weechat/plugins/python.so \
-		$(1)/opt/lib/weechat/plugins
+* for Python scripts:
+opkg install python-light
+EOF
 endef
 
 $(eval $(call BuildPackage,weechat))
-$(eval $(call BuildPackage,weechat-plugin-aspell))
-$(eval $(call BuildPackage,weechat-plugin-perl))
-$(eval $(call BuildPackage,weechat-plugin-python))
