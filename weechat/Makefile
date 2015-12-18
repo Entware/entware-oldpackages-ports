@@ -72,6 +72,9 @@ define Package/weechat-plugin-python/description
  Python plugin.
 endef
 
+TARGET_LDFLAGS += \
+	-lintl
+
 CMAKE_OPTIONS+= \
 	-DWEECHAT_HOME="/opt/var/weechat" \
 	-DCA_FILE="/opt/etc/ssl/certs/ca-certificates.crt" \
