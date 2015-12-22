@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=radvd
-PKG_VERSION:=1.15
+PKG_VERSION:=2.11
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://v6web.litech.org/radvd/dist \
 		http://download.sourcemage.org/mirror
-PKG_MD5SUM:=97cd606000b8dd929b5f5449d5e7cea2
+PKG_MD5SUM:=57fc6021f6a5e5472e455937685472a3
 PKG_MAINTAINER:=QshenX <q@xd8.cn>
 PKG_LICENSE:=GPL-2.0
 
@@ -58,6 +58,12 @@ CONFIGURE_ARGS += \
 	--with-configfile=/opt/etc/radvd.conf \
 	--with-logfile=/opt/var/log/radvd.log \
 	--with-pidfile=/opt/var/run/radvd.pid
+
+TARGET_CFLAGS += \
+	-std=gnu99
+
+TARGET_LDFLAGS += \
+	-lssp
 
 define Package/radvd/install
 	$(INSTALL_DIR) $(1)/opt/sbin
