@@ -1,6 +1,5 @@
 #
 # Copyright (C) 2006-2009 OpenWrt.org
-# Copyright (C) 2013-2015 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -23,7 +22,6 @@ define Package/palantir
 	DEPENDS:=+libjpeg +libpthread
 	TITLE:=A multichannel interactive streaming solution
 	URL:=http://www.fastpath.it/products/palantir/
-	MAINTAINER:=Entware team, entware.wl500g.info
 endef
 
 define Package/palantir/description

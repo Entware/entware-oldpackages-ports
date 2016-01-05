@@ -23,7 +23,6 @@ define Package/findutils/Default
 	CATEGORY:=Utilities
 	TITLE:=File finding utilities
 	URL:=$(PKG_SOURCE_URL)
-	MAINTAINER:=Entware team, entware.wl500g.info
 endef
 
 define Package/findutils

@@ -1,6 +1,5 @@
-# 
+#
 # Copyright (C) 2009 OpenWrt.org
-# Copyright (C) 2011-2015 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -27,7 +26,6 @@ define Package/ipset4
 	CATEGORY:=Network
 	TITLE:=IPset v4 administration utility
 	URL:=http://ipset.netfilter.org/
-	MAINTAINER:=Entware team, entware.wl500g.info
 endef
 
 IPSET_MAKEOPTS:= -C $(PKG_BUILD_DIR) \
