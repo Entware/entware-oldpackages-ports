@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2015 Entware
+# Copyright (C) 2011-2016 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -29,7 +29,6 @@ define Package/$(PKG_NAME)
 	TITLE:=Python universal enconding detector
 	URL:=https://github.com/erikrose/chardet
 	DEPENDS:=+python-setuptools
-	MAINTAINER:=Entware team, entware.wl500g.info
 endef
 
 define Package/$(PKG_NAME)/description

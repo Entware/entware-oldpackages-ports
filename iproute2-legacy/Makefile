@@ -24,7 +24,6 @@ define Package/iproute2-legacy/Default
 	SECTION:=net
 	CATEGORY:=Network
 	URL:=http://linux-net.osdl.org/index.php/Iproute2
-	MAINTAINER:=Entware team, entware.wl500g.info
 endef
 
 define Package/ip-legacy
