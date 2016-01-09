@@ -15,7 +15,8 @@ PKG_RELEASE:=3
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://www.weechat.org/files/src
 PKG_MD5SUM:=d315ceb66b03442ded0715f4277bd65f
-PKG_BUILD_PARALLEL:=0
+
+PKG_BUILD_DEPENDS:=perl python
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
