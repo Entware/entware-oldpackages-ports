@@ -1,0 +1,180 @@
+--- a/libiberty/cp-demangle.c
++++ b/libiberty/cp-demangle.c
+@@ -124,7 +124,6 @@
+ # endif /* alloca */
+ #endif /* HAVE_ALLOCA_H */
+ 
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ #include "demangle.h"
+ #include "cp-demangle.h"
+--- a/libiberty/argv.c
++++ b/libiberty/argv.c
+@@ -25,7 +25,6 @@
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ #include "safe-ctype.h"
+ 
+--- a/libiberty/concat.c
++++ b/libiberty/concat.c
+@@ -48,7 +48,6 @@
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ #include <sys/types.h>		/* size_t */
+ 
+--- a/libiberty/cp-demint.c
++++ b/libiberty/cp-demint.c
+@@ -48,7 +48,6 @@
+ #include <string.h>
+ #endif
+ 
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ #include "demangle.h"
+ #include "cp-demangle.h"
+--- a/libiberty/fdmatch.c
++++ b/libiberty/fdmatch.c
+@@ -44,7 +44,6 @@
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ #include <sys/types.h>
+ #include <sys/stat.h>
+--- a/libiberty/floatformat.c
++++ b/libiberty/floatformat.c
+@@ -36,7 +36,6 @@
+ #include <float.h>
+ #endif
+ 
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ #include "floatformat.h"
+ 
+--- a/libiberty/lbasename.c
++++ b/libiberty/lbasename.c
+@@ -40,7 +40,6 @@
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ #include "safe-ctype.h"
+ #include "filenames.h"
+--- a/libiberty/make-relative-prefix.c
++++ b/libiberty/make-relative-prefix.c
+@@ -61,7 +61,6 @@
+ 
+ #include <string.h>
+ 
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ #ifndef R_OK
+--- a/libiberty/getruntime.c
++++ b/libiberty/getruntime.c
+@@ -19,7 +19,6 @@
+ 
+ #include "config.h"
+ 
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ /* On some systems (such as WindISS), you must include <sys/types.h>
+--- a/libiberty/lrealpath.c
++++ b/libiberty/lrealpath.c
+@@ -34,7 +34,6 @@
+ */
+ 
+ #include "config.h"
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ #ifdef HAVE_LIMITS_H
+--- a/libiberty/spaces.c
++++ b/libiberty/spaces.c
+@@ -32,7 +32,6 @@
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ #if VMS
+--- a/libiberty/strerror.c
++++ b/libiberty/strerror.c
+@@ -14,7 +14,6 @@
+ #define sys_errlist sys_errlist__
+ #endif
+ 
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ #include <stdio.h>
+--- a/libiberty/strsignal.c
++++ b/libiberty/strsignal.c
+@@ -3,7 +3,6 @@
+    This file is in the public domain.  */
+ 
+ #include "config.h"
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ /* We need to declare sys_siglist, because even if the system provides
+--- a/libiberty/xatexit.c
++++ b/libiberty/xatexit.c
+@@ -25,7 +25,6 @@
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ #include <stdio.h>
+--- a/libiberty/xmalloc.c
++++ b/libiberty/xmalloc.c
+@@ -63,7 +63,6 @@
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ #include <stdio.h>
+--- a/libiberty/xmemdup.c
++++ b/libiberty/xmemdup.c
+@@ -19,7 +19,6 @@
+ #ifdef HAVE_CONFIG_H
+ #include "config.h"
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ #include <sys/types.h> /* For size_t. */
+--- a/libiberty/xstrdup.c
++++ b/libiberty/xstrdup.c
+@@ -24,7 +24,6 @@
+ #  include <strings.h>
+ # endif
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ char *
+--- a/libiberty/xstrndup.c
++++ b/libiberty/xstrndup.c
+@@ -41,7 +41,6 @@
+ #  include <strings.h>
+ # endif
+ #endif
+-#include "ansidecl.h"
+ #include "libiberty.h"
+ 
+ char *

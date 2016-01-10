@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gdb_legacy
 PKG_VERSION:=7.3.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=gdb-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@GNU/gdb
