@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lirc
 PKG_VERSION:=0.9.3a
-PKG_RELEASE:=1b
+PKG_RELEASE:=1c
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)
@@ -41,7 +41,10 @@ CONFIGURE_ARGS += \
 	--without-x \
 	--with-kerneldir=$(LINUX_DIR) \
 	--with-driver="userspace" \
-	ac_cv_file__usr_lib_systemd_system=no
+	ac_cv_file__usr_lib_systemd_system=no \
+
+CONFIGURE_VARS += \
+	PYTHON=python \
 
 define Package/lirc/conffiles
 /opt/etc/lirc_options.conf
@@ -60,7 +63,7 @@ define Package/lirc/install
 	    $(PKG_INSTALL_DIR)/opt/etc/lirc/lirc{_options,d,md}.conf \
 	    $(1)/opt/etc/lirc
 	$(INSTALL_DIR) $(1)/opt/lib/lirc/plugins
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/lirc/plugins/*.so \
 	    $(1)/opt/lib/lirc/plugins
 	$(INSTALL_DIR) $(1)/opt/var/run/lirc

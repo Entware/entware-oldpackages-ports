@@ -1,0 +1,27 @@
+--- a/configure
++++ b/configure
+@@ -15590,7 +15590,7 @@
+ # split strings by '.' and convert to numeric.  Append some zeros
+ # because we need at least 4 digits for the hex conversion.
+ # map returns an iterator in Python 3.0 and a list in 2.x
+-minver = list(map(int, '3.1'.split('.'))) + [0, 0, 0]
++minver = list(map(int, '2.7'.split('.'))) + [0, 0, 0]
+ minverhex = 0
+ # xrange is not present in Python 3.0 and range returns an iterator
+ for i in list(range(0, 4)): minverhex = (minverhex << 8) + minver[i]
+--- a/tools/lirc-setup/lirc-setup
++++ b/tools/lirc-setup/lirc-setup
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/usr/bin/env python
+ 
+ ''' Wrapper for the lirc_setup thing, meant to be a symlink. '''
+ 
+--- a/tools/make_rel_symlink.py
++++ b/tools/make_rel_symlink.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/usr/bin/env python
+ 
+ import os
+ import os.path
