@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=subversion
 PKG_VERSION:=1.9.3
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://archive.apache.org/dist/subversion
@@ -41,6 +41,7 @@ endef
 define Package/subversion-libs
   $(call Package/subversion/Default)
   TITLE:=subversion libs
+  DEPENDS+=+libserf
 endef
 
 define Package/subversion-libs/description
@@ -80,6 +81,7 @@ TARGET_CPPFLAGS += -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE
 CONFIGURE_ARGS += \
 	--with-apr="$(STAGING_DIR)/opt/bin/apr-1-config" \
 	--with-apr-util="$(STAGING_DIR)/opt/bin/apu-1-config" \
+	--with-serf \
 	--disable-mod-activation \
 	--without-ruby-sitedir \
 	--without-swig \
