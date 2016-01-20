@@ -4,6 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2004, used by rdiff-backup only
 
 include $(TOPDIR)/rules.mk
 
@@ -37,23 +38,19 @@ define Package/librsync/description
 	files without needing both files on the same system.
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
-		--enable-shared \
-		--enable-static \
-	);
-endef
+CONFIGURE_ARGS += \
+	--enable-shared
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/librsync{,-config}.h $(1)/usr/include/
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/librsync.{a,so*} $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/opt/include
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/librsync{,-config}.h $(1)/opt/include/
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librsync.{a,so*} $(1)/opt/lib/
 endef
 
 define Package/librsync/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/librsync.so.* $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librsync.so.* $(1)/opt/lib/
 endef
 
 $(eval $(call BuildPackage,librsync))
