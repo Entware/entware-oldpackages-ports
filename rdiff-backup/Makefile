@@ -4,6 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2009
 
 include $(TOPDIR)/rules.mk
 
@@ -26,7 +27,7 @@ define Package/rdiff-backup
   CATEGORY:=Utilities
   TITLE:=Incremental backup utility
   URL:=http://www.nongnu.org/rdiff-backup
-  DEPENDS:=+python +librsync +libpopt +openssl-util
+  DEPENDS:=+python +librsync +openssl-util
 endef
 
 define Package/rdiff-backup/description
@@ -39,17 +40,17 @@ define Package/rdiff-backup/description
 endef
 
 define PyPackage/rdiff-backup/filespec
-+|/usr/bin/rdiff-backup
++|/opt/bin/rdiff-backup
 +|$(PYTHON_PKG_DIR)/rdiff_backup
 endef
 
 define Build/Compile
 	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
 	$(call Build/Compile/PyMod,., \
-		build --librsync-dir="$(STAGING_DIR)/usr" , \
+		build --librsync-dir="$(STAGING_DIR)/opt" , \
 	)
 	$(call Build/Compile/PyMod,., \
-		install --prefix="$(PKG_INSTALL_DIR)/usr", \
+		install --prefix="$(PKG_INSTALL_DIR)/opt", \
 	)
 endef
 
