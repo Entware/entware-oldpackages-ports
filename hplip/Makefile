@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hplip
 PKG_VERSION:=3.15.11
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/hplip
@@ -66,7 +66,7 @@ define Package/hplip/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
 
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libhp{ip,ipp,mud}.so* $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libhp{ip,ipp,mud,discovery}.so* $(1)/opt/lib/
 
 	$(INSTALL_DIR) $(1)/opt/lib/cups/{backend,filter}
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/cups/backend/hp $(1)/opt/lib/cups/backend
