@@ -25,7 +25,7 @@
  		echo Building BIND Export libraries - this takes some time. ;\
 +		(cd ${bindsrcdir}/lib/export/dns ;                           \
 +		  echo building gen using ${BUILD_CC} in `pwd` ;             \
-+		  $(MAKE) CC=${BUILD_CC} CFLAGS="-O2" LIBS="" gen) ;         \
++		  $(MAKE) CC=${BUILD_CC} CFLAGS="-O2" LIBS="" LDFLAGS="" gen) ;\
  		(cd ${bindsrcdir}/lib/export ;                               \
  		  echo building in `pwd` ;                                   \
 -		  MAKE=${GMAKE} ${GMAKE} >> ${binddir}/build.log) ;          \
