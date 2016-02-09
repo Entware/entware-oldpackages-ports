@@ -37,7 +37,7 @@ define Package/weechat/description
 endef
 
 TARGET_LDFLAGS += \
-	-lintl
+	-lintl -liconv
 
 CMAKE_OPTIONS+= \
 	-DWEECHAT_HOME="/opt/var/weechat" \
