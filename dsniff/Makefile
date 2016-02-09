@@ -45,7 +45,7 @@ CONFIGURE_ARGS += \
 # in case of glibc. The path is modified to use host compiled rpcgen!
 
 define Build/Compile
-	PATH="$(TOPDIR)/staging_dir/host/bin:$(TARGET_PATH)" \
+	PATH="$(STAGING_DIR)/host/bin:$(TARGET_PATH)" \
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		$(TARGET_CONFIGURE_OPTS) \
 		install_prefix="$(PKG_INSTALL_DIR)" \
