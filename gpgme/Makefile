@@ -20,7 +20,7 @@ PKG_INSTALL:=1
 
 PKG_USE_MIPS16:=0
 
-PKG_BUILD_DEPENDS:=USE_UCLIBC:argp-standalone USE_MUSL:argp-standalone
+PKG_BUILD_DEPENDS:=USE_MUSL:argp-standalone
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -41,7 +41,7 @@ define Package/libgpgme/description
 endef
 
 ifneq ($(CONFIG_USE_GLIBC),y)
-  CONFIGURE_VARS += LIBS="-largp"
+  CONFIGURE_VARS += LIBS="-luargp"
 endif
 
 CONFIGURE_ARGS += \
