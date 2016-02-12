@@ -1,0 +1,11 @@
+--- a/deps/v8/build/common.gypi
++++ b/deps/v8/build/common.gypi
+@@ -52,7 +52,7 @@
+     'v8_can_use_vfp3_instructions%': 'false',
+ 
+     # Similar to vfp but on MIPS.
+-    'v8_can_use_fpu_instructions%': 'true',
++    'v8_can_use_fpu_instructions%': 'false',
+ 
+     # Setting v8_use_arm_eabi_hardfloat to true will turn on V8 support for ARM
+     # EABI calling convention where double arguments are passed in VFP
