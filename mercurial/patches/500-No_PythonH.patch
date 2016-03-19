@@ -1,6 +1,6 @@
 --- a/setup.py
 +++ b/setup.py
-@@ -323,9 +323,6 @@
+@@ -339,9 +339,6 @@
              self.distribution.ext_modules = []
          else:
              h = os.path.join(get_python_inc(), 'Python.h')
@@ -8,5 +8,5 @@
 -                raise SystemExit('Python headers are required to build '
 -                                 'Mercurial but weren\'t found in %s' % h)
  
-     def find_modules(self):
-         modules = build_py.find_modules(self)
+     def copy_file(self, *args, **kwargs):
+         dst, copied = build_py.copy_file(self, *args, **kwargs)
