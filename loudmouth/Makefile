@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libloudmouth1
-PKG_VERSION:=1.5.1
+PKG_VERSION:=1.5.3
 PKG_RELEASE:=1
 
 
 PKG_SOURCE:=loudmouth-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://mcabber.com/files/loudmouth
-PKG_MD5SUM:=fbc70329b85a93d9ad1c8df271ae04fc
+PKG_MD5SUM:=0db0ce1c5a57f81b5736be8bd2217a82
 PKG_BUILD_DIR:=$(BUILD_DIR)/loudmouth-$(PKG_VERSION)
 
 PKG_INSTALL:=1
