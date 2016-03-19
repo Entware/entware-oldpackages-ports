@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cups
-PKG_VERSION:=2.1.2
+PKG_VERSION:=2.1.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-source.tar.bz2
 PKG_SOURCE_URL:= http://www.cups.org/software/$(PKG_VERSION)
-PKG_MD5SUM:=b3ba0ca676d56857bbd9b182ef4b14b3
+PKG_MD5SUM:=62b8fafd590e75f72316915790b0850a
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -167,7 +167,6 @@ define Build/Configure
 		--disable-dnssd \
 		--disable-launchd \
 		--disable-systemd \
-		--disable-ldap \
 		--disable-pam \
 		--disable-gnutls \
 		--disable-cdsassl \
