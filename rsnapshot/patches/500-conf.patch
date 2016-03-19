@@ -59,9 +59,9 @@
 -lockfile	/var/run/rsnapshot.pid
 +lockfile	/opt/var/run/rsnapshot.pid
  
- # Default rsync args. All rsync commands have at least these options set.
- #
-@@ -216,10 +216,22 @@
+ # By default, rsnapshot check lockfile, check if PID is running
+ # and if not, consider lockfile as stale, then start
+@@ -222,10 +222,22 @@
  ### BACKUP POINTS / SCRIPTS ###
  ###############################
  
