@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=leptonica
-PKG_VERSION:=1.72
+PKG_VERSION:=1.73
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.leptonica.com/source
-PKG_MD5SUM:=7581db29f8442197ce68e766c6047c4b
+PKG_MD5SUM:=092cea2e568cada79fff178820397922
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -34,16 +34,15 @@ TARGET_CFLAGS += $(FPIC)
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
-	$(CP) $(PKG_INSTALL_DIR)/opt/include/leptonica $(1)/opt/include/
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/leptonica $(1)/opt/include
 	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblept.{a,so*} $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblept.{a,so*} $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/lept.pc $(1)/opt/lib/pkgconfig
 endef
 
 define Package/libleptonica/install
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblept.so* $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblept.so* $(1)/opt/lib
 endef
 
 $(eval $(call BuildPackage,libleptonica))
-
