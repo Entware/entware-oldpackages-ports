@@ -4,18 +4,16 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# The newer versions require new kernel
 
 include $(TOPDIR)/rules.mk
 
-#
-# Newer version require new kernel
-#
 PKG_NAME:=oprofile_legacy
 PKG_VERSION:=0.9.9
 PKG_RELEASE:=1
 
 PKG_SOURCE:=oprofile-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/oprofile/
+PKG_SOURCE_URL:=@SF/oprofile
 PKG_MD5SUM:=00aec1287da2dfffda17a9b1c0a01868
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/oprofile-$(PKG_VERSION)
@@ -60,7 +58,6 @@ define Build/Configure
 endef
 
 TARGET_CXXFLAGS += -fpermissive
-TARGET_LDFLAGS := -L$(STAGING_DIR)/opt/lib $(TARGET_LDFLAGS)
 
 define Package/oprofile-utils_legacy/install
 	$(INSTALL_DIR) $(1)/opt/bin
@@ -85,13 +82,13 @@ define Package/oprofile_legacy/install
 	$(INSTALL_DIR) $(1)/opt/lib/oprofile
 	$(CP) \
 		$(PKG_INSTALL_DIR)/opt/lib/oprofile/*.so* \
-		$(1)/opt/lib/oprofile/
+		$(1)/opt/lib/oprofile
 
 	$(INSTALL_DIR) $(1)/opt/share/oprofile
 	$(CP) \
 		$(PKG_INSTALL_DIR)/opt/share/oprofile/stl.pat \
 		$(PKG_INSTALL_DIR)/opt/share/oprofile/$(patsubst x86,i386,$(LINUX_KARCH)) \
-		$(1)/opt/share/oprofile/
+		$(1)/opt/share/oprofile
 endef
 
 $(eval $(call BuildPackage,oprofile_legacy))
