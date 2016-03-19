@@ -9,7 +9,7 @@
  docdir = $(hpdocdir)
  htmldir = $(hphtmldir)
  doc_DATA = COPYING copyright prnt/hpijs/README_LIBJPG
-@@ -92,7 +92,6 @@
+@@ -98,7 +98,6 @@
  libhpmud_la_LDFLAGS += -lusb
  else
  libhpmud_la_SOURCES += io/hpmud/musb.c 
@@ -17,7 +17,7 @@
  libhpmud_la_LDFLAGS += -lusb-1.0
  endif
  
-@@ -118,18 +117,18 @@
+@@ -125,18 +124,18 @@
  dist_rulessystem_DATA =data/rules/hplip-printer@.service
  
  # hpmud.rules
@@ -39,7 +39,7 @@
  hplip_conf_DATA = hplip.conf
  
  #pstotiff filter
-@@ -137,7 +136,7 @@
+@@ -144,7 +143,7 @@
  pstotiff_SCRIPTS = fax/filters/pstotiff
  
  # hplip.state
@@ -48,7 +48,7 @@
  dist_hplip_state_DATA =
  
  if FULL_BUILD
-@@ -200,11 +199,11 @@
+@@ -207,11 +206,11 @@
  
  # AppArmor Changes
  if APPARMOR_BUILD
@@ -62,9 +62,9 @@
  apparmor_abstraction_DATA = apparmor/abstractions/hplip
  dist_apparmor_abstraction_DATA = apparmor/abstractions/hplip
  
-@@ -313,10 +312,6 @@
- hpmudext_la_LIBADD = libhpmud.la libhpdiscovery.la
- hpmudext_la_CFLAGS = -I$(PYTHONINCLUDEDIR) -Iprotocol/discovery
+@@ -325,10 +324,6 @@
+ hpmudext_la_CFLAGS += -Iprotocol/discovery
+ endif
  
 -if !LIBUSB01_BUILD
 -hpmudext_la_CFLAGS +=-I/usr/include/libusb-1.0 
@@ -73,7 +73,7 @@
  # ui (qt3)
  if GUI_BUILD
  if QT3_INSTALL
-@@ -383,9 +378,9 @@
+@@ -395,9 +390,9 @@
  
  # PolicyKit
  if POLICYKIT_INSTALL
@@ -85,7 +85,7 @@
  dist_policykit_dbus_share_DATA = data/policykit/com.hp.hplip.service
  policykit_policydir = $(policykit_dir)
  dist_policykit_policy_DATA = data/policykit/com.hp.hplip.policy
-@@ -565,13 +560,13 @@
+@@ -577,13 +572,13 @@
  if HPLIP_BUILD
  #	   If scanner build, add hpaio entry to sane dll.conf.
  	if [ "$(scan_build)" = "yes" ]; then \
