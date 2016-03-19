@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=findutils
-PKG_VERSION:=4.5.14
+PKG_VERSION:=4.6.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).orig.tar.gz
-PKG_SOURCE_URL:=http://ftp.debian.org/debian/pool/main/f/findutils
-PKG_MD5SUM:=a8a8176282fd28e8d1234c84d847fa66
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://ftp.gnu.org/gnu/findutils
+PKG_MD5SUM:=9936aa8009438ce185bea2694a997fc1
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -22,7 +22,7 @@ define Package/findutils/Default
 	SECTION:=utils
 	CATEGORY:=Utilities
 	TITLE:=File finding utilities
-	URL:=$(PKG_SOURCE_URL)
+	URL:=https://savannah.gnu.org/projects/findutils
 endef
 
 define Package/findutils
