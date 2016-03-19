@@ -36,3 +36,12 @@
  
  # Configuration file template.
  #
+@@ -111,7 +109,7 @@
+ # /usr/local/share/nzbget/nzbget.conf).
+ #
+ # Example: /usr/local/share/nzbget/nzbget.conf.
+-ConfigTemplate=
++ConfigTemplate=/opt/share/nzbget/nzbget.conf.template
+ 
+ # Required directories.
+ #
