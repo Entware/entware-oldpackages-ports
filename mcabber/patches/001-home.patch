@@ -1,12 +1,11 @@
 --- a/mcabber/settings.c
 +++ b/mcabber/settings.c
-@@ -113,7 +113,8 @@
-       return -1;
-     }
+@@ -102,7 +102,7 @@
+   if (config_dir)
+     return config_dir;
  
--    home = getenv("HOME");
-+    //home = getenv("HOME");
-+    home = "/opt/etc";
-     if (!home) {
-       scr_LogPrint(LPRINT_LOG, "Can't find home dir!");
-       fprintf(stderr, "Can't find home dir!\n");
+-  home_dir = getenv("HOME");
++  home_dir = "/opt/etc";
+   if (!home_dir) {
+     scr_log_print(LPRINT_LOG, "Can't find home dir!");
+     fprintf(stderr, "Can't find home dir!\n");
