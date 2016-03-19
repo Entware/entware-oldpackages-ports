@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pycurl
-PKG_VERSION:=7.19.5.3
+PKG_VERSION:=7.43.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/source/p/pycurl
-PKG_MD5SUM:=611a5423d5c58d273294e5fdf61567e1
+PKG_MD5SUM:=c94bdba01da6004fa38325e9bd6b9760
 
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
@@ -28,7 +28,7 @@ define Package/python-curl
 endef
 
 define Package/python-curl/description
-Python module interface to the cURL library.
+ Python module interface to the cURL library.
 endef
 
 define Build/Compile
