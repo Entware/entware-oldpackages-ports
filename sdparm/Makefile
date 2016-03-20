@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sdparm
-PKG_VERSION:=1.09
+PKG_VERSION:=1.10
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://sg.danny.cz/sg/p
-PKG_MD5SUM:=730f4be939f970715b819afa17cadf76
+PKG_MD5SUM:=bdae64375376ce8fe4bf9521c1db858f
 
 PKG_FIXUP:=autoreconf
 
