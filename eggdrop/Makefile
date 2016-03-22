@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=eggdrop
 PKG_VERSION:=1.6.21
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 
 PKG_SOURCE:=eggdrop$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=ftp://ftp.eggheads.org/pub/eggdrop/source/1.6
@@ -25,7 +25,7 @@ define Package/eggdrop
   SECTION:=lang
   CATEGORY:=Languages
   TITLE:=EggDrop IRC BOT
-  DEPENDS:=+tcl +zlib
+  DEPENDS:=+tcl +zlib +libpthread
   URL:=http://www.eggheads.org
 endef
 
