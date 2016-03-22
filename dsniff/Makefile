@@ -16,6 +16,9 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.monkey.org/~dugsong/dsniff/beta
 PKG_MD5SUM:=2f761fa3475682a7512b0b43568ee7d6
 
+PKG_BUILD_DEPENDS:=nfs-kernel-server/host
+
+# Make host rpcgen first
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-2.4
 
 include $(INCLUDE_DIR)/package.mk
@@ -41,9 +44,7 @@ CONFIGURE_ARGS += \
 	--without-db \
 	--without-x
 
-# There is a problem, that crosscompiled rpcgen binary is the first in the path
-# in case of glibc. The path is modified to use host compiled rpcgen!
-
+# Modify PATH to use host rpcgen
 define Build/Compile
 	PATH="$(STAGING_DIR)/host/bin:$(TARGET_PATH)" \
 	$(MAKE) -C $(PKG_BUILD_DIR) \
