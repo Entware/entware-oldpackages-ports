@@ -1,0 +1,16 @@
+--- a/sim/common/sim-inline.h
++++ b/sim/common/sim-inline.h
+@@ -283,13 +283,6 @@
+ #define C_REVEALS_MODULE_P(X) ((X & C_REVEALS_MODULE))
+ 
+ 
+-#ifndef HAVE_INLINE
+-#ifdef __GNUC__
+-#define HAVE_INLINE
+-#endif
+-#endif
+-
+-
+ /* Your compilers inline prefix */
+ 
+ #ifndef INLINE
