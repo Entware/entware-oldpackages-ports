@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=pyload
 PKG_VERSION:=0.4.9-20160307
 PKG_REV:=ed91dde1c52851bbfd1168620328b7809a3623f8
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -40,7 +40,7 @@ cat << EOF
 Please install optional pyload dependencies first.
 
 * for SSL connection with WebUI:
-opkg install pyopenssl openssl-util
+opkg install python-pyopenssl openssl-util
 
 * for several hosters, ClickNLoad feature:
 opkg install duktape
