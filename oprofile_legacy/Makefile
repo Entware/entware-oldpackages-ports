@@ -35,7 +35,7 @@ define Package/oprofile_legacy
   CATEGORY:=Development
   TITLE:=OProfile System Profiler
   URL:=http://oprofile.sourceforge.net
-  DEPENDS:=+libpopt +libstdcpp +objdump +librt @TARGET_mipselsf
+  DEPENDS:=+libpopt +libstdcpp +objdump +librt @(TARGET_mipselsf||TARGET_keenle||TARGET_keenbe)
 endef
 
 define Package/oprofile_legacy/description
