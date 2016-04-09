@@ -26,7 +26,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/gdb_legacy/Default
   SECTION:=devel
   CATEGORY:=Development
-  DEPENDS:=+!USE_MUSL:libthread-db +PACKAGE_zlib:zlib @TARGET_mipselsf
+  DEPENDS:=+!USE_MUSL:libthread-db +PACKAGE_zlib:zlib @LINUX_2_6_22
   URL:=http://www.gnu.org/software/gdb_legacy/
 endef
 
