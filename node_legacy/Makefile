@@ -10,8 +10,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=node_legacy
-PKG_VERSION:=v0.10.42
-PKG_RELEASE:=1b
+PKG_VERSION:=v0.10.43
+PKG_RELEASE:=1
 
 PKG_SOURCE:=node-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://nodejs.org/dist/$(PKG_VERSION)

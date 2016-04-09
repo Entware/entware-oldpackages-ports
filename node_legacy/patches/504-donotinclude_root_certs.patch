@@ -14,7 +14,7 @@ Fix for entware-ng by Zyxmon - change file with certs to dir: Вт 16 фев 201
    NULL
  };
  
-@@ -604,32 +603,16 @@
+@@ -600,32 +599,16 @@
    assert(sc->ca_store_ == NULL);
  
    if (!root_cert_store) {
