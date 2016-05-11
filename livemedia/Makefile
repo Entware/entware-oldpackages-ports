@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=livemedia
-PKG_VERSION:=2016.03.16
+PKG_VERSION:=2016.04.21
 PKG_RELEASE:=1
 
 PKG_SOURCE:=live.$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.live555.com/liveMedia/public
-PKG_MD5SUM:=df4ad1d60c2f5ae8155fb077bb011ab3
+PKG_MD5SUM:=93218ec5211ac2503a67b72c7ab3a32b
 
 PKG_INSTALL:=1
 
