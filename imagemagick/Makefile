@@ -8,14 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=imagemagick
-PKG_VERSION:=6.9.3
-PKG_REVISION:=7
+PKG_VERSION:=7.0.1
+PKG_REVISION:=3
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/ImageMagick-$(PKG_VERSION)-$(PKG_REVISION)
 PKG_SOURCE:=ImageMagick-$(PKG_VERSION)-$(PKG_REVISION).tar.xz
 PKG_SOURCE_URL:=http://mirror.checkdomain.de/imagemagick/releases
-PKG_MD5SUM:=bb31f4ffd561f30068f84060d1d8c0c3
+PKG_MD5SUM:=4487d01848f6afce80d8c44c1edf65f6
 
 PKG_FIXUP:=autoreconf
 PKG_REMOVE_FILES:=aclocal.m4 m4/libtool.m4
@@ -107,8 +107,7 @@ define Build/Compile
 endef
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/opt/include/magick
-	$(INSTALL_DIR) $(1)/opt/include/wand
+	$(INSTALL_DIR) $(1)/opt/include/
 	$(CP) \
 		$(PKG_INSTALL_DIR)/opt/include/* \
 		$(1)/opt/include/
@@ -134,20 +133,17 @@ endef
 define Package/imagemagick-tools/install
 	$(INSTALL_DIR) $(1)/opt/bin/
 	$(CP) \
-		$(PKG_INSTALL_DIR)/opt/bin/mogrify \
-		$(1)/opt/bin/
-	$(CP) \
-		$(PKG_INSTALL_DIR)/opt/bin/convert \
+		$(PKG_INSTALL_DIR)/opt/bin/{animate,compare,composite,conjure,convert,display,identify,import,magick,magick-script,mogrify,montage,stream} \
 		$(1)/opt/bin/
 endef
 
 define BuildPlugin
   define Package/imagemagick-$(1)/install
-	$(INSTALL_DIR) $$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).so \
-		$$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders/$(1).la \
-		$$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16/coders
+	$(INSTALL_DIR) $$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16HDRI/coders
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16HDRI/coders/$(1).so \
+		$$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16HDRI/coders
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16HDRI/coders/$(1).la \
+		$$(1)/opt/lib/ImageMagick-$(PKG_VERSION)/modules-Q16HDRI/coders
   endef
 
   $$(eval $$(call BuildPackage,imagemagick-$(1)))
