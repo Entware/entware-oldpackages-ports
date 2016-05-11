@@ -77,7 +77,7 @@ Fix some build problems:
  	done
  	find $(SWIG_PY_SRC_DIR) $(SWIG_PY_DIR) -name "*.pyc" -exec rm {} ';'
  
-@@ -935,8 +934,7 @@
+@@ -937,8 +936,7 @@
  	fi
  	for d in $(SWIG_RB_DIR) $(SWIG_RB_DIR)/libsvn_swig_ruby; \
  	do \
@@ -89,7 +89,7 @@ Fix some build problems:
  extraclean-swig-rb: clean-swig-rb
 --- a/build/generator/gen_base.py
 +++ b/build/generator/gen_base.py
-@@ -511,7 +511,8 @@
+@@ -517,7 +517,8 @@
  
  class SWIGSource(SourceFile):
    def __init__(self, filename):

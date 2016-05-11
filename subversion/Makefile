@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=subversion
-PKG_VERSION:=1.9.3
-PKG_RELEASE:=1a
+PKG_VERSION:=1.9.4
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://archive.apache.org/dist/subversion
-PKG_MD5SUM:=243036eb28b50ce517fc228eb3250add
+PKG_MD5SUM:=29121a038f87641055a8183f49e9739f
 
 PKG_FIXUP:=autoreconf
 PKG_MACRO_PATHS:=build/ac-macros
