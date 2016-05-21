@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=empty
 PKG_VERSION:=0.6.20b
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=@SF/empty
@@ -32,6 +32,8 @@ define Package/empty/description
  can be the simplest replacement for TCL/expect or other similar
  programming tools.
 endef
+
+TARGET_CFLAGS+=$(TARGET_LDFLAGS)
 
 define Package/empty/install
 	$(INSTALL_DIR) $(1)/opt/sbin
