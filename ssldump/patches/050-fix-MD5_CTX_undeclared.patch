@@ -1,0 +1,12 @@
+--- ssldump-0.9b3.orig/ssl/ssldecode.c
++++ ssldump-0.9b3/ssl/ssldecode.c
+@@ -132,7 +133,8 @@ int ssl_decode_ctx_create(dp,keyfile,pas
+     ssl_decode_ctx *d=0;
+     int r,_status;
+     
+-    SSLeay_add_all_algorithms();
++    SSL_library_init();
++    OpenSSL_add_all_algorithms();
+     if(!(d=(ssl_decode_ctx *)malloc(sizeof(ssl_decode_ctx))))
+       ABORT(R_NO_MEMORY);
+     if(!(d->ssl_ctx=SSL_CTX_new(SSLv23_server_method())))
