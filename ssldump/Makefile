@@ -4,6 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2004
 
 include $(TOPDIR)/rules.mk
 
@@ -12,14 +13,14 @@ PKG_VERSION:=0.9b3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.rtfm.com/ssldump/
+PKG_SOURCE_URL:=@SF/$(PKG_NAME)/$(PKG_NAME)/$(PKG_VERSION)
 PKG_MD5SUM:=ac8c28fe87508d6bfb06344ec496b1dd
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/ssldump
-  SECTION:=utils
-  CATEGORY:=Utilities
+  SECTION:=net
+  CATEGORY:=Network
   DEPENDS:=+libopenssl +libpcap
   TITLE:=a SSLv3/TLS network protocol analyzer
   URL:=http://www.rtfm.com/ssldump/
