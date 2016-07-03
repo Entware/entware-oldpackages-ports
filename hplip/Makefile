@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hplip
 PKG_VERSION:=3.16.5
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/hplip
@@ -45,13 +45,14 @@ CONFIGURE_ARGS += \
 	--with-systraydir=/opt/var
 
 TARGET_CFLAGS += \
-	-I$(STAGING_DIR)/opt/include/libusb-1.0
+	-I$(STAGING_DIR)/opt/include/libusb-1.0 -I$(STAGING_DIR)/opt/include/python2.7/
 
 define Build/Configure
 	$(call Build/Configure/Default,\
 		$(CONFIGURE_ARGS),\
 		ac_cv_lib_cups_cupsDoFileRequest=yes \
 		LIBS="-lz -ljpeg -lusb -lcups -lpng -ltiff" \
+		PYTHONINCLUDEDIR="$(STAGING_DIR)/opt/include/python2.7/" \
 	)
 endef
 
