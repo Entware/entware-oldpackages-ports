@@ -1,6 +1,6 @@
 --- a/src/imapfilter.c
 +++ b/src/imapfilter.c
-@@ -57,10 +57,10 @@
+@@ -58,10 +58,10 @@
  	opts.debug = NULL;
  
  	opts.truststore = NULL;
