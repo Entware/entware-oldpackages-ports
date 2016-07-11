@@ -72,8 +72,8 @@ define Build/Configure
 	$(call Build/Configure/Default, \
 		, \
 		CFLAGS="$$$$CFLAGS $$$$CPPFLAGS" \
-                ac_cv_lib_pcap_pcap_open_live=yes \
-        )
+		ac_cv_lib_pcap_pcap_open_live=yes \
+	)
 endef
 
 define Package/knock/install
