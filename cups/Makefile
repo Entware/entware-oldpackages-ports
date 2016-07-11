@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cups
-PKG_VERSION:=2.1.3
+PKG_VERSION:=2.1.4
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-source.tar.bz2
-PKG_SOURCE_URL:= http://www.cups.org/software/$(PKG_VERSION)
-PKG_MD5SUM:=62b8fafd590e75f72316915790b0850a
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-source.tar.gz
+PKG_SOURCE_URL:=https://github.com/apple/cups/releases/download/release-$(PKG_VERSION)
+PKG_MD5SUM:=9f9bf6e3b9c20a3519b4dc409666d6e7
 
 include $(INCLUDE_DIR)/package.mk
 
