@@ -8,15 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lirc
-PKG_VERSION:=0.9.3a
-PKG_RELEASE:=1c
+PKG_VERSION:=0.9.4a
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)
-PKG_MD5SUM:=f9ed5dd0684a52c7cd98672e71e81b05
+PKG_MD5SUM:=d38566cb159c864089c24f2fcc7c5ccc
 
-#PKG_FIXUP:=autoreconf
-#PKG_REMOVE_FILES:=tools/Makefile.am
+PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 
@@ -26,7 +25,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/lirc
     SECTION:=utils
     CATEGORY:=Utilities
-    DEPENDS:=+libusb-compat +libftdi +alsa-lib $(CXX_DEPENDS)
+   DEPENDS:=+libusb-compat +libftdi1 +alsa-lib $(CXX_DEPENDS)
     TITLE:=LIRC - Linux Infrared Remote Control
     URL:=http://lirc.org/
 endef
@@ -39,8 +38,6 @@ endef
 CONFIGURE_ARGS += \
 	--enable-sandboxed \
 	--without-x \
-	--with-kerneldir=$(LINUX_DIR) \
-	--with-driver="userspace" \
 	ac_cv_file__usr_lib_systemd_system=no \
 
 CONFIGURE_VARS += \

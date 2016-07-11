@@ -1,0 +1,27 @@
+--- a/plugins/ftdix.c
++++ b/plugins/ftdix.c
+@@ -57,6 +57,24 @@
+ #include <linux/sched.h>
+ #endif
+ 
++/* Normally defined in <linux/sched.h> */
++#ifndef SCHED_NORMAL
++#define SCHED_NORMAL	0
++#endif
++#ifndef SCHED_FIFO
++#define SCHED_FIFO	1
++#endif
++#ifndef SCHED_RR
++#define SCHED_RR	2
++#endif
++#ifndef SCHED_BATCH
++#define SCHED_BATCH	3
++#endif
++/* SCHED_ISO not yet implemented */
++#ifndef SCHED_IDLE
++#define SCHED_IDLE	5
++#endif
++
+ static const logchannel_t logchannel = LOG_DRIVER;
+ 
+ /* PID of the child process */

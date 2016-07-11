@@ -1,79 +1,43 @@
---- a/configure
-+++ b/configure
-@@ -735,7 +735,6 @@
- HAVE_MAN2HTML_FALSE
- HAVE_MAN2HTML_TRUE
- MAN2HTML
--XSLTPROC
- PKGCONFIG
- depmod
- SH_PATH
-@@ -4691,48 +4690,6 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -28,11 +28,6 @@
  if test x$PKGCONFIG = xno; then
-   as_fn_error $? "Required program pkg-config is missing" "$LINENO" 5
+   AC_MSG_ERROR([Required program pkg-config is missing or not in \$PATH])
  fi
--# Extract the first word of "xsltproc", so it can be a program name with args.
--set dummy xsltproc; ac_word=$2
--{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
--$as_echo_n "checking for $ac_word... " >&6; }
--if ${ac_cv_prog_XSLTPROC+:} false; then :
--  $as_echo_n "(cached) " >&6
--else
--  if test -n "$XSLTPROC"; then
--  ac_cv_prog_XSLTPROC="$XSLTPROC" # Let the user override the test.
--else
--as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
--for as_dir in $PATH
--do
--  IFS=$as_save_IFS
--  test -z "$as_dir" && as_dir=.
--    for ac_exec_ext in '' $ac_executable_extensions; do
--  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
--    ac_cv_prog_XSLTPROC="yes"
--    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
--    break 2
--  fi
--done
--  done
--IFS=$as_save_IFS
--
--  test -z "$ac_cv_prog_XSLTPROC" && ac_cv_prog_XSLTPROC="no"
--fi
--fi
--XSLTPROC=$ac_cv_prog_XSLTPROC
--if test -n "$XSLTPROC"; then
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $XSLTPROC" >&5
--$as_echo "$XSLTPROC" >&6; }
--else
--  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
--$as_echo "no" >&6; }
--fi
--
--
+-AC_CHECK_PROG([XSLTPROC],[xsltproc],[yes],[no])
 -if test x$XSLTPROC != "xyes"; then
--    as_fn_error $? "
--      xsltproc is required to build. It usually comes with libxml" "$LINENO" 5
+-    AC_MSG_ERROR([
+-      xsltproc is required to build. It usually comes with libxml])
 -fi
- # Extract the first word of "man2html", so it can be a program name with args.
- set dummy man2html; ac_word=$2
- { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
---- a/Makefile.in
-+++ b/Makefile.in
-@@ -203,7 +203,7 @@
- ETAGS = etags
- CTAGS = ctags
- CSCOPE = cscope
--DIST_SUBDIRS = lib daemons tools doc systemd plugins
-+DIST_SUBDIRS = lib daemons tools systemd plugins
- am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in \
- 	$(srcdir)/lirc-driver.pc.in $(srcdir)/lirc.pc.in AUTHORS \
- 	COPYING ChangeLog INSTALL NEWS README compile config.guess \
-@@ -413,7 +413,7 @@
+ AM_CONDITIONAL(HAVE_UINPUT, test -e /dev/uinput)
+ AC_CHECK_PROG([MAN2HTML],[man2html],[yes],[no])
+ AM_CONDITIONAL(HAVE_MAN2HTML, test x$MAN2HTML = xyes)
+@@ -40,7 +35,7 @@
+ AM_CONDITIONAL(HAVE_DOXYGEN, test x$DOXYGEN = xyes)
+ AC_PROG_LN_S
+ LT_INIT([disable-static])
+-AM_PATH_PYTHON([3.1],,)
++AM_PATH_PYTHON([2.7],,)
+ AM_CONDITIONAL([HAVE_PYTHON], [test "$PYTHON" != ""])
+ AC_CHECK_PROG([HAVE_PYTHON3],[python3],[yes],[no])
+ LIBUSB_CONFIG="pkg-config libusb"
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -25,7 +25,7 @@
+     SYSTEMD_DIR         = systemd
+ endif
  
- BUILT_SOURCES = paths.h
- @WITH_SYSTEMDSYSTEMUNITDIR_TRUE@SYSTEMD_DIR = systemd
--SUBDIRS = lib daemons tools doc $(SYSTEMD_DIR) plugins
-+SUBDIRS = lib daemons tools $(SYSTEMD_DIR) plugins
- @INSTALL_ETC_TRUE@lirc_confdir = $(sysconfdir)/lirc
- @INSTALL_ETC_TRUE@dist_lirc_conf_DATA = lircd.conf lirc_options.conf lircmd.conf
- @INSTALL_ETC_TRUE@lircdconfigdir = $(sysconfdir)/lirc/lircd.conf.d
+-SUBDIRS                 = lib daemons tools plugins configs doc $(SYSTEMD_DIR)
++SUBDIRS                 = lib daemons tools plugins configs $(SYSTEMD_DIR)
+ 
+ if INSTALL_ETC
+ 
+@@ -44,8 +44,6 @@
+ 
+ endif
+ 
+-dist_doc_DATA           = VERSION
+-
+ pkgconfigdir            = $(libdir)/pkgconfig
+ dist_pkgconfig_DATA     = lirc.pc lirc-driver.pc
+ 
