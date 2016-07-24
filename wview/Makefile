@@ -9,10 +9,10 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wview
-PKG_VERSION:=5.21.5
+PKG_VERSION:=5.21.7
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://ftp.mirrorservice.org/sites/distfiles.macports.org/wview
-PKG_MD5SUM:=7e615df10e2a52a84572ac82a32ae146
+PKG_MD5SUM:=a296932574ffb4a3855e505a73daf9c5
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -21,7 +21,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/wview
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libcurl +zlib +libpng +libgd +libreadline +libsqlite3 +libusb-1.0 +radlib +sqlite3-cli +libopenssl
+  DEPENDS:=+libcurl +zlib +libpng +libgd +libreadline +libsqlite3 +libusb-1.0 +radlib +sqlite3-cli +libopenssl +libudev
   TITLE:=Wview Weather Station Software
   URL:=http://www.wviewweather.com/
 endef
