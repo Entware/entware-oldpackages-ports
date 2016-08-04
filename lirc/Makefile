@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lirc
-PKG_VERSION:=0.9.4a
+PKG_VERSION:=0.9.4b
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -25,7 +25,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/lirc
     SECTION:=utils
     CATEGORY:=Utilities
-   DEPENDS:=+libusb-compat +libftdi1 +alsa-lib $(CXX_DEPENDS)
+   DEPENDS:=+libusb-compat +libftdi1 +alsa-lib +libudev +libstdcpp
     TITLE:=LIRC - Linux Infrared Remote Control
     URL:=http://lirc.org/
 endef
