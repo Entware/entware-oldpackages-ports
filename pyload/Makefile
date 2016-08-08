@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=pyload
 PKG_VERSION:=0.4.9-20160712
 PKG_REV:=d6d1b8243a5022be9bf3a438250a6e037d362f8a
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -46,7 +46,7 @@ opkg install python-pyopenssl openssl-util
 opkg install duktape
 
 * for captcha recognition for a small amount of plugins:
-opkg install python-pillow tesseract
+opkg install pillow tesseract
 
 * for RSDF/CCF/DLC support to decrypt container files:
 opkg install python-crypto
