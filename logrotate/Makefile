@@ -8,19 +8,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=logrotate
-PKG_VERSION:=3.9.1
-PKG_RELEASE:=2
+PKG_VERSION:=3.10.0
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:= https://fedorahosted.org/releases/l/o/logrotate
-PKG_MD5SUM:=4492b145b6d542e4a2f41e77fa199ab0
+PKG_SOURCE_URL:= https://github.com/logrotate/logrotate/releases/download/3.10.0/
+PKG_MD5SUM:=888f58caf07082c76f5dd39e5d30ec12
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/logrotate
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libpopt
+  DEPENDS:=+libpopt +libacl
   TITLE:=rotates, compresses, and mails system logs
   URL:=https://github.com/logrotate/logrotate
 endef
