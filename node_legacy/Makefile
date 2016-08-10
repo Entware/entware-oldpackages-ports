@@ -10,7 +10,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=node_legacy
-PKG_VERSION:=v0.10.44
+PKG_VERSION:=v0.10.46
 PKG_RELEASE:=1
 
 PKG_SOURCE:=node-$(PKG_VERSION).tar.gz
