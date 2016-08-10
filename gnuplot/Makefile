@@ -8,23 +8,22 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gnuplot
-PKG_VERSION:=5.0.3
+PKG_VERSION:=5.0.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/gnuplot
-PKG_MD5SUM:=425ec74f34e54298e48b8c85e546d4ad
+PKG_MD5SUM:=cb228f60ae152712ffde0db5de346c40
 
 PKG_INSTALL:=1
 
-include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 
 define Package/gnuplot
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libncurses $(CXX_DEPENDS) +libgd +libreadline $(ICONV_DEPENDS)
+  DEPENDS:=+libncurses +libstdcpp +libgd +libreadline $(ICONV_DEPENDS)
   TITLE:=A portable command-line driven graphing utility
   URL:=http://sourceforge.net/projects/gnuplot/
 endef
