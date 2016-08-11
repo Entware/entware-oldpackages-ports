@@ -1,18 +1,6 @@
 --- a/nzbget.conf
 +++ b/nzbget.conf
-@@ -2,10 +2,8 @@
- #
- # On POSIX put this file to one of the following locations:
- # ~/.nzbget
--# /etc/nzbget.conf
--# /usr/etc/nzbget.conf
--# /usr/local/etc/nzbget.conf
- # /opt/etc/nzbget.conf
-+# /opt/share/nzbget/nzbget.conf
- #
- # On Windows put this file in program's directory.
- #
-@@ -23,7 +21,7 @@
+@@ -8,7 +8,7 @@
  #
  # On POSIX you can use "~" as alias for home directory (e.g. "~/downloads").
  # On Windows use absolute paths (e.g. "C:\Downloads").
@@ -21,7 +9,7 @@
  
  # Destination directory for downloaded files.
  #
-@@ -93,12 +91,12 @@
+@@ -85,12 +85,12 @@
  #
  # Set to empty value to disable the creating of the lock-file and the
  # check for another running instance (not recommended).
@@ -36,7 +24,7 @@
  
  # Configuration file template.
  #
-@@ -111,7 +109,7 @@
+@@ -103,7 +103,7 @@
  # /usr/local/share/nzbget/nzbget.conf).
  #
  # Example: /usr/local/share/nzbget/nzbget.conf.
