@@ -4,30 +4,28 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2004, used by rdiff-backup only
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=librsync
-PKG_VERSION:=0.9.7
-PKG_RELEASE:=4
+PKG_VERSION:=2.0.0
+PKG_REV:=26164eeeb34334e66fa4f3d22f296ab407d84507
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/librsync
-PKG_MD5SUM:=24cdb6b78f45e0e83766903fd4f6bc84
-
-PKG_FIXUP:=autoreconf
-PKG_INSTALL:=1
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/librsync/librsync.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
 
 include $(INCLUDE_DIR)/package.mk
-
-TARGET_CFLAGS += $(FPIC)
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/librsync
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=implementation of the rolling-checksum algorithm
-  DEPENDS:=+libbz2 +libpopt +zlib
+  DEPENDS:=+libbz2 +zlib
   URL:=http://librsync.sourceforge.net/
 endef
 
@@ -38,19 +36,16 @@ define Package/librsync/description
 	files without needing both files on the same system.
 endef
 
-CONFIGURE_ARGS += \
-	--enable-shared
-
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
 	$(CP) $(PKG_INSTALL_DIR)/opt/include/librsync{,-config}.h $(1)/opt/include/
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librsync.{a,so*} $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librsync.so* $(1)/opt/lib/
 endef
 
 define Package/librsync/install
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librsync.so.* $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librsync.so* $(1)/opt/lib/
 endef
 
 $(eval $(call BuildPackage,librsync))
