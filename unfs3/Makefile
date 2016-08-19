@@ -4,21 +4,22 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2009
+# Abandoned in 2011
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=unfs3
-PKG_VERSION:=0.9.22
-PKG_RELEASE:=3
+PKG_VERSION:=0.9.23
+PKG_REV:=dca6a04901ca7fee9ae6865dbe2834ae44953248
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/$(PKG_NAME)
-PKG_MD5SUM:=ddf679a5d4d80096a59f3affc64f16e5
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/markusn/unfs3.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
 
-PKG_LICENSE:=UNFS3
-PKG_LICENSE_FILES:=LICENSE
-
+PKG_FIXUP:=autoreconf
 PKG_BUILD_PARALLEL:=0
 
 include $(INCLUDE_DIR)/package.mk
@@ -31,6 +32,9 @@ define Package/unfs3
   TITLE:=User-space NFSv3 Server
   URL:=http://unfs3.sourceforge.net/
 endef
+
+CONFIGURE_ARGS += \
+	--without-afp-prefix
 
 define Package/unfs3/description
 	UNFS3 is a user-space implementation of the NFSv3 server
