@@ -4,17 +4,19 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2009
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rdiff-backup
-PKG_VERSION:=1.2.8
+PKG_VERSION:=1.3.3
+PKG_REV:=4864f2fcc195a1a0b3d303766505b58f16223bff
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://savannah.nongnu.org/download/rdiff-backup/
-PKG_MD5SUM:=1a94dc537fcf74d6a3a80bd27808e77b
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/sol1/rdiff-backup.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
 
 PKG_BUILD_DEPENDS:=python
 
@@ -39,8 +41,18 @@ define Package/rdiff-backup/description
 	backup.
 endef
 
+define Build/Configure
+	mv $(PKG_BUILD_DIR)/rdiff-backup $(PKG_BUILD_DIR)/rdiff-backup.src
+	mv $(PKG_BUILD_DIR)/rdiff-backup.src/* $(PKG_BUILD_DIR)
+	mv $(PKG_BUILD_DIR)/dist/setup.py $(PKG_BUILD_DIR)
+	mv $(PKG_BUILD_DIR)/rdiff_backup/*.c $(PKG_BUILD_DIR)
+	mv $(PKG_BUILD_DIR)/FAQ-body.html $(PKG_BUILD_DIR)/FAQ.html
+	$(call Build/Configure/Default)
+endef
+
 define PyPackage/rdiff-backup/filespec
 +|/opt/bin/rdiff-backup
++|/opt/bin/rdiff-backup-statistics
 +|$(PYTHON_PKG_DIR)/rdiff_backup
 endef
 
