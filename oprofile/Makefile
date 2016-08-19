@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oprofile
-PKG_VERSION:=1.1.0rc2
+PKG_VERSION:=1.1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/oprofile/
-PKG_MD5SUM:=ebc27a8478068cb986efd295cc4ac877
+PKG_MD5SUM:=248c4c069f9476f427fa7195563f9867
 
 PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
 
