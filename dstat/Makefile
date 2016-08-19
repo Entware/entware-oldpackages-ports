@@ -4,17 +4,19 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2010
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dstat
-PKG_VERSION:=0.7.2
-PKG_RELEASE:=1b
+PKG_VERSION:=0.7.3
+PKG_REV:=b24547b52ecc7d3a699c50e9ebd45fb36395fbc2
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://dag.wieers.com/home-made/dstat/
-PKG_MD5SUM:=bfea4dc8037a0b18fc40a4dfc104dcc8
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/dagwieers/dstat.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
 
 include $(INCLUDE_DIR)/package.mk
 

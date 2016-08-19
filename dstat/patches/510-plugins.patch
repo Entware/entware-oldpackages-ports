@@ -1,19 +1,5 @@
---- dstat-0.7.2/plugins/dstat_innodb_ops.py.orig	2009-11-26 05:13:26.000000000 +0300
-+++ dstat-0.7.2/plugins/dstat_innodb_ops.py	2015-12-11 11:54:54.351863398 +0300
-@@ -13,9 +13,9 @@
-         self.scale = 1000
- 
-     def check(self): 
--        if os.access('/usr/bin/mysql', os.X_OK):
-+        if os.access('/opt/bin/mysql', os.X_OK):
-             try:
--                self.stdin, self.stdout, self.stderr = dpopen('/usr/bin/mysql -n %s' % mysql_options)
-+                self.stdin, self.stdout, self.stderr = dpopen('/opt/bin/mysql -n %s' % mysql_options)
-             except IOError:
-                 raise Exception, 'Cannot interface with MySQL binary'
-             return True
---- dstat-0.7.2/plugins/dstat_gpfs.py.orig	2010-05-30 13:19:42.000000000 +0400
-+++ dstat-0.7.2/plugins/dstat_gpfs.py	2015-12-11 11:51:52.907860378 +0300
+--- a/plugins/dstat_gpfs.py
++++ b/plugins/dstat_gpfs.py
 @@ -11,9 +11,9 @@
          self.vars = ('_br_', '_bw_')
  
@@ -26,8 +12,8 @@
                  self.stdin.write('reset\n')
                  readpipe(self.stdout)
              except IOError:
---- dstat-0.7.2/plugins/dstat_mysql_keys.py.orig	2009-11-26 05:14:18.000000000 +0300
-+++ dstat-0.7.2/plugins/dstat_mysql_keys.py	2015-12-11 11:55:52.711864369 +0300
+--- a/plugins/dstat_mysql_keys.py
++++ b/plugins/dstat_mysql_keys.py
 @@ -11,10 +11,10 @@
          self.scale = 1000
  
@@ -41,8 +27,8 @@
          except IOError:
              raise Exception, 'Cannot interface with MySQL binary'
  
---- dstat-0.7.2/plugins/dstat_innodb_buffer.py.orig	2009-11-26 05:13:13.000000000 +0300
-+++ dstat-0.7.2/plugins/dstat_innodb_buffer.py	2015-12-11 11:54:07.823862623 +0300
+--- a/plugins/dstat_innodb_buffer.py
++++ b/plugins/dstat_innodb_buffer.py
 @@ -13,10 +13,10 @@
          self.scale = 1000
  
@@ -56,8 +42,8 @@
          except IOError, e:
              raise Exception, 'Cannot interface with MySQL binary (%s)' % e
  
---- dstat-0.7.2/plugins/dstat_gpfs_ops.py.orig	2009-11-26 05:12:56.000000000 +0300
-+++ dstat-0.7.2/plugins/dstat_gpfs_ops.py	2015-12-11 11:52:10.687860674 +0300
+--- a/plugins/dstat_gpfs_ops.py
++++ b/plugins/dstat_gpfs_ops.py
 @@ -14,9 +14,9 @@
          self.scale = 1000
  
@@ -70,8 +56,8 @@
                  self.stdin.write('reset\n')
                  readpipe(self.stdout)
              except IOError:
---- dstat-0.7.2/plugins/dstat_squid.py.orig	2010-06-14 11:03:22.000000000 +0400
-+++ dstat-0.7.2/plugins/dstat_squid.py	2015-12-11 11:57:38.155866124 +0300
+--- a/plugins/dstat_squid.py
++++ b/plugins/dstat_squid.py
 @@ -30,14 +30,14 @@
              'objsz')
  
@@ -90,8 +76,8 @@
                  if l[0].strip() in self.vars:
                      self.val[l[0].strip()] = l[1].strip()
                      break
---- dstat-0.7.2/plugins/dstat_sendmail.py.orig	2009-11-26 05:17:02.000000000 +0300
-+++ dstat-0.7.2/plugins/dstat_sendmail.py	2015-12-11 11:57:14.379865728 +0300
+--- a/plugins/dstat_sendmail.py
++++ b/plugins/dstat_sendmail.py
 @@ -11,10 +11,10 @@
          self.scale = 100
  
@@ -105,8 +91,8 @@
 +        self.val['queue'] = len(glob.glob('/opt/var/spool/mqueue/qf*'))
  
  # vim:ts=4:sw=4:et
---- dstat-0.7.2/plugins/dstat_mysql_io.py.orig	2010-05-22 01:48:01.000000000 +0400
-+++ dstat-0.7.2/plugins/dstat_mysql_io.py	2015-12-11 11:55:38.103864126 +0300
+--- a/plugins/dstat_mysql_io.py
++++ b/plugins/dstat_mysql_io.py
 @@ -8,10 +8,10 @@
          self.vars = ('Bytes_received', 'Bytes_sent')
  
@@ -120,8 +106,8 @@
          except IOError:
              raise Exception, 'Cannot interface with MySQL binary'
  
---- dstat-0.7.2/plugins/dstat_qmail.py.orig	2009-11-27 05:24:43.000000000 +0300
-+++ dstat-0.7.2/plugins/dstat_qmail.py	2015-12-11 11:40:44.839849258 +0300
+--- a/plugins/dstat_qmail.py
++++ b/plugins/dstat_qmail.py
 @@ -14,11 +14,11 @@
  
      def check(self):
@@ -136,22 +122,8 @@
 +            self.val[item] = len(glob.glob('/opt/var/qmail/queue/'+item+'/*/*'))
  
  # vim:ts=4:sw=4:et
---- dstat-0.7.2/plugins/dstat_innodb_io.py.orig	2009-11-26 05:13:19.000000000 +0300
-+++ dstat-0.7.2/plugins/dstat_innodb_io.py	2015-12-11 11:54:29.175862979 +0300
-@@ -13,9 +13,9 @@
-         self.scale = 1000
- 
-     def check(self): 
--        if os.access('/usr/bin/mysql', os.X_OK):
-+        if os.access('/opt/bin/mysql', os.X_OK):
-             try:
--                self.stdin, self.stdout, self.stderr = dpopen('/usr/bin/mysql -n %s' % mysql_options)
-+                self.stdin, self.stdout, self.stderr = dpopen('/opt/bin/mysql -n %s' % mysql_options)
-             except IOError:
-                 raise Exception, 'Cannot interface with MySQL binary'
-             return True
---- dstat-0.7.2/plugins/dstat_postfix.py.orig	2009-11-26 05:15:33.000000000 +0300
-+++ dstat-0.7.2/plugins/dstat_postfix.py	2015-12-11 11:40:16.543848787 +0300
+--- a/plugins/dstat_postfix.py
++++ b/plugins/dstat_postfix.py
 @@ -10,11 +10,11 @@
          self.scale = 100
  
@@ -166,3 +138,42 @@
 +            self.val[item] = len(glob.glob('/opt/var/spool/postfix/'+item+'/*/*'))
  
  # vim:ts=4:sw=4:et
+--- a/plugins/dstat_innodb_io.py
++++ b/plugins/dstat_innodb_io.py
+@@ -13,9 +13,9 @@
+         self.scale = 1000
+ 
+     def check(self):
+-        if os.access('/usr/bin/mysql', os.X_OK):
++        if os.access('/opt/bin/mysql', os.X_OK):
+             try:
+-                self.stdin, self.stdout, self.stderr = dpopen('/usr/bin/mysql -n %s' % mysql_options)
++                self.stdin, self.stdout, self.stderr = dpopen('/opt/bin/mysql -n %s' % mysql_options)
+             except IOError:
+                 raise Exception, 'Cannot interface with MySQL binary'
+             return True
+--- a/plugins/dstat_innodb_ops.py
++++ b/plugins/dstat_innodb_ops.py
+@@ -13,9 +13,9 @@
+         self.scale = 1000
+ 
+     def check(self):
+-        if os.access('/usr/bin/mysql', os.X_OK):
++        if os.access('/opt/bin/mysql', os.X_OK):
+             try:
+-                self.stdin, self.stdout, self.stderr = dpopen('/usr/bin/mysql -n %s' % mysql_options)
++                self.stdin, self.stdout, self.stderr = dpopen('/opt/bin/mysql -n %s' % mysql_options)
+             except IOError:
+                 raise Exception, 'Cannot interface with MySQL binary'
+             return True
+--- a/plugins/dstat_mysql5_innodb.py
++++ b/plugins/dstat_mysql5_innodb.py
+@@ -74,7 +74,7 @@
+         self.vars = tuple( map((lambda e: e[0]), target_status) )
+         self.nick = tuple( map((lambda e: e[1]), target_status) )
+ 
+-        mysql_candidate = ('/usr/bin/mysql', '/usr/local/bin/mysql')
++        mysql_candidate = ('/opt/bin/mysql', '/opt/sbin/mysql')
+         mysql_cmd = ''
+         for mc in mysql_candidate:
+             if os.access(mc, os.X_OK):
