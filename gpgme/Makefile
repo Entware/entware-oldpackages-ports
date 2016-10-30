@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gpgme
-PKG_VERSION:=1.6.0
+PKG_VERSION:=1.7.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=ftp://ftp.gnupg.org/gcrypt/gpgme
-PKG_MD5SUM:=60d730d22e8065fd5de309e8b98e304b
+PKG_MD5SUM:=9ab4a18094ca0cf9a0687e0b7d10b63d
 
 PKG_INSTALL:=1
 
@@ -49,6 +49,8 @@ CONFIGURE_ARGS += \
 	--enable-static \
 	--with-gpg-error-prefix="$(STAGING_DIR)/opt" \
 	--with-libassuan-prefix="$(STAGING_DIR)/opt" \
+
+TARGET_CXXFLAGS += -std=c++0x
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
