@@ -14,6 +14,7 @@ PKG_RELEASE:=1
 PKG_SOURCE:=Mako-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/7a/ae/925434246ee90b42e8ef57d3b30a0ab7caf9a2de3e449b876c56dcb48155/
 PKG_MD5SUM:=c5fc31a323dd4990683d2f2da02d4e20
+PKG_BUILD_DEPENDS:=python python-setuptools
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(subst .tar.gz,,$(PKG_SOURCE))
 
