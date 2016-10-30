@@ -7,13 +7,16 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=aMule
-PKG_VERSION:=2.3.1
-PKG_RELEASE:=1a
+PKG_NAME:=amule
+PKG_VERSION:=2.3.2
+PKG_REV:=20f3a3b3b6f5163d93cafcb98364f36956e72afa
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=@SF/amule
-PKG_MD5SUM:=31724290a440943f5b05d4dca413fe02
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/amule-project/amule.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
 
 PKG_BUILD_DEPENDS:=libgd
 
@@ -26,7 +29,7 @@ define Package/amule
   CATEGORY:=Network
   TITLE:=A multi-platform eMule-like ed2k client
   URL:=http://www.amule.org/
-  DEPENDS:=+libpng +libncurses +libreadline +libwxbase +libcryptoxx $(ICONV_DEPENDS)
+  DEPENDS:=+libpng +libncurses +libreadline +libwxbase +libcryptoxx +libbfd
 endef
 
 CONFIGURE_ARGS+= \
@@ -58,13 +61,17 @@ CONFIGURE_ARGS+= \
 	--with-crypto-prefix="$(STAGING_DIR)/opt" \
 	--with-libiconv-prefix="$(ICONV_PREFIX)" \
 	--with-libintl-prefix="$(INTL_PREFIX)" \
-	--without-x \
 
 TARGET_LDFLAGS += \
 	-liconv
 
 TARGET_CFLAGS += \
 	-O1
+
+define Build/Configure
+	( cd $(PKG_BUILD_DIR); ./autogen.sh )
+	$(call Build/Configure/Default)
+endef
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
