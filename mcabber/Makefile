@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mcabber
-PKG_VERSION:=1.0.2
+PKG_VERSION:=1.0.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://mcabber.com/files
-PKG_MD5SUM:=3e264b15aa41f4ae43c8f9c87c6fbb43
+PKG_MD5SUM:=c4aa104508238f3965f60c155c8beaac
 
 PKG_INSTALL:=1
 
