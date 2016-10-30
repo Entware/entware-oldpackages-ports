@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gnuplot
-PKG_VERSION:=5.0.4
+PKG_VERSION:=5.0.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/gnuplot
-PKG_MD5SUM:=cb228f60ae152712ffde0db5de346c40
+PKG_MD5SUM:=c5e96fca73afbee4f57cbc1bfce6b3b8
 
 PKG_INSTALL:=1
 
