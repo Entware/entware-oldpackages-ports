@@ -22,8 +22,8 @@ include $(INCLUDE_DIR)/package.mk
 define Package/sdparm
   SECTION:=utils
   CATEGORY:=Utilities
+  SUBMENU:=Disc
   TITLE:=Read or modify SCSI or USB disk parameters
-  SUBMENU:=disc
   URL:=http://sg.danny.cz/sg/sdparm.html
 endef
 

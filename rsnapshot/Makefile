@@ -21,7 +21,7 @@ PKG_BUILD_PARALLEL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/rsnapshot
-  SUBMENU:=backup
+  SUBMENU:=Backup
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=rsnapshot Backup
