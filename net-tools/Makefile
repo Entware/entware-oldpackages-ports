@@ -1,5 +1,6 @@
 #
-# Copyright (C) 2006 - 2013 OpenWrt.org
+# Copyright (C) 2006-2010 OpenWrt.org
+# Copyright (C) 2016 Stijn Segers
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,12 +10,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=net-tools
-PKG_VERSION:=1.60
-PKG_RELEASE:=4
+PKG_VERSION=2016-10-06
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=@SF/$(PKG_NAME)
-PKG_MD5SUM:=888774accab40217dde927e21979c165
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=git://git.code.sf.net/p/net-tools/code
+PKG_SOURCE_VERSION:=115f1af2494ded1fcd21c8419d5e289bc4df380f
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+
+PKG_LICENSE:=GPL-2.0
+PKG_LICENSE_FILES:=COPYING
+
+PKG_MAINTAINER:=Stijn Segers <borromini.reg@protonmail.com>
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -218,12 +226,10 @@ define Package/net-tools-ypdomainname/description
   Same as domainname.
 endef
 
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-	CC="$(TARGET_CC)" \
-	AR="$(TARGET_CROSS)ar" \
-	LOPTS="$(TARGET_LDFLAGS)" \
-	COPTS="$(TARGET_CFLAGS)"
+define Build/Configure
+	# Failed configure.sh leaves stub config.h around.
+	rm -f $(PKG_BUILD_DIR)/config.h
+	( cd $(PKG_BUILD_DIR); yes $$$$'\n' | ./configure.sh config.in )
 endef
 
 define Package/net-tools-arp/install
