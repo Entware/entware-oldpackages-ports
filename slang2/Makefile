@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=slang
-PKG_VERSION:=2.3.0
+PKG_VERSION:=2.3.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://www.jedsoft.org/releases/slang
-PKG_MD5SUM:=3bcc790460d52db1316c20395b7ac2f1
+PKG_MD5SUM:=bd46d1dc17a50c72004ad842829d7b1f
 
 PKG_INSTALL:=1
 
