@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/vtun
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+VTUN_LZO:liblzo +VTUN_LZO:zlib +VTUN_SSL:libopenssl +libbsd
+  DEPENDS:=+VTUN_LZO:liblzo +VTUN_LZO:zlib +VTUN_SSL:libopenssl
   TITLE:=VPN tunneling daemon
   URL:=http://vtun.sourceforge.net
   SUBMENU:=VPN
