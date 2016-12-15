@@ -24,7 +24,7 @@ define Package/mcabber
   SUBMENU:=Instant Messaging
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libncursesw +libloudmouth1 +libcharset +libidn +libgpgme +libotr
+  DEPENDS:=+libncursesw +loudmouth +libcharset +libidn +libgpgme +libotr
   TITLE:=Jabber console client
   URL:=http://mcabber.com
   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
