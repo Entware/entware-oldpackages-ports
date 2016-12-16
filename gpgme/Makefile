@@ -9,18 +9,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gpgme
-PKG_VERSION:=1.7.1
+PKG_VERSION:=1.8.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=ftp://ftp.gnupg.org/gcrypt/gpgme
-PKG_MD5SUM:=9ab4a18094ca0cf9a0687e0b7d10b63d
+PKG_SOURCE_URL:=https://www.gnupg.org/ftp/gcrypt/gpgme
+PKG_MD5SUM:=722a4153904b9b5dc15485a22d29263b
 
 PKG_INSTALL:=1
 
 PKG_USE_MIPS16:=0
-
-PKG_BUILD_DEPENDS:=USE_MUSL:argp-standalone
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -28,7 +26,7 @@ define Package/libgpgme
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=GnuPG Made Easy library
-  DEPENDS:=+libassuan +libpthread
+  DEPENDS:=+libassuan
   URL:=http://www.gnupg.org/
 endef
 
@@ -40,24 +38,19 @@ define Package/libgpgme/description
   for CMS (S/MIME).
 endef
 
-ifneq ($(CONFIG_USE_GLIBC),y)
-  CONFIGURE_VARS += LIBS="-luargp"
-endif
-
 CONFIGURE_ARGS += \
 	--enable-shared \
-	--enable-static \
+	--disable-static \
 	--with-gpg-error-prefix="$(STAGING_DIR)/opt" \
 	--with-libassuan-prefix="$(STAGING_DIR)/opt" \
-
-TARGET_CXXFLAGS += -std=c++0x
+	--enable-languages=cl
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
-	$(CP) $(PKG_INSTALL_DIR)/opt/include/gpgme.h $(1)/opt/include/
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/gpgme.h $(1)/opt/include
 
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgpgme{,-pthread}.{a,so*} $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgpgme.so* $(1)/opt/lib
 	
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(CP) $(PKG_INSTALL_DIR)/opt/bin/gpgme-config $(1)/opt/bin
@@ -65,7 +58,7 @@ endef
 
 define Package/libgpgme/install
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgpgme{,-pthread}.so.* $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgpgme.so* $(1)/opt/lib
 endef
 
 $(eval $(call BuildPackage,libgpgme))

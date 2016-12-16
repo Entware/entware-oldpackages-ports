@@ -1,6 +1,6 @@
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -46,7 +46,7 @@
+@@ -54,7 +54,7 @@
  
  # make 'modegg'
  MOD_CC = @MOD_CC@

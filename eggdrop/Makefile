@@ -8,34 +8,32 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=eggdrop
-PKG_VERSION:=1.6.21
-PKG_RELEASE:=1a
+PKG_VERSION:=1.8.0
+PKG_RELEASE:=1
 
-PKG_SOURCE:=eggdrop$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=ftp://ftp.eggheads.org/pub/eggdrop/source/1.6
-PKG_MD5SUM:=5663b2daecc790e6e9237e1d5a2caa50
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=http://ftp.eggheads.org/pub/eggdrop/source/1.8
+PKG_MD5SUM:=4dade9944384c349cdff5b5e1ffa444d
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)$(PKG_VERSION)
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/eggdrop
-  SECTION:=lang
-  CATEGORY:=Languages
-  TITLE:=EggDrop IRC BOT
-  DEPENDS:=+tcl +zlib +libpthread
-  URL:=http://www.eggheads.org
+	SECTION:=lang
+	CATEGORY:=Languages
+	TITLE:=EggDrop IRC BOT
+	DEPENDS:=+tcl +libopenssl +libpthread
+	URL:=http://www.eggheads.org
 endef
 
 define Package/eggdrop/description
-	EggDrop IRC BOT
+ EggDrop IRC BOT
 endef
 
-CONFIGURE_ARGS+=\
+CONFIGURE_ARGS += \
 	--prefix="$(PKG_INSTALL_DIR)/opt/eggdrop" \
-	--disable-tcl-threads \
 	--with-tcllib="$(STAGING_DIR)/opt/lib/libtcl8.5.so" \
 	--with-tclinc="$(STAGING_DIR)/opt/include/tcl.h"
 

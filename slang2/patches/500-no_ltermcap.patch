@@ -1,6 +1,6 @@
 --- a/configure
 +++ b/configure
-@@ -6991,7 +6991,7 @@
+@@ -7025,7 +7025,7 @@
                    /usr/share/terminfo \
                    /usr/share/lib/terminfo \
  		  /usr/local/lib/terminfo"

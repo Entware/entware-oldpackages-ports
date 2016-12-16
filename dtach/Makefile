@@ -4,7 +4,6 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2008
 
 include $(TOPDIR)/rules.mk
 
@@ -29,11 +28,11 @@ define Package/dtach
 endef
 
 define Package/dtach/description
-	dtach is a tiny program that emulates the detach feature of screen,
-	allowing you to run a program in an environment that is protected from
-	the controlling terminal and attach to it later. dtach does not keep
-	track of the contents of the screen, and thus works best with programs
-	that know how to redraw themselves.
+ dtach is a tiny program that emulates the detach feature of screen,
+ allowing you to run a program in an environment that is protected from
+ the controlling terminal and attach to it later. dtach does not keep
+ track of the contents of the screen, and thus works best with programs
+ that know how to redraw themselves.
 endef
 
 define Package/dtach/install

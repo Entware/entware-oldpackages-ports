@@ -9,7 +9,7 @@
  int opt_cluster = FALSE;
  char *opt_cluster_path = "/";
  int opt_tcponly = FALSE;
-@@ -242,7 +242,7 @@
+@@ -243,7 +243,7 @@
  		printf("\t-h          display this short option summary\n");
  		printf("\t-u          use unprivileged port for services\n");
  		printf("\t-d          do not detach from terminal\n");

@@ -9,7 +9,7 @@ Last-Update: 2015-07-23
 
 --- a/cfg_file.y
 +++ b/cfg_file.y
-@@ -624,7 +624,7 @@
+@@ -610,7 +610,7 @@
  }
  
  /* Clear the VTUN_NAT_HACK flag which are not relevant to the current operation mode */

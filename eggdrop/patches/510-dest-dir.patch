@@ -1,0 +1,11 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -16,7 +16,7 @@
+ DEST_PARENT_DIR!= dirname $(DEST)
+ DEST_PARENT!= readlink -f $(DEST_PARENT_DIR)
+ DEST_DIR!= basename $(DEST)
+-ABSDEST!= echo $(DEST_PARENT)/$(DEST_DIR)
++ABSDEST!= echo $(DEST)
+ # GNU Make
+ ABSDEST ?= $(abspath $(DEST))
+ EGGEXEC = @EGGEXEC@

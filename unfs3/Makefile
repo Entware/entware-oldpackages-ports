@@ -10,12 +10,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=unfs3
 PKG_VERSION:=0.9.23
-PKG_REV:=dca6a04901ca7fee9ae6865dbe2834ae44953248
+PKG_REV:=632f7797f8af69ad3d4bdc53b0d1918ed08f702b
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/markusn/unfs3.git
+PKG_SOURCE_URL:=https://github.com/allspace/eunfs3.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
 
