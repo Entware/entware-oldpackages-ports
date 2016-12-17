@@ -4,17 +4,17 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Used by gpgme only. The newer version requires libgpg-error >= 1.17
+# Used by gpgme only
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libassuan
-PKG_VERSION:=2.3.0
+PKG_VERSION:=2.4.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=ftp://ftp.gnupg.org/gcrypt/libassuan
-PKG_MD5SUM:=d3effa069a3ccf924c8ed8a6d46cbc8d
+PKG_MD5SUM:=8e01a7c72d3e5d154481230668e6eb5a
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
