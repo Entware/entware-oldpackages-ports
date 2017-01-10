@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=vtun
 PKG_VERSION:=3.0.4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/vtun
@@ -63,6 +63,8 @@ CONFIGURE_VARS += \
 	$(if $(CONFIG_VTUN_LZO),LZO_HDR_DIR="$(STAGING_DIR)/opt/include/lzo") \
 	$(if $(CONFIG_VTUN_SSL),BLOWFISH_HDR_DIR="$(STAGING_DIR)/opt/include/openssl") \
 	$(if $(CONFIG_VTUN_SSL),SSL_HDR_DIR="$(STAGING_DIR)/opt/include/openssl") \
+
+TARGET_CFLAGS += -DHAVE_WORKING_FORK
 
 define Build/Compile
 	$(call Build/Compile/Default,vtund)
