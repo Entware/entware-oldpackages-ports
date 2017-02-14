@@ -17,9 +17,7 @@ PKG_SOURCE_URL:=http://www.infodrom.org/projects/cgilib/download
 PKG_MD5SUM:=2c7053f58dfb06f7a80a112797ed7e86
 
 PKG_FIXUP:=autoreconf
-PKG_BUILD_DEPENDS:=libltdl
-
-LIBTOOL="$(STAGING_DIR)/host/bin/libtool"
+PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -31,15 +29,6 @@ define Package/cgilib
 endef
 
 TARGET_CFLAGS += $(FPIC)
-
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		$(TARGET_CONFIGURE_OPTS) \
-                OFLAGS="$(TARGET_CFLAGS)" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		LIBTOOL="$(LIBTOOL)" \
-                install
-endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
