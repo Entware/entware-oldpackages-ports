@@ -5,12 +5,11 @@
 # See /LICENSE for more information.
 #
 
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=digitemp
 PKG_VERSION:=3.7.1
-PKG_REV:=211d193461266a8e176bbf80e2785ec1cab649d8
+PKG_REV:=389f67655efa1674f595106c3a47b5ad082609a7
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
