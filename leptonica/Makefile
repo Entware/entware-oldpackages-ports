@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=leptonica
-PKG_VERSION:=1.73
+PKG_VERSION:=1.74.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.leptonica.com/source
-PKG_MD5SUM:=092cea2e568cada79fff178820397922
+PKG_HASH:=746a517a47a3bd2a90bc8d581ca6464c10f30e91a60209735efe45b3778bec62
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
