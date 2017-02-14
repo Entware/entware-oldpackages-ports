@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cups
-PKG_VERSION:=2.2.1
+PKG_VERSION:=2.2.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-source.tar.gz
 PKG_SOURCE_URL:=https://github.com/apple/cups/releases/download/v$(PKG_VERSION)
-PKG_MD5SUM:=a94da2a1e9dbdccb4f3836a38a431931
+PKG_HASH:=f589bb7d5d1dc3aa0915d7cf2b808571ef2e1530cd1a6ebe76ae8f9f4994e4f6
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -156,6 +156,7 @@ define Build/Configure
 		--with-cups-user="nobody" \
 		--with-cups-group="nogroup" \
 		--with-components="embedded" \
+		--with-cupsd-file-perm="0700" \
 		--without-java \
 		--without-perl \
 		--without-python \
@@ -205,6 +206,9 @@ define Package/cups/install
 	$(INSTALL_DIR) $(1)/opt/share/cups
 	$(CP) $(PKG_INSTALL_DIR)/opt/share/cups/templates \
 		$(1)/opt/share/cups/
+	$(INSTALL_DIR) $(1)/opt/share/doc
+	$(CP) $(PKG_INSTALL_DIR)/opt/share/doc/cups \
+		$(1)/opt/share/doc/
 	$(INSTALL_DIR) $(1)/opt/share/cups/mime
 	$(CP) $(PKG_INSTALL_DIR)/opt/share/cups/mime/* $(1)/opt/share/cups/mime/
 	$(INSTALL_DIR) $(1)/opt/sbin
