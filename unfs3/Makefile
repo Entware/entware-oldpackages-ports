@@ -4,13 +4,12 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2011
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=unfs3
-PKG_VERSION:=0.9.23
-PKG_REV:=632f7797f8af69ad3d4bdc53b0d1918ed08f702b
+PKG_VERSION:=0.9.23-20150511
+PKG_REV:=5aa8be4012b552b0633b3cbdcd016104a0290167
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
