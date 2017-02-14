@@ -54,8 +54,6 @@ define Package/whob/description
 	This package contains the whob 'whois' program.
 endef
 
-TARGET_CFLAGS += -D_DEFAULT_SOURCE
-
 CONFIGURE_ARGS += \
 	--with-pcap="$(STAGING_DIR)/opt"
 
