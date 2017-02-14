@@ -46,7 +46,7 @@ CONFIGURE_ARGS += \
 
 # Modify PATH to use host rpcgen
 define Build/Compile
-	PATH="$(STAGING_DIR)/host/bin:$(TARGET_PATH)" \
+	PATH="$(STAGING_DIR_HOSTPKG)/bin:$(TARGET_PATH)" \
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		$(TARGET_CONFIGURE_OPTS) \
 		install_prefix="$(PKG_INSTALL_DIR)" \
