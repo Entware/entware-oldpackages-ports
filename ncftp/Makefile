@@ -4,7 +4,6 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Aandoned in 2011
 
 include $(TOPDIR)/rules.mk
 
@@ -14,9 +13,9 @@ PKG_RELEASE:=1
 
 PKG_INSTALL:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.xz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=ftp://ftp.ncftp.com/ncftp
-PKG_MD5SUM:=42d0f896d69a4d603ec097546444245f
+PKG_MD5SUM:=e7cce57ef6274d4c7433ffe28ffe0a71
 
 include $(INCLUDE_DIR)/package.mk
 
