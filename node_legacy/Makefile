@@ -60,6 +60,8 @@ CONFIGURE_ARGS= \
 	--with-arm-float-abi=softfp \
 	--with-mips-float-abi=soft
 
+TARGET_CFLAGS+= -fpermissive
+
 HOST_CONFIGURE_VARS:=
 HOST_CONFIGURE_ARGS:= \
 	--dest-os=linux \
