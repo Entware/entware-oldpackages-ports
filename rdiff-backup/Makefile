@@ -24,7 +24,7 @@ include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
 
 define Package/rdiff-backup
-  SUBMENU:=Backup
+  SUBMENU:=backup
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=Incremental backup utility
