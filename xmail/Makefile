@@ -36,7 +36,7 @@ define Build/Compile
 	CFLAGS="$(TARGET_CFLAGS)" \
 	$(MAKE) -C $(PKG_BUILD_DIR) -f Makefile.lnx \
 		$(TARGET_CONFIGURE_OPTS) \
-		CPPFLAGS="$(TARGET_CPPFLAGS)" \
+		CPPFLAGS="$(TARGET_CPPFLAGS) -Wno-narrowing" \
 		LDFLAGS="$(TARGET_LDFLAGS) -lpthread -lssl -ldl -lcrypto" \
 		LD="$(TARGET_CXX)" \
 		all
