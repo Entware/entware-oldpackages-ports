@@ -10,7 +10,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=php
-PKG_VERSION:=5.6.29
+PKG_VERSION:=5.6.30
 PKG_RELEASE:=1
 
 PKG_MAINTAINER:=W. Michael Petullo <mike@flyn.org>, Michael Heimpold <mhei@heimpold.de>
@@ -20,7 +20,8 @@ PKG_LICENSE_FILES:=LICENSE
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=http://www.php.net/distributions/
-PKG_MD5SUM:=190bf5b52d1fc68d5500a8cdc7e33164
+PKG_MD5SUM:=68753955a8964ae49064c6424f81eb3e
+PKG_HASH:=a363185c786432f75e3c7ff956b49c3369c3f6906a6b10459f8d1ddc22f70805
 
 PKG_FIXUP:=libtool autoreconf
 PKG_BUILD_PARALLEL:=1
@@ -96,6 +97,9 @@ define Package/php5/description
   $(call Package/php5/Default/description)
   This package contains only the PHP config file. You must actually choose
   your PHP flavour (cli, cgi or fastcgi).
+
+  Please note, that installing php5 and php7 in parallel on the same target
+  is not supported in OpenWrt/LEDE/Entware.
 endef
 
 define Package/php5-cli
