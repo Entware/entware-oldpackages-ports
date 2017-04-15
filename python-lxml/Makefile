@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lxml
-PKG_VERSION:=3.7.1
+PKG_VERSION:=3.7.3
 PKG_RELEASE:=1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://pypi.python.org/packages/c4/68/cf0ab7e26de58d14d441f19f7f9c2ab15eb109b0b2640f8b19c1da34e9e0/
-PKG_MD5SUM:=dde0e225b51de26dd47c60575bce8e16
+PKG_SOURCE_URL:=https://pypi.python.org/packages/39/e8/a8e0b1fa65dd021d48fe21464f71783655f39a41f218293c1c590d54eb82/
+PKG_MD5SUM:=075692ce442e69bbd604d44e21c02753
 
 PKG_BUILD_DEPENDS:=python python-setuptools
 HOST_BUILD_DEPENDS:=python/host python-setuptools/host  libxml2/host libxslt/host
