@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=eggdrop
-PKG_VERSION:=1.8.0
+PKG_VERSION:=1.8.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://ftp.eggheads.org/pub/eggdrop/source/1.8
-PKG_MD5SUM:=4dade9944384c349cdff5b5e1ffa444d
+PKG_HASH:=323dea9c94d22a2957fb2fdbd5b0dba02aa44321625c180912a0d6941b3a7b7f
 
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
