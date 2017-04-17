@@ -29,7 +29,7 @@
   */
  #ifndef PR_PID_FILE_PATH
 -# define PR_PID_FILE_PATH	"/var/run/proftpd.pid"
-+# define PR_PID_FILE_PATH	"opt/var/run/proftpd.pid"
++# define PR_PID_FILE_PATH	"/opt/var/run/proftpd.pid"
  #endif
  
  /* The default location of the proftpd configuration file.  Can be
