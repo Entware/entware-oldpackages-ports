@@ -10,24 +10,24 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libcrypto++
-PKG_VERSION:=5.6.3
+PKG_VERSION:=5.6.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).orig.tar.xz
 PKG_SOURCE_URL:=http://ftp.de.debian.org/debian/pool/main/libc/libcrypto++
-PKG_MD5SUM:=0a6a48cd9d426688c43afb4164c3bf3a
+PKG_MD5SUM:=26ec965354126d42ee3b8e9cf62f8af5
 
 PKG_FIXUP:=autoreconf
 PKG_REMOVE_FILES:=GNUmakefile
 PKG_INSTALL:=1
 
-include $(INCLUDE_DIR)/uclibc++.mk
+#include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/libcryptoxx
   SECTION:=libs
   CATEGORY:=Libraries
-  DEPENDS:=$(CXX_DEPENDS) +libpthread
+  DEPENDS:=+libstdcpp +libpthread
   TITLE:=Crypto++ is library for creating C++ programs which use cryptographic algorithms
   URL:=https://www.cryptopp.com/
 endef
