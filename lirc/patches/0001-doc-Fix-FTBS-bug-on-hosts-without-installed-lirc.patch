@@ -1,0 +1,60 @@
+From bfe10822c701637abb673bd65ce74c38fe1eab6b Mon Sep 17 00:00:00 2001
+From: Alec Leamas <leamas.alec@gmail.com>
+Date: Wed, 8 Feb 2017 05:38:22 +0100
+Subject: [PATCH 2/2] doc: Fix FTBS bug on hosts without installed lirc.
+
+---
+ doc/Makefile.am | 4 ++--
+ doc/data2hwdb   | 2 +-
+ doc/data2table  | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/doc/Makefile.am b/doc/Makefile.am
+index 0d44b47..d48ce01 100644
+--- a/doc/Makefile.am
++++ b/doc/Makefile.am
+@@ -135,13 +135,13 @@ $(srcdir)/manpage.xsl: $(abs_builddir)/driver-toc.xsl
+ 
+ table.html: docpage.xsl
+ 	test -e lirc || ln -s $(top_srcdir)/tools/lirc-setup lirc || :
+-	PYTHONPATH=.:$(top_srcdir)/tools \
++	PYTHONPATH=$(top_srcdir)/tools/lirc-setup:$(top_srcdir)/tools \
+ 	$(PYTHON) $(srcdir)/data2table $(top_srcdir)/configs ../configs \
+ 	        | xsltproc --html docpage.xsl - > table.html
+ 
+ lirc.hwdb:
+ 	test -e lirc || ln -s $(top_srcdir)/tools/lirc-setup lirc || :
+-	PYTHONPATH=.:$(top_srcdir)/tools \
++	PYTHONPATH=$(top_srcdir)/tools/lirc-setup:$(top_srcdir)/tools \
+ 	$(PYTHON) $(srcdir)/data2hwdb $(top_srcdir)/configs ../configs \
+ 	    > lirc.hwdb
+ 
+diff --git a/doc/data2hwdb b/doc/data2hwdb
+index 2f0c1c9..8455f4a 100755
+--- a/doc/data2hwdb
++++ b/doc/data2hwdb
+@@ -7,7 +7,7 @@ import os
+ import sys
+ import yaml
+ 
+-from lirc import database
++import database
+ 
+ HEADER = '''
+ # LIRC - Hardware DataBase
+diff --git a/doc/data2table b/doc/data2table
+index 05fb1e2..62a1e86 100755
+--- a/doc/data2table
++++ b/doc/data2table
+@@ -7,7 +7,7 @@ import os
+ import sys
+ import yaml
+ 
+-from lirc import database
++import database
+ 
+ 
+ MENUS = {'home_brew': 'Home-brew serial and parallel devices',
+-- 
+2.9.3
+

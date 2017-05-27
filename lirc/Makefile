@@ -8,19 +8,19 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lirc
-PKG_VERSION:=0.9.4b
+PKG_VERSION:=0.9.4d
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)
-PKG_MD5SUM:=9e3f2869a47bbd7c973dd63f30c13fc2
+PKG_MD5SUM:=0d11679cbdd94a5a6da00a8e7231b4bf
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_DEPENDS:=python3/host
 
-include $(INCLUDE_DIR)/uclibc++.mk
+#include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/lirc
@@ -37,17 +37,18 @@ define Package/lirc/description
 endef
 
 CONFIGURE_ARGS += \
-	--enable-sandboxed \
+	--with-lockdir=/opt/var/lock/lockdev \
 	--without-x \
 	ac_cv_file__usr_lib_systemd_system=no \
 
 CONFIGURE_VARS += \
 	PYTHON=python \
+	HAVE_WORKING_POLL=yes \
 
 define Package/lirc/conffiles
-/opt/etc/lirc_options.conf
-/opt/etc/lircd.conf
-/opt/etc/lircmd.conf
+/opt/etc/lirc/lirc_options.conf
+/opt/etc/lirc/lircd.conf
+/opt/etc/lirc/lircmd.conf
 endef
 
 define Package/lirc/install
