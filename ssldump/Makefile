@@ -23,7 +23,7 @@ define Package/ssldump
   CATEGORY:=Network
   DEPENDS:=+libopenssl +libpcap
   TITLE:=a SSLv3/TLS network protocol analyzer
-  URL:=http://www.rtfm.com/ssldump/
+  URL:=http://ssldump.sourceforge.net/
 endef
 
 define Package/ssldump/description
