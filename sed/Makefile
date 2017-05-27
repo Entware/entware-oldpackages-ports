@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sed
-PKG_VERSION:=4.2.2
+PKG_VERSION:=4.4
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@GNU/$(PKG_NAME)
-PKG_MD5SUM:=7ffe1c7cdc3233e1e0c4b502df253974
+PKG_MD5SUM:=e0c583d4c380059abd818cd540fe6938
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -31,7 +31,8 @@ endef
 
 CONFIGURE_ARGS += \
 	--without-libiconv-prefix \
-	--without-libintl-prefix
+	--without-libintl-prefix \
+	--disable-acl
 
 MAKE_FLAGS += \
 	CFLAGS="$(TARGET_CFLAGS) -I$(STAGING_DIR)/opt/include" \
