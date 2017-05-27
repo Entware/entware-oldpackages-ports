@@ -5,7 +5,7 @@ Index: elinks-0.12~pre6/src/config/options.inc
 ===================================================================
 --- elinks-0.12~pre6.orig/src/config/options.inc	2012-10-28 13:57:15.000000000 +0100
 +++ elinks-0.12~pre6/src/config/options.inc	2013-11-20 11:35:54.066211068 +0100
-@@ -506,7 +506,7 @@
+@@ -521,7 +521,7 @@
  		"cache instead of asking the server.")),
  
  	INIT_OPT_BOOL("document.cache", N_("Ignore cache-control info from server"),

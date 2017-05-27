@@ -1,18 +1,18 @@
 --- a/configure.in
 +++ b/configure.in
-@@ -44,15 +44,6 @@
+@@ -42,15 +42,6 @@
+ 	"$MAKE" -C "$builddir/src" cleanall >/dev/null 2>/dev/null
+ 	AC_MSG_RESULT(done)
  fi
- 
- # ===================================================================
+-
+-# ===================================================================
 -# Load feature configuration file and start logging features.
 -# ===================================================================
 -
 -features="features.conf"
--AC_CHECK_FILE("$srcdir/$features", [ . $srcdir/$features ])
--AC_CHECK_FILE("$builddir/$features", [ . $builddir/$features ])
+-test -f "$srcdir/$features" && . "$srcdir/$features"
+-test -f "$builddir/$features" && . "$builddir/$features"
 -echo "Feature summary:" > features.log
--
--# ===================================================================
- # Checks for programs.
- # ===================================================================
  
+ # ===================================================================
+ # Checks for programs.
