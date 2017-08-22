@@ -4,6 +4,8 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# We are using current snapshot tar ball, because GIT source is too slow
+# to rely on it.
 
 include $(TOPDIR)/rules.mk
 
