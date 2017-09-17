@@ -1,6 +1,6 @@
 --- a/daemon/main/Options.cpp
 +++ b/daemon/main/Options.cpp
-@@ -164,10 +164,8 @@
+@@ -177,10 +177,8 @@
  const char* PossibleConfigLocations[] =
  	{
  		"~/.nzbget",
