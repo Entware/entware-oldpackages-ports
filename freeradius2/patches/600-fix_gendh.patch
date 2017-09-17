@@ -1,0 +1,11 @@
+--- a/raddb/certs/Makefile
++++ b/raddb/certs/Makefile
+@@ -46,7 +46,7 @@
+ #
+ ######################################################################
+ dh:
+-	openssl gendh -out dh -2 $(DH_KEY_SIZE)
++	openssl dhparam -out dh -2 $(DH_KEY_SIZE)
+ 
+ ######################################################################
+ #
