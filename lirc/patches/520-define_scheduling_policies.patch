@@ -1,5 +1,5 @@
---- a/plugins/ftdix.c
-+++ b/plugins/ftdix.c
+--- a/plugins/ftdi.c
++++ b/plugins/ftdi.c
 @@ -63,6 +63,24 @@
  #include <linux/sched.h>
  #endif

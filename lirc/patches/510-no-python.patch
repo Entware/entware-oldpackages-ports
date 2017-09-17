@@ -1,0 +1,164 @@
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -5,8 +5,6 @@
+ AUTOMAKE_OPTIONS        = 1.5 check-news dist-bzip2 -Wno-portability \
+                           subdir-objects
+ 
+-include                 pylint.mak
+-
+ GIT_COMMIT      = $(shell git log -1 --pretty=format:%h || echo UNKNOWN)
+ GIT_DATE        = $(shell git log -1 --pretty=format:%cd || echo UNKNOWN)
+ GIT_REFS        = $(shell git log -1 --pretty=format:%d || echo UNKNOWN)
+@@ -16,17 +14,13 @@
+ VERBOSE                 = $(subst 0,,$(V))
+ AM_LIBTOOLFLAGS         = $(if $(VERBOSE),,--silent)
+ 
+-if HAVE_PYTHON35
+-PYTHON_TARBALL          = python-pkg/dist/lirc-$(BASE_VERSION).tar.gz
+-endif
+-
+ EXTRA_DIST              = README autogen.sh CONTRIBUTE.md ChangeLog \
+                           COPYING.curl COPYING.ciniparser
+ 
+ DISTCLEANFILES          = configure.sh  ChangeLog paths.h
+ CLEANFILES              = *~ remotes/*~ contrib/*~ devinput.lircd.conf
+ CHANGELOG_REVS          = lirc-0_9_4..HEAD
+-MANTAINERCLEANFILES     = config.sub install-sh depcomp py-compile \
++MANTAINERCLEANFILES     = config.sub install-sh depcomp \
+                           missing libtool plugins/Makefile.am
+ 
+ 
+@@ -34,13 +28,13 @@
+ AM_DISTCHECK_CONFIGURE_FLAGS = \
+     --with-systemdsystemunitdir=$${dc_install_base}/lib/systemd/system
+ 
+-BUILT_SOURCES           = paths.h python-pkg/lirc/config.py python-pkg/VERSION
++BUILT_SOURCES           = paths.h
+ 
+ if WITH_SYSTEMDSYSTEMUNITDIR
+     SYSTEMD_DIR         = systemd
+ endif
+ 
+-SUBDIRS                 = lib daemons tools plugins configs doc $(SYSTEMD_DIR)
++SUBDIRS                 = lib daemons tools plugins configs $(SYSTEMD_DIR)
+ 
+ if INSTALL_ETC
+ 
+@@ -61,8 +55,6 @@
+ 
+ dist_doc_DATA           = VERSION
+ 
+-nodist_pkgdata_DATA     = $(PYTHON_TARBALL)
+-
+ pkgconfigdir            = $(libdir)/pkgconfig
+ dist_pkgconfig_DATA     = lirc.pc lirc-driver.pc
+ 
+@@ -71,69 +63,6 @@
+                           include/linux/input-event-codes.h
+ header_HEADERS          = drivers/irpipe/irpipe.h
+ 
+-py_pkgdir               = $(pkgdatadir)/python-pkg
+-dist_py_pkg_DATA        = python-pkg/setup.py \
+-                          python-pkg/README.rst
+-
+-py_pkg_lircdir          = $(pkgdatadir)/python-pkg/lirc
+-py_PYTHON               = python-pkg/lirc/__init__.py \
+-                          python-pkg/lirc/database.py \
+-                          python-pkg/lirc/paths.py
+-
+-nodist_py_pkg_PYTHON    = python-pkg/lirc/config.py
+-
+-if HAVE_PYTHON35
+-py_PYTHON               += python-pkg/lirc/async_client.py \
+-                          python-pkg/lirc/client.py
+-
+-py_pkg_testdir          = $(pkgdatadir)/python-pkg/tests
+-dist_py_pkg_test_DATA   = python-pkg/tests/test_client.py \
+-                          python-pkg/tests/dummy-server \
+-                          python-pkg/tests/lircrc.conf
+-endif
+-
+-dist_py_pkg_lirc_DATA   = $(py_PYTHON) \
+-                          python-pkg/lirc/_client.c \
+-                          python-pkg/lirc/lirctool.py \
+-                          python-pkg/lirc/lirctool
+-
+-py_pkg_docdir           = $(pkgdatadir)/python-pkg/lirc/doc
+-dist_py_pkg_doc_DATA    = python-pkg/doc/Doxyfile \
+-                          python-pkg/doc/mainpage.dox \
+-                          python-pkg/doc/diode-2.gif
+-
+-libpython               = $(libdir)/python$(PYTHON_VERSION)
+-pydir                   = $(libpython)/site-packages/lirc
+-py_LTLIBRARIES          = python-pkg/lib/_client.la
+-python_pkg_lib__client_la_SOURCES = \
+-                          python-pkg/lirc/_client.c
+-python_pkg_lib__client_la_CPPFLAGS = \
+-                          $(PYTHON_CFLAGS) $(AM_CPPFLAGS) \
+-			  -I$(abs_builddir)/lib -I$(abs_srcdir)/lib
+-
+-python_pkg_lib__client_la_LDFLAGS  = \
+-                          -module -avoid-version -export-symbols-regex client \
+-                          $(PYTHON_LIBS)
+-python_pkg_lib__client_la_LIBADD = \
+-                          lib/liblirc_client.la
+-
+-pylint: .phony
+-	$(MAKE) -C tools pylint
+-	-PYTHONPATH=$(PYTHONPATH) $(PYLINT) --rcfile=pylint.conf \
+-	--msg-template='$(pylint_template)' $(py_PYTHON)
+-
+-pep8: $(py_PYTHON)
+-	$(MAKE) -C tools pep8
+-	python3-pep8 --config=pep8.conf $?
+-
+-if HAVE_PYTHON35
+-all-local:
+-	cd python-pkg; \
+-	    CFLAGS="-I$(abs_top_srcdir)/lib -I$(abs_builddir)/lib" \
+-	    LDFLAGS=-L$(abs_builddir)/lib/.libs $(PYTHON) setup.py \
+-	    $(if $(VERBOSE),,-q) build
+-endif
+-
+ install-data-hook:
+ 	$(SED) -i -e '/^plugindir/s|/usr/lib|$(libdir)|' \
+ 	    $(DESTDIR)$(lirc_confdir)/lirc_options.conf
+@@ -144,7 +73,6 @@
+ uninstall-hook:
+ 	-chmod -R u+w $(DESTDIR)/$(pkgdatadir)/contrib
+ 	-rm -rf $(DESTDIR)/$(pkgdatadir) \
+-	        $(DESTDIR)/$(pkgpythondir) \
+ 	        $(DESTDIR)/$(pkgdatadir)/contrib \
+ 		$(DESTDIR)$(includedir)/lirc
+ 
+@@ -170,30 +98,6 @@
+ 	$(SED) -i '/DATE/s/=.*/="$(GIT_DATE)"/' $(distdir)/VERSION
+ 	$(SED) -i '/REFS/s|=.*|="$(GIT_REFS)"|' $(distdir)/VERSION
+ 
+-$(abs_builddir)/python-pkg/setup.py:
+-	cp -ar $(top_srcdir)/python-pkg  $(abs_builddir)
+-	chmod -R u+w  python-pkg
+-
+-$(PYTHON_TARBALL): $(abs_builddir)/python-pkg/setup.py
+-	cp $(top_builddir)/VERSION $(abs_builddir)/python-pkg
+-	cd $(abs_builddir)/python-pkg; CFLAGS=-I$(abs_top_srcdir)/lib \
+-	    LDFLAGS=-L$(abs_builddir)/lib/.libs $(PYTHON) setup.py -q sdist
+-
+-$(top_builddir)/python-pkg/VERSION: VERSION
+-	cp $? $@
+-
+-python-pkg/lirc/config.py: Makefile  $(abs_builddir)/python-pkg/setup.py
+-	@echo '""" Generated by lib/Makefile.am."""' >$@
+-	@echo 'DATADIR = "$(datadir)"' >>$@
+-	@echo 'SYSCONFDIR = "$(sysconfdir)"' >>$@
+-	@echo 'VARRUNDIR = "$(localstatedir)/run"' >>$@
+-	@echo 'LOCALSTATEDIR = "$(localstatedir)"' >>$@
+-	@echo 'BINDIR = "$(bindir)"' >>$@
+-	@echo 'LIBDIR = "$(libdir)"' >>$@
+-	@echo 'DOCDIR = "$(docdir)"' >>$@
+-	@echo 'MODINFO = "$(MODINFO)"' >>$@
+-	@echo 'VERSION = "$(VERSION)"' >>$@
+-
+ paths.h: Makefile
+ 	@echo "#ifndef PATHS_H"          >paths.h
+ 	@echo "#define PATHS_H"          >>paths.h
