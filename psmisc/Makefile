@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=psmisc
-PKG_VERSION:=22.21
-PKG_RELEASE:=2
+PKG_VERSION:=23.1
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@SF/psmisc
-PKG_MD5SUM:=935c0fd6eb208288262b385fa656f1bf
+PKG_HASH:=2e84d474cf75dfbe3ecdacfb797bbfab71a35c7c2639d1b9f6d5f18b2149ba30
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -45,8 +45,8 @@ MAKE_FLAGS += \
 define Package/psmisc/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) \
-		$(PKG_INSTALL_DIR)/opt/bin/{fuser,killall,prtstat,pstree,peekfd} \
-		$(1)/opt/bin/
+		$(PKG_INSTALL_DIR)/opt/bin/{fuser,killall,prtstat,pstree,peekfd,pslog} \
+		$(1)/opt/bin
 endef
 
 $(eval $(call BuildPackage,psmisc))
