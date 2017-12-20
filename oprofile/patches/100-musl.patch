@@ -1,6 +1,6 @@
 --- a/pe_profiling/operf.cpp
 +++ b/pe_profiling/operf.cpp
-@@ -857,11 +857,14 @@ static int __delete_old_previous_sample_
+@@ -858,11 +858,14 @@ static int __delete_old_previous_sample_
                                  int tflag  __attribute__((unused)),
                                  struct FTW *ftwbuf __attribute__((unused)))
  {
@@ -17,7 +17,7 @@
  	}
  }
  
-@@ -896,7 +899,7 @@ static void convert_sample_data(void)
+@@ -897,7 +900,7 @@ static void convert_sample_data(void)
  		return;
  
  	if (!operf_options::append) {
