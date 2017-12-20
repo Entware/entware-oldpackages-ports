@@ -4,17 +4,18 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2006
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ngrep
-PKG_VERSION:=1.45
-PKG_RELEASE:=3
+PKG_VERSION:=1.47
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=@SF/ngrep
-PKG_MD5SUM:=bc8150331601f3b869549c94866b4f1c
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://github.com/jpr5/ngrep.git
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_VERSION:=351ac491358f89a7860bbbe9963cb4bc7d60000f
 
 PKG_INSTALL:=1
 
