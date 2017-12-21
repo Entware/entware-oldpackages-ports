@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mercurial
-PKG_VERSION:=4.3.1
+PKG_VERSION:=4.4.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.mercurial-scm.org/release
-PKG_HASH:=2b12f02e3a452adff4ec9cf007017bab0cadb3f37eaf12f4b25a662df73618a2
+PKG_HASH:=dc2f72caccd6b760226753d48c2f4e8889fe176a6b23ef50775caac55ce28b85
 
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)

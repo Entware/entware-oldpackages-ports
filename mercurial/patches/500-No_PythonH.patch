@@ -1,6 +1,6 @@
 --- a/setup.py
 +++ b/setup.py
-@@ -329,9 +329,6 @@
+@@ -463,9 +463,6 @@
              self.distribution.ext_modules = exts
          else:
              h = os.path.join(get_python_inc(), 'Python.h')
@@ -9,4 +9,4 @@
 -                                 'Mercurial but weren\'t found in %s' % h)
  
      def run(self):
-         if self.distribution.pure:
+         basepath = os.path.join(self.build_lib, 'mercurial')
