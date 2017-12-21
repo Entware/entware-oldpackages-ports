@@ -4,6 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# not upgraded to 2.0.1 - a lot of patches needed????
 
 include $(TOPDIR)/rules.mk
 
