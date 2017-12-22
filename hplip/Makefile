@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=hplip
-PKG_VERSION:=3.17.7
+PKG_VERSION:=3.17.11
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/hplip
-PKG_HASH:=3577bd5afd40b73fd754664ad69f0187dde2e64879e7446309f2ed9fd7dc400d
+PKG_HASH:=2f91be9489a50e4c929b2b9d3c72c09905c1195f9b360568b07fcbde4f3faa75
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -62,13 +62,12 @@ define Package/hplip/install
 	find $(PKG_INSTALL_DIR)/opt -name *.py | xargs $(SED) 's|/usr/|/opt/|g'
 	$(SED) 's|/usr/|/opt/|g' $(PKG_INSTALL_DIR)/opt/lib/cups/filter/{pstotiff,hpps}
 	$(SED) 's|/bin/env python|/bin/python|' $(PKG_INSTALL_DIR)/opt/lib/cups/filter/pstotiff
-	find $(PKG_INSTALL_DIR)/opt/etc/udev/rules.d -name *.rules | xargs $(SED) 's|/usr/bin/|/opt/bin/|g'
 
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(CP) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
 
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libhp{ip,ipp,mud,discovery}.so* $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libhp{ip,ipp,mud}.so* $(1)/opt/lib/
 
 	$(INSTALL_DIR) $(1)/opt/lib/cups/{backend,filter}
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/cups/backend/hp $(1)/opt/lib/cups/backend
@@ -104,9 +103,6 @@ define Package/hplip/install
 
 	$(INSTALL_DIR) $(1)/opt/etc/sane.d/dll.d/
 	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/opt/etc/sane.d/dll.conf $(1)/opt/etc/sane.d/dll.d/hplib
-
-	$(INSTALL_DIR) $(1)/opt/etc/udev/rules.d
-	$(CP) $(PKG_INSTALL_DIR)/opt/etc/udev/rules.d/*.rules $(1)/opt/etc/udev/rules.d
 
 	$(INSTALL_DIR) $(1)/opt/var/{lib,log}/hp
 endef

@@ -1,6 +1,6 @@
 --- a/configure.in
 +++ b/configure.in
-@@ -580,7 +580,7 @@
+@@ -602,7 +602,7 @@
     AC_ARG_VAR([PYTHON], [Python interpreter/compiler command])
     AM_PATH_PYTHON([2.2])
     AC_MSG_CHECKING([for path to Python.h])
