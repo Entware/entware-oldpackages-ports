@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=eudev
-PKG_VERSION:=3.2.2
+PKG_VERSION:=3.2.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://dev.gentoo.org/~blueness/eudev/
-PKG_MD5SUM:=41e19b70462692fefd072a3f38818b6e
+PKH_HASH:=49c2d04105cad2526302627e040fa24b1916a9a3e059539bc8bb919b973890af
 PKG_LICENSE:=GPL-2.0
 
 include $(INCLUDE_DIR)/package.mk
