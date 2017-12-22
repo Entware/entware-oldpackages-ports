@@ -1,6 +1,6 @@
 --- a/src/variable.c
 +++ b/src/variable.c
-@@ -287,8 +287,7 @@
+@@ -285,8 +285,7 @@
      /* HP-UX */
      { "/usr/lib/X11/fonts!"},
      /* Ghostscript */
