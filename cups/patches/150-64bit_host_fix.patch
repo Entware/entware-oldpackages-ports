@@ -1,6 +1,6 @@
 --- a/cups-config.in
 +++ b/cups-config.in
-@@ -50,7 +50,7 @@
+@@ -48,7 +48,7 @@
  	CFLAGS="$CFLAGS -I$includedir"
      fi
  
@@ -11,7 +11,7 @@
  fi
 --- a/config-scripts/cups-directories.m4
 +++ b/config-scripts/cups-directories.m4
-@@ -104,7 +104,7 @@
+@@ -102,7 +102,7 @@
  	case "$uname" in
  		Linux*)
  			if test -d /usr/lib64 -a ! -d /usr/lib64/fakeroot; then
@@ -22,7 +22,7 @@
  	esac
 --- a/configure
 +++ b/configure
-@@ -6028,7 +6028,7 @@
+@@ -6193,7 +6193,7 @@
  	case "$uname" in
  		Linux*)
  			if test -d /usr/lib64 -a ! -d /usr/lib64/fakeroot; then
