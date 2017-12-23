@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-source.tar.gz
 PKG_SOURCE_URL:=https://github.com/apple/cups/releases/download/v$(PKG_VERSION)
-PKG_HASH:=58c36830230dc358da743911e96e5b93d1bd3934
+PKG_HASH:=40385778c2b3bdf55030d1c999734e22774c79e3425d91339ce677825620169b
 
 include $(INCLUDE_DIR)/package.mk
 
