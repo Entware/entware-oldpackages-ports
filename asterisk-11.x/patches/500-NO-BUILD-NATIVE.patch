@@ -1,0 +1,13 @@
+--- a/Makefile.rules
++++ b/Makefile.rules
+@@ -113,10 +113,6 @@
+ _ASTCFLAGS+=$(AST_FORTIFY_SOURCE)
+ endif
+ 
+-ifeq ($(findstring BUILD_NATIVE,$(MENUSELECT_CFLAGS)),BUILD_NATIVE)
+-    _ASTCFLAGS+=-march=native
+-endif
+-
+ %.o: %.s
+ 	$(ECHO_PREFIX) echo "   [AS] $< -> $@"
+ ifeq ($(COMPILE_DOUBLE),yes)
