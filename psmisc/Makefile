@@ -37,6 +37,12 @@ CONFIGURE_ARGS += \
 	--disable-harden-flags \
 	--localedir=/opt/share/locale
 
+ifeq ($(ARCH),aarch64)
+	PEEK:=
+else
+	PEEK:=peekfd,
+endif
+
 MAKE_FLAGS += \
 	CFLAGS="$(TARGET_CFLAGS)" \
 	CPPFLAGS="$(TARGET_CPPFLAGS)" \
@@ -45,7 +51,7 @@ MAKE_FLAGS += \
 define Package/psmisc/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) \
-		$(PKG_INSTALL_DIR)/opt/bin/{fuser,killall,prtstat,pstree,peekfd,pslog} \
+		$(PKG_INSTALL_DIR)/opt/bin/{fuser,killall,prtstat,pstree,$(PEEK)pslog} \
 		$(1)/opt/bin
 endef
 
