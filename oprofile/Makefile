@@ -85,7 +85,7 @@ define Package/oprofile/install
 	$(INSTALL_DIR) $(1)/opt/share/oprofile
 	$(CP) \
 		$(PKG_INSTALL_DIR)/opt/share/oprofile/stl.pat \
-		$(PKG_INSTALL_DIR)/opt/share/oprofile/$(patsubst x86,i386,$(LINUX_KARCH)) \
+		$(PKG_INSTALL_DIR)/opt/share/oprofile/ \
 		$(1)/opt/share/oprofile/
 endef
 
