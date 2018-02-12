@@ -26,7 +26,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/lirc
     SECTION:=utils
     CATEGORY:=Utilities
-    DEPENDS:=+libusb-compat +libftdi1 +alsa-lib +PACKAGE_libudev:libudev +libstdcpp
+    DEPENDS:=+libusb-compat +libftdi1 +alsa-lib +libstdcpp +USE_GLIBC:libudev
     TITLE:=LIRC - Linux Infrared Remote Control
     URL:=http://lirc.org/
 endef
