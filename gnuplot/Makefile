@@ -24,7 +24,7 @@ include $(INCLUDE_DIR)/nls.mk
 define Package/gnuplot
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libncurses +libstdcpp +libgd +libreadline $(ICONV_DEPENDS)
+  DEPENDS:=+libncurses +libstdcpp +libgd +libreadline $(ICONV_DEPENDS) $(INTL_DEPENDS)
   TITLE:=A portable command-line driven graphing utility
   URL:=http://sourceforge.net/projects/gnuplot/
 endef
