@@ -19,8 +19,6 @@ PKG_SOURCE_URL:=https://github.com/librsync/librsync.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
 
-PKG_BUILD_DEPENDS:=libpopt
-
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
