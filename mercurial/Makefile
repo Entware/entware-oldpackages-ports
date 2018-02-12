@@ -16,7 +16,7 @@ PKG_SOURCE_URL:=https://www.mercurial-scm.org/release
 PKG_HASH:=dc2f72caccd6b760226753d48c2f4e8889fe176a6b23ef50775caac55ce28b85
 
 include $(INCLUDE_DIR)/package.mk
-$(call include_mk, python-package.mk)
+include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
 
 define Package/mercurial
   SECTION:=net
