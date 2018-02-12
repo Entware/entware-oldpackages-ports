@@ -26,13 +26,14 @@ PKG_USE_MIPS16:=0
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/kernel.mk
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/oprofile
   SECTION:=devel
   CATEGORY:=Development
   TITLE:=OProfile System Profiler
   URL:=http://oprofile.sourceforge.net
-  DEPENDS:=+libpopt +libstdcpp +objdump +librt
+  DEPENDS:=+libpopt +libstdcpp +objdump +librt @!LINUX_2_6_22 $(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
 
 define Package/oprofile/description
