@@ -28,7 +28,7 @@ PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
-$(call include_mk, python-package.mk)
+include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
 
 define Package/rrdtool/Default
   SECTION:=utils
