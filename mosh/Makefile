@@ -86,9 +86,14 @@ endef
 
 
 CONFIGURE_ARGS += \
-	--with-curses=$(STAGING_DIR)/opt \
+	--with-ncurses \
 	--disable-hardening \
 	--without-utempter \
+
+CONFIGURE_VARS += \
+	CURSES_LIB="-lncursesw" \
+	TINFO_CFLAGS="-I$(STAGING_DIR)/opt/include" \
+	TINFO_LDFLAGS="-L$(STAGING_DIR)/opt/lib -lncursesw"
 
 define Package/mosh-client/install
 	$(INSTALL_DIR) $(1)/opt/bin
