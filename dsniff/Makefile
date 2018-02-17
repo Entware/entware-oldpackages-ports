@@ -14,7 +14,7 @@ PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.monkey.org/~dugsong/dsniff/beta
-PKG_MD5SUM:=2f761fa3475682a7512b0b43568ee7d6
+PKG_HASH:=a9803a7a02ddfe5fb9704ce86f0ffc48453c321e88db85810db411ba0841152a
 
 PKG_BUILD_DEPENDS:=nfs-kernel-server/host
 

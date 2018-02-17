@@ -15,7 +15,7 @@ PKG_RELEASE:=2
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://iptraf.seul.org/pub/iptraf/ \
 	ftp://the.wiretapped.net/pub/security/network-monitoring/iptraf/
-PKG_MD5SUM:=004c2c005a1b78739e22bc49d33e244d
+PKG_HASH:=95a069af8c4d22206985f6ce69acc27cfcfef1d58ad6ab8dbb10c698642ac08a
 
 include $(INCLUDE_DIR)/package.mk
 

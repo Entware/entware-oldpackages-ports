@@ -14,7 +14,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.ossp.org/pkg/lib/js/
-PKG_MD5SUM:=07f6cad7e03fd74a949588c3d4b333de
+PKG_HASH:=b33014be72cd1030e171b1801a5cc90f8f727f03b197c7cc0d506c30c991ed44
 
 PKG_FIXUP:=autoreconf
 PKG_REMOVE_FILES:=aclocal.m4 libtool.m4

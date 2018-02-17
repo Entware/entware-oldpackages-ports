@@ -15,7 +15,7 @@ PKG_RELEASE:=3a
 
 PKG_SOURCE_URL:=http://oss.oetiker.ch/rrdtool/pub/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_MD5SUM:=19b24f7184a8dbf7b48c1bbb565ad9fb
+PKG_HASH:=3190efea410a6dd035799717948b2df09910f608d72d23ee81adad4cd0184ae9
 
 PKG_BUILD_DEPENDS:=python
 

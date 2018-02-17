@@ -11,8 +11,9 @@ PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/curlftpfs
-PKG_MD5SUM:=b452123f755114cd4461d56c648d9f12
+PKG_HASH:=4eb44739c7078ba0edde177bdd266c4cfb7c621075f47f64c85a06b12b3c6958
 
+PKG_BUILD_DEPENDS:=libiconv
 PKG_FIXUP:=autoreconf
 
 include $(INCLUDE_DIR)/package.mk
@@ -22,7 +23,7 @@ define Package/curlftpfs
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Filesystem
-  DEPENDS:=+libcurl +libfuse +glib2 $(ICONV_DEPENDS) $(INTL_DEPENDS)
+  DEPENDS:=+libcurl +libfuse +glib2
   TITLE:=CurlFtpFS
   URL:=http://curlftpfs.sourceforge.net/
 endef

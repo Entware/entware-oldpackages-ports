@@ -12,7 +12,7 @@ PKG_NAME:=wview
 PKG_VERSION:=5.21.7
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://ftp.mirrorservice.org/sites/distfiles.macports.org/wview
-PKG_MD5SUM:=a296932574ffb4a3855e505a73daf9c5
+PKG_HASH:=460b34fcdf36f4905edf65e150ec83118e1e631c5532901feefcdc0266a27453
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1

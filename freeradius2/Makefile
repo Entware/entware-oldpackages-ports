@@ -17,7 +17,7 @@ PKG_SOURCE:=freeradius-server-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=\
 	ftp://ftp.freeradius.org/pub/freeradius/ \
 	ftp://ftp.freeradius.org/pub/freeradius/old/
-PKG_MD5SUM:=d1398327ba4e23c75da06d8a0e01096b
+PKG_HASH:=53984c1df5f503e91dd6f136727f1b98a272c2d3babd8d6e9ee1aa96ed047884
 PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYRIGHT LICENSE

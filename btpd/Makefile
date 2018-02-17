@@ -14,7 +14,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/downloads/btpd/btpd
-PKG_MD5SUM:=fe042aae8d7c515ecd855673d1c2b33e
+PKG_HASH:=296bdb718eaba9ca938bee56f0976622006c956980ab7fc7a339530d88f51eb8
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1

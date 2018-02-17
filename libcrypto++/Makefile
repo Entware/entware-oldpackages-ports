@@ -15,7 +15,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).orig.tar.xz
 PKG_SOURCE_URL:=http://ftp.de.debian.org/debian/pool/main/libc/libcrypto++
-PKG_MD5SUM:=26ec965354126d42ee3b8e9cf62f8af5
+PKG_HASH:=9f43f03afb1c135d6bb9a83b5143049b26fb172e7d0a0defccf723adc1dba71c
 
 PKG_FIXUP:=autoreconf
 PKG_REMOVE_FILES:=GNUmakefile

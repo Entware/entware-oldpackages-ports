@@ -14,7 +14,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://www.digitage.co.uk/digitage/files/cutter
-PKG_MD5SUM:=0efbf3c62ab0bdba39b083ad023914de
+PKG_HASH:=1b336c69eb3393f6ca118a529773014c41126ac6dabd04b77151daa1c2f01180
 
 include $(INCLUDE_DIR)/package.mk
 

@@ -14,7 +14,7 @@ PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://zakalwe.fi/~shd/foss/cksfv/files
-PKG_MD5SUM:=2e15289753ea0b90b6ea86993f93b383
+PKG_HASH:=010facce85b317b7b9f952c84cd59ce03476a2b685db33a49b6ea0d1b38378ea
 
 include $(INCLUDE_DIR)/package.mk
 

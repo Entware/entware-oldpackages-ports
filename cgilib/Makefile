@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.infodrom.org/projects/cgilib/download
-PKG_MD5SUM:=2c7053f58dfb06f7a80a112797ed7e86
+PKG_HASH:=09b7d71bd1eea10bb404cd665fd5abe69282144ce01d96f2863c85fd42d5d692
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1

@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@KERNEL/software/network/tftp/tftp-hpa
-PKG_MD5SUM:=3de3038e7c2bf6fc5d496825893ac8e7
+PKG_HASH:=acc04dde662491e3092565ecf9bde504c47dbb1bb0408366009b138fe7754cab
 
 include $(INCLUDE_DIR)/package.mk
 

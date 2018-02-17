@@ -11,7 +11,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=remind-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.roaringpenguin.com/files/download/
-PKG_MD5SUM:=089c51c060fdda2357a833800a5bfe39
+PKG_HASH:=8adab4c0b30a556c34223094c5c74779164d5f3b8be66b8039f44b577e678ec1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/remind-$(PKG_VERSION)
 

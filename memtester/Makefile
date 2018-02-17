@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://pyropus.ca/software/memtester/old-versions
-PKG_MD5SUM:=598f41b7308e1f736164bca3ab84ddbe
+PKG_HASH:=f9dfe2fd737c38fad6535bbab327da9a21f7ce4ea6f18c7b3339adef6bf5fd88
 
 include $(INCLUDE_DIR)/package.mk
 

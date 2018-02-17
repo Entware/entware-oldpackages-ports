@@ -14,7 +14,7 @@ PKG_RELEASE:=9
 
 PKG_SOURCE:=libnet-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.packetfactory.net/libnet/dist/deprecated/
-PKG_MD5SUM:=ddf53f0f484184390e8c2a1bd0853667
+PKG_HASH:=7c7f2e8ccb47bb47072c5cd583fea5e90ab892c75889b625346b60d10464459a
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Libnet-$(PKG_VERSION)
 PKG_FIXUP:=autoreconf

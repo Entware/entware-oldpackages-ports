@@ -15,7 +15,7 @@ PKG_INSTALL:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=ftp://ftp.ncftp.com/ncftp
-PKG_MD5SUM:=e7cce57ef6274d4c7433ffe28ffe0a71
+PKG_HASH:=129e5954850290da98af012559e6743de193de0012e972ff939df9b604f81c23
 
 include $(INCLUDE_DIR)/package.mk
 
