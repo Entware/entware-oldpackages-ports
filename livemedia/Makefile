@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=livemedia
-PKG_VERSION:=2017.10.28
+PKG_VERSION:=2018.02.18
 PKG_RELEASE:=1
 
 PKG_SOURCE:=live.$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.live555.com/liveMedia/public \
     https://download.videolan.org/pub/contrib/live555
-PKG_HASH:=d8eaec9ded34321aa655d3c9007217dd447218c54cb48c97827e58ecd5edb338
+PKG_HASH:=354f3ba51c5fb9a77df1baa86f49aa85a7b07be181aeb0c526f33bddcdf43575
 
 PKG_INSTALL:=1
 
