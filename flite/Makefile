@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=flite
-PKG_VERSION:=2.0.0-release
+PKG_VERSION:=2.1-release
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://www.festvox.org/flite/packed/flite-2.0
-PKG_HASH:=678c3860fd539402b5d1699b921239072af6acb4e72dc4720494112807cae411
+PKG_SOURCE_URL:=http://www.festvox.org/flite/packed/flite-2.1
+PKG_HASH:=c73c3f6a2ea764977d6eaf0a287722d1e2066b4697088c552e342c790f3d2b85
 
 PKG_INSTALL:=1
 
