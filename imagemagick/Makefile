@@ -9,14 +9,14 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=imagemagick
 PKG_VERSION:=7.0.7
-PKG_REVISION:=19
-PKG_RELEASE:=2
+PKG_REVISION:=23
+PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/ImageMagick-$(PKG_VERSION)-$(PKG_REVISION)
 PKG_SOURCE:=ImageMagick-$(PKG_VERSION)-$(PKG_REVISION).tar.xz
 PKG_SOURCE_URL:=http://mirror.checkdomain.de/imagemagick/releases \
 	https://fossies.org/linux/misc/legacy
-PKG_HASH:=5f1156824c37e5dde6ec37c5b1c51d9806f6d0e97aeaeb1e6907d7aba15951d9
+PKG_HASH:=8dee83fe4978a2d07a90c947508d734ddb175eeb299491f8560cea5ac0c26896
 
 PKG_FIXUP:=autoreconf
 PKG_REMOVE_FILES:=aclocal.m4 m4/libtool.m4
