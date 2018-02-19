@@ -1,14 +1,14 @@
 --- a/xdg/Menu.py
 +++ b/xdg/Menu.py
-@@ -558,7 +558,7 @@
-         filename = __getFileName(candidate)
-         
-     if not filename:
--        raise ParsingError('File not found', "/etc/xdg/menus/%s" % candidate)
-+        raise ParsingError('File not found', "/opt/etc/xdg/menus/%s" % candidate)
- 
-     # check if it is a .menu file
-     if not os.path.splitext(filename)[1] == ".menu":
+@@ -614,7 +614,7 @@
+             candidate = os.environ.get('XDG_MENU_PREFIX', '') + "applications.menu"
+             filename = _get_menu_file_path(candidate)
+         if not filename:
+-            raise ParsingError('File not found', "/etc/xdg/menus/%s" % candidate)
++            raise ParsingError('File not found', "/opt/etc/xdg/menus/%s" % candidate)
+         # check if it is a .menu file
+         if not filename.endswith(".menu"):
+             raise ParsingError('Not a .menu file', filename)
 --- a/xdg/BaseDirectory.py
 +++ b/xdg/BaseDirectory.py
 @@ -32,13 +32,13 @@
@@ -33,6 +33,6 @@
          import getpass
 -        fallback = '/tmp/pyxdg-runtime-dir-fallback-' + getpass.getuser()
 +        fallback = '/opt/tmp/pyxdg-runtime-dir-fallback-' + getpass.getuser()
+         create = False
+ 
          try:
-             os.mkdir(fallback, 0o700)
-         except OSError as e:
