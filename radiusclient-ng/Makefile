@@ -13,7 +13,7 @@ PKG_VERSION:=0.5.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION).orig.tar.gz
-PKG_SOURCE_URL:=ftp://ftp.debian.org/debian/pool/main/r/$(PKG_NAME)
+PKG_SOURCE_URL:=http://ftp.debian.org/debian/pool/main/r/$(PKG_NAME)
 PKG_HASH:=282a9f1355f190efbb06c0d7c4e062eaa652caf342ed3ad361ac595f72f09f14
 
 PKG_FIXUP:=autoreconf
