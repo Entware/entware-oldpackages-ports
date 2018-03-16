@@ -15,7 +15,8 @@ PKG_RELEASE:=1
 PKG_BUILD_DIR:=$(BUILD_DIR)/ImageMagick-$(PKG_VERSION)-$(PKG_REVISION)
 PKG_SOURCE:=ImageMagick-$(PKG_VERSION)-$(PKG_REVISION).tar.xz
 PKG_SOURCE_URL:=http://mirror.checkdomain.de/imagemagick/releases \
-	https://fossies.org/linux/misc/legacy
+	https://fossies.org/linux/misc/legacy \
+	https://ftp.osuosl.org/pub/blfs/conglomeration/ImageMagick
 PKG_HASH:=8dee83fe4978a2d07a90c947508d734ddb175eeb299491f8560cea5ac0c26896
 
 PKG_FIXUP:=autoreconf
