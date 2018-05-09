@@ -1,6 +1,6 @@
 --- a/locale/Makefile
 +++ b/locale/Makefile
-@@ -189,7 +189,9 @@
+@@ -189,7 +189,9 @@ po2strings:	po2strings.o ../cups/$(LIBCU
  
  strings2po:	strings2po.o
  	echo Linking $@...

@@ -1,6 +1,6 @@
 --- a/ppdc/Makefile
 +++ b/ppdc/Makefile
-@@ -317,7 +317,7 @@
+@@ -317,7 +317,7 @@ testcatalog:		testcatalog.o libcupsppdc.
  
  libcupsppdc.so.1:	$(LIBOBJS) ../cups/$(LIBCUPS)
  	echo Linking $@...

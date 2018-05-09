@@ -1,6 +1,6 @@
 --- a/ppdc/Makefile
 +++ b/ppdc/Makefile
-@@ -224,12 +224,7 @@
+@@ -224,12 +224,7 @@ local:	genstrings
  
  genstrings:		genstrings.o libcupsppdc.a ../cups/$(LIBCUPSSTATIC) \
  			sample.drv ../data/media.defs
