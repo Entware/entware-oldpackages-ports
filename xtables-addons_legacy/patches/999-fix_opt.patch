@@ -1,0 +1,11 @@
+--- a/extensions/libxt_geoip.c
++++ b/extensions/libxt_geoip.c
+@@ -25,7 +25,7 @@
+ #include <xtables.h>
+ #include "xt_geoip.h"
+ #include "compat_user.h"
+-#define GEOIP_DB_DIR "/usr/share/xt_geoip"
++#define GEOIP_DB_DIR "/opt/share/xt_geoip"
+ 
+ static void geoip_help(void)
+ {

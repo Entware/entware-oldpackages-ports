@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=xtables-addons_legacy
 PKG_VERSION:=1.47.1
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 PKG_HASH:=06535dbefaa7725870750048842b4b53f5a4f8d8b16d5ce61bb4cc28e0b99326
 
 PKG_SOURCE:=xtables-addons-$(PKG_VERSION).tar.xz
