@@ -9,8 +9,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=librsync
-PKG_VERSION:=2.0.0
-PKG_REV:=26164eeeb34334e66fa4f3d22f296ab407d84507
+PKG_VERSION:=2.0.2
+PKG_REV:=400ecbd28ac94d9a363c5ff7e58aea93cb1d90c4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -39,7 +39,7 @@ endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
-	$(CP) $(PKG_INSTALL_DIR)/opt/include/librsync{,-config}.h $(1)/opt/include/
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/librsync.h $(1)/opt/include/
 	$(INSTALL_DIR) $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librsync.so* $(1)/opt/lib/
 endef
