@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gpgme
-PKG_VERSION:=1.9.0
+PKG_VERSION:=1.11.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=https://www.gnupg.org/ftp/gcrypt/gpgme
-PKG_HASH:=1b29fedb8bfad775e70eafac5b0590621683b2d9869db994568e6401f4034ceb
+PKG_HASH:=2d1b111774d2e3dd26dcd7c251819ce4ef774ec5e566251eb9308fa7542fbd6f
 
 PKG_INSTALL:=1
 
@@ -43,7 +43,8 @@ CONFIGURE_ARGS += \
 	--disable-static \
 	--with-gpg-error-prefix="$(STAGING_DIR)/opt" \
 	--with-libassuan-prefix="$(STAGING_DIR)/opt" \
-	--enable-languages=cl
+	--enable-languages=cl \
+	--disable-gpgsm-test
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
