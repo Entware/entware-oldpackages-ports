@@ -4,12 +4,13 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+#XXX some changes need for php-mod-imagick
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=imagemagick
 PKG_VERSION:=7.0.7
-PKG_REVISION:=23
+PKG_REVISION:=30
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/ImageMagick-$(PKG_VERSION)-$(PKG_REVISION)
@@ -17,7 +18,7 @@ PKG_SOURCE:=ImageMagick-$(PKG_VERSION)-$(PKG_REVISION).tar.xz
 PKG_SOURCE_URL:=http://mirror.checkdomain.de/imagemagick/releases \
 	https://fossies.org/linux/misc/legacy \
 	https://ftp.osuosl.org/pub/blfs/conglomeration/ImageMagick
-PKG_HASH:=8dee83fe4978a2d07a90c947508d734ddb175eeb299491f8560cea5ac0c26896
+PKG_HASH:=f8f5cd7b4a3abb6b1a93b54ae8eb55a1a87cdba47f8efd187178a2d0eb9ba712
 
 PKG_FIXUP:=autoreconf
 PKG_REMOVE_FILES:=aclocal.m4 m4/libtool.m4
@@ -37,7 +38,8 @@ endef
 
 define Package/imagemagick
   $(call Package/imagemagick/Default)
-  DEPENDS:=+libpthread +libltdl +libjpeg +libtiff +zlib
+  DEPENDS:=+libpthread +libltdl +libjpeg +libtiff +zlib +libfreetype +fontconfig \
+	+ghostscript-fonts-std
 endef
 
 define Package/imagemagick/description
@@ -84,6 +86,7 @@ define Package/imagemagick-tiff/description
   imagemagick TIFF module
 endef
 
+FREETYPE_CFLAGS=-I$(STAGING_DIR)/opt/include/freetype2
 
 CONFIGURE_ARGS += \
 	--with-modules \
@@ -91,8 +94,6 @@ CONFIGURE_ARGS += \
 	--enable-static \
 	--without-pango \
 	--without-bzlib \
-	--without-freetype \
-	--without-fontconfig \
 	--without-rsvg \
 	--without-fftw \
 	--without-xml \
@@ -101,6 +102,10 @@ CONFIGURE_ARGS += \
 	--without-lzma \
 	--without-lcms \
 	--without-jbig \
+	--with-gs-font-dir=/opt/share/fonts/ghostscript
+
+CONFIGURE_VARS += \
+	CPPFLAGS="$(TARGET_CPPFLAGS) $(FREETYPE_CFLAGS)"
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
