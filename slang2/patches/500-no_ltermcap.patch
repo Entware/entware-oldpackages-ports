@@ -1,6 +1,6 @@
 --- a/configure
 +++ b/configure
-@@ -7025,7 +7025,7 @@
+@@ -7025,7 +7025,7 @@ JD_Terminfo_Dirs="$MISC_TERMINFO_DIRS \
                    /usr/share/terminfo \
                    /usr/share/lib/terminfo \
  		  /usr/local/lib/terminfo"
