@@ -1,6 +1,6 @@
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -8,7 +8,7 @@
+@@ -8,7 +8,7 @@ CFLAGS+= -DCONFDIR=\"$(hplip_confdir)\"
  CXXFLAGS+= -DCONFDIR=\"$(hplip_confdir)\"
  
  hplipdir = $(datadir)/hplip
@@ -9,7 +9,7 @@
  docdir = $(hpdocdir)
  htmldir = $(hphtmldir)
  doc_DATA = COPYING copyright prnt/hpijs/README_LIBJPG
-@@ -105,7 +105,6 @@
+@@ -105,7 +105,6 @@ libhpmud_la_SOURCES += io/hpmud/musb_lib
  libhpmud_la_LDFLAGS += -lusb
  else
  libhpmud_la_SOURCES += io/hpmud/musb.c 
@@ -17,7 +17,7 @@
  libhpmud_la_LDFLAGS += -lusb-1.0
  endif
  
-@@ -127,7 +126,7 @@
+@@ -127,7 +126,7 @@ libhpip_la_SOURCES = ip/xconvolve.c ip/x
  	ip/hpip.h ip/ipdefs.h ip/xform.h ip/xjpg_dct.h ip/xjpg_huf.h ip/xjpg_mrk.h
  
  #hpmud rules data dir
@@ -26,7 +26,7 @@
  dist_rulessystem_DATA =data/rules/hplip-printer@.service
  
  # hpmud.rules
-@@ -140,11 +139,11 @@
+@@ -140,11 +139,11 @@ dist_rules_DATA = data/rules/56-hpmud.ru
  endif
  endif #HPLIP_CLASS_DRIVER
  
@@ -40,7 +40,7 @@
  hplip_conf_DATA = hplip.conf
  
  if !HPLIP_CLASS_DRIVER
-@@ -154,7 +153,7 @@
+@@ -154,7 +153,7 @@ pstotiff_SCRIPTS = fax/filters/pstotiff
  endif #HPLIP_CLASS_DRIVER
  
  # hplip.state
@@ -49,7 +49,7 @@
  dist_hplip_state_DATA =
  
  if FULL_BUILD
-@@ -229,11 +228,11 @@
+@@ -229,11 +228,11 @@ endif # FAX_BUILD
  if !HPLIP_CLASS_DRIVER
  # AppArmor Changes
  if APPARMOR_BUILD
@@ -63,7 +63,7 @@
  apparmor_abstraction_DATA = apparmor/abstractions/hplip
  dist_apparmor_abstraction_DATA = apparmor/abstractions/hplip
  
-@@ -358,9 +357,6 @@
+@@ -358,9 +357,6 @@ hpmudext_la_LIBADD += libhpdiscovery.la
  hpmudext_la_CFLAGS += -Iprotocol/discovery
  endif
  
@@ -73,7 +73,7 @@
  endif #!HPLIP_CLASS_DRIVER
  # ui (qt3)
  if GUI_BUILD
-@@ -445,9 +441,9 @@
+@@ -445,9 +441,9 @@ endif
  endif #HPLIP_CLASS_DRIVER
  # PolicyKit
  if POLICYKIT_INSTALL
@@ -85,7 +85,7 @@
  dist_policykit_dbus_share_DATA = data/policykit/com.hp.hplip.service
  policykit_policydir = $(policykit_dir)
  dist_policykit_policy_DATA = data/policykit/com.hp.hplip.policy
-@@ -680,13 +676,13 @@
+@@ -680,13 +676,13 @@ if HPLIP_BUILD
  if !HPLIP_CLASS_DRIVER
  #	   If scanner build, add hpaio entry to sane dll.conf.
  	if [ "$(scan_build)" = "yes" ]; then \

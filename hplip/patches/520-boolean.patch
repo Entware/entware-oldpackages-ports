@@ -1,6 +1,6 @@
 --- a/prnt/hpcups/genPCLm.cpp
 +++ b/prnt/hpcups/genPCLm.cpp
-@@ -171,7 +171,7 @@
+@@ -171,7 +171,7 @@ Defines
  #define rgb_2_gray(r,g,b) (ubyte)(0.299*(double)r+0.587*(double)g+0.114*(double)b)
  
  // Note: this is required for debugging
@@ -9,7 +9,7 @@
  
  /* 
  ********************************************* Helper Routines **************************
-@@ -343,7 +343,7 @@
+@@ -343,7 +343,7 @@ bool PCLmGenerator::addKids(sint32 kidOb
  	return(true);
  }
  
@@ -18,7 +18,7 @@
  {
  	FILE *outputFile;
  	char outFileName[MAX_FILE_PATH_LEN];
-@@ -1074,7 +1074,7 @@
+@@ -1074,7 +1074,7 @@ void PCLmGenerator::writePDFGrammarPage(
  * Limitations:
  *   - 
  *****************************************************************************************/

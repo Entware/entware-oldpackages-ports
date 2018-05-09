@@ -1,6 +1,6 @@
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -85,7 +85,7 @@
+@@ -85,7 +85,7 @@ lib_LTLIBRARIES += libhpdiscovery.la
  libhpdiscovery_la_SOURCES = protocol/discovery/mdns.c protocol/discovery/mdns.h
  libhpdiscovery_la_CFLAGS  = -DCONFDIR=\"$(hplip_confdir)\"
  libhpdiscovery_la_LDFLAGS = -version-info 0:1:0

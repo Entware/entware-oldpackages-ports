@@ -1,6 +1,6 @@
 --- a/hplip.conf.in
 +++ b/hplip.conf.in
-@@ -5,7 +5,7 @@
+@@ -5,7 +5,7 @@ version=@VERSION@
  
  [dirs]
  home=@abs_datadir@/hplip
