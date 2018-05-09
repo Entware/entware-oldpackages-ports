@@ -1,6 +1,6 @@
 --- a/src/plugins/python/CMakeLists.txt
 +++ b/src/plugins/python/CMakeLists.txt
-@@ -24,7 +24,7 @@
+@@ -24,7 +24,7 @@ set_target_properties(python PROPERTIES
  
  if(PYTHON_FOUND)
    include_directories(${PYTHON_INCLUDE_PATH})

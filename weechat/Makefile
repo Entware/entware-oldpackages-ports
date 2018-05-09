@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
-PKG_VERSION:=2.0
+PKG_VERSION:=2.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://www.weechat.org/files/src
-PKG_HASH:=b6e1ea2ca6c70d6909d2a52da386d60f6c22478de128b05ded844c318fa1a149
+PKG_SOURCE_URL:=https://www.weechat.org/files/src
+PKG_HASH:=a83977ba0ecc9d4cf3aac5977266ce9e584a3e05f1d797c2184c6ceb1f47063b
 
 PKG_BUILD_DEPENDS:=perl python
 
@@ -27,7 +27,7 @@ define Package/weechat
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Lightweight IRC client
-  URL:=http://www.weechat.org/
+  URL:=https://www.weechat.org/
   DEPENDS:= +libcurl +libgnutls +libgcrypt +libaspell +libncursesw \
 	$(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
