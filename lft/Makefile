@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lft
-PKG_VERSION:=3.79
+PKG_VERSION:=3.8
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://pwhois.org/get
-PKG_HASH:=08e5c7973551b529c850bffbc7152c4e5f0bcb1f07ebbb39151a7dc9a3bf9de0
+PKG_HASH:=10f427e77b0f8207817329bd8ef0310078434612620073369264d15e6f97e990
 
 PKG_INSTALL:=1
 
@@ -53,6 +53,8 @@ define Package/whob/description
 	$(call Package/lft/Default/description)
 	This package contains the whob 'whois' program.
 endef
+
+TARGET_CFLAGS += -D_DEFAULT_SOURCE
 
 CONFIGURE_ARGS += \
 	--with-pcap="$(STAGING_DIR)/opt"
