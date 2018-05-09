@@ -1,6 +1,6 @@
 --- a/raddb/certs/Makefile
 +++ b/raddb/certs/Makefile
-@@ -46,7 +46,7 @@
+@@ -46,7 +46,7 @@ passwords.mk: server.cnf ca.cnf client.c
  #
  ######################################################################
  dh:

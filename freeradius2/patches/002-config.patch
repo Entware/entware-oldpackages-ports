@@ -1,7 +1,5 @@
-Index: freeradius-server-2.2.7/raddb/dictionary.in
-===================================================================
---- freeradius-server-2.2.7.orig/raddb/dictionary.in
-+++ freeradius-server-2.2.7/raddb/dictionary.in
+--- a/raddb/dictionary.in
++++ b/raddb/dictionary.in
 @@ -11,7 +11,7 @@
  #
  #	The filename given here should be an absolute path. 
@@ -11,10 +9,8 @@ Index: freeradius-server-2.2.7/raddb/dictionary.in
  
  #
  #	Place additional attributes or $INCLUDEs here.  They will
-Index: freeradius-server-2.2.7/raddb/eap.conf
-===================================================================
---- freeradius-server-2.2.7.orig/raddb/eap.conf
-+++ freeradius-server-2.2.7/raddb/eap.conf
+--- a/raddb/eap.conf
++++ b/raddb/eap.conf
 @@ -27,7 +27,7 @@
  		#  then that EAP type takes precedence over the
  		#  default type configured here.
@@ -84,7 +80,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  			#  Check the Certificate Revocation List
  			#
-@@ -297,7 +297,7 @@
+@@ -301,7 +301,7 @@
  			# for the server to print out an error message,
  			# and refuse to start.
  			#
@@ -93,7 +89,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  			#
  			#  Elliptical cryptography configuration
-@@ -332,7 +332,7 @@
+@@ -336,7 +336,7 @@
  			#  You probably also want "use_tunneled_reply = yes"
  			#  when using fast session resumption.
  			#
@@ -102,7 +98,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  			      #
  			      #  Enable it.  The default is "no".
  			      #  Deleting the entire "cache" subsection
-@@ -348,14 +348,14 @@
+@@ -352,14 +352,14 @@
  			      #  enable resumption for just one user
  			      #  by setting the above attribute to "yes".
  			      #
@@ -119,7 +115,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  			      #
  			      #  The maximum number of entries in the
-@@ -364,8 +364,8 @@
+@@ -368,8 +368,8 @@
  			      #  This could be set to the number of users
  			      #  who are logged in... which can be a LOT.
  			      #
@@ -130,7 +126,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  			#
  			#  As of version 2.1.10, client certificates can be
-@@ -503,7 +503,7 @@
+@@ -507,7 +507,7 @@
  		#
  		#  in the control items for a request.
  		#
@@ -139,7 +135,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  			#  The tunneled EAP session needs a default
  			#  EAP type which is separate from the one for
  			#  the non-tunneled EAP module.  Inside of the
-@@ -511,7 +511,7 @@
+@@ -515,7 +515,7 @@
  			#  If the request does not contain an EAP
  			#  conversation, then this configuration entry
  			#  is ignored.
@@ -148,7 +144,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  			#  The tunneled authentication request does
  			#  not usually contain useful attributes
-@@ -527,7 +527,7 @@
+@@ -531,7 +531,7 @@
  			#  is copied to the tunneled request.
  			#
  			# allowed values: {no, yes}
@@ -157,7 +153,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  			#  The reply attributes sent to the NAS are
  			#  usually based on the name of the user
-@@ -540,7 +540,7 @@
+@@ -544,7 +544,7 @@
  			#  the tunneled request.
  			#
  			# allowed values: {no, yes}
@@ -166,7 +162,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  			#
  			#  The inner tunneled request can be sent
-@@ -552,13 +552,13 @@
+@@ -556,13 +556,13 @@
  			#  the virtual server that processed the
  			#  outer requests.
  			#
@@ -182,7 +178,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  		##################################################
  		#
-@@ -627,14 +627,14 @@
+@@ -631,14 +631,14 @@
  
  			#  the PEAP module also has these configuration
  			#  items, which are the same as for TTLS.
@@ -200,7 +196,7 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  			#
  			#  The inner tunneled request can be sent
-@@ -646,7 +646,8 @@
+@@ -650,7 +650,8 @@
  			#  the virtual server that processed the
  			#  outer requests.
  			#
@@ -210,10 +206,8 @@ Index: freeradius-server-2.2.7/raddb/eap.conf
  
  			# This option enables support for MS-SoH
  			# see doc/SoH.txt for more info.
-Index: freeradius-server-2.2.7/raddb/modules/counter
-===================================================================
---- freeradius-server-2.2.7.orig/raddb/modules/counter
-+++ freeradius-server-2.2.7/raddb/modules/counter
+--- a/raddb/modules/counter
++++ b/raddb/modules/counter
 @@ -69,7 +69,7 @@
  #  'check-name' attribute.
  #
@@ -223,10 +217,8 @@ Index: freeradius-server-2.2.7/raddb/modules/counter
  	key = User-Name
  	count-attribute = Acct-Session-Time
  	reset = daily
-Index: freeradius-server-2.2.7/raddb/modules/pap
-===================================================================
---- freeradius-server-2.2.7.orig/raddb/modules/pap
-+++ freeradius-server-2.2.7/raddb/modules/pap
+--- a/raddb/modules/pap
++++ b/raddb/modules/pap
 @@ -18,5 +18,5 @@
  #
  #  http://www.openldap.org/faq/data/cache/347.html
@@ -234,10 +226,8 @@ Index: freeradius-server-2.2.7/raddb/modules/pap
 -	auto_header = no
 +	auto_header = yes
  }
-Index: freeradius-server-2.2.7/raddb/modules/radutmp
-===================================================================
---- freeradius-server-2.2.7.orig/raddb/modules/radutmp
-+++ freeradius-server-2.2.7/raddb/modules/radutmp
+--- a/raddb/modules/radutmp
++++ b/raddb/modules/radutmp
 @@ -12,7 +12,7 @@ radutmp {
  	#  Where the file is stored.  It's not a log file,
  	#  so it doesn't need rotating.
@@ -247,10 +237,8 @@ Index: freeradius-server-2.2.7/raddb/modules/radutmp
  
  	#  The field in the packet to key on for the
  	#  'user' name,  If you have other fields which you want
-Index: freeradius-server-2.2.7/raddb/modules/sradutmp
-===================================================================
---- freeradius-server-2.2.7.orig/raddb/modules/sradutmp
-+++ freeradius-server-2.2.7/raddb/modules/sradutmp
+--- a/raddb/modules/sradutmp
++++ b/raddb/modules/sradutmp
 @@ -10,7 +10,7 @@
  # then name "sradutmp" to identify it later in the "accounting"
  # section.
@@ -260,10 +248,8 @@ Index: freeradius-server-2.2.7/raddb/modules/sradutmp
  	perm = 0644
  	callerid = "no"
  }
-Index: freeradius-server-2.2.7/raddb/radiusd.conf.in
-===================================================================
---- freeradius-server-2.2.7.orig/raddb/radiusd.conf.in
-+++ freeradius-server-2.2.7/raddb/radiusd.conf.in
+--- a/raddb/radiusd.conf.in
++++ b/raddb/radiusd.conf.in
 @@ -66,7 +66,7 @@ name = radiusd
  
  #  Location of config and logfiles.
@@ -360,10 +346,8 @@ Index: freeradius-server-2.2.7/raddb/radiusd.conf.in
  #
  #	This is the "default" virtual server that has the same
  #	configuration as in version 1.0.x and 1.1.x.  The default
-Index: freeradius-server-2.2.7/raddb/sites-available/default
-===================================================================
---- freeradius-server-2.2.7.orig/raddb/sites-available/default
-+++ freeradius-server-2.2.7/raddb/sites-available/default
+--- a/raddb/sites-available/default
++++ b/raddb/sites-available/default
 @@ -85,7 +85,7 @@ authorize {
  	#
  	#  It takes care of processing the 'raddb/hints' and the
@@ -407,7 +391,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  #	ntdomain
  
  	#
-@@ -197,8 +197,8 @@ authorize {
+@@ -195,8 +195,8 @@ authorize {
  	# Use the checkval module
  #	checkval
  
@@ -418,7 +402,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  	#
  	#  If no other module has claimed responsibility for
-@@ -279,7 +279,7 @@ authenticate {
+@@ -277,7 +277,7 @@ authenticate {
  	#  If you have a Cisco SIP server authenticating against
  	#  FreeRADIUS, uncomment the following line, and the 'digest'
  	#  line in the 'authorize' section.
@@ -427,7 +411,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  	#
  	#  Pluggable Authentication Modules.
-@@ -296,7 +296,7 @@ authenticate {
+@@ -294,7 +294,7 @@ authenticate {
  	#  be used for authentication ONLY for compatibility with legacy
  	#  FreeRADIUS configurations.
  	#
@@ -436,7 +420,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  	# Uncomment it if you want to use ldap for authentication
  	#
-@@ -332,8 +332,8 @@ authenticate {
+@@ -330,8 +330,8 @@ authenticate {
  #
  #  Pre-accounting.  Decide which accounting type to use.
  #
@@ -447,7 +431,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  	#
  	#  Session start times are *implied* in RADIUS.
-@@ -356,7 +356,7 @@ preacct {
+@@ -354,7 +354,7 @@ preacct {
  	#
  	#  Ensure that we have a semi-unique identifier for every
  	#  request, and many NAS boxes are broken.
@@ -456,7 +440,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  	#
  	#  Look for IPASS-style 'realm/', and if not found, look for
-@@ -366,13 +366,13 @@ preacct {
+@@ -364,13 +364,13 @@ preacct {
  	#  Accounting requests are generally proxied to the same
  	#  home server as authentication requests.
  #	IPASS
@@ -473,7 +457,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  #
  #  Accounting.  Log the accounting data.
-@@ -382,7 +382,7 @@ accounting {
+@@ -380,7 +380,7 @@ accounting {
  	#  Create a 'detail'ed log of the packets.
  	#  Note that accounting requests which are proxied
  	#  are also logged in the detail file.
@@ -482,7 +466,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  #	daily
  
  	#  Update the wtmp file
-@@ -434,7 +434,7 @@ accounting {
+@@ -432,7 +432,7 @@ accounting {
  	exec
  
  	#  Filter attributes from the accounting response.
@@ -491,7 +475,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  	#
  	#  See "Autz-Type Status-Server" for how this works.
-@@ -460,7 +460,7 @@ session {
+@@ -458,7 +458,7 @@ session {
  #  Post-Authentication
  #  Once we KNOW that the user has been authenticated, there are
  #  additional steps we can take.
@@ -500,7 +484,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  	#  Get an address from the IP Pool.
  #	main_pool
  
-@@ -490,7 +490,7 @@ post-auth {
+@@ -488,7 +488,7 @@ post-auth {
  #	ldap
  
  	# For Exec-Program and Exec-Program-Wait
@@ -509,7 +493,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  	#
  	#  Calculate the various WiMAX keys.  In order for this to work,
-@@ -574,18 +574,18 @@ post-auth {
+@@ -572,18 +572,18 @@ post-auth {
  	#  Add the ldap module name (or instance) if you have set 
  	#  'edir_account_policy_check = yes' in the ldap module configuration
  	#
@@ -534,7 +518,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  #
  #  When the server decides to proxy a request to a home server,
-@@ -595,7 +595,7 @@ post-auth {
+@@ -593,7 +593,7 @@ post-auth {
  #
  #  Only a few modules currently have this method.
  #
@@ -543,7 +527,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  #	attr_rewrite
  
  	#  Uncomment the following line if you want to change attributes
-@@ -611,14 +611,14 @@ pre-proxy {
+@@ -609,14 +609,14 @@ pre-proxy {
  	#  server, un-comment the following line, and the
  	#  'detail pre_proxy_log' section, above.
  #	pre_proxy_log
@@ -560,7 +544,7 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  	#  If you want to have a log of replies from a home server,
  	#  un-comment the following line, and the 'detail post_proxy_log'
-@@ -642,7 +642,7 @@ post-proxy {
+@@ -640,7 +640,7 @@ post-proxy {
  	#  hidden inside of the EAP packet, and the end server will
  	#  reject the EAP request.
  	#
@@ -569,17 +553,15 @@ Index: freeradius-server-2.2.7/raddb/sites-available/default
  
  	#
  	#  If the server tries to proxy a request and fails, then the
-@@ -664,5 +664,5 @@ post-proxy {
+@@ -662,5 +662,5 @@ post-proxy {
  #	Post-Proxy-Type Fail {
  #			detail
  #	}
 -}
 +#}
  
-Index: freeradius-server-2.2.7/raddb/users
-===================================================================
---- freeradius-server-2.2.7.orig/raddb/users
-+++ freeradius-server-2.2.7/raddb/users
+--- a/raddb/users
++++ b/raddb/users
 @@ -169,22 +169,22 @@
  #	by the terminal server in which case there may not be a "P" suffix.
  #	The terminal server sends "Framed-Protocol = PPP" for auto PPP.

@@ -1,7 +1,5 @@
-Index: freeradius-server-2.2.7/src/modules/rlm_ldap/configure
-===================================================================
---- freeradius-server-2.2.7.orig/src/modules/rlm_ldap/configure
-+++ freeradius-server-2.2.7/src/modules/rlm_ldap/configure
+--- a/src/modules/rlm_ldap/configure
++++ b/src/modules/rlm_ldap/configure
 @@ -1,10 +1,10 @@
  #! /bin/sh
  # From configure.in Revision.
@@ -4241,10 +4239,8 @@ Index: freeradius-server-2.2.7/src/modules/rlm_ldap/configure
 +fi
  
  
-Index: freeradius-server-2.2.7/src/modules/rlm_ldap/configure.in
-===================================================================
---- freeradius-server-2.2.7.orig/src/modules/rlm_ldap/configure.in
-+++ freeradius-server-2.2.7/src/modules/rlm_ldap/configure.in
+--- a/src/modules/rlm_ldap/configure.in
++++ b/src/modules/rlm_ldap/configure.in
 @@ -87,6 +87,9 @@ if test x$with_[]modname != xno; then
  			 )
  	fi
