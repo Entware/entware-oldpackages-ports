@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=psmisc
 PKG_VERSION:=23.1
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@SF/psmisc
@@ -37,7 +37,12 @@ CONFIGURE_ARGS += \
 	--disable-harden-flags \
 	--localedir=/opt/share/locale
 
-ifeq ($(ARCH),aarch64)
+ifeq ($(ARCH),mips)
+CONFIGURE_VARS += \
+	ac_cv_member_struct_pt_regs_regs=no
+endif
+
+ifneq (,$(filter aarch64 mips,$(ARCH)))
 	PEEK:=
 else
 	PEEK:=peekfd,
