@@ -26,6 +26,8 @@ PKG_MAINTAINER:=Jiri Slachta <jiri@slachta.eu>
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/host-build.mk
+# see other packages when deps on mariadb
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/asterisk11/install/module
 	$(INSTALL_DIR) $(1)/opt/lib/asterisk/modules
