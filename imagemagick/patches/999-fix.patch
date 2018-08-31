@@ -57,8 +57,8 @@
  
  /* Directory where architecture-dependent files live. */
  #ifndef MAGICKCORE_LIBRARY_PATH
--#define MAGICKCORE_LIBRARY_PATH "/usr/lib64/ImageMagick-7.0.7/"
-+#define MAGICKCORE_LIBRARY_PATH "/opt/lib64/ImageMagick-7.0.7/"
+-#define MAGICKCORE_LIBRARY_PATH "/usr/lib64/ImageMagick-7.0.8/"
++#define MAGICKCORE_LIBRARY_PATH "/opt/lib64/ImageMagick-7.0.8/"
  #endif
  
  /* Subdirectory of lib where ImageMagick architecture dependent files are
