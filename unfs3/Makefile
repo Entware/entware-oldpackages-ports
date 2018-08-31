@@ -27,7 +27,7 @@ define Package/unfs3
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Filesystem
-  DEPENDS:=+portmap +libacl
+  DEPENDS:=+rpcbind +libacl
   TITLE:=User-space NFSv3 Server
   URL:=http://unfs3.sourceforge.net/
 endef
