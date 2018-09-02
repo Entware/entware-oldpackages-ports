@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nzbget
-PKG_VERSION:=19.1
+PKG_VERSION:=20.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
 PKG_SOURCE_URL:=https://github.com/nzbget/nzbget/releases/download/v$(PKG_VERSION)
-PKG_HASH:=06df42356ac2d63bbc9f7861abe9c3216df56fa06802e09e8a50b05f4ad95ce6
+PKG_HASH:=04dc36d432549c33d55145ecd95cc4309b3ab4a7731a1a03d954de389eacd06f
 
 PKG_INSTALL:=1
 

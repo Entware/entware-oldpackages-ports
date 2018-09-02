@@ -19,7 +19,7 @@
  # Where to store log file, if it needs to be created.
  #
  # NOTE: See also option <WriteLog>.
--LogFile=${DestDir}/nzbget.log
+-LogFile=${MainDir}/nzbget.log
 +LogFile=/opt/var/log/nzbget.log
  
  # Configuration file template.
