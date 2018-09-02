@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oprofile
-PKG_VERSION:=1.2.0
+PKG_VERSION:=1.3.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/oprofile/
-PKG_HASH:=eb95f98c40b7d0ee29b45fba3565d9f8381747528aa6b6159e37d4fa0c8ca57d
+PKG_HASH:=95ded8bde1ec39922f0af015981a67aec63e025a501e4dc04cd65d38f73647e6
 
 PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
 
