@@ -5,6 +5,7 @@
 # See /LICENSE for more information.
 #
 # Entware: use libtool from libtool package (trunk/libs/libtool) in Build/Compile
+# 2.x.x Series is EoL
 
 include $(TOPDIR)/rules.mk
 

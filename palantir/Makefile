@@ -5,6 +5,7 @@
 # See /LICENSE for more information.
 #
 # This package was orphaned in OpenWRT trunk, r32110
+# Abandoned in 2013
 
 include $(TOPDIR)/rules.mk
 
