@@ -1,6 +1,6 @@
 --- a/backend/ipp.c
 +++ b/backend/ipp.c
-@@ -1789,6 +1789,10 @@ main(int  argc,				/* I - Number of comm
+@@ -1796,6 +1796,10 @@ main(int  argc,				/* I - Number of comm
  	  ippAddString(request, IPP_TAG_OPERATION, IPP_TAG_KEYWORD,
  		       "compression", NULL, compression);
  

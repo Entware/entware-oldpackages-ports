@@ -1,6 +1,6 @@
 --- a/configure
 +++ b/configure
-@@ -1598,6 +1598,7 @@ Optional Packages:
+@@ -1578,6 +1578,7 @@ Optional Packages:
    --with-operkey          set the default operator @AUTHKEY value
    --with-components       set components to build:
  			    - "all" (default) builds everything
@@ -8,7 +8,7 @@
  			    - "core" builds libcups and ipptool
    --with-privateinclude   set path for private include files, default=none
    --with-lpdconfig        set URI for LPD config file
-@@ -6090,6 +6091,10 @@ case "$COMPONENTS" in
+@@ -6117,6 +6118,10 @@ case "$COMPONENTS" in
  		BUILDDIRS="filter backend berkeley cgi-bin monitor notifier ppdc scheduler systemv conf data desktop locale man doc examples templates"
  		;;
  
