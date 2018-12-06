@@ -4,17 +4,16 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 1996
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=time
-PKG_VERSION:=1.7
-PKG_RELEASE:=2
+PKG_VERSION:=1.9
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@GNU/time
-PKG_HASH:=e37ea79a253bf85a85ada2f7c632c14e481a5fd262a362f6f4fd58e68601496d
+PKG_HASH:=fbacf0c81e62429df3e33bda4cee38756604f18e01d977338e23306a3e3b521e
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
