@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=livemedia
-PKG_VERSION:=2018.08.28a
+PKG_VERSION:=2018.11.26
 PKG_RELEASE:=1
 
 PKG_SOURCE:=live.$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.live555.com/liveMedia/public \
     https://download.videolan.org/pub/contrib/live555
-PKG_HASH:=0aa6f60c8acf8a309119c02ad1bafca40af8105ce411ba2e6fdfbed9222f91ba
+PKG_HASH:=b3385364e584d51f1b0b13738e5bd58ca29978907310a90ecdccfbda41f1fb47
 
 PKG_INSTALL:=1
 
@@ -59,8 +59,8 @@ define Build/Configure
 	    find $(PKG_BUILD_DIR) -name Makefile.* -exec \
 		$(SED) 's|PREFIX = /usr/local|PREFIX = /opt|g' {} \;
 	( cd $(PKG_BUILD_DIR); \
-	    $(SED) 's/@CROSS_COMPILE@/$(TARGET_CROSS)/g' \
-	    -e 's/@CFLAGS@/$(TARGET_CFLAGS)/g' \
+	    $(SED) 's|@CROSS_COMPILE@|$(TARGET_CROSS)|g' \
+	    -e 's|@CFLAGS@|$(TARGET_CFLAGS)|g' \
 	    config.OpenWrt; \
 	./genMakefiles OpenWrt; \
 	)
