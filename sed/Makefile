@@ -21,7 +21,7 @@ define Package/sed
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=GNU streams editor
-  URL:=http://ftp.gnu.org/gnu/sed/
+  URL:=http://sed.sf.net
 endef
 
 define Package/sed/description
