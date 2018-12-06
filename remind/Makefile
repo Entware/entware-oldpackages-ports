@@ -6,12 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=remind
-PKG_VERSION:=03.01.15
+PKG_VERSION:=03.01.16
 PKG_RELEASE:=1
 
 PKG_SOURCE:=remind-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://www.roaringpenguin.com/files/download/
-PKG_HASH:=8adab4c0b30a556c34223094c5c74779164d5f3b8be66b8039f44b577e678ec1
+PKG_SOURCE_URL:=https://dianne.skoll.ca/projects/remind/download
+PKG_HASH:=eeb79bd4019d23a033fe3e86c672d960399db6a27c747e5b466ad55831dfca93
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/remind-$(PKG_VERSION)
 
@@ -21,7 +21,7 @@ define Package/remind
 	SECTION:=utils
 	CATEGORY:=Utilities
 	TITLE:=Reminder
-	URL:=https://www.roaringpenguin.com/products/remind
+	URL:=https://dianne.skoll.ca/projects/remind
 endef
 
 define Package/remind/description
