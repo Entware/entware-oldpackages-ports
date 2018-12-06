@@ -1,14 +1,3 @@
---- a/MagickCore/magic.c
-+++ b/MagickCore/magic.c
-@@ -124,7 +124,7 @@ static const MagicMapInfo
-     { "FITS", 0, MagicPattern("SIMPLE") },
-     { "FLIF", 0, MagicPattern("FLIF") },
-     { "GIF", 0, MagicPattern("GIF8") },
--    { "GPLT", 0, MagicPattern("#!/usr/local/bin/gnuplot") },
-+    { "GPLT", 0, MagicPattern("#!/opt/bin/gnuplot") },
-     { "HDF", 1, MagicPattern("HDF") },
-     { "HDR", 0, MagicPattern("#?RADIANCE") },
-     { "HDR", 0, MagicPattern("#?RGBE") },
 --- a/MagickCore/magick-baseconfig.h
 +++ b/MagickCore/magick-baseconfig.h
 @@ -37,7 +37,7 @@
@@ -58,7 +47,7 @@
  /* Directory where architecture-dependent files live. */
  #ifndef MAGICKCORE_LIBRARY_PATH
 -#define MAGICKCORE_LIBRARY_PATH "/usr/lib64/ImageMagick-7.0.8/"
-+#define MAGICKCORE_LIBRARY_PATH "/opt/lib64/ImageMagick-7.0.8/"
++#define MAGICKCORE_LIBRARY_PATH "/opt/lib/ImageMagick-7.0.8/"
  #endif
  
  /* Subdirectory of lib where ImageMagick architecture dependent files are
@@ -79,12 +68,12 @@
  <delegatemap>
 -  <delegate decode="bpg" command="&quot;@BPGDecodeDelegate@&quot; -b 16 -o &quot;%o.png&quot; &quot;%i&quot;; @MVDelegate@ &quot;%o.png&quot; &quot;%o&quot;"/>
 +  <delegate decode="bpg" command="&quot;@BPGDecodeDelegate@&quot; -b 16 -o &quot;%o.png&quot; &quot;%i&quot;; /opt/bin/mv &quot;%o.png&quot; &quot;%o&quot;"/>
-   <delegate decode="png" encode="bpg" command="&quot;@BPGEncodeDelegate@&quot; -b 12 -o &quot;%o&quot; &quot;%i&quot;"/>
+   <delegate decode="png" encode="bpg" command="&quot;@BPGEncodeDelegate@&quot; -b 12 -q &quot;%~&quot; -o &quot;%o&quot; &quot;%i&quot;"/>
    <delegate decode="blender" command="&quot;@BlenderDecodeDelegate@&quot; -b &quot;%i&quot; -F PNG -o &quot;%o&quot;&quot;\n&quot;@ConvertDelegate@&quot; convert -concatenate &quot;%o*.png&quot; &quot;%o&quot;"/>
--  <delegate decode="browse" stealth="True" spawn="True" command="&quot;@BrowseDelegate@&quot; http://www.imagemagick.org/; @RMDelegate@ &quot;%i&quot;"/>
+-  <delegate decode="browse" stealth="True" spawn="True" command="&quot;@BrowseDelegate@&quot; https://imagemagick.org/; @RMDelegate@ &quot;%i&quot;"/>
 -  <delegate decode="cdr" command="&quot;@UniconvertorDelegate@&quot; &quot;%i&quot; &quot;%o.svg&quot;; @MVDelegate@ &quot;%o.svg&quot; &quot;%o&quot;"/>
 -  <delegate decode="cgm" command="&quot;@UniconvertorDelegate@&quot; &quot;%i&quot; &quot;%o.svg&quot;; @MVDelegate@ &quot;%o.svg&quot; &quot;%o&quot;"/>
-+  <delegate decode="browse" stealth="True" spawn="True" command="&quot;@BrowseDelegate@&quot; http://www.imagemagick.org/; /opt/bin/rm &quot;%i&quot;"/>
++  <delegate decode="browse" stealth="True" spawn="True" command="&quot;@BrowseDelegate@&quot; https://imagemagick.org/; /opt/bin/rm &quot;%i&quot;"/>
 +  <delegate decode="cdr" command="&quot;@UniconvertorDelegate@&quot; &quot;%i&quot; &quot;%o.svg&quot;; /opt/bin/mv &quot;%o.svg&quot; &quot;%o&quot;"/>
 +  <delegate decode="cgm" command="&quot;@UniconvertorDelegate@&quot; &quot;%i&quot; &quot;%o.svg&quot;; /opt/bin/mv &quot;%o.svg&quot; &quot;%o&quot;"/>
    <delegate decode="https" command="&quot;@WWWDecodeDelegate@&quot; -s -k -L -o &quot;%o&quot; &quot;https:%M&quot;"/>
@@ -93,7 +82,7 @@
 +  <delegate decode="doc" command="&quot;@DOCDecodeDelegate@&quot; --convert-to pdf -outdir `dirname &quot;%i&quot;` &quot;%i&quot; 2&gt; &quot;%u&quot;; /opt/bin/mv &quot;%i.pdf&quot; &quot;%o&quot;"/>
 +  <delegate decode="docx" command="&quot;@DOCDecodeDelegate@&quot; --convert-to pdf -outdir `dirname &quot;%i&quot;` &quot;%i&quot; 2&gt; &quot;%u&quot;; /opt/bin/mv &quot;%i.pdf&quot; &quot;%o&quot;"/>
    <delegate decode="dng:decode" command="&quot;@DNGDecodeDelegate@&quot; --silent --create-id=also --out-type=png --out-depth=16 &quot;--output=%u.png&quot; &quot;%i&quot;"/>
-   <delegate decode="dot" command='&quot;@GVCDecodeDelegate@&quot; -Tsvg &quot;%i&quot; -o &quot;%o&quot;' />
+   <delegate decode="dot" command="&quot;@GVCDecodeDelegate@&quot; -Tsvg &quot;%i&quot; -o &quot;%o&quot;" />
    <delegate decode="dvi" command="&quot;@DVIDecodeDelegate@&quot; -sstdout=%%stderr -o &quot;%o&quot; &quot;%i&quot;"/>
 -  <delegate decode="dxf" command="&quot;@UniconvertorDelegate@&quot; &quot;%i&quot; &quot;%o.svg&quot;; @MVDelegate@ &quot;%o.svg&quot; &quot;%o&quot;"/>
 +  <delegate decode="dxf" command="&quot;@UniconvertorDelegate@&quot; &quot;%i&quot; &quot;%o.svg&quot;; /opt/bin/mv &quot;%o.svg&quot; &quot;%o&quot;"/>
@@ -133,7 +122,7 @@
 +  <delegate decode="bmp" encode="wdp" command="/opt/bin/mv &quot;%i&quot; &quot;%i.bmp&quot;; &quot;@JXREncodeDelegate@&quot; -i &quot;%i.bmp&quot; -o &quot;%o.jxr&quot;; /opt/bin/mv &quot;%i.bmp&quot; &quot;%i&quot;; /opt/bin/mv &quot;%o.jxr&quot; &quot;%o&quot;"/>
 +  <delegate decode="ppt" command="&quot;@DOCDecodeDelegate@&quot; --convert-to pdf -outdir `dirname &quot;%i&quot;` &quot;%i&quot; 2&gt; &quot;%u&quot;; /opt/bin/mv &quot;%i.pdf&quot; &quot;%o&quot;"/>
 +  <delegate decode="pptx" command="&quot;@DOCDecodeDelegate@&quot; --convert-to pdf -outdir `dirname &quot;%i&quot;` &quot;%i&quot; 2&gt; &quot;%u&quot;; /opt/bin/mv &quot;%i.pdf&quot; &quot;%o&quot;"/>
-   <delegate decode="ps" encode="prt" command='&quot;@LPRDelegate@&quot; &quot;%i&quot;'/>
+   <delegate decode="ps" encode="prt" command="&quot;@LPRDelegate@&quot; &quot;%i&quot;"/>
    <delegate decode="ps:alpha" stealth="True" command="&quot;@PSDelegate@&quot; -sstdout=%%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 &quot;-sDEVICE=@GSAlphaDevice@&quot; -dTextAlphaBits=%u -dGraphicsAlphaBits=%u &quot;-r%s&quot; %s &quot;-sOutputFile=%s&quot; &quot;-f%s&quot; &quot;-f%s&quot;"/>
    <delegate decode="ps:cmyk" stealth="True" command="&quot;@PSDelegate@&quot; -sstdout=%%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 &quot;-sDEVICE=@GSCMYKDevice@&quot; -dTextAlphaBits=%u -dGraphicsAlphaBits=%u &quot;-r%s&quot; %s &quot;-sOutputFile=%s&quot; &quot;-f%s&quot; &quot;-f%s&quot;"/>
 @@ -111,10 +111,10 @@
