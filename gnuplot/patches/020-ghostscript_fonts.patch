@@ -1,6 +1,6 @@
 --- a/src/variable.c
 +++ b/src/variable.c
-@@ -285,8 +285,7 @@
+@@ -285,8 +285,7 @@ static const struct path_table fontpath_
      /* HP-UX */
      { "/usr/lib/X11/fonts!"},
      /* Ghostscript */
