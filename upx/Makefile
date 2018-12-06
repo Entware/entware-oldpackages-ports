@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=upx
-PKG_VERSION:=3.94
+PKG_VERSION:=3.95
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/upx/upx.git
-PKG_SOURCE_VERSION:=d31947e1f016e87f24f88b944439bbee892f0429
+PKG_SOURCE_VERSION:=7a3637ff5a800b8bcbad20ae7f668d8c8449b014
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -44,7 +44,7 @@ TARGET_CPPFLAGS += \
 
 define Package/upx/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/upx $(1)/opt/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/upx $(1)/opt/bin
 endef
 
 $(eval $(call BuildPackage,upx))
