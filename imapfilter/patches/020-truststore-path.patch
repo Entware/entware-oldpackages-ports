@@ -1,6 +1,6 @@
 --- a/src/imapfilter.c
 +++ b/src/imapfilter.c
-@@ -68,10 +68,10 @@
+@@ -68,10 +68,10 @@ main(int argc, char *argv[])
  	opts.debug = NULL;
  
  	opts.truststore = NULL;
