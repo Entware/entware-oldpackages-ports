@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tesseract-ocr
-PKG_VERSION:=3.05.02
-PKG_REV:=7e5f0d6fc6b214093d5b660cdcf6ce36bbbdd30f
+PKG_VERSION:=4.0.0
+PKG_REV:=51316994ccae0b48692d547030f26c0969308214
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -37,7 +37,7 @@ CONFIGURE_ARGS += \
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	$(SED) '1s/^\xEF\xBB\xBF//' $(PKG_BUILD_DIR)/ccutil/strngs.h
+	$(SED) '1s/^\xEF\xBB\xBF//' $(PKG_BUILD_DIR)/src/ccutil/strngs.h
 endef
 
 define Build/InstallDev
