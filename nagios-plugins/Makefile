@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nagios-plugins
 PKG_VERSION:=2.0.3
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://nagios-plugins.org/download
@@ -37,6 +37,7 @@ CONFIGURE_ARGS += \
 	--without-radius \
 	--without-ldap \
 	--without-mysql \
+	--without-dbi \
 	$(call autoconf_bool,CONFIG_IPV6,ipv6) \
 	--with-ping-command="/bin/ping -w %d -c %d %s" \
 	--with-ping6-command="/bin/ping6 -w %d -c %d %s" \
