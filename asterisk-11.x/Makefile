@@ -6,6 +6,7 @@
 # See /LICENSE for more information.
 #
 # postgresql/host dependency added or pg_config will not be found
+# This is the last release of 11.x branch
 
 include $(TOPDIR)/rules.mk
 
