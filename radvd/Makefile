@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=radvd
-PKG_VERSION:=2.17
+PKG_VERSION:=2.18
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://v6web.litech.org/radvd/dist \
-		http://download.sourcemage.org/mirror
-PKG_HASH:=53757e7f2164899e1145482f1ae91829600a6e2f6fec29cfb3b350a3bb45bd5d
+PKG_SOURCE_URL:=http://www.litech.org/radvd/dist
+PKG_HASH:=4f573e36b96ba92d03b5abbbd5f059b9c8994967812c77852f44049ac5a448fd
+
 PKG_MAINTAINER:=QshenX <q@xd8.cn>
 PKG_LICENSE:=GPL-2.0
 
@@ -67,12 +67,12 @@ TARGET_LDFLAGS += \
 
 define Package/radvd/install
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/radvd $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/radvd $(1)/opt/sbin
 endef
 
 define Package/radvdump/install
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/radvdump $(1)/opt/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/radvdump $(1)/opt/sbin
 endef
 
 $(eval $(call BuildPackage,radvd))
