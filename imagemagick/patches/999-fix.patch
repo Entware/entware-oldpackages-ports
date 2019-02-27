@@ -4,7 +4,7 @@
  
  /* Directory where architecture-dependent configuration files live. */
  #ifndef MAGICKCORE_CONFIGURE_PATH
--#define MAGICKCORE_CONFIGURE_PATH "/etc/ImageMagick-7/"
+-#define MAGICKCORE_CONFIGURE_PATH "/usr/etc/ImageMagick-7/"
 +#define MAGICKCORE_CONFIGURE_PATH "/opt/etc/ImageMagick-7/"
  #endif
  
@@ -27,7 +27,7 @@
  #endif
  
  /* Define if you have FFTW library */
-@@ -1108,12 +1108,12 @@
+@@ -1112,12 +1112,12 @@
  
  /* Directory where ImageMagick architecture headers live. */
  #ifndef MAGICKCORE_INCLUDEARCH_PATH
@@ -42,11 +42,11 @@
  #endif
  
  /* ImageMagick is formally installed under prefix */
-@@ -1143,7 +1143,7 @@
+@@ -1145,7 +1145,7 @@
  
  /* Directory where architecture-dependent files live. */
  #ifndef MAGICKCORE_LIBRARY_PATH
--#define MAGICKCORE_LIBRARY_PATH "/usr/lib64/ImageMagick-7.0.8/"
+-#define MAGICKCORE_LIBRARY_PATH "/usr/lib/ImageMagick-7.0.8/"
 +#define MAGICKCORE_LIBRARY_PATH "/opt/lib/ImageMagick-7.0.8/"
  #endif
  
