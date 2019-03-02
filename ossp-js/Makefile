@@ -34,7 +34,7 @@ $(call Package/js/Default)
  CATEGORY:=Languages
  SUBMENU:=JavaScript
  TITLE+= (interpreter)
- DEPENDS+= +libjs +libreadline +libncurses
+ DEPENDS+= +libjs +libreadline +libedit
 endef
 
 define Package/libjs
