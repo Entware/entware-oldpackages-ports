@@ -36,7 +36,7 @@ define Package/node_legacy
   SUBMENU:=Node.js
   TITLE:=Node.js is a platform built on Chrome's JavaScript runtime
   URL:=http://nodejs.org/
-  DEPENDS:=+libstdcpp +libuv +ca-certificates @arm
+  DEPENDS:=+libstdcpp +libuv +zlib +ca-certificates @arm
 endef
 
 define Package/node_legacy/description
