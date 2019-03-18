@@ -11,7 +11,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=node_legacy
 PKG_VERSION:=v0.10.48
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=node-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://nodejs.org/dist/$(PKG_VERSION)
@@ -36,7 +36,7 @@ define Package/node_legacy
   SUBMENU:=Node.js
   TITLE:=Node.js is a platform built on Chrome's JavaScript runtime
   URL:=http://nodejs.org/
-  DEPENDS:=+libstdcpp +libopenssl +libuv +ca-certificates @arm
+  DEPENDS:=+libstdcpp +libuv +ca-certificates @arm
 endef
 
 define Package/node_legacy/description
@@ -55,7 +55,6 @@ CONFIGURE_ARGS= \
 	--dest-os=linux \
 	--without-snapshot \
 	--shared-zlib \
-	--shared-openssl \
 	--prefix=/opt \
 	--with-arm-float-abi=softfp \
 	--with-mips-float-abi=soft
