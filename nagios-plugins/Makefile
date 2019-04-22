@@ -10,12 +10,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nagios-plugins
 PKG_VERSION:=2.0.3
-PKG_RELEASE:=1a
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://nagios-plugins.org/download
 PKG_HASH:=8f0021442dce0138f0285ca22960b870662e28ae8973d49d439463588aada04a
 
+PKG_BUILD_DEPENDS:=bind
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
@@ -47,7 +48,8 @@ CONFIGURE_ARGS += \
 	--with-ps-varlist="&procpid$(comma)&procuid$(comma)&procvsz$(comma)procstat$(comma)procprog$(comma)&pos" \
 	--with-uptime-command="/usr/bin/uptime" \
 	--with-ssh-command="/usr/bin/ssh" \
-	--with-nslookup-command="/usr/bin/nslookup"
+	--with-nslookup-command="/usr/bin/nslookup" \
+	--with-dig-command="/opt/bin/dig"
 
 define Package/nagios-plugins/install
 	$(INSTALL_DIR) $(1)/opt/lib
