@@ -1,4 +1,4 @@
-
+# Used by mcabber only
 
 include $(TOPDIR)/rules.mk
 
