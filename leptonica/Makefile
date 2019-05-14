@@ -9,17 +9,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=leptonica
-PKG_VERSION:=1.77.0
+PKG_VERSION:=1.78.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.leptonica.com/source
-PKG_HASH:=dd7990ab6b6824b0cfed70920824d37b47184240f98db4085f7dbf1250cd4899
-
-PKG_FIXUP:=autoreconf
-PKG_INSTALL:=1
+PKG_SOURCE_URL:=http://www.leptonica.org/source
+PKG_HASH:=e2ed2e81e7a22ddf45d2c05f0bc8b9ae7450545d995bfe28517ba408d14a5a88
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/libleptonica
   SECTION:=libs
@@ -29,20 +27,17 @@ define Package/libleptonica
   DEPENDS:=+giflib +libpng +libtiff
 endef
 
-CONFIGURE_ARGS += --disable-programs
-TARGET_CFLAGS += $(FPIC)
-
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
 	$(CP) $(PKG_INSTALL_DIR)/opt/include/leptonica $(1)/opt/include
 	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblept.{a,so*} $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libleptonica.so* $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/lept.pc $(1)/opt/lib/pkgconfig
 endef
 
 define Package/libleptonica/install
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/liblept.so* $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libleptonica.so* $(1)/opt/lib
 endef
 
 $(eval $(call BuildPackage,libleptonica))
