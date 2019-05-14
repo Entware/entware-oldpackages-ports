@@ -1,0 +1,8 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -224,4 +224,4 @@
+ ##  Install
+ ##-----------------------------------------------------------------------------
+ INSTALL(TARGETS streamripper DESTINATION bin)
+-INSTALL(TARGETS wstreamripper DESTINATION bin)
++#INSTALL(TARGETS wstreamripper DESTINATION bin)

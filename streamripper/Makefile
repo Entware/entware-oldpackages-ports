@@ -4,48 +4,43 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2009
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=streamripper
-PKG_VERSION:=1.64.6
+PKG_VERSION:=1.65.0-alpha-20150804
+PKG_REV:=248f771250998e38a2d8212aa43ccc4a516f853b
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/$(PKG_NAME)/streamripper%20(current)/$(PKG_VERSION)
-PKG_HASH:=c1d75f2e9c7b38fd4695be66eff4533395248132f3cc61f375196403c4d8de42
-
-PKG_FIXUP:=autoreconf -fi
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/streamripper/streamripper.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 include $(INCLUDE_DIR)/nls.mk
 
 define Package/streamripper
-  SECTION:=multimedia
-  CATEGORY:=Multimedia
-  DEPENDS:=+libmad +libfaad2 +libvorbis +glib2
-  TITLE:=streamripper
-  URL:=http://streamripper.sourceforge.net/
+	SECTION:=multimedia
+	CATEGORY:=Multimedia
+	DEPENDS:=+libmad +libvorbis +glib2
+	TITLE:=streamripper
+	URL:=https://github.com/streamripper/streamripper
 endef
 
 define Package/streamripper/description
-	Streamripper is an Open Source application that lets you record streaming mp3 to your hard drive.
+ Streamripper is an Open Source application that lets you record streaming
+ mp3 to your hard drive.
 endef
 
-
-EXTRA_CFLAGS += $(TARGET_CPPFLAGS)
-
-CONFIGURE_ARGS+= \
-	--with-included-argv \
-	--with-curses=ncursesw \
-	--without-included-libmad \
-	--without-libiconv-prefix \
-	--with-gnu-ld \
+TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include
+TARGET_LDFLAGS += -lpthread
 
 define Package/streamripper/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/streamripper $(1)/opt/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/streamripper $(1)/opt/bin
 endef
 
 $(eval $(call BuildPackage,streamripper))
