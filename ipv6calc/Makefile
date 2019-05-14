@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ipv6calc
-PKG_VERSION:=2.0.0
+PKG_VERSION:=2.1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.bieringer.de/pub/linux/IPv6/ipv6calc
-PKG_HASH:=a72c78c72e004ec91e62a4d251191621bb17ac89391a59ee2877f43f81f1810c
+PKG_HASH:=43e0425e9d47deb73dbf4ea9467fa2be49e7b8fa2578832a35aa5976d243fa8e
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_INSTALL:=1
@@ -105,9 +105,10 @@ ifeq ($(BUILD_VARIANT),mini)
 		--disable-db-as-registry
 endif
 
-MAKE_FLAGS += \
-	CC="$(TARGET_CC)" \
-	COPTS="$(TARGET_CFLAGS) -I$(PKG_BUILD_DIR)"
+define Build/Compile
+	$(call Build/Compile/Default,clean)
+	$(call Build/Compile/Default)
+endef
 
 define Package/ipv6calc/install
 	$(INSTALL_DIR) $(1)/opt/bin
