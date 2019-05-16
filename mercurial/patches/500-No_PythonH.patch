@@ -1,6 +1,6 @@
 --- a/setup.py
 +++ b/setup.py
-@@ -535,9 +535,6 @@ class hgbuildpy(build_py):
+@@ -545,9 +545,6 @@ class hgbuildpy(build_py):
              self.distribution.ext_modules = exts
          else:
              h = os.path.join(get_python_inc(), 'Python.h')
