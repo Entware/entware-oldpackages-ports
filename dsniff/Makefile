@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dsniff
 PKG_VERSION:=2.4b1
-PKG_RELEASE:=4
+PKG_RELEASE:=4a
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.monkey.org/~dugsong/dsniff/beta
@@ -26,7 +26,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/dsniff
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libpcap +libnids +libopenssl +libgdbm
+  DEPENDS:=+libnids +libopenssl +libgdbm
   TITLE:=A collection of tools for network auditing and penetration testing
   URL:=http://www.monkey.org/~dugsong/dsniff/
 endef
@@ -39,10 +39,12 @@ CONFIGURE_ARGS += \
 	--with-gdbm="$(STAGING_DIR)/opt" \
 	--with-libnids="$(STAGING_DIR)/opt" \
 	--with-libpcap="$(STAGING_DIR)/opt" \
-	--with-libnet="$(STAGING_DIR)/opt/lib/libnet-1.0.x" \
+	--with-libnet="$(STAGING_DIR)/opt" \
 	--with-openssl="$(STAGING_DIR)/opt" \
 	--without-db \
 	--without-x
+
+TARGET_CFLAGS += -D_DEFAULT_SOURCE
 
 # Modify PATH to use host rpcgen
 define Build/Compile

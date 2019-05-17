@@ -1,12 +1,17 @@
-diff -urN dsniff.old/arp.c dsniff.dev/arp.c
---- dsniff.old/arp.c	2001-03-15 09:32:58.000000000 +0100
-+++ dsniff.dev/arp.c	2006-03-03 01:41:10.000000000 +0100
+Author: Steve Kemp <skx@debian.org>
+Description: Work with multiple interfaces.
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=242369
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+
+--- a/arp.c
++++ b/arp.c
 @@ -39,7 +39,7 @@
  
  #ifdef BSD
  int
 -arp_cache_lookup(in_addr_t ip, struct ether_addr *ether)
-+arp_cache_lookup(in_addr_t ip, struct ether_addr *ether, const char *lif)
++arp_cache_lookup(in_addr_t ip, struct ether_addr *ether, const char* linf)
  {
  	int mib[6];
  	size_t len;
@@ -15,7 +20,7 @@ diff -urN dsniff.old/arp.c dsniff.dev/arp.c
  
  int
 -arp_cache_lookup(in_addr_t ip, struct ether_addr *ether)
-+arp_cache_lookup(in_addr_t ip, struct ether_addr *ether, const char *lif)
++arp_cache_lookup(in_addr_t ip, struct ether_addr *ether, const char* lif)
  {
  	int sock;
  	struct arpreq ar;
@@ -28,20 +33,18 @@ diff -urN dsniff.old/arp.c dsniff.dev/arp.c
  #endif
  	sin = (struct sockaddr_in *)&ar.arp_pa;
  	sin->sin_family = AF_INET;
-diff -urN dsniff.old/arp.h dsniff.dev/arp.h
---- dsniff.old/arp.h	2001-03-15 09:27:08.000000000 +0100
-+++ dsniff.dev/arp.h	2006-03-03 01:42:23.000000000 +0100
+--- a/arp.h
++++ b/arp.h
 @@ -11,6 +11,6 @@
  #ifndef _ARP_H_
  #define _ARP_H_
  
 -int	arp_cache_lookup(in_addr_t ip, struct ether_addr *ether);
-+int	arp_cache_lookup(in_addr_t ip, struct ether_addr *ether, const char *lif);
++int	arp_cache_lookup(in_addr_t ip, struct ether_addr *ether, const char* linf);
  
  #endif /* _ARP_H_ */
-diff -urN dsniff.old/arpspoof.c dsniff.dev/arpspoof.c
---- dsniff.old/arpspoof.c	2001-03-15 09:32:58.000000000 +0100
-+++ dsniff.dev/arpspoof.c	2006-03-03 01:42:00.000000000 +0100
+--- a/arpspoof.c
++++ b/arpspoof.c
 @@ -113,7 +113,7 @@
  	int i = 0;
  

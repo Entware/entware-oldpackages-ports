@@ -1,5 +1,16 @@
-diff --git a/decode_pop.c b/decode_pop.c
-index 04044f5..767da41 100644
+>From b05e27ba9b0ba9ef00ad2183933652e08d8c89af Mon Sep 17 00:00:00 2001
+From: Stefan Tomanek <stefan@pico.ruhr.de>
+Date: Sat, 29 Oct 2011 20:48:55 +0200
+Subject: [PATCH] rewrite and modernize POP decoder
+
+
+Signed-off-by: Stefan Tomanek <stefan@pico.ruhr.de>
+---
+ decode_pop.c |   96 ++++++++++++++++++++++++++++++++++++++++++++++-----------
+ 1 files changed, 77 insertions(+), 19 deletions(-)
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+
 --- a/decode_pop.c
 +++ b/decode_pop.c
 @@ -6,6 +6,8 @@
@@ -11,7 +22,7 @@ index 04044f5..767da41 100644
   */
  
  #include "config.h"
-@@ -45,32 +47,88 @@ int
+@@ -45,32 +47,88 @@
  decode_pop(u_char *buf, int len, u_char *obuf, int olen)
  {
  	char *p;
@@ -119,4 +130,3 @@ index 04044f5..767da41 100644
  		}
  	}
  	return (strlen(obuf));
-
