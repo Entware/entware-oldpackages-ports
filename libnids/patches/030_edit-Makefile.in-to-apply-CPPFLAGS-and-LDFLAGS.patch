@@ -1,0 +1,72 @@
+From: Lukas Schwaighofer <lukas@schwaighofer.name>
+Date: Fri, 14 Apr 2017 20:06:03 +0200
+Subject: edit Makefile.in to apply CPPFLAGS and LDFLAGS
+Bug: https://sourceforge.net/p/libnids/patches/6/
+
+LDFLAGS and CPPFLAGS are necessary for the Debian hardening options to
+work, the patch makes sure that the Makefile uses the options
+---
+ src/Makefile.in | 25 +++++++++++++------------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
+
+--- a/src/Makefile.in
++++ b/src/Makefile.in
+@@ -17,6 +17,7 @@
+ 
+ CC		= @CC@
+ CFLAGS		= @CFLAGS@ -DLIBNET_VER=@LIBNET_VER@ -DHAVE_ICMPHDR=@ICMPHEADER@ -DHAVE_TCP_STATES=@TCPSTATES@ -DHAVE_BSD_UDPHDR=@HAVE_BSD_UDPHDR@
++CPPFLAGS        = @CPPFLAGS@
+ LDFLAGS		= @LDFLAGS@
+ 
+ PCAP_CFLAGS	= @PCAP_CFLAGS@
+@@ -34,38 +35,38 @@
+ 		  libnids.o scan.o tcp.o util.o allpromisc.o hash.o
+ OBJS_SHARED	= $(OBJS:.o=_pic.o)
+ .c.o:
+-	$(CC) -c $(CFLAGS) -I. $(LIBS_CFLAGS) $<
++	$(CC) $(CPPFLAGS) -c $(CFLAGS) -I. $(LIBS_CFLAGS) $<
+ static: $(LIBSTATIC)
+ shared: $(LIBSHARED)
+ # How to write the following rules compactly and portably ? 
+ # gmake accepts "%_pic.o: %.c", bsd make does not.
+ checksum_pic.o: checksum.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c checksum.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c checksum.c -o $@
+ ip_fragment_pic.o: ip_fragment.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c ip_fragment.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c ip_fragment.c -o $@
+ ip_options_pic.o: ip_options.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c ip_options.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c ip_options.c -o $@
+ killtcp_pic.o: killtcp.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c killtcp.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c killtcp.c -o $@
+ libnids_pic.o: libnids.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c libnids.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c libnids.c -o $@
+ scan_pic.o: scan.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c scan.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c scan.c -o $@
+ tcp_pic.o: tcp.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c tcp.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c tcp.c -o $@
+ util_pic.o: util.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c util.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c util.c -o $@
+ allpromisc_pic.o: allpromisc.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c allpromisc.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c allpromisc.c -o $@
+ hash_pic.o: hash.c
+-	$(CC) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c hash.c -o $@
++	$(CC) $(CPPFLAGS) -fPIC $(CFLAGS) -I. $(LIBS_CFLAGS) -c hash.c -o $@
+ 
+ 
+ $(LIBSTATIC): $(OBJS)
+ 	ar -cr $@ $(OBJS)
+ 	$(RANLIB) $@
+ $(LIBSHARED): $(OBJS_SHARED)
+-	$(CC) -shared -Wl,-soname,$(LIBSHARED) -o $(LIBSHARED) $(OBJS_SHARED) $(LIBS) $(LNETLIB) $(PCAPLIB)
++	$(CC) -shared -Wl,-soname,$(LIBSHARED) $(LDFLAGS) -o $(LIBSHARED) $(OBJS_SHARED) $(LIBS) $(LNETLIB) $(PCAPLIB)
+ 
+ _install install: $(LIBSTATIC)
+ 	../mkinstalldirs $(install_prefix)$(libdir)
