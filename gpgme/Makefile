@@ -41,10 +41,11 @@ endef
 CONFIGURE_ARGS += \
 	--enable-shared \
 	--disable-static \
+	--disable-gpg-test \
+	--disable-gpgsm-test \
 	--with-gpg-error-prefix="$(STAGING_DIR)/opt" \
 	--with-libassuan-prefix="$(STAGING_DIR)/opt" \
-	--enable-languages=cl \
-	--disable-gpgsm-test
+	--enable-languages=cl
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
