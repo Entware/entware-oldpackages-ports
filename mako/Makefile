@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mako
-PKG_VERSION:=1.0.10
+PKG_VERSION:=1.1.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=Mako-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://files.pythonhosted.org/packages/f9/93/63f78c552e4397549499169198698de23b559b52e57f27d967690811d16d
-PKG_HASH:=7165919e78e1feb68b4dbe829871ea9941398178fa58e6beedb9ba14acf63965
+PKG_SOURCE_URL:=https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b
+PKG_HASH:=a36919599a9b7dc5d86a7a8988f23a9a3a3d083070023bab23d64f7f1d1e0a4b
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(subst .tar.gz,,$(PKG_SOURCE))
 
