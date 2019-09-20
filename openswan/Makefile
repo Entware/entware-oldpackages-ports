@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openswan
-PKG_VERSION:=2.6.51.2
+PKG_VERSION:=2.6.51.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.openswan.org/download
-PKG_HASH:=024213881b11649a88587096a89116b735008c3cb0090455dacf5446ef36bd21
+PKG_HASH:=4124f4ce970089f301c34b9c48f54b021cf6b2b8813877942337f8022104f70d
 
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
@@ -21,7 +21,6 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/openswan
-$(call Package/openswan/Default)
   SUBMENU:=VPN
   SECTION:=net
   CATEGORY:=Network
