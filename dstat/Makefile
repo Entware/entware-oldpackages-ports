@@ -4,12 +4,13 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Project archieved
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dstat
-PKG_VERSION:=0.7.3
-PKG_REV:=b24547b52ecc7d3a699c50e9ebd45fb36395fbc2
+PKG_VERSION:=0.7.4
+PKG_REV:=6f5db0aed26bf8cf2700d4ffe90a9bd3436ac728
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
