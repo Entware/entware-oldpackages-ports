@@ -1,0 +1,8 @@
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,4 +1,4 @@
+-SUBDIRS = src doc
++SUBDIRS = src
+ 
+ sysconf_DATA = oidentd.conf \
+ 	oidentd_masq.conf
