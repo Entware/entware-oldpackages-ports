@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=livemedia
-PKG_VERSION:=2019.09.18
+PKG_VERSION:=2019.12.30
 PKG_RELEASE:=1
 
 PKG_SOURCE:=live.$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.live555.com/liveMedia/public \
 	https://download.videolan.org/pub/contrib/live555
-PKG_HASH:=7c04db4ba5048b301e27853f10004bbbbf059f3cf2686db6067d0d3e396625fd
+PKG_HASH:=65e5a6ca671023e8783b28894ffd8e290ca7b40bb282554e2af802ff4c8d03b0
 
 PKG_INSTALL:=1
 
@@ -54,6 +54,8 @@ define Package/vobstreamer
 $(call Package/livemedia/Default)
   TITLE+= (vobStreamer)
 endef
+
+TARGET_CFLAGS += -DNO_OPENSSL=1
 
 define Build/Configure
 	    find $(PKG_BUILD_DIR) -name Makefile.* -exec \
