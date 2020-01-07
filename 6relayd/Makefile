@@ -38,6 +38,8 @@ define Package/6relayd/description
  in case no delegated prefixes are provided by the upstream router.
 endef
 
+TARGET_CFLAGS += -Wno-stringop-truncation
+
 define Package/6relayd/install
 	$(INSTALL_DIR) $(1)/opt/sbin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/6relayd $(1)/opt/sbin/
