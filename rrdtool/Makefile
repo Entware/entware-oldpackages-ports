@@ -17,18 +17,18 @@ PKG_SOURCE_URL:=http://oss.oetiker.ch/rrdtool/pub/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_HASH:=3190efea410a6dd035799717948b2df09910f608d72d23ee81adad4cd0184ae9
 
-PKG_BUILD_DEPENDS:=python
+#PKG_BUILD_DEPENDS:=python
 
 PKG_CONFIG_DEPENDS:= \
-	CONFIG_PACKAGE_python-rrd \
-	CONFIG_PACKAGE_rrdcgi \
+	CONFIG_PACKAGE_rrdcgi
+#	CONFIG_PACKAGE_python-rrd
 
 PKG_FIXUP:=autoreconf
 
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
+#include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
 
 define Package/rrdtool/Default
   SECTION:=utils
@@ -47,12 +47,14 @@ endef
 
 define Package/rrdcgi
 $(call Package/rrdtool/Default)
+  SUBMENU:=Database
   TITLE+= CGI graphing tool (v1.2.x)
   DEPENDS+= +librrd +cgilib
 endef
 
 define Package/rrdtool
 $(call Package/rrdtool/Default)
+  SUBMENU:=Database
   TITLE+= management tools (v1.2.x)
   DEPENDS+= +librrd
 endef
@@ -101,7 +103,7 @@ else
 endif
 
 define Build/Compile
-	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
+	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; true)
 	$(call Build/Compile/Default)
 endef
 
