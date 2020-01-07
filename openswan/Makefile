@@ -34,6 +34,8 @@ define Package/openswan/description
  This package contains the Openswan user-land daemon.
 endef
 
+TARGET_CFLAGS += -Wno-stringop-truncation
+
 OPENSWAN_MAKEFLAGS:= \
 	-C $(PKG_BUILD_DIR) \
 	$(TARGET_CONFIGURE_OPTS) \
