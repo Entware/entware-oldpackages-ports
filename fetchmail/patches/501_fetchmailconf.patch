@@ -1,10 +1,8 @@
 by  <Hector Garcia <hector@debian.org>>
 
 Remove header from fetchmailconf.py since it is a library.
-Index: fetchmail-6.3.13/fetchmailconf.py
-===================================================================
---- fetchmail-6.3.13.orig/fetchmailconf.py	2009-09-24 01:11:14.000000000 +0200
-+++ fetchmail-6.3.13/fetchmailconf.py	2010-02-01 16:33:46.000000000 +0100
+--- a/fetchmailconf.py
++++ b/fetchmailconf.py
 @@ -1,5 +1,3 @@
 -#!/usr/bin/env python
 -#
