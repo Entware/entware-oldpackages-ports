@@ -9,14 +9,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
-PKG_VERSION:=2.6
+PKG_VERSION:=2.7
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://weechat.org/files/src
-PKG_HASH:=fa9e3130e7afdfb6eff1b7892caac3efdd38a442f9989ca8c061eced2c755148
+PKG_HASH:=56fc42a4afece57bc27f95a2d155815a5e6472f32535add4c0ab4ce3b5e399e7
 
-PKG_BUILD_DEPENDS:=perl python
+PKG_BUILD_DEPENDS:=perl python3
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -42,15 +42,16 @@ TARGET_LDFLAGS += \
 CMAKE_OPTIONS+= \
 	-DWEECHAT_HOME="/opt/var/weechat" \
 	-DCA_FILE="/opt/etc/ssl/certs/ca-certificates.crt" \
-	-DPYTHON_EXECUTABLE="$(STAGING_DIR)/host/bin/python2.7" \
-	-DPYTHON_INCLUDE_PATH="$(STAGING_DIR)/opt/include/python2.7" \
-	-DPYTHON_LIBRARY="$(STAGING_DIR)/opt/lib/libpython2.7.so" \
-	-DPERL_EXECUTABLE:FILEPATH="$(STAGING_DIR)/host/bin/perl" \
+	-DPYTHON_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/python3" \
+	-DPYTHON_INCLUDE_DIRS="$(STAGING_DIR)/opt/include/python3.8" \
+	-DPYTHON_LIBRARIES="$(STAGING_DIR)/opt/lib/libpython3.8.so" \
+	-DPERL_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/usr/bin/perl" \
 	-DPERL_INCLUDE_PATH="$(STAGING_DIR)/opt/lib/perl5/5.28/CORE" \
 	-DPERL_LIBRARY="$(STAGING_DIR)/opt/lib/perl5/5.28/CORE/libperl.so" \
 	-DENABLE_JAVASCRIPT=OFF \
-	-DENABLE_LUA=OFF \
 	-DENABLE_GUILE=OFF \
+	-DENABLE_LUA=OFF \
+	-DENABLE_PHP=OFF \
 	-DENABLE_RUBY=OFF \
 	-DENABLE_TCL=OFF
 
@@ -76,7 +77,7 @@ Please install optional dependencies first if you want to use weechat scripts.
 opkg install perl
 
 * for Python scripts:
-opkg install python-light
+opkg install python3-light
 EOF
 endef
 
