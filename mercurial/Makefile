@@ -8,22 +8,22 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mercurial
-PKG_VERSION:=5.1.1
+PKG_VERSION:=5.2
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://files.pythonhosted.org/packages/22/39/e1a95f6048aa0785b82f5faad8281ae7320894a635cb4a57e19479639c92
-PKG_HASH:=35fc8ba5e0379c1b3affa2757e83fb0509e8ac314cbd9f1fd133cf265d16e49f
+PYPI_NAME:=$(PKG_NAME)
+PKG_HASH:=ff030e923f03ee15c91191996fcb099bfcfa60c7df263be227f67b6a65d36194
 
 PKG_BUILD_DEPENDS:=zstd
 
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
 define Package/mercurial
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+python
+  DEPENDS:=+python3
   TITLE:=Mercurial Source Control Management (SCM) system
   URL:=https://www.mercurial-scm.org/
   SUBMENU:=Version Control Systems
@@ -35,7 +35,7 @@ define Package/mercurial/description
 endef
 
 define Build/Compile
-	$(call Build/Compile/PyMod,, \
+	$(call Build/Compile/Py3Mod,, \
 		install --prefix=/opt --root=$(PKG_INSTALL_DIR) \
 	)
 endef
@@ -43,11 +43,14 @@ endef
 define Package/mercurial/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/hg $(1)/opt/bin
-	$(SED) 's!/usr/bin/env python!/opt/bin/python!' $(1)/opt/bin/hg
-	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
+	$(SED) 's!/usr/bin/env python!/opt/bin/python3!' $(1)/opt/bin/hg
+	$(INSTALL_DIR) $(1)$(PYTHON3_PKG_DIR)
 	$(CP) \
-		$(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
-		$(1)$(PYTHON_PKG_DIR)
+		$(PKG_INSTALL_DIR)$(PYTHON3_PKG_DIR)/* \
+		$(1)$(PYTHON3_PKG_DIR)
+	# Entware specific: fix exec path in scripts
+	$(SED) 's,^#!.*python,#!/opt/bin/python3,' \
+		$(1)$(PYTHON3_PKG_DIR)/mercurial/statprof.py
 endef
 
 $(eval $(call BuildPackage,mercurial))
