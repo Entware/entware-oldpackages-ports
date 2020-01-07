@@ -1,6 +1,6 @@
 --- a/rsnapshot.conf.default.in
 +++ b/rsnapshot.conf.default.in
-@@ -20,7 +20,7 @@
+@@ -20,7 +20,7 @@ config_version	1.2
  
  # All snapshots will be stored under this root directory.
  #
@@ -9,7 +9,7 @@
  
  # If no_create_root is enabled, rsnapshot will not automatically create the
  # snapshot_root directory. This is particularly useful if you are backing
-@@ -37,7 +37,7 @@
+@@ -37,7 +37,7 @@ snapshot_root	/.snapshots/
  #
  # See the README file or the man page for more details.
  #
@@ -18,7 +18,7 @@
  
  # uncomment this to use the rm program instead of the built-in perl routine.
  #
-@@ -50,21 +50,21 @@
+@@ -50,21 +50,21 @@ snapshot_root	/.snapshots/
  
  # Uncomment this to enable remote ssh backups over rsync.
  #
@@ -44,7 +44,7 @@
  
  # Specify the path to a script (and any optional arguments) to run right
  # before rsnapshot syncs files
-@@ -117,14 +117,14 @@
+@@ -117,14 +117,14 @@ loglevel	3
  # If you enable this, data will be written to the file you specify. The
  # amount of data written is controlled by the "loglevel" parameter.
  #
@@ -61,7 +61,7 @@
  
  # By default, rsnapshot check lockfile, check if PID is running
  # and if not, consider lockfile as stale, then start
-@@ -222,10 +222,22 @@
+@@ -222,10 +222,22 @@ lockfile	/var/run/rsnapshot.pid
  ### BACKUP POINTS / SCRIPTS ###
  ###############################
  

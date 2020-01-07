@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rsnapshot
-PKG_VERSION:=1.4.2
+PKG_VERSION:=1.4.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/rsnapshot/rsnapshot/releases/download/$(PKG_VERSION)
-PKG_HASH:=042a81c45b325296b21c363f417985d857f083f87c5c27f5a64677a052f24e16
+PKG_HASH:=2b0c7aad3e14e0260513331425a605d73c3bdd7936d66d418d7714a76bc55bd1
 
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
@@ -21,7 +21,7 @@ PKG_BUILD_PARALLEL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/rsnapshot
-  SUBMENU:=backup
+  SUBMENU:=Backup
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=rsnapshot Backup
