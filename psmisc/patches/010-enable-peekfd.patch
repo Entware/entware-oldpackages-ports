@@ -1,8 +1,8 @@
 --- a/configure.ac
 +++ b/configure.ac
-@@ -164,7 +164,6 @@ AM_CONDITIONAL(WANT_PEEKFD_PPC,
- AM_CONDITIONAL(WANT_PEEKFD_ARM,
-    test $ac_cv_member_struct_pt_regs_uregs = yes)
+@@ -167,7 +167,6 @@ AM_CONDITIONAL(WANT_PEEKFD_ARM,
+ AM_CONDITIONAL(WANT_PEEKFD_ARM64,
+    test $ac_cv_member_struct_user_pt_regs_regs = yes)
  AM_CONDITIONAL(WANT_PEEKFD_MIPS,
 -   test $build_cpu = mipsel &&
     test $ac_cv_member_struct_pt_regs_regs = yes &&
