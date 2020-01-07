@@ -11,7 +11,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=remind-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://dianne.skoll.ca/projects/remind/download
-PKG_HASH:=eeb79bd4019d23a033fe3e86c672d960399db6a27c747e5b466ad55831dfca93
+PKG_HASH:=a52dbb033cb47a365689f0d03682ce11eff9c408f575cf69b17b763af4841204
 
 include $(INCLUDE_DIR)/package.mk
 
