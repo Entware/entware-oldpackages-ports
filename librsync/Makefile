@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=librsync
-PKG_VERSION:=2.1.0
-PKG_REV:=03b0f725964efe58c83e132073f3f90f9e08325e
+PKG_VERSION:=2.2.1
+PKG_REV:=5917692418657dc78c9cbde3a8db4c85f25b9c8d
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -17,6 +17,8 @@ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/librsync/librsync.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
+
+CMAKE_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -34,13 +36,6 @@ define Package/librsync/description
 	synchronization that was popularized by the rsync utility and is
 	used in rproxy. This algorithm transfers the differences between 2
 	files without needing both files on the same system.
-endef
-
-define Build/InstallDev
-	$(INSTALL_DIR) $(1)/opt/include
-	$(CP) $(PKG_INSTALL_DIR)/opt/include/librsync*.h $(1)/opt/include
-	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/librsync.so* $(1)/opt/lib
 endef
 
 define Package/librsync/install
