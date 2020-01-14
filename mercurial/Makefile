@@ -23,10 +23,11 @@ include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 define Package/mercurial
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+python3
+  SUBMENU:=Version Control Systems
   TITLE:=Mercurial Source Control Management (SCM) system
   URL:=https://www.mercurial-scm.org/
-  SUBMENU:=Version Control Systems
+  DEPENDS:=+python3
+  VARIANT:=python3
 endef
 
 define Package/mercurial/description
@@ -34,23 +35,5 @@ define Package/mercurial/description
   handling of very large distributed projects.
 endef
 
-define Build/Compile
-	$(call Build/Compile/Py3Mod,, \
-		install --prefix=/opt --root=$(PKG_INSTALL_DIR) \
-	)
-endef
-
-define Package/mercurial/install
-	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/hg $(1)/opt/bin
-	$(SED) 's!/usr/bin/env python!/opt/bin/python3!' $(1)/opt/bin/hg
-	$(INSTALL_DIR) $(1)$(PYTHON3_PKG_DIR)
-	$(CP) \
-		$(PKG_INSTALL_DIR)$(PYTHON3_PKG_DIR)/* \
-		$(1)$(PYTHON3_PKG_DIR)
-	# Entware specific: fix exec path in scripts
-	$(SED) 's,^#!.*python,#!/opt/bin/python3,' \
-		$(1)$(PYTHON3_PKG_DIR)/mercurial/statprof.py
-endef
-
+$(eval $(call Py3Package,mercurial))
 $(eval $(call BuildPackage,mercurial))
