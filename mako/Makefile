@@ -7,47 +7,54 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=mako
+PKG_NAME:=python-mako
 PKG_VERSION:=1.1.0
 PKG_RELEASE:=1
 
 PYPI_NAME:=Mako
 PKG_HASH:=a36919599a9b7dc5d86a7a8988f23a9a3a3d083070023bab23d64f7f1d1e0a4b
 
+PKG_LICENSE:=BSD
+PKG_LICENSE_FILES:=LICENSES.txt
+
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
-define Package/mako
-  SUBMENU:=Python
+define Package/python-mako/Default
   SECTION:=lang
   CATEGORY:=Languages
-  TITLE:=Mako Templates for Python
-  URL:=http://www.makotemplates.org/
-  DEPENDS:=+python
+  SUBMENU:=Python
+  TITLE:=Mako Templates
+  URL:=https://www.makotemplates.org/
 endef
 
-define Package/mako/description
-Mako is a template library written in Python. It provides a familiar,
-non-XML syntax which compiles into Python modules for maximum
-performance. Mako's syntax and API borrows from the best ideas of many
-others, including Django templates, Cheetah, Myghty, and
-Genshi. Conceptually, Mako is an embedded Python (i.e. Python Server
-Page) language, which refines the familiar ideas of componentized
-layout and inheritance to produce one of the most straightforward and
-flexible models available, while also maintaining close ties to Python
-calling and scoping semantics.
+define Package/python-mako
+$(call Package/python-mako/Default)
+  DEPENDS+=+PACKAGE_python-mako:python-light
+  VARIANT:=python
 endef
 
-define Build/Compile
-	$(call Build/Compile/PyMod,,install --prefix=/opt --root=$(PKG_INSTALL_DIR))
+define Package/python3-mako
+$(call Package/python-mako/Default)
+  DEPENDS+=+PACKAGE_python3-mako:python3-light
+  VARIANT:=python3
 endef
 
-define Package/mako/install
-	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
-	$(CP) \
-	    $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
-	    $(1)$(PYTHON_PKG_DIR)/
+define Package/python-mako/description
+  Mako is a template library written in Python. It provides a familiar, non-XML 
+  syntax which compiles into Python modules for maximum performance.
 endef
 
-$(eval $(call BuildPackage,mako))
+define Package/python3-mako/description
+$(call Package/python-mako/description)
+.
+(Variant for Python3)
+endef
+
+$(eval $(call PyPackage,python-mako))
+$(eval $(call BuildPackage,python-mako))
+
+$(eval $(call Py3Package,python3-mako))
+$(eval $(call BuildPackage,python3-mako))
