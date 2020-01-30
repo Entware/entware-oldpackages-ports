@@ -11,7 +11,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=dstat
 PKG_VERSION:=0.7.4
 PKG_REV:=6f5db0aed26bf8cf2700d4ffe90a9bd3436ac728
-PKG_RELEASE:=1
+PKG_RELEASE:=1a
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -26,7 +26,7 @@ define Package/dstat
   CATEGORY:=Utilities
   TITLE:=Versatile resource statistics tool
   URL:=http://dag.wieers.com/home-made/dstat/
-  DEPENDS:=+python
+  DEPENDS:=+python-ncurses +python-six
 endef
 
 define Package/dstat/description
