@@ -8,14 +8,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=upx
-PKG_VERSION:=3.95
+PKG_VERSION:=3.96
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/upx/upx.git
-PKG_SOURCE_VERSION:=7a3637ff5a800b8bcbad20ae7f668d8c8449b014
+PKG_SOURCE_VERSION:=d7ba31cab8ce8d95d2c10e88d2ec787ac52005ef
 
 include $(INCLUDE_DIR)/package.mk
+
+TAR_CMD:=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components 1 $(TAR_OPTIONS)
 
 define Package/upx
   SECTION:=utils
@@ -33,14 +35,10 @@ or other drawbacks for most of the formats supported, because of in-place
 decompression.
 endef
 
-MAKE_PATH := src
-MAKE_VARS += \
-	exeext=""
+MAKE_PATH:= src
+MAKE_VARS += exeext=""
 
-TAR_CMD:=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components 1 $(TAR_OPTIONS)
-
-TARGET_CPPFLAGS += \
-	-DUCL_NO_ASM \
+TARGET_CXXFLAGS += -DUCL_NO_ASM
 
 define Package/upx/install
 	$(INSTALL_DIR) $(1)/opt/bin
