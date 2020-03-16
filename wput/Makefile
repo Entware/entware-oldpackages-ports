@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wput
 PKG_VERSION:=0.6.2
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=@SF/wput
@@ -37,10 +37,10 @@ CONFIGURE_ARGS += \
 	--disable-g-switch \
 	--without-ssl \
 	--disable-rpath \
-	--without-libintl-prefix \
+	--without-libintl-prefix
 
 MAKE_FLAGS += \
-	CC="$(TARGET_CC) -D_XOPEN_SOURCE=600 $(TARGET_CXXFLAGS) $(TARGET_LDFLAGS)"
+	CC="$(TARGET_CC) -D_XOPEN_SOURCE=600 $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)"
 
 define Package/wput/install
 	$(INSTALL_DIR) $(1)/opt/bin
