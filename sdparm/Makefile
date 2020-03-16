@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sdparm
-PKG_VERSION:=1.10
+PKG_VERSION:=1.11
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://sg.danny.cz/sg/p
-PKG_HASH:=1ea1ed1bb1ee2aef62392618fa42da9ed027d5e655f174525c39235778292ab3
+PKG_HASH:=432fdbfe90f0c51640291faf7602489b0ae56dfb96d0c02ed02308792adc7fb0
 
 PKG_FIXUP:=autoreconf
 
@@ -22,8 +22,8 @@ include $(INCLUDE_DIR)/package.mk
 define Package/sdparm
   SECTION:=utils
   CATEGORY:=Utilities
-  TITLE:=Read or modify SCSI or USB disk parameters
   SUBMENU:=Disc
+  TITLE:=Read or modify SCSI or USB disk parameters
   URL:=http://sg.danny.cz/sg/sdparm.html
 endef
 
