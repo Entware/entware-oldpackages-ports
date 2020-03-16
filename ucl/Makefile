@@ -17,7 +17,6 @@ PKG_SOURCE_URL:=http://www.oberhumer.com/opensource/ucl/download
 PKG_HASH:=b865299ffd45d73412293369c9754b07637680e5c826915f097577cd27350348
 
 PKG_FIXUP:=autoreconf
-
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
