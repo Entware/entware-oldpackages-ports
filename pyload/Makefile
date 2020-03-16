@@ -9,8 +9,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pyload
-PKG_VERSION:=0.4.9-20161208
-PKG_REV:=ea099613e81b08a693b1f601eb5b38b753bd575e
+PKG_VERSION:=0.4.20
+PKG_REV:=1f29cd14d4c3d90d3249d20165a21c2b04ffed26
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -29,10 +29,20 @@ define Package/pyload
   URL:=http://pyload.org
 endef
 
-define Build/Configure
-endef
+Build/Configure:=:
+Build/Compile:=:
 
-define Build/Compile
+define Package/pyload/install
+	$(INSTALL_DIR) $(1)/opt/share/pyload
+	$(CP) $(PKG_BUILD_DIR)/{icons,locale,module,scripts,tests,*.py} \
+	    $(1)/opt/share/pyload
+	$(INSTALL_DIR) $(1)/opt/bin
+	$(LN) ../share/pyload/pyLoadCore.py $(1)/opt/bin/pyload
+	$(INSTALL_DIR) $(1)/opt/etc/init.d
+	$(INSTALL_BIN) ./files/S51pyload $(1)/opt/etc/init.d
+	# Entware specific: fix exec path in scripts
+	$(FIND) $(1)/opt/share -type f | $(XARGS) $(SED) \
+		's,^#!.*python,#!/opt/bin/python,'
 endef
 
 define Package/pyload/postinst
@@ -58,18 +68,6 @@ opkg install unrar unzip
 And only then configure pyload by
 pyload --configdir=/opt/var/pyload
 EOF
-endef
-
-define Package/pyload/install
-	$(INSTALL_DIR) $(1)/opt/share/pyload
-	$(CP) $(PKG_BUILD_DIR)/{icons,locale,module,scripts,tests,*.py} \
-	    $(1)/opt/share/pyload
-	$(INSTALL_DIR) $(1)/opt/bin
-	$(LN) ../share/pyload/pyLoadCore.py $(1)/opt/bin/pyload
-	$(INSTALL_DIR) $(1)/opt/etc/init.d
-	$(INSTALL_BIN) ./files/S51pyload $(1)/opt/etc/init.d
-	$(SED) 's,/usr/bin/env python,/opt/bin/python,g' \
-		$(1)/opt/share/pyload/pyLoad{Cli,Gui,Core}.py
 endef
 
 $(eval $(call BuildPackage,pyload))
