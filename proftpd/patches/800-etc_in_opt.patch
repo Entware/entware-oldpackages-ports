@@ -1,6 +1,6 @@
 --- a/modules/mod_auth_unix.c
 +++ b/modules/mod_auth_unix.c
-@@ -101,10 +101,10 @@
+@@ -101,10 +101,10 @@ extern int _pw_stayopen;
  
  module auth_unix_module;
  
@@ -33,7 +33,7 @@
  #endif
  
  /* The default location of the proftpd configuration file.  Can be
-  * overriden at runtime with the '-c' switch
+  * overridden at runtime with the '-c' switch
   */
  #ifndef PR_CONFIG_FILE_PATH
 -# define PR_CONFIG_FILE_PATH	"/etc/proftpd.conf"
@@ -49,7 +49,7 @@
  #endif
  
  /* Where your log files are kept.  The "wu-ftpd style" xferlog is
-@@ -72,19 +72,19 @@
+@@ -72,21 +72,21 @@
   * "TransferLog" and "ExtendedLog".
   */
  #ifndef PR_XFERLOG_PATH
@@ -60,8 +60,10 @@
  /* Location of the file that tells proftpd to discontinue servicing
   * requests.
   */
--#define PR_SHUTMSG_PATH		"/etc/shutmsg"
-+#define PR_SHUTMSG_PATH		"/opt/etc/shutmsg"
+ #ifndef PR_SHUTMSG_PATH
+-# define PR_SHUTMSG_PATH	"/etc/shutmsg"
++# define PR_SHUTMSG_PATH	"/opt/etc/shutmsg"
+ #endif
  
  /* Location of the file containing users that *cannot* use ftp
   * services (odd, eh?)

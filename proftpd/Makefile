@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=proftpd
-PKG_VERSION:=1.3.6
+PKG_VERSION:=1.3.7rc3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.proftpd.org/distrib/source
-PKG_HASH:=91ef74b143495d5ff97c4d4770c6804072a8c8eb1ad1ecc8cc541b40e152ecaf
+PKG_HASH:=ae06a9da10165407cc525966cf4704b3b54295957fe42a234af52944815dc9ee
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -27,7 +27,7 @@ define Package/proftpd
   TITLE:=ProFTPD FTP server
   URL:=http://www.proftpd.org/
   MAINTAINER:=Cezary Jackiewicz <cezary@eko.one.pl>
-  DEPENDS:=+libattr
+  DEPENDS:=+libattr +libidn
 endef
 
 define Package/proftpd/conffiles
@@ -42,7 +42,7 @@ CONFIGURE_ARGS += \
 	--disable-cap \
 	--disable-auth-pam \
 	--disable-strip \
-	--with-lastlog=/opt/var/log \
+	--with-lastlog=/opt/var/log
 
 CONFIGURE_VARS += \
 	ac_cv_header_curses_h=no \
