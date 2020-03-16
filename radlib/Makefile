@@ -39,7 +39,7 @@ endef
 define Package/radlib/config
 choice
 	prompt "sqlite support"
-	default RADLIB_NONE
+	default RADLIB_SQLITE
 
 	config RADLIB_NONE
 		bool "None"
