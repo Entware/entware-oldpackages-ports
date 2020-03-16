@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gpgme
-PKG_VERSION:=1.12.0
+PKG_VERSION:=1.13.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=https://www.gnupg.org/ftp/gcrypt/gpgme
-PKG_HASH:=b4dc951c3743a60e2e120a77892e9e864fb936b2e58e7c77e8581f4d050e8cd8
+PKG_HASH:=c4e30b227682374c23cddc7fdb9324a99694d907e79242a25a4deeedb393be46
 
 PKG_INSTALL:=1
 
@@ -60,7 +60,7 @@ endef
 
 define Package/libgpgme/install
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgpgme.so* $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libgpgme.so.* $(1)/opt/lib
 endef
 
 $(eval $(call BuildPackage,libgpgme))
