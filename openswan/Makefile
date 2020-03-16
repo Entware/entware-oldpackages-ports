@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openswan
 PKG_VERSION:=2.6.51.5
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.openswan.org/download
@@ -77,6 +77,9 @@ define Package/openswan/install
 	    $(1)/opt/libexec/ipsec/setup \
 	    $(1)/opt/man \
 	    $(1)/opt/share
+	# Entware specific: fix exec path in scripts
+	$(SED) 's,^#!.*perl,#!/opt/bin/perl,' $(1)/opt/libexec/ipsec/policy
+	$(SED) 's,^#!.*python,#!/opt/bin/python,' $(1)/opt/libexec/ipsec/verify
 endef
 
 $(eval $(call BuildPackage,openswan))
