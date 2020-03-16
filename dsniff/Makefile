@@ -16,10 +16,10 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.monkey.org/~dugsong/dsniff/beta
 PKG_HASH:=a9803a7a02ddfe5fb9704ce86f0ffc48453c321e88db85810db411ba0841152a
 
-PKG_BUILD_DEPENDS:=nfs-kernel-server/host
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-2.4
 
 # Make host rpcgen first
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-2.4
+PKG_BUILD_DEPENDS:=nfs-kernel-server/host
 
 include $(INCLUDE_DIR)/package.mk
 
