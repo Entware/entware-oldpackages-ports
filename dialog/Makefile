@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dialog
-PKG_VERSION:=1.3-20191210
+PKG_VERSION:=1.3-20200228
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=ftp://ftp.invisible-island.net/dialog
-PKG_HASH:=10f7c02ee5dea311e61b0d3e29eb6e18bcedd6fb6672411484c1a37729cbd7a6
+PKG_HASH:=9ff8c41d1eee9e15d14fde3109d4612b1fe6dbe71fe2c3e743bcfff5e25c1fd9
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -29,8 +29,8 @@ define Package/dialog/description
  A script-interpreter which provides a set of curses widgets.
 endef
 
-CONFIGURE_ARGS+= \
-	--with-ncursesw \
+CONFIGURE_ARGS += \
+	--with-ncursesw
 
 define Package/dialog/install
 	$(INSTALL_DIR) $(1)/opt/bin
