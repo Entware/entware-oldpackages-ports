@@ -36,12 +36,9 @@ define Package/tftpd-hpa
   TITLE:=An enhanced version of the BSD TFTP server
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
-		--without-tcpwrappers, \
-		CFLAGS="$$$$CFLAGS $$$$CPPFLAGS" \
-	)
-endef
+CONFIGURE_ARGS += \
+	--without-tcpwrappers \
+	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)"
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR)
