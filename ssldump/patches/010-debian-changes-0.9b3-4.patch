@@ -29,7 +29,7 @@ Reviewed-By: <name and email of someone who approved the patch>
 Last-Update: <YYYY-MM-DD>
 
 --- /dev/null
-+++ ssldump-0.9b3/ssldump-0.9-aes.patch
++++ b/ssldump-0.9-aes.patch
 @@ -0,0 +1,191 @@
 +Patch by Carsten Hoeger <choeger@suse.de> for ssldump >= 0.9b3 which adds support
 +for AES cipher-suites (to ssldump). For further information, please have a look to
@@ -222,8 +222,8 @@ Last-Update: <YYYY-MM-DD>
 + };
 + 
 + static int decode_HandshakeType_hello_request(ssl,dir,seg,data)
---- ssldump-0.9b3.orig/config.guess
-+++ ssldump-0.9b3/config.guess
+--- a/config.guess
++++ b/config.guess
 @@ -1,7 +1,11 @@
  #! /bin/sh
  # Attempt to guess a canonical system name.
@@ -1901,8 +1901,8 @@ Last-Update: <YYYY-MM-DD>
 +# time-stamp-format: "%:y-%02m-%02d"
 +# time-stamp-end: "'"
 +# End:
---- ssldump-0.9b3.orig/config.sub
-+++ ssldump-0.9b3/config.sub
+--- a/config.sub
++++ b/config.sub
 @@ -1,6 +1,11 @@
  #! /bin/sh
 -# Configuration validation subroutine script, version 1.1.
@@ -3435,8 +3435,8 @@ Last-Update: <YYYY-MM-DD>
 +# time-stamp-format: "%:y-%02m-%02d"
 +# time-stamp-end: "'"
 +# End:
---- ssldump-0.9b3.orig/Makefile.in
-+++ ssldump-0.9b3/Makefile.in
+--- a/Makefile.in
++++ b/Makefile.in
 @@ -70,12 +70,14 @@ LIBS += @LDFLAGS@ @LIBS@
  
  CFLAGS += @CFLAGS@ @DEFS@
@@ -3453,8 +3453,8 @@ Last-Update: <YYYY-MM-DD>
  
  install: 
  	[ -d $(BINDIR) ] || mkdir -p $(BINDIR)
---- ssldump-0.9b3.orig/configure.in
-+++ ssldump-0.9b3/configure.in
+--- a/configure.in
++++ b/configure.in
 @@ -76,7 +76,7 @@ AC_ARG_WITH(pcap,[--with-pcap		  root lo
  AC_ARG_WITH(pcap-inc,[--with-pcap-inc           PCAP include files],
  	ac_pcap_inc_dir=$withval
@@ -3464,8 +3464,8 @@ Last-Update: <YYYY-MM-DD>
  	ac_pcap_lib_dir=$withval
  )
  
---- ssldump-0.9b3.orig/ssldump.1
-+++ ssldump-0.9b3/ssldump.1
+--- a/ssldump.1
++++ b/ssldump.1
 @@ -61,12 +61,9 @@ ssldump \- dump SSL traffic on a network
  .na
  .B ssldump
@@ -3622,8 +3622,8 @@ Last-Update: <YYYY-MM-DD>
 +.SH AUTHOR
 +.LP
 +ssldump was written by Eric Rescorla <ekr@rtfm.com>.
---- ssldump-0.9b3.orig/configure
-+++ ssldump-0.9b3/configure
+--- a/configure
++++ b/configure
 @@ -16,7 +16,7 @@ ac_help="$ac_help
  ac_help="$ac_help
  --with-pcap-inc           PCAP include files"
@@ -3872,8 +3872,8 @@ Last-Update: <YYYY-MM-DD>
    rm -rf conftest*
    eval "ac_cv_func_$ac_func=yes"
  else
---- ssldump-0.9b3.orig/base/pcap-snoop.c
-+++ ssldump-0.9b3/base/pcap-snoop.c
+--- a/base/pcap-snoop.c
++++ b/base/pcap-snoop.c
 @@ -49,7 +49,6 @@ static char *RCSSTRING="$Id: pcap-snoop.
  
  #include <pcap.h>
@@ -3900,8 +3900,8 @@ Last-Update: <YYYY-MM-DD>
            exit(1);
  
  	case '?':
---- ssldump-0.9b3.orig/ssl/ssldecode.c
-+++ ssldump-0.9b3/ssl/ssldecode.c
+--- a/ssl/ssldecode.c
++++ b/ssl/ssldecode.c
 @@ -51,6 +51,7 @@
  #include <openssl/ssl.h>
  #include <openssl/hmac.h>
@@ -3920,8 +3920,8 @@ Last-Update: <YYYY-MM-DD>
      if(!(d=(ssl_decode_ctx *)malloc(sizeof(ssl_decode_ctx))))
        ABORT(R_NO_MEMORY);
      if(!(d->ssl_ctx=SSL_CTX_new(SSLv23_server_method())))
---- ssldump-0.9b3.orig/ssl/ssl_analyze.c
-+++ ssldump-0.9b3/ssl/ssl_analyze.c
+--- a/ssl/ssl_analyze.c
++++ b/ssl/ssl_analyze.c
 @@ -133,7 +133,7 @@ flag_struct flags[]={
            SSL_PRINT_DECODE
       },

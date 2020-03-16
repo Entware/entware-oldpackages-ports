@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ssldump
 PKG_VERSION:=0.9b3
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)/$(PKG_NAME)/$(PKG_VERSION)
@@ -33,22 +33,14 @@ define Package/ssldump/description
 	the connections and display the application data traffic.
 endef
 
+TARGET_CFLAGS += -D_DEFAULT_SOURCE
+
 CONFIGURE_ARGS += \
 	--enable-static \
 	--enable-shared \
 	--with-openssl-inc="$(STAGING_DIR)/opt/include" \
 	--with-openssl-lib="$(STAGING_DIR)/opt/lib" \
-	--with-pcap-inc="$(STAGING_DIR)/opt/include" \
-	--with-pcap-lib="$(STAGING_DIR)/opt/lib" \
-
-#TARGET_CFLAGS+="-DR_TRACE_ERRORS"
-
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all
-endef
-
+	--with-pcap="$(STAGING_DIR)/opt"
 
 define Package/ssldump/install
 	$(INSTALL_DIR) $(1)/opt/sbin/
