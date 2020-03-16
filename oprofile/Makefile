@@ -17,12 +17,14 @@ PKG_HASH:=95ded8bde1ec39922f0af015981a67aec63e025a501e4dc04cd65d38f73647e6
 
 PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
 
-PKG_BUILD_DEPENDS:=binutils
 PKG_LICENSE:=GPL-2.0+
+
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
+
+PKG_BUILD_DEPENDS:=binutils
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/kernel.mk
@@ -48,15 +50,10 @@ define Package/oprofile-utils
   DEPENDS:=oprofile
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
-		--with-kernel-support \
-		--without-x \
-	)
-endef
+CONFIGURE_ARGS += \
+	--without-x
 
 TARGET_CXXFLAGS += -fpermissive
-TARGET_LDFLAGS := -L$(STAGING_DIR)/opt/lib $(TARGET_LDFLAGS)
 
 define Package/oprofile-utils/install
 	$(INSTALL_DIR) $(1)/opt/bin
