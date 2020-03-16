@@ -35,7 +35,7 @@ TARGET_LDFLAGS += \
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include $(1)/opt/lib $(1)/opt/lib/pkgconfig
 	$(CP) $(PKG_INSTALL_DIR)/opt/include/libotr $(1)/opt/include
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libotr.{a,la,so*} $(1)/opt/lib
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libotr.{a,so*} $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libotr.pc $(1)/opt/lib/pkgconfig
 endef
 
