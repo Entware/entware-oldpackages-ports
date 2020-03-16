@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=livemedia
-PKG_VERSION:=2019.12.30
+PKG_VERSION:=2020.03.06
 PKG_RELEASE:=1
 
 PKG_SOURCE:=live.$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.live555.com/liveMedia/public \
 	https://download.videolan.org/pub/contrib/live555
-PKG_HASH:=65e5a6ca671023e8783b28894ffd8e290ca7b40bb282554e2af802ff4c8d03b0
+PKG_HASH:=35c0aedc6cfb91d7204a343f6944cc7ab327e0f473ad6ce3d22bc5195f86a96c
 
 PKG_INSTALL:=1
 
@@ -58,13 +58,12 @@ endef
 TARGET_CFLAGS += -DNO_OPENSSL=1
 
 define Build/Configure
-	    find $(PKG_BUILD_DIR) -name Makefile.* -exec \
-		$(SED) 's|PREFIX = /usr/local|PREFIX = /opt|g' {} \;
+	$(FIND) $(PKG_BUILD_DIR) -name Makefile.* -exec \
+		$(SED) 's|PREFIX =.*$$$$|PREFIX = /opt|g' {} \;
 	( cd $(PKG_BUILD_DIR); \
-	    $(SED) 's|@CROSS_COMPILE@|$(TARGET_CROSS)|g' \
-	    -e 's|@CFLAGS@|$(TARGET_CFLAGS)|g' \
-	    config.OpenWrt; \
-	./genMakefiles OpenWrt; \
+		$(SED) 's|@CROSS_COMPILE@|$(TARGET_CROSS)|g;  \
+			s|@CFLAGS@|$(TARGET_CFLAGS)|g' config.OpenWrt; \
+		./genMakefiles OpenWrt; \
 	)
 endef
 
