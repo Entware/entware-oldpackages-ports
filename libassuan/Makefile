@@ -41,7 +41,7 @@ endef
 CONFIGURE_ARGS += \
 	--enable-shared \
 	--enable-static \
-	--with-gpg-error-prefix="$(STAGING_DIR)/opt" \
+	--with-gpg-error-prefix="$(STAGING_DIR)/opt"
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
@@ -50,9 +50,8 @@ define Build/InstallDev
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libassuan.{a,so*} $(1)/opt/lib/
 	$(INSTALL_DIR) $(1)/opt/share/aclocal
 	$(CP) $(PKG_INSTALL_DIR)/opt/share/aclocal/libassuan.m4 $(1)/opt/share/aclocal/
-	$(INSTALL_DIR) $(1)/opt/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/bin/libassuan-config $(1)/opt/bin/
-	$(INSTALL_DIR) $(2)/bin
+	$(INSTALL_DIR) $(1)/opt/bin $(2)/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/libassuan-config $(1)/opt/bin/
 	$(LN) -nsf ../../opt/bin/libassuan-config $(2)/bin/
 endef
 
