@@ -9,18 +9,18 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
-PKG_VERSION:=2.7
+PKG_VERSION:=2.7.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://weechat.org/files/src
-PKG_HASH:=56fc42a4afece57bc27f95a2d155815a5e6472f32535add4c0ab4ce3b5e399e7
+PKG_HASH:=9d752fecb86a54470a19d8c977bc1baa01ac58625a4722e42199b85a06035c41
 
 PKG_BUILD_DEPENDS:=perl python3
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/nls.mk
 include $(INCLUDE_DIR)/cmake.mk
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/weechat
   SUBMENU:=Instant Messaging
@@ -36,10 +36,10 @@ define Package/weechat/description
  Weechat is fast, light & extensible IRC client.
 endef
 
-TARGET_LDFLAGS += \
-	-lintl -liconv
+TARGET_LDFLAGS += $(if $(ICONV_FULL),-liconv)
+TARGET_LDFLAGS += $(if $(INTL_FULL),-lintl)
 
-CMAKE_OPTIONS+= \
+CMAKE_OPTIONS += \
 	-DWEECHAT_HOME="/opt/var/weechat" \
 	-DCA_FILE="/opt/etc/ssl/certs/ca-certificates.crt" \
 	-DPYTHON_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/python3" \
