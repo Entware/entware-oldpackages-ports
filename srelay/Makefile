@@ -35,10 +35,9 @@ endef
 
 CONFIGURE_ARGS += \
 	--without-libbind \
-	--with-libwrap="$(STAGING_DIR)/opt" \
+	--with-libwrap="$(STAGING_DIR)/opt"
 
-TARGET_CPPFLAGS += \
-	-DLINUX
+TARGET_CFLAGS += -DLINUX
 
 define Package/srelay/install
 	$(INSTALL_DIR) $(1)/opt/bin
