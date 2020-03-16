@@ -26,19 +26,14 @@ define Package/fprobe
   URL:=http://fprobe.sourceforge.net/
 endef
 
-define Build/Configure
-	$(call Build/Configure/Default, \
-		--with-piddir=/opt/var \
-		--with-pcap="$(STAGING_DIR)/opt/include" \
-		--with-libpcap="$(STAGING_DIR)/opt/lib" \
-		--with-membulk=index8 \
-		--with-hash=xor8 \
-	)
-endef
+TARGET_CFLAGS += -D_DEFAULT_SOURCE
 
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR)
-endef
+CONFIGURE_ARGS += \
+	--with-piddir=/opt/var \
+	--with-pcap="$(STAGING_DIR)/opt/include" \
+	--with-libpcap="$(STAGING_DIR)/opt/lib" \
+	--with-membulk=index8 \
+	--with-hash=xor8
 
 define Package/fprobe/install
 	$(INSTALL_DIR) $(1)/opt/bin
