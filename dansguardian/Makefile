@@ -22,12 +22,11 @@ PKG_HASH:=c74e9a32b97f9a9a056fced3da23fe48fca2bc6aa9af670afe9a53dc819414f5
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
 
-include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/dansguardian
   SECTION:=net
-  DEPENDS:=+libpthread $(CXX_DEPENDS) +zlib
+  DEPENDS:=+libpthread +libstdcpp +zlib
   CATEGORY:=Network
   SUBMENU:=Web Servers/Proxies
   TITLE:=DansGuardian
@@ -39,20 +38,14 @@ define Package/dansguardian/conffiles
 /opt/etc/config/dansguardian
 endef
 
-CONFIGURE_VARS += \
-	INCLUDES="" \
-	CXXFLAGS="$$$$CXXFLAGS -fno-rtti -std=c++0x" \
-	LIBS="-lpthread" \
+TARGET_CFLAGS += -std=gnu++98
 
-define Build/Configure
-	$(call Build/Configure/Default,\
-		--disable-clamav \
-		--with-sysconfsubdir=dansguardian \
-		--with-proxyuser=root \
-		--with-proxygroup=root \
-		--disable-pcre \
-	)
-endef
+CONFIGURE_ARGS += \
+	--disable-clamav \
+	--with-sysconfsubdir=dansguardian \
+	--with-proxyuser=root \
+	--with-proxygroup=root \
+	--disable-pcre
 
 define Package/dansguardian/install
 	$(INSTALL_DIR) $(1)/opt/sbin
