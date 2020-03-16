@@ -38,14 +38,14 @@ define Package/ngrep/description
 	like tcpdump and snoop.
 endef
 
-CONFIGURE_ARGS+= \
+TARGET_CFLAGS += -D_DEFAULT_SOURCE
+
+CONFIGURE_ARGS += \
 	--with-pcap-includes=$(STAGING_DIR)/opt/include \
 	--enable-pcre \
 	--with-pcre=$(STAGING_DIR)/opt \
 	--disable-dropprivs \
-
-CONFIGURE_VARS+= \
-	LDFLAGS="$(TARGET_LDFLAGS) -lpcre" \
+	LDFLAGS="$(TARGET_LDFLAGS) -lpcre"
 
 define Package/ngrep/install	
 	$(INSTALL_DIR) $(1)/opt/bin
