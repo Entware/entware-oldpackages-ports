@@ -1,8 +1,6 @@
-Index: trunk/src/cmd/Makefile.am
-===================================================================
---- trunk/src/cmd/Makefile.am	(revision 98)
-+++ trunk/src/cmd/Makefile.am	(revision 99)
-@@ -17,5 +17,5 @@
+--- a/src/cmd/Makefile.am
++++ b/src/cmd/Makefile.am
+@@ -15,5 +15,5 @@ bind_driver_SOURCES = bind-driver.c \
  INCLUDES = -I$(top_srcdir)/lib
  LDADD = ../lib/libusbip.la @PACKAGE_LIBS@
  EXTRA_CFLAGS = @EXTRA_CFLAGS@

@@ -10,17 +10,18 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=usbip_legacy
 PKG_VERSION:=0.1.7
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=usbip-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/usbip
-PKG_MD5SUM:=d1094b6d4449787864f8be001639232c
+PKG_HASH:=a2dfd3b8c6a3a0c72ddf0cf3f01ed20b4ed9eb97c3a859542b6932ee44deb628
 
-PKG_BUILD_DEPENDS:=glib2 sysfsutils
+PKG_BUILD_DIR:=$(BUILD_DIR)/usbip-$(PKG_VERSION)
+
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/usbip-$(PKG_VERSION)
+PKG_BUILD_DEPENDS:=glib2 sysfsutils
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -56,44 +57,44 @@ $(call Package/usbip_legacy/Default)
   DEPENDS+= usbip_legacy +glib2
 endef
 
-CONFIGURE_PATH:=./src
-MAKE_PATH:=./src
-LIBTOOL_PATHS:=./src
+CONFIGURE_PATH:= src
+MAKE_PATH:= src
+LIBTOOL_PATHS:= src
 
-CFLAGS+="$(TARGET_CFLAGS) -I$(STAGING_DIR)/opt/include"
+CONFIGURE_ARGS += \
+	CFLAGS="$(TARGET_CFLAGS)" \
+	CPPFLAGS="$(TARGET_CPPFLAGS)"
+
+USB_IDS_VER:=0.318
+USB_IDS_FILE:=usb.ids.$(USB_IDS_VER)
+define Download/usb.ids
+  FILE:=$(USB_IDS_FILE)
+  URL_FILE:=usb.ids
+  URL:=@GITHUB/vcrhonek/hwdata/v$(USB_IDS_VER)
+  HASH:=84bc5452e4e45c2250e01bc74e03528b2a53c4724b2c4a5feaea76a922f83915
+endef
 
 define Package/usbip_legacy/install
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) \
-		$(PKG_INSTALL_DIR)/opt/lib/libusbip.so.* \
-		$(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libusbip.so.* $(1)/opt/lib/
 	$(INSTALL_DIR) $(1)/opt/share/usbip
-	$(CP) \
-		$(PKG_INSTALL_DIR)/opt/share/usbip/usb.ids \
-		$(1)/opt/share/usbip/
+	$(CP) $(DL_DIR)/usb.ids.$(USB_IDS_VER) $(1)/opt/share/usbip/usb.ids
 endef
 
 define Package/usbip_legacy-client/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(CP) \
-		$(PKG_INSTALL_DIR)/opt/bin/usbip \
-		$(1)/opt/bin/
+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/usbip $(1)/opt/bin/
 endef
 
 define Package/usbip_legacy-server/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(CP) \
-		$(PKG_INSTALL_DIR)/opt/bin/usbipd \
-		$(1)/opt/bin/
-	$(CP) \
-		$(PKG_INSTALL_DIR)/opt/bin/bind_driver \
-		$(1)/opt/bin/usbip_bind_driver
+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/usbipd $(1)/opt/bin/
+	$(CP) $(PKG_INSTALL_DIR)/opt/bin/bind_driver $(1)/opt/bin/usbip_bind_driver
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
-	$(CP) \
-		./files/S74usbipd \
-		$(1)/opt/etc/init.d
+	$(CP) ./files/S74usbipd $(1)/opt/etc/init.d
 endef
 
+$(eval $(call Download,usb.ids))
 $(eval $(call BuildPackage,usbip_legacy))
 $(eval $(call BuildPackage,usbip_legacy-client))
 $(eval $(call BuildPackage,usbip_legacy-server))
