@@ -41,7 +41,7 @@ CONFIGURE_ARGS += \
 	--enable-small \
 	--enable-256-colors \
 	--enable-utf-8 \
-	--without-lzma \
+	--without-lzma
 
 define Package/elinks/install
 	$(INSTALL_DIR) $(1)/opt/bin
