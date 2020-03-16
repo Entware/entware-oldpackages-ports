@@ -8,31 +8,34 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rdiff-backup
-PKG_VERSION:=1.3.3
-PKG_REV:=4864f2fcc195a1a0b3d303766505b58f16223bff
+PKG_VERSION:=2.0.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/sol1/rdiff-backup.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
+PYPI_NAME:=rdiff-backup
+PKG_HASH:=1ce16abd4232d49212654572bf1fae4cdbc94e4056d96ef506feeeb87c14a0c3
 
-PKG_BUILD_DEPENDS:=python
+PKG_LICENSE:=GPL-2.0-or-later
+PKG_LICENSE_FILES:=COPYING
 
+include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
-define Package/rdiff-backup
+define Package/rdiff-backup/Default
   SUBMENU:=Backup
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=Incremental backup utility
-  URL:=http://www.nongnu.org/rdiff-backup
-  DEPENDS:=+python +librsync +openssl-util
+  URL:=https://rdiff-backup.net/
 endef
 
-define Package/rdiff-backup/description
+define Package/python3-rdiff-backup
+$(call Package/rdiff-backup/Default)
+  DEPENDS+=+python3-light +librsync
+  VARIANT:=python3
+endef
+
+define Package/python3-rdiff-backup/description
 	rdiff-backup backs up one directory to another, possibly over a
 	network. The target directory ends up a copy of the source directory,
 	but extra reverse diffs are stored in a special subdirectory of that
@@ -41,30 +44,5 @@ define Package/rdiff-backup/description
 	backup.
 endef
 
-define Build/Configure
-	mv $(PKG_BUILD_DIR)/rdiff-backup $(PKG_BUILD_DIR)/rdiff-backup.src
-	mv $(PKG_BUILD_DIR)/rdiff-backup.src/* $(PKG_BUILD_DIR)
-	mv $(PKG_BUILD_DIR)/dist/setup.py $(PKG_BUILD_DIR)
-	mv $(PKG_BUILD_DIR)/rdiff_backup/*.c $(PKG_BUILD_DIR)
-	mv $(PKG_BUILD_DIR)/FAQ-body.html $(PKG_BUILD_DIR)/FAQ.html
-	$(call Build/Configure/Default)
-endef
-
-define PyPackage/rdiff-backup/filespec
-+|/opt/bin/rdiff-backup
-+|/opt/bin/rdiff-backup-statistics
-+|$(PYTHON_PKG_DIR)/rdiff_backup
-endef
-
-define Build/Compile
-	$(if $(Build/Compile/PyMod),,@echo Python packaging code not found.; false)
-	$(call Build/Compile/PyMod,., \
-		build --librsync-dir="$(STAGING_DIR)/opt" , \
-	)
-	$(call Build/Compile/PyMod,., \
-		install --prefix="$(PKG_INSTALL_DIR)/opt", \
-	)
-endef
-
-$(eval $(call PyPackage,rdiff-backup))
-$(eval $(call BuildPackage,rdiff-backup))
+$(eval $(call Py3Package,python3-rdiff-backup))
+$(eval $(call BuildPackage,python3-rdiff-backup))
