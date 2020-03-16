@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mrouted
-PKG_VERSION:=3.9.8
-PKG_REV:=139f1836e4950f9937125c08e0aba16ef0fbdc61
+PKG_VERSION:=4.0-rc1
+PKG_REV:=d928c58900a8ac0835ede928ec7f862acf1a1c84
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -17,6 +17,9 @@ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/troglobit/mrouted.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
+
+PKG_FIXUP:=autoreconf
+PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -35,11 +38,6 @@ define Package/mrouted/description
  support, which can be used to cross non-multicast-aware routers.
 endef
 
-CONFIGURE_ARGS := \
-	--with-includes=$(LINUX_DIR)
-
-TARGET_CFLAGS += -std=gnu99
-
 define Package/mrouted/conffiles
 /opt/etc/mrouted.conf
 endef
@@ -49,7 +47,7 @@ define Package/mrouted/install
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/mrouted.conf $(1)/opt/etc
 	$(INSTALL_BIN) ./files/S69mrouted $(1)/opt/etc/init.d
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/{mrouted,map-mbone,mrinfo,mtrace} \
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/sbin/{map-mbone,mrinfo,mroutectl,mrouted,mtrace} \
 		$(1)/opt/sbin
 endef
 
