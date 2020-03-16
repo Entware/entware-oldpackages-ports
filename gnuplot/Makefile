@@ -34,9 +34,6 @@ define Package/gnuplot/description
   MS Windows, OSX, VMS, and many other platforms.
 endef
 
-CONFIGURE_VARS += \
-	LIBS="-liconv"
-
 CONFIGURE_ARGS += \
 	--without-libcerf \
 	--without-x \
@@ -44,7 +41,8 @@ CONFIGURE_ARGS += \
 	--disable-wxwidgets \
 	--without-lua \
 	--without-cairo \
-	--without-qt
+	--without-qt \
+	LIBS="-liconv"
 
 define Package/gnuplot/install
 	$(INSTALL_DIR) $(1)/opt/bin
