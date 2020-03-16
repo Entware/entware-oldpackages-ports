@@ -104,7 +104,7 @@ CONFIGURE_ARGS+= \
 	--without-x \
 	--without-libiconv-prefix \
 	--without-sdl-prefix \
-	--without-cppunit-prefix \
+	--without-cppunit-prefix
 
 UNICODE=yes
 
