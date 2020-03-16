@@ -35,7 +35,7 @@ define Package/opendchub/description
 endef
 
 CONFIGURE_ARGS += \
-	--disable-perl \
+	--disable-perl
 
 define Package/opendchub/install
 	$(INSTALL_DIR) $(1)/opt/bin
