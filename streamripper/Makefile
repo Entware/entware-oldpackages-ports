@@ -35,8 +35,7 @@ define Package/streamripper/description
  mp3 to your hard drive.
 endef
 
-TARGET_CFLAGS += -I$(STAGING_DIR)/opt/include
-TARGET_LDFLAGS += -lpthread
+TARGET_CFLAGS += -pthread -I$(STAGING_DIR)/opt/include
 
 define Package/streamripper/install
 	$(INSTALL_DIR) $(1)/opt/bin
