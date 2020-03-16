@@ -43,14 +43,14 @@ CONFIGURE_ARGS += \
 	--disable-static \
 	--with-psrc=pcap \
 	--with-pcap-include="$(STAGING_DIR)/opt/include" \
-	--with-pcap-libraries="$(STAGING_DIR)/opt/lib" \
+	--with-pcap-libraries="$(STAGING_DIR)/opt/lib"
 
 # XXX: don't detect/use netfilter QUEUE/ULOG captures
 CONFIGURE_VARS += \
 	ac_cv_func_getifaddrs=no \
 	ac_cv_header_ifaddrs_h=no \
 	ac_cv_header_linux_netfilter_ipv4_ip_queue_h=no \
-	ac_cv_header_linux_netfilter_ipv4_ipt_ULOG_h=no \
+	ac_cv_header_linux_netfilter_ipv4_ipt_ULOG_h=no
 
 define Package/ipcad/install
 	$(INSTALL_DIR) $(1)/opt/etc
