@@ -36,7 +36,7 @@ endef
 CONFIGURE_ARGS += \
 	--enable-shared \
 	--with-audio="alsa" \
-	--with-vox="cmu_us_kal16" \
+	--with-vox="cmu_us_kal16"
 
 define Package/flite/install
 	$(INSTALL_DIR) $(1)/opt/bin
