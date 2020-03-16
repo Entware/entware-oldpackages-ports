@@ -1,0 +1,10 @@
+--- a/src/resuse.c
++++ b/src/resuse.c
+@@ -22,6 +22,7 @@
+ */ 
+ 
+ #include "config.h"
++#include <string.h>
+ #include <sys/time.h>
+ #include <sys/wait.h>
+ #include <sys/resource.h>
