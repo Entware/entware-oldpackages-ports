@@ -11,13 +11,15 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=dstat
 PKG_VERSION:=0.7.4
 PKG_REV:=6f5db0aed26bf8cf2700d4ffe90a9bd3436ac728
-PKG_RELEASE:=1a
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/dagwieers/dstat.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
+
+PYTHON3_PKG_BUILD:=0
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -26,7 +28,7 @@ define Package/dstat
   CATEGORY:=Utilities
   TITLE:=Versatile resource statistics tool
   URL:=http://dag.wieers.com/home-made/dstat/
-  DEPENDS:=+python-ncurses +python-six
+  DEPENDS:=+python3-ncurses +python3-six
 endef
 
 define Package/dstat/description
