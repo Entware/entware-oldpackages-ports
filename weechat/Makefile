@@ -16,6 +16,8 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://weechat.org/files/src
 PKG_HASH:=9d752fecb86a54470a19d8c977bc1baa01ac58625a4722e42199b85a06035c41
 
+PYTHON3_PKG_BUILD:=0
+
 PKG_BUILD_DEPENDS:=perl python3
 
 include $(INCLUDE_DIR)/package.mk
