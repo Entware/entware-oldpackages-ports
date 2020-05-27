@@ -16,8 +16,8 @@ PKG_RELEASE:=2
 PKG_SOURCE:=node-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://nodejs.org/dist/$(PKG_VERSION)
 
-HOST_BUILD_DEPENDS:=python/host
-PKG_BUILD_DEPENDS:=python/host
+#HOST_BUILD_DEPENDS:=python/host
+#PKG_BUILD_DEPENDS:=python/host
 PKG_INSTALL:=1
 PKG_USE_MIPS16:=0
 PKG_BUILD_DIR:=$(BUILD_DIR)/node-$(PKG_VERSION)
@@ -83,5 +83,5 @@ define Package/node_legacy/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/node_modules/npm/node_modules/* $(1)/opt/lib/node_modules/npm/node_modules
 endef
 
-$(eval $(call HostBuild))
-$(eval $(call BuildPackage,node_legacy))
+#$(eval $(call HostBuild))
+#$(eval $(call BuildPackage,node_legacy))
