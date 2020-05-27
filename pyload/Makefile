@@ -19,12 +19,14 @@ PKG_SOURCE_URL:=https://github.com/pyload/pyload
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
 
+PYTHON3_PKG_BUILD:=0
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/pyload
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+python-curl +python-sqlite3
+  DEPENDS:=+python3-curl +python3-sqlite3
   TITLE:=A fast, lightweight and full featured download manager
   URL:=http://pyload.org
 endef
