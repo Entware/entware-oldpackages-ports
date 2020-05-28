@@ -4,7 +4,8 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Used by mediatomb only, no sense to update it
+# Abandoned in 2003
+# Used by castget
 
 include $(TOPDIR)/rules.mk
 
