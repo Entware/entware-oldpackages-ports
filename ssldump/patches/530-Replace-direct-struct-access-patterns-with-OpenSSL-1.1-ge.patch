@@ -1,0 +1,269 @@
+From: =?utf-8?b?IlNaIExpbiAo5p6X5LiK5pm6KSI=?= <szlin@debian.org>
+Date: Wed, 19 Sep 2018 16:36:00 +0800
+Subject: Replace direct struct access patterns with OpenSSL 1.1
+ getters/setters
+
+This patch is derivative from Hilko Bengen <bengen@debian.org>
+---
+ ssl/ssl_rec.c   | 59 ++++++++++++++++++++++++++++++---------------------------
+ ssl/ssldecode.c | 47 +++++++++++++++++++++++----------------------
+ 2 files changed, 55 insertions(+), 51 deletions(-)
+
+diff --git a/ssl/ssl_rec.c b/ssl/ssl_rec.c
+index 098bb2d..90658e7 100644
+--- a/ssl/ssl_rec.c
++++ b/ssl/ssl_rec.c
+@@ -149,7 +149,7 @@ int ssl_create_rec_decoder(dp,cs,mk,sk,iv)
+     else
+       memcpy(dec->mac_key->data,mk,cs->dig_len);
+ 
+-    if(!(dec->evp=(EVP_CIPHER_CTX *)malloc(sizeof(EVP_CIPHER_CTX))))
++    if(!(dec->evp=EVP_CIPHER_CTX_new()))
+       ABORT(R_NO_MEMORY);
+     EVP_CIPHER_CTX_init(dec->evp);
+     EVP_CipherInit(dec->evp,ciph,sk,iv,0);
+@@ -178,8 +178,7 @@ int ssl_destroy_rec_decoder(dp)
+     r_data_destroy(&d->write_key);
+ #ifdef OPENSSL    
+     if(d->evp){
+-      EVP_CIPHER_CTX_cleanup(d->evp);
+-      free(d->evp);
++        EVP_CIPHER_CTX_free(d->evp);
+     }
+     free(*dp);
+ #endif    
+@@ -357,41 +356,43 @@ static int tls_check_mac(d,ct,ver,data,datalen,iv,ivlen,mac)
+   UINT4 ivlen;
+   UCHAR *mac;
+   {
+-    HMAC_CTX hm;
++    HMAC_CTX *hm = HMAC_CTX_new();
++    if(!hm)
++      ERETURN(R_NO_MEMORY);
+     const EVP_MD *md;
+     UINT4 l;
+     UCHAR buf[128];
+     
+     md=EVP_get_digestbyname(digests[d->cs->dig-0x40]);
+-    HMAC_Init(&hm,d->mac_key->data,d->mac_key->len,md);
++    HMAC_Init(hm,d->mac_key->data,d->mac_key->len,md);
+ 
+     fmt_seq(d->seq,buf);
+     d->seq++;
+-    HMAC_Update(&hm,buf,8);
++    HMAC_Update(hm,buf,8);
+     buf[0]=ct;
+-    HMAC_Update(&hm,buf,1);
++    HMAC_Update(hm,buf,1);
+ 
+     buf[0]=MSB(ver);
+     buf[1]=LSB(ver);
+-    HMAC_Update(&hm,buf,2);
++    HMAC_Update(hm,buf,2);
+ 
+     buf[0]=MSB(datalen);
+     buf[1]=LSB(datalen);
+-    HMAC_Update(&hm,buf,2);
++    HMAC_Update(hm,buf,2);
+ 
+     /* for encrypt-then-mac with an explicit IV */
+     if(ivlen && iv){
+-      HMAC_Update(&hm,iv,ivlen);
+-      HMAC_Update(&hm,data,datalen-ivlen);
++      HMAC_Update(hm,iv,ivlen);
++      HMAC_Update(hm,data,datalen-ivlen);
+     }
+     else
+-      HMAC_Update(&hm,data,datalen);
++      HMAC_Update(hm,data,datalen);
+     
+-    HMAC_Final(&hm,buf,&l);
++    HMAC_Final(hm,buf,&l);
+     if(memcmp(mac,buf,l))
+       ERETURN(SSL_BAD_MAC);
+ 
+-    HMAC_cleanup(&hm);
++    HMAC_CTX_free(hm);
+     return(0);
+   }
+ 
+@@ -403,7 +404,7 @@ int ssl3_check_mac(d,ct,ver,data,datalen,mac)
+   UINT4 datalen;
+   UCHAR *mac;
+   {
+-    EVP_MD_CTX mc;
++    EVP_MD_CTX *mc = EVP_MD_CTX_new();
+     const EVP_MD *md;
+     UINT4 l;
+     UCHAR buf[64],dgst[20];
+@@ -412,42 +413,44 @@ int ssl3_check_mac(d,ct,ver,data,datalen,mac)
+     pad_ct=(d->cs->dig==DIG_SHA)?40:48;
+     
+     md=EVP_get_digestbyname(digests[d->cs->dig-0x40]);
+-    EVP_DigestInit(&mc,md);
++    EVP_DigestInit(mc,md);
+ 
+-    EVP_DigestUpdate(&mc,d->mac_key->data,d->mac_key->len);
++    EVP_DigestUpdate(mc,d->mac_key->data,d->mac_key->len);
+ 
+     memset(buf,0x36,pad_ct);
+-    EVP_DigestUpdate(&mc,buf,pad_ct);
++    EVP_DigestUpdate(mc,buf,pad_ct);
+ 
+     fmt_seq(d->seq,buf);
+     d->seq++;
+-    EVP_DigestUpdate(&mc,buf,8);
++    EVP_DigestUpdate(mc,buf,8);
+ 
+     buf[0]=ct;
+-    EVP_DigestUpdate(&mc,buf,1);
++    EVP_DigestUpdate(mc,buf,1);
+     
+     buf[0]=MSB(datalen);
+     buf[1]=LSB(datalen);
+-    EVP_DigestUpdate(&mc,buf,2);    
++    EVP_DigestUpdate(mc,buf,2);    
+ 
+-    EVP_DigestUpdate(&mc,data,datalen);
++    EVP_DigestUpdate(mc,data,datalen);
+ 
+-    EVP_DigestFinal(&mc,dgst,&l);
++    EVP_DigestFinal(mc,dgst,&l);
+     
+-    EVP_DigestInit(&mc,md);
++    EVP_DigestInit(mc,md);
+ 
+-    EVP_DigestUpdate(&mc,d->mac_key->data,d->mac_key->len);
++    EVP_DigestUpdate(mc,d->mac_key->data,d->mac_key->len);
+     
+     memset(buf,0x5c,pad_ct);
+-    EVP_DigestUpdate(&mc,buf,pad_ct);
++    EVP_DigestUpdate(mc,buf,pad_ct);
+ 
+-    EVP_DigestUpdate(&mc,dgst,l);
++    EVP_DigestUpdate(mc,dgst,l);
+ 
+-    EVP_DigestFinal(&mc,dgst,&l);
++    EVP_DigestFinal(mc,dgst,&l);
+ 
+     if(memcmp(mac,dgst,l))
+       ERETURN(SSL_BAD_MAC);
+ 
++    EVP_MD_CTX_free(mc);
++
+     return(0);
+   }
+     
+diff --git a/ssl/ssldecode.c b/ssl/ssldecode.c
+index 32946e9..2572f6e 100644
+--- a/ssl/ssldecode.c
++++ b/ssl/ssldecode.c
+@@ -548,6 +548,7 @@ int ssl_process_client_key_exchange(ssl,d,msg,len)
+     int r,_status;
+     int i;
+     EVP_PKEY *pk;
++    const BIGNUM *n;
+ 
+     /* Remove the master secret if it was there
+        to force keying material regeneration in
+@@ -567,14 +568,15 @@ int ssl_process_client_key_exchange(ssl,d,msg,len)
+       if(!pk)
+ 	return(-1);
+ 
+-      if(pk->type!=EVP_PKEY_RSA)
++      if(EVP_PKEY_id(pk)!=EVP_PKEY_RSA)
+ 	return(-1);
+  
+-      if(r=r_data_alloc(&d->PMS,BN_num_bytes(pk->pkey.rsa->n)))
++      RSA_get0_key(EVP_PKEY_get0_RSA(pk), &n, NULL, NULL);
++      if(r=r_data_alloc(&d->PMS,BN_num_bytes(n)))
+ 	ABORT(r);
+ 
+       i=RSA_private_decrypt(len,msg,d->PMS->data,
+-			    pk->pkey.rsa,RSA_PKCS1_PADDING);
++        EVP_PKEY_get0_RSA(pk),RSA_PKCS1_PADDING);
+ 
+       if(i!=48)
+ 	ABORT(SSL_BAD_PMS);
+@@ -625,7 +627,7 @@ static int tls_P_hash(ssl,secret,seed,md,out)
+     UCHAR *A;
+     UCHAR _A[128],tmp[128];
+     unsigned int A_l,tmp_l;
+-    HMAC_CTX hm;
++    HMAC_CTX *hm = HMAC_CTX_new();
+ 
+     CRDUMPD("P_hash secret",secret);
+     CRDUMPD("P_hash seed",seed);
+@@ -634,17 +636,15 @@ static int tls_P_hash(ssl,secret,seed,md,out)
+     A_l=seed->len;
+ 
+     while(left){
+-      HMAC_Init(&hm,secret->data,secret->len,md);
+-      HMAC_Update(&hm,A,A_l);
+-      HMAC_Final(&hm,_A,&A_l);
+-      HMAC_cleanup(&hm);
++      HMAC_Init(hm,secret->data,secret->len,md);
++      HMAC_Update(hm,A,A_l);
++      HMAC_Final(hm,_A,&A_l);
+       A=_A;
+ 
+-      HMAC_Init(&hm,secret->data,secret->len,md);
+-      HMAC_Update(&hm,A,A_l);
+-      HMAC_Update(&hm,seed->data,seed->len);
+-      HMAC_Final(&hm,tmp,&tmp_l);
+-      HMAC_cleanup(&hm);
++      HMAC_Init(hm,secret->data,secret->len,md);
++      HMAC_Update(hm,A,A_l);
++      HMAC_Update(hm,seed->data,seed->len);
++      HMAC_Final(hm,tmp,&tmp_l);
+ 
+       tocpy=MIN(left,tmp_l);
+       memcpy(ptr,tmp,tocpy);
+@@ -652,6 +652,7 @@ static int tls_P_hash(ssl,secret,seed,md,out)
+       left-=tocpy;
+     }
+ 
++    HMAC_CTX_free(hm);
+     CRDUMPD("P_hash out",out);
+     
+     return (0);
+@@ -1027,7 +1028,7 @@ static int ssl_generate_session_hash(ssl,d)
+     int r,_status,dgi;
+     unsigned int len;
+     const EVP_MD *md;
+-    EVP_MD_CTX dgictx;
++    HMAC_CTX *dgictx = HMAC_CTX_new();
+ 
+     if(r=r_data_alloc(&d->session_hash,EVP_MAX_MD_SIZE))
+       ABORT(r);
+@@ -1041,21 +1042,21 @@ static int ssl_generate_session_hash(ssl,d)
+ 	  ERETURN(SSL_BAD_MAC);
+ 	}
+ 
+-	EVP_DigestInit(&dgictx,md);
+-	EVP_DigestUpdate(&dgictx,d->handshake_messages->data,d->handshake_messages->len);
+-	EVP_DigestFinal(&dgictx,d->session_hash->data,&d->session_hash->len);
++	EVP_DigestInit(dgictx,md);
++	EVP_DigestUpdate(dgictx,d->handshake_messages->data,d->handshake_messages->len);
++	EVP_DigestFinal(dgictx,d->session_hash->data,&d->session_hash->len);
+ 
+ 	break;
+       case SSLV3_VERSION:
+       case TLSV1_VERSION:
+       case TLSV11_VERSION:
+-	EVP_DigestInit(&dgictx,EVP_get_digestbyname("MD5"));
+-	EVP_DigestUpdate(&dgictx,d->handshake_messages->data,d->handshake_messages->len);
+-	EVP_DigestFinal_ex(&dgictx,d->session_hash->data,&d->session_hash->len);
++	EVP_DigestInit(dgictx,EVP_get_digestbyname("MD5"));
++	EVP_DigestUpdate(dgictx,d->handshake_messages->data,d->handshake_messages->len);
++	EVP_DigestFinal_ex(dgictx,d->session_hash->data,&d->session_hash->len);
+ 
+-	EVP_DigestInit(&dgictx,EVP_get_digestbyname("SHA1"));
+-	EVP_DigestUpdate(&dgictx,d->handshake_messages->data,d->handshake_messages->len);
+-	EVP_DigestFinal(&dgictx,d->session_hash->data+d->session_hash->len,&len);
++	EVP_DigestInit(dgictx,EVP_get_digestbyname("SHA1"));
++	EVP_DigestUpdate(dgictx,d->handshake_messages->data,d->handshake_messages->len);
++	EVP_DigestFinal(dgictx,d->session_hash->data+d->session_hash->len,&len);
+ 
+ 	d->session_hash->len+=len;
+ 	break;

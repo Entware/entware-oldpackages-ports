@@ -1,0 +1,38 @@
+From: Sophie Brun <sophie@freexian.com>
+Date: Wed, 19 Sep 2018 16:34:06 +0800
+Subject: Fix warning about deprecated macro _BSD_SOURCE
+
+use _DEFAULT_SOURCE: _BSD_SOURCE and _SVID_SOURCE are deprecated since
+glibc 2.20
+Last-Update: 2016-03-11
+---
+ configure    | 2 +-
+ configure.in | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/configure b/configure
+index 7169377..60ca273 100755
+--- a/configure
++++ b/configure
+@@ -3499,7 +3499,7 @@ fi
+ 
+ case "$target_os" in
+ linux*)
+-	DEFINES="$DEFINES -D_BSD_SOURCE=1 -DLINUX"
++	DEFINES="$DEFINES -D_DEFAULT_SOURCE=1 -DLINUX"
+ 	;;
+ solaris*)
+ 	LIBS="$LIBS -lsocket -lnsl"
+diff --git a/configure.in b/configure.in
+index fcdadc9..0149985 100644
+--- a/configure.in
++++ b/configure.in
+@@ -50,7 +50,7 @@ AC_CHECK_LIB(m, pow)
+ dnl System-specific stuff
+ case "$target_os" in 
+ linux*)
+-	DEFINES="$DEFINES -D_BSD_SOURCE=1 -DLINUX"
++	DEFINES="$DEFINES -D_DEFAULT_SOURCE=1 -DLINUX"
+ 	;;
+ solaris*)
+ 	LIBS="$LIBS -lsocket -lnsl"

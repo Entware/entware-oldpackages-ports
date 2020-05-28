@@ -1,0 +1,25 @@
+From: Debian Security Tools <team+pkg-security@tracker.debian.org>
+Date: Wed, 19 Sep 2018 16:34:06 +0800
+Subject: configure-openssl1.1
+
+===================================================================
+---
+ configure.in | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/configure.in b/configure.in
+index 0149985..93e0d62 100644
+--- a/configure.in
++++ b/configure.in
+@@ -187,7 +187,10 @@ if test "$ac_use_openssl" != "false"; then
+ 		save_LDFLAGS=$LDFLAGS
+ 		LIBS="-lssl -lcrypto $LIBS"
+ 		LDFLAGS="-L$dir $LDFLAGS"
+-		AC_TRY_LINK_FUNC(SSL_load_error_strings,ac_linked_libssl="true",
++		AC_TRY_LINK(
++			[#include <openssl/ssl.h>],
++			[SSL_load_error_strings()],
++			ac_linked_libssl="true",
+ 			ac_linked_libssl="false");
+ 		AC_TRY_LINK_FUNC(RC4_set_key,ac_linked_libcrypto="true",
+ 			ac_linked_libcrypto="false");
