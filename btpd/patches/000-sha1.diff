@@ -77,34 +77,6 @@
  #define SAVE_INTERVAL 300
  
  static unsigned m_nghosts;
---- a/configure.ac
-+++ b/configure.ac
-@@ -29,13 +29,6 @@ rm -f conftest.c conftest.$OBJEXT
- rm -f conftest.c conftest.$OBJEXT
- [$3]))
- 
--AC_ARG_WITH(openssl,
--[  --with-openssl=dir      use openssl installed in dir],
--[
--    AC_SUBST(openssl_LDFLAGS,["-L${withval}/lib -Wl,-R,${withval}/lib"])
--    AC_SUBST(openssl_CPPFLAGS,"-I${withval}/include")
--])
--
- AC_ARG_WITH(evloop-method,
- [  --with-evloop-method    select evloop method (epoll,poll,kqueue)],
-     evloop_methods=$withval,
-@@ -76,11 +69,6 @@ CC_ARGS_OK_IFELSE(-Wno-pointer-sign,
- ,
-     AC_MSG_RESULT(no))
- 
--old_LDFLAGS="$LDFLAGS"
--LDFLAGS="$LDFLAGS $openssl_LDFLAGS"
--AC_CHECK_LIB(crypto, SHA1_Final,:,AC_MSG_FAILURE(btpd needs openssl's libraries and headers))
--LDFLAGS=$old_LDFLAGS
--
- for m in $evloop_methods; do
-     case $m in
-     epoll)
 --- a/misc/metainfo.c
 +++ b/misc/metainfo.c
 @@ -6,8 +6,7 @@
@@ -689,43 +661,3 @@
      return err;
  }
  
---- a/Makefile.am
-+++ b/Makefile.am
-@@ -1,6 +1,6 @@
- AM_CFLAGS=-std=c99 -Wall @WARNNPS@
--AM_CPPFLAGS=-D_FILE_OFFSET_BITS=64 -D@EVLOOP_METHOD@ -I$(top_srcdir)/misc -I$(top_srcdir)/evloop @openssl_CPPFLAGS@
--AM_LDFLAGS=@openssl_LDFLAGS@
-+AM_CPPFLAGS=-D_FILE_OFFSET_BITS=64 -D@EVLOOP_METHOD@ -I$(top_srcdir)/misc -I$(top_srcdir)/evloop
-+AM_LDFLAGS=
- 
- bin_PROGRAMS=btpd/btpd cli/btcli cli/btinfo
- noinst_LIBRARIES=misc/libmisc.a evloop/libevloop.a
-@@ -25,15 +25,15 @@ btpd_btpd_SOURCES=\
- 	btpd/upload.c btpd/upload.h\
- 	btpd/util.c
- btpd_btpd_CFLAGS=@TD_CFLAGS@ $(AM_CFLAGS)
--btpd_btpd_LDADD=@TD_LIBS@ misc/libmisc.a evloop/libevloop.a -lcrypto -lm @CLOCKLIB@ @INETLIBS@
-+btpd_btpd_LDADD=@TD_LIBS@ misc/libmisc.a evloop/libevloop.a -lm @CLOCKLIB@ @INETLIBS@
- 
- # btinfo
- cli_btinfo_SOURCES=cli/btinfo.c
--cli_btinfo_LDADD=misc/libmisc.a -lcrypto -lm
-+cli_btinfo_LDADD=misc/libmisc.a -lm
- 
- # btcli
- cli_btcli_SOURCES=cli/btcli.c cli/btcli.h cli/add.c cli/del.c cli/list.c cli/kill.c cli/start.c cli/stop.c cli/stat.c
--cli_btcli_LDADD=misc/libmisc.a -lcrypto -lm @INETLIBS@
-+cli_btcli_LDADD=misc/libmisc.a -lm @INETLIBS@
- 
- # libmisc
- misc_libmisc_a_SOURCES=\
-@@ -45,7 +45,8 @@ misc_libmisc_a_SOURCES=\
- 	misc/iobuf.c misc/iobuf.h\
- 	misc/queue.h\
- 	misc/stream.c misc/stream.h\
--	misc/subr.c misc/subr.h
-+	misc/subr.c misc/subr.h\
-+	misc/sha1.c misc/sha1.h
- 
- # evloop
- EXTRA_evloop_libevloop_a_SOURCES=evloop/epoll.c evloop/kqueue.c evloop/poll.c

@@ -1,0 +1,33 @@
+--- a/config.mk
++++ c/config.mk
+@@ -3,7 +3,7 @@
+ VERSION = 0.16
+ 
+ # paths
+-PREFIX = /usr
++PREFIX = /opt
+ MANPREFIX = ${PREFIX}/share/man
+ 
+ MISC = ./misc
+@@ -11,16 +11,16 @@
+ 
+ # includes and libs
+ INCS = -I${MISC} -I${EVLOOP}
+-LIBS = -lcrypto -lm -lpthread
++LIBS = -lm -lpthread
+ 
+ # flags
+-CPPFLAGS = ${INCS} -DHAVE_CLOCK_MONOTONIC=1 -DEVLOOP_POLL
+-CFLAGS = -march=native -pipe -O3 -fno-math-errno
+-LDFLAGS = ${LIBS}
++CPPFLAGS += ${INCS} -DHAVE_CLOCK_MONOTONIC=1 -DEVLOOP_POLL
++CFLAGS += -pipe -fno-math-errno
++LDFLAGS += ${LIBS}
+ DEFS = -DPACKAGE_NAME=\"${NAME}\" -DPACKAGE_VERSION=\"${VERSION}\"
+ 
+ # compiler
+-CC = gcc
++CC ?= gcc
+ 
+ # excluded
+ EVLOOP_SRC := ${filter-out evloop/epoll.c evloop/kqueue.c, ${EVLOOP_SRC}}
