@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=proftpd
 PKG_VERSION:=1.3.7rc3
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.proftpd.org/distrib/source
@@ -19,6 +19,7 @@ PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/proftpd
   SUBMENU:=File Transfer
@@ -27,7 +28,7 @@ define Package/proftpd
   TITLE:=ProFTPD FTP server
   URL:=http://www.proftpd.org/
   MAINTAINER:=Cezary Jackiewicz <cezary@eko.one.pl>
-  DEPENDS:=+libattr +libidn
+  DEPENDS:=+libncursesw +libattr +libidn
 endef
 
 define Package/proftpd/conffiles
@@ -43,10 +44,6 @@ CONFIGURE_ARGS += \
 	--disable-auth-pam \
 	--disable-strip \
 	--with-lastlog=/opt/var/log
-
-CONFIGURE_VARS += \
-	ac_cv_header_curses_h=no \
-	ac_cv_header_ncurses_h=no
 
 define Package/proftpd/install
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
