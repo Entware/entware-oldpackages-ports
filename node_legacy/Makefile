@@ -16,18 +16,14 @@ PKG_RELEASE:=2
 PKG_SOURCE:=node-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://nodejs.org/dist/$(PKG_VERSION)
 
-#HOST_BUILD_DEPENDS:=python/host
-#PKG_BUILD_DEPENDS:=python/host
 PKG_INSTALL:=1
 PKG_USE_MIPS16:=0
 PKG_BUILD_DIR:=$(BUILD_DIR)/node-$(PKG_VERSION)
-HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/node-$(PKG_VERSION)
 
 PKG_MAINTAINER:=John Crispin <blogic@openwrt.org>
 PKG_LICENSE:=
 PKG_BUILD_PARALLEL:=0
 
-include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/node_legacy
@@ -61,14 +57,6 @@ CONFIGURE_ARGS= \
 
 TARGET_CFLAGS+= -fpermissive
 
-HOST_CONFIGURE_VARS:=
-HOST_CONFIGURE_ARGS:= \
-	--dest-os=linux \
-	--without-snapshot \
-	--prefix=$(STAGING_DIR)/host
-
-HOST_CONFIGURE_CMD:=python ./configure
-
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
 	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include
@@ -83,5 +71,4 @@ define Package/node_legacy/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/node_modules/npm/node_modules/* $(1)/opt/lib/node_modules/npm/node_modules
 endef
 
-#$(eval $(call HostBuild))
-#$(eval $(call BuildPackage,node_legacy))
+$(eval $(call BuildPackage,node_legacy))

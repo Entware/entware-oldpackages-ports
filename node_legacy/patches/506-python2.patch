@@ -1,0 +1,19 @@
+--- a/configure
++++ b/configure
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ import optparse
+ import os
+ import pprint
+--- a/deps/v8/tools/gyp/v8.gyp
++++ b/deps/v8/tools/gyp/v8.gyp
+@@ -846,7 +846,7 @@
+                   '<(SHARED_INTERMEDIATE_DIR)/debug-support.cc',
+                 ],
+                 'action': [
+-                  'python',
++                  'python2',
+                   '../../tools/gen-postmortem-metadata.py',
+                   '<@(_outputs)',
+                   '<@(heapobject_files)'
