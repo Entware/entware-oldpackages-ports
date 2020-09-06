@@ -10,13 +10,15 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=amule
 PKG_VERSION:=2.3.2
 PKG_REV:=20f3a3b3b6f5163d93cafcb98364f36956e72afa
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/amule-project/amule.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
+
+PKG_INSTALL:=1
 
 PKG_BUILD_DEPENDS:=libgd
 
@@ -61,7 +63,7 @@ CONFIGURE_ARGS+= \
 	--with-wx-prefix="$(STAGING_DIR)/opt" \
 	--with-crypto-prefix="$(STAGING_DIR)/opt" \
 	--with-libiconv-prefix="$(ICONV_PREFIX)" \
-	--with-libintl-prefix="$(INTL_PREFIX)" \
+	--with-libintl-prefix="$(INTL_PREFIX)"
 
 TARGET_LDFLAGS += \
 	-liconv
@@ -72,13 +74,6 @@ TARGET_CFLAGS += \
 define Build/Configure
 	( cd $(PKG_BUILD_DIR); ./autogen.sh )
 	$(call Build/Configure/Default)
-endef
-
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		HOSTCC="$(HOSTCC)" \
-		DESTDIR="$(PKG_INSTALL_DIR)" \
-		all install
 endef
 
 define Package/amule/install
