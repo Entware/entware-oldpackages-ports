@@ -1,6 +1,6 @@
 --- a/mcabber/settings.c
 +++ b/mcabber/settings.c
-@@ -100,7 +100,7 @@
+@@ -121,7 +121,7 @@
    if (config_dir)
      return config_dir;
  
