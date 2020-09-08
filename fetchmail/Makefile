@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fetchmail
-PKG_VERSION:=6.4.8
+PKG_VERSION:=6.4.12
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)/branch_6.4
-PKG_HASH:=26cd936ece146e056cdf79a676a33738b4eab0a5ae2edf3fce5ba034721b09bd
+PKG_HASH:=2b84e0971dbf683ec7edd313f9218adbc7dc51c1de9825b3b549bf619c1a4887
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -67,7 +67,7 @@ endif
 
 ifeq ($(BUILD_VARIANT),nossl)
 	CONFIGURE_ARGS += \
-		--without-ssl
+		--with-ssl=no
 endif
 
 CONFIGURE_VARS += \
