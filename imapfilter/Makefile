@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=imapfilter
-PKG_VERSION:=2.6.16
-PKG_REV:=cc5a6480586f514b4faffe26c16a93f9569f2f68
+PKG_VERSION:=2.7.4
+PKG_REV:=f6b854bc485a1ca307ca4a87af2b175132a70f5c
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -23,7 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/imapfilter
   SECTION:=mail
   CATEGORY:=Mail
-  DEPENDS:=+liblua +libopenssl +libpcre
+  DEPENDS:=+liblua +libopenssl +libpcre2
   TITLE:=IMAP server based email filtering
   URL:=http://github.com/lefcha/imapfilter
 endef
