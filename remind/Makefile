@@ -6,12 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=remind
-PKG_VERSION:=03.03.01
+PKG_VERSION:=03.03.03
 PKG_RELEASE:=1
 
-PKG_SOURCE:=remind-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://dianne.skoll.ca/projects/remind/download
-PKG_HASH:=d1a164d1c2d1e963d5f1f251457a8065cae12f36e3914cac1e54275180499478
+PKG_HASH:=10f946fd5b5cd83e4ba435ca493d3ebff235a5808aef1f871010942e95ea8e02
 
 include $(INCLUDE_DIR)/package.mk
 
