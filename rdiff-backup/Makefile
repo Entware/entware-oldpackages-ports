@@ -32,7 +32,6 @@ endef
 define Package/python3-rdiff-backup
 $(call Package/rdiff-backup/Default)
   DEPENDS+=+python3-light +librsync
-  VARIANT:=python3
 endef
 
 define Package/python3-rdiff-backup/description
