@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mcabber
-PKG_VERSION:=1.1.1
+PKG_VERSION:=1.1.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://mcabber.com/files
-PKG_HASH:=d789ceb33eaa78967c172241e941d43f91300ee0235a33f826f3df6f1163f959
+PKG_SOURCE_URL:=https://mcabber.com/files
+PKG_HASH:=c4a1413be37434b6ba7d577d94afb362ce89e2dc5c6384b4fa55c3e7992a3160
 
 PKG_INSTALL:=1
 
@@ -26,7 +26,7 @@ define Package/mcabber
   CATEGORY:=Network
   DEPENDS:=+libncursesw +loudmouth +libcharset +libidn +libgpgme +libotr
   TITLE:=Jabber console client
-  URL:=http://mcabber.com
+  URL:=https://mcabber.com
   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
 endef
 
