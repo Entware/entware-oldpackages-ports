@@ -8,9 +8,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ssldump
-PKG_VERSION:=1.1
-PKG_REV:=a6c098fb6860e11111d00b60eb50c8f9f411be66
+PKG_VERSION:=1.2
 PKG_RELEASE:=1
+PKG_REV:=df9d6f282c5254e82c7a5f94e395027ac4b967d1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -36,10 +36,6 @@ define Package/ssldump/description
  the records and displays them in a textual form to stdout. If provided with the appropriate keying material,
  it will also decrypt the connections and display the application data traffic.
 endef
-
-CONFIGURE_ARGS += \
-	--with-pcap="$(STAGING_DIR)/opt" \
-	--with-openssl="$(STAGING_DIR)/opt"
 
 define Package/ssldump/install
 	$(INSTALL_DIR) $(1)/opt/sbin
