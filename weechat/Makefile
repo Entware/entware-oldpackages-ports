@@ -10,19 +10,19 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
 PKG_VERSION:=2.9
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://weechat.org/files/src
 PKG_HASH:=eab406c385c3a10d0107ddc3aac6596ae8c59af99e9158c6d769e90ec9adfa0e
-
-PYTHON3_PKG_BUILD:=0
 
 PKG_BUILD_DEPENDS:=perl python3
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 include $(INCLUDE_DIR)/nls.mk
+include $(TOPDIR)/feeds/packages/lang/perl/perlver.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-version.mk
 
 define Package/weechat
   SUBMENU:=Instant Messaging
@@ -45,11 +45,11 @@ CMAKE_OPTIONS += \
 	-DWEECHAT_HOME="/opt/var/weechat" \
 	-DCA_FILE="/opt/etc/ssl/certs/ca-certificates.crt" \
 	-DPYTHON_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/bin/python3" \
-	-DPYTHON_INCLUDE_DIRS="$(STAGING_DIR)/opt/include/python3.8" \
-	-DPYTHON_LIBRARIES="$(STAGING_DIR)/opt/lib/libpython3.8.so" \
+	-DPYTHON_INCLUDE_DIRS="$(STAGING_DIR)/opt/include/python$(PYTHON3_VERSION)" \
+	-DPYTHON_LIBRARIES="$(STAGING_DIR)/opt/lib/libpython$(PYTHON3_VERSION).so" \
 	-DPERL_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/usr/bin/perl" \
-	-DPERL_INCLUDE_PATH="$(STAGING_DIR)/opt/lib/perl5/5.28/CORE" \
-	-DPERL_LIBRARY="$(STAGING_DIR)/opt/lib/perl5/5.28/CORE/libperl.so" \
+	-DPERL_INCLUDE_PATH="$(STAGING_DIR)/opt/lib/perl5/$(PERL_VERSION2)/CORE" \
+	-DPERL_LIBRARY="$(STAGING_DIR)/opt/lib/perl5/$(PERL_VERSION2)/CORE/libperl.so" \
 	-DENABLE_JAVASCRIPT=OFF \
 	-DENABLE_GUILE=OFF \
 	-DENABLE_LUA=OFF \
