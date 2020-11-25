@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mercurial
-PKG_VERSION:=5.5.1
+PKG_VERSION:=5.6
 PKG_RELEASE:=1
 
 PYPI_NAME:=$(PKG_NAME)
-PKG_HASH:=4f95ad8d575941835d67210e9f8700cc594a441e4fd0bd029c084923b4f40874
+PKG_HASH:=dfa7b3b5082783763710504f242ec487a5d801dc4bcd701cdad4b6ffc1f062c2
 
 PKG_BUILD_DEPENDS:=zstd
 
@@ -27,7 +27,6 @@ define Package/mercurial
   TITLE:=Mercurial Source Control Management (SCM) system
   URL:=https://www.mercurial-scm.org/
   DEPENDS:=+python3
-  VARIANT:=python3
 endef
 
 define Package/mercurial/description
