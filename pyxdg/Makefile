@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pyxdg
-PKG_VERSION:=0.26
-PKG_RELEASE:=2
+PKG_VERSION:=0.27
+PKG_RELEASE:=1
 
 PYPI_NAME:=pyxdg
-PKG_HASH:=fe2928d3f532ed32b39c32a482b54136fe766d19936afc96c8f00645f9da1a06
+PKG_HASH:=80bd93aae5ed82435f20462ea0208fb198d8eec262e831ee06ce9ddb6b91c5a5
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
