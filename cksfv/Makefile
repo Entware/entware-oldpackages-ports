@@ -4,17 +4,16 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2009
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cksfv
-PKG_VERSION:=1.3.14
-PKG_RELEASE:=3
+PKG_VERSION:=1.3.15
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://zakalwe.fi/~shd/foss/cksfv/files
-PKG_HASH:=010facce85b317b7b9f952c84cd59ce03476a2b685db33a49b6ea0d1b38378ea
+PKG_HASH:=a173be5b6519e19169b6bb0b8a8530f04303fe3b17706927b9bd58461256064c
 
 include $(INCLUDE_DIR)/package.mk
 

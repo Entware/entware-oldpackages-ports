@@ -1,6 +1,6 @@
---- cksfv-1.3.14.orig/cksfv.1
-+++ cksfv-1.3.14/cksfv.1
-@@ -52,8 +52,9 @@
+--- a/cksfv.1
++++ b/cksfv.1
+@@ -52,8 +52,9 @@ to verify checksums in a different direc
  .B \-f file
  Verify checksums in the sfv file
  .TP
@@ -12,9 +12,9 @@
  .TP
  .B \-i
  Ignore case in filenames. This is used in the checksum verification mode.
---- cksfv-1.3.14.orig/src/readsfv.c
-+++ cksfv-1.3.14/src/readsfv.c
-@@ -84,6 +84,18 @@
+--- a/src/readsfv.c
++++ b/src/readsfv.c
+@@ -80,6 +80,18 @@ int readsfv(char *fn, char *dir, int arg
  	    fprintf(stderr, "cksfv: %s: %s\n", fn, strerror(errno));
  	return 1;
      }
@@ -33,4 +33,3 @@
  
      if (chdir(dir) != 0) {
  	if (!TOTALLY_QUIET)
-
