@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mrouted
-PKG_VERSION:=4.0
-PKG_REV:=d21ebd564c2aaa0b01372dda7f4c4ea90ab8e988
+PKG_VERSION:=4.1
+PKG_REV:=aa80bcab96ec1e58c40edcffe487a58a785aafca
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
