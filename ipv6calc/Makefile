@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ipv6calc
-PKG_VERSION:=2.2.0
+PKG_VERSION:=3.0.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.bieringer.de/pub/linux/IPv6/ipv6calc
-PKG_HASH:=1935352f6171b07f18ce0487ee95ffcc006ea3f653f7cba564d2d8e135f04ca1
+PKG_HASH:=8728a823709bc39c7aecd29ee19508816accbaa27dfd15933fe1fa2e2cf1fcd7
 
 PKG_INSTALL:=1
 
