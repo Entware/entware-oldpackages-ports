@@ -9,7 +9,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=node_legacy
+PKG_NAME:=node-legacy
 PKG_VERSION:=v0.10.48
 PKG_RELEASE:=2
 
@@ -26,22 +26,21 @@ PKG_BUILD_PARALLEL:=0
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/node_legacy
+define Package/node-legacy
   SECTION:=lang
   CATEGORY:=Languages
   SUBMENU:=Node.js
   TITLE:=Node.js is a platform built on Chrome's JavaScript runtime
   URL:=http://nodejs.org/
   DEPENDS:=+libstdcpp +libuv +zlib +ca-certificates @arm
+  PROVIDES:=node_legacy
 endef
 
-define Package/node_legacy/description
+define Package/node-legacy/description
   Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses
   an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js'
    package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
 endef
-
-CPU:=$(subst x86_64,x64,$(subst i386,ia32,$(ARCH)))
 
 MAKE_VARS += \
 	DESTCPU=$(CPU)
@@ -62,7 +61,7 @@ define Build/InstallDev
 	$(CP) $(PKG_INSTALL_DIR)/opt/include/* $(1)/opt/include
 endef
 
-define Package/node_legacy/install
+define Package/node-legacy/install
 	mkdir -p $(1)/opt/bin $(1)/opt/lib/node_modules/npm/{bin,lib,node_modules}
 	$(CP) $(PKG_INSTALL_DIR)/opt/bin/{node,npm} $(1)/opt/bin
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/node_modules/npm/{package.json,LICENSE,cli.js} $(1)/opt/lib/node_modules/npm
@@ -71,4 +70,4 @@ define Package/node_legacy/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/node_modules/npm/node_modules/* $(1)/opt/lib/node_modules/npm/node_modules
 endef
 
-$(eval $(call BuildPackage,node_legacy))
+$(eval $(call BuildPackage,node-legacy))
