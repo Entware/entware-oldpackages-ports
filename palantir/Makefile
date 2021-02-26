@@ -15,7 +15,7 @@ PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-server-20130906.tgz
 PKG_SOURCE_URL:=http://www.fastpath.it/products/palantir/pub/
-PKG_MD5SUM:=d5cb935aa2a675051078fb4eb100da0f
+PKG_HASH:=ab7890d589be2e5c50405405361de520a9b14b7924d74e31c84e4f5cb3ee0130
 
 define Package/palantir
 	SECTION:=multimedia
