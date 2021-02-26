@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=usbip_legacy
 PKG_VERSION:=0.1.7
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=usbip-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/usbip
@@ -42,7 +42,7 @@ endef
 define Package/usbip_legacy
 $(call Package/usbip_legacy/Default)
   TITLE+= (common)
-  DEPENDS+= +libsysfs +libwrap
+  DEPENDS+= +libsysfs +libwrap +usbids
 endef
 
 define Package/usbip_legacy-client
@@ -65,20 +65,9 @@ CONFIGURE_ARGS += \
 	CFLAGS="$(TARGET_CFLAGS)" \
 	CPPFLAGS="$(TARGET_CPPFLAGS)"
 
-USB_IDS_VER:=0.318
-USB_IDS_FILE:=usb.ids.$(USB_IDS_VER)
-define Download/usb.ids
-  FILE:=$(USB_IDS_FILE)
-  URL_FILE:=usb.ids
-  URL:=@GITHUB/vcrhonek/hwdata/v$(USB_IDS_VER)
-  HASH:=84bc5452e4e45c2250e01bc74e03528b2a53c4724b2c4a5feaea76a922f83915
-endef
-
 define Package/usbip_legacy/install
 	$(INSTALL_DIR) $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libusbip.so.* $(1)/opt/lib/
-	$(INSTALL_DIR) $(1)/opt/share/usbip
-	$(CP) $(DL_DIR)/usb.ids.$(USB_IDS_VER) $(1)/opt/share/usbip/usb.ids
 endef
 
 define Package/usbip_legacy-client/install
@@ -94,7 +83,6 @@ define Package/usbip_legacy-server/install
 	$(CP) ./files/S74usbipd $(1)/opt/etc/init.d
 endef
 
-$(eval $(call Download,usb.ids))
 $(eval $(call BuildPackage,usbip_legacy))
 $(eval $(call BuildPackage,usbip_legacy-client))
 $(eval $(call BuildPackage,usbip_legacy-server))
