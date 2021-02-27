@@ -34,5 +34,21 @@ define Package/mercurial/description
   handling of very large distributed projects.
 endef
 
+PZSTD=zstandard-0.15.1
+
+define Download/pzstd
+  URL:=https://github.com/indygreg/python-zstandard/releases/download/0.15.1
+  FILE:=$(PZSTD).tar.gz
+  HASH:=cb7c6a6f7d62350b9f5539045da54422975630e34dd9069584cc776b9917115f
+endef
+$(eval $(call Download,pzstd))
+
+define Build/Prepare
+	$(PKG_UNPACK)
+	rm -rf $(PKG_BUILD_DIR)/contrib/python-zstandard/*
+	tar --strip-components=1 -C $(PKG_BUILD_DIR)/contrib/python-zstandard -xvzf $(DL_DIR)/$(PZSTD).tar.gz
+endef
+
+
 $(eval $(call Py3Package,mercurial))
 $(eval $(call BuildPackage,mercurial))
