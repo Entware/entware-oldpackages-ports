@@ -8,15 +8,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openswan
-PKG_VERSION:=2.6.51.5
-PKG_RELEASE:=2
+PKG_VERSION:=3.0.0
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.openswan.org/download
-PKG_HASH:=4124f4ce970089f301c34b9c48f54b021cf6b2b8813877942337f8022104f70d
+PKG_SOURCE_URL:=https://codeload.github.com/xelerance/Openswan/tar.gz/v$(PKG_VERSION)?
+PKG_HASH:=69fe7a71e54aaf0ea93b874db4963057c1ff4904b3617b36f2c9be2010c23331
 
-PKG_BUILD_PARALLEL:=1
+PKG_BUILD_DIR:=$(BUILD_DIR)/Openswan-$(PKG_VERSION)
+
 PKG_INSTALL:=1
+PKG_BUILD_PARALLEL:=0
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -24,9 +26,9 @@ define Package/openswan
   SUBMENU:=VPN
   SECTION:=net
   CATEGORY:=Network
-  TITLE+= Openswan (daemon)
-  DEPENDS+= +libgmp
-  URL:=http://www.openswan.org/
+  TITLE:=Openswan (daemon)
+  DEPENDS:=+libgmp
+  URL:=https://openswan.org/
 endef
 
 define Package/openswan/description
