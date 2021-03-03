@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fetchmail
-PKG_VERSION:=6.4.13
+PKG_VERSION:=6.4.15
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)/branch_6.4
-PKG_HASH:=7d28cf060b06b9c8ec72267be7edc9a99b70f61d7d32d8b609458dcedfa74be1
+PKG_HASH:=735b217474937e13cfcdea2d42a346bf68487e0d61efebe4d0d9eddcb3a26b96
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -25,7 +25,7 @@ define Package/fetchmail/Default
   CATEGORY:=Mail
   TITLE:=Remote mail retriever
   MAINTAINER:=Peter Wagner <tripolar@gmx.at>
-  URL:=http://www.fetchmail.info/
+  URL:=https://www.fetchmail.info/
 endef
 
 define Package/fetchmail/Default/description
