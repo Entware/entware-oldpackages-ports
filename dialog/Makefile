@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dialog
-PKG_VERSION:=1.3-20200327
+PKG_VERSION:=1.3-20210117
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=ftp://ftp.invisible-island.net/dialog
-PKG_HASH:=466163e8b97c2b7709d00389199add3156bd813f60ccb0335d0a30f2d4a17f99
+PKG_HASH:=3c1ed08f44bcf6f159f2aa6fde765db94e8997b3eefb49d8b4c86691693c43e1
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -22,7 +22,7 @@ define Package/dialog
   CATEGORY:=Utilities
   DEPENDS:=+libncursesw
   TITLE:=Dialog
-  URL:=http://invisible-island.net/dialog/
+  URL:=https://invisible-island.net/dialog/
 endef
 
 define Package/dialog/description
