@@ -8,15 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=imapfilter
-PKG_VERSION:=2.7.4
-PKG_REV:=f6b854bc485a1ca307ca4a87af2b175132a70f5c
+PKG_VERSION:=2.7.5
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/lefcha/imapfilter.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/lefcha/imapfilter/tar.gz/v$(PKG_VERSION)?
+PKG_HASH:=ab19f840712e6951e51c29e44c43b3b2fa42e93693f98f8969cc763a4fad56bf
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -46,7 +43,9 @@ define Build/Compile
 		INCDIRS="$(TARGET_CPPFLAGS)" \
 		LIBDIRS="$(TARGET_LDFLAGS)" \
 		MYCFLAGS="$(TARGET_CFLAGS) -std=gnu99" \
-		PREFIX="/opt"
+		PREFIX="/opt" \
+		SSLCAPATH="/opt/etc/ssl/certs" \
+		SSLCAFILE="/opt/etc/ssl/cert.pem"
 endef
 
 define Package/imapfilter/conffiles
