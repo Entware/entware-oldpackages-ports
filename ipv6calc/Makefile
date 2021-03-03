@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ipv6calc
-PKG_VERSION:=3.0.0
+PKG_VERSION:=3.0.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.bieringer.de/pub/linux/IPv6/ipv6calc
-PKG_HASH:=8728a823709bc39c7aecd29ee19508816accbaa27dfd15933fe1fa2e2cf1fcd7
+PKG_HASH:=509e5456ed76e143b05adece1180fe78f09f4b8526e0c3cbf0c9f0188207b160
 
 PKG_INSTALL:=1
 
@@ -22,7 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/ipv6calc/Default
   SECTION:=net
   CATEGORY:=Network
-  URL:=http://www.deepspace6.net/projects/ipv6calc.html
+  URL:=https://www.deepspace6.net/projects/ipv6calc.html
 endef
 
 define Package/ipv6calc/Default/description
