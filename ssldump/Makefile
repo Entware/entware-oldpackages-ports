@@ -8,15 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ssldump
-PKG_VERSION:=1.2
+PKG_VERSION:=1.3
 PKG_RELEASE:=1
-PKG_REV:=df9d6f282c5254e82c7a5f94e395027ac4b967d1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/adulau/ssldump.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/adulau/ssldump/tar.gz/v$(PKG_VERSION)?
+PKG_HASH:=10540233ebf4af3fe276ae4adce3f9ac6f7d795731268862d6da4151e6e1fda9
 
 PKG_FIXUP:=autoreconf
 
@@ -25,7 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/ssldump
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libopenssl +libpcap
+  DEPENDS:=+libjson-c +libnet-1.2.x +libopenssl +libpcap
   TITLE:=a SSLv3/TLS network protocol analyzer
   URL:=http://ssldump.sourceforge.net/
 endef
