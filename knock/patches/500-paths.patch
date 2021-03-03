@@ -1,6 +1,6 @@
 --- a/src/knockd.c
 +++ b/src/knockd.c
-@@ -153,8 +153,8 @@
+@@ -154,8 +154,8 @@ int  o_debug     = 0;
  int  o_daemon    = 0;
  int  o_lookup    = 0;
  char o_int[32]           = "";		/* default (eth0) is set after parseconfig() */
