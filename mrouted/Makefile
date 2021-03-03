@@ -8,15 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mrouted
-PKG_VERSION:=4.1
-PKG_REV:=aa80bcab96ec1e58c40edcffe487a58a785aafca
+PKG_VERSION:=4.2
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/troglobit/mrouted.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/troglobit/mrouted/tar.gz/$(PKG_VERSION)?
+PKG_HASH:=c7981dee1adc07a234d158c41166cd678c6acc5928b400e38d1fe9ec7e947e1b
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
