@@ -15,7 +15,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-current-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://elinks.or.cz/download
-PKG_HASH:=8cbe931c823c00fc4c993b42ff9745a4cb90329bc5fdc1a40ee8fb0a3ead8389
+PKG_HASH:=skip
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
