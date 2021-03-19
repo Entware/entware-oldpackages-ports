@@ -15,9 +15,10 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/burke/QuickTun
+PKG_SOURCE_URL:=https://github.com/burke/QuickTun.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_MIRROR_HASH:=edb7cce8235abb5ad488b3dfa8c78c3aa0955d9f67da51ea1338bee04c7b6493
 
 include $(INCLUDE_DIR)/package.mk
 

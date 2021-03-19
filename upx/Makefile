@@ -14,6 +14,7 @@ PKG_RELEASE:=1
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/upx/upx.git
 PKG_SOURCE_VERSION:=d7ba31cab8ce8d95d2c10e88d2ec787ac52005ef
+PKG_MIRROR_HASH:=15b4884dbe35d3b7bda27538429cab92aaeaca006d558deb49f2ef93e3c261b8
 
 include $(INCLUDE_DIR)/package.mk
 
