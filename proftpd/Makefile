@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=proftpd
 PKG_VERSION:=1.3.7a
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.proftpd.org/distrib/source
@@ -28,7 +28,7 @@ define Package/proftpd
   TITLE:=ProFTPD FTP server
   URL:=http://www.proftpd.org/
   MAINTAINER:=Cezary Jackiewicz <cezary@eko.one.pl>
-  DEPENDS:=+libncursesw +libattr +libidn
+  DEPENDS:=+libncursesw +libattr +libidn +libopenssl $(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
 
 define Package/proftpd/conffiles
@@ -43,7 +43,10 @@ CONFIGURE_ARGS += \
 	--disable-cap \
 	--disable-auth-pam \
 	--disable-strip \
-	--with-lastlog=/opt/var/log
+	--with-lastlog=/opt/var/log \
+	--enable-nls \
+	--enable-openssl \
+	--with-modules=mod_digest
 
 define Package/proftpd/install
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
