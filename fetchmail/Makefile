@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fetchmail
-PKG_VERSION:=6.4.15
+PKG_VERSION:=6.4.18
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)/branch_6.4
-PKG_HASH:=735b217474937e13cfcdea2d42a346bf68487e0d61efebe4d0d9eddcb3a26b96
+PKG_HASH:=302dc9bcdc6927dedf375d2baaead2347557faa70d98b1da83f2409fa6fb259f
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -21,11 +21,11 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/fetchmail/Default
-  SECTION:=mail
-  CATEGORY:=Mail
-  TITLE:=Remote mail retriever
-  MAINTAINER:=Peter Wagner <tripolar@gmx.at>
-  URL:=https://www.fetchmail.info/
+	SECTION:=mail
+	CATEGORY:=Mail
+	TITLE:=Remote mail retriever
+	MAINTAINER:=Peter Wagner <tripolar@gmx.at>
+	URL:=https://www.fetchmail.info/
 endef
 
 define Package/fetchmail/Default/description
@@ -34,26 +34,26 @@ define Package/fetchmail/Default/description
 endef
 
 define Package/fetchmail
-  $(call Package/fetchmail/Default)
-  DEPENDS+= +libopenssl
-  TITLE+= (with SSL support)
-  VARIANT:=ssl
+	$(call Package/fetchmail/Default)
+	DEPENDS+= +libopenssl
+	TITLE+= (with SSL support)
+	VARIANT:=ssl
 endef
 
 define Package/fetchmail/description
- $(call Package/fetchmail/Default/description)
- This package is built with SSL support.
+	$(call Package/fetchmail/Default/description)
+	This package is built with SSL support.
 endef
 
 define Package/fetchmail-nossl
-  $(call Package/fetchmail/Default)
-  TITLE+= (without SSL support)
-  VARIANT:=nossl
+	$(call Package/fetchmail/Default)
+	TITLE+= (without SSL support)
+	VARIANT:=nossl
 endef
 
 define Package/fetchmail-nossl/description
- $(call Package/fetchmail/Default/description)
- This package is built without SSL support.
+	$(call Package/fetchmail/Default/description)
+	This package is built without SSL support.
 endef
 
 CONFIGURE_ARGS += \
