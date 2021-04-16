@@ -1,3 +1,4 @@
+# Abandoned in 2016
 # Used by mcabber only
 
 include $(TOPDIR)/rules.mk
