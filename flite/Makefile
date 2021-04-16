@@ -8,29 +8,33 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=flite
-PKG_VERSION:=2.1-release
+PKG_VERSION:=2.2
+PKG_REV:=e9e2e37c329dbe98bfeb27a1828ef9a71fa84f88
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://www.festvox.org/flite/packed/flite-2.1
-PKG_HASH:=c73c3f6a2ea764977d6eaf0a287722d1e2066b4697088c552e342c790f3d2b85
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/festvox/flite.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_MIRROR_HASH:=132254464555fdc4c5136620688765c3370d13dd7072b6a0c94d2e11518fd81c
 
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/flite
-  SECTION:=sound
-  CATEGORY:=Sound
-  DEPENDS:=+alsa-lib
-  TITLE:=Text-to-speech for embedded systems
-  URL:=http://www.speech.cs.cmu.edu/flite/index.html
+	SECTION:=sound
+	CATEGORY:=Sound
+	DEPENDS:=+alsa-lib
+	TITLE:=Text-to-speech for embedded systems
+	URL:=http://www.speech.cs.cmu.edu/flite/index.html
 endef
 
 define Package/flite/description
-Festival Lite is a stripped down version of Festival,
-	the well-developed text-to-speech program written in C++.
-	This program is written in C to keep memory usage low.
+ Festival Lite is a stripped down version of Festival,
+ the well-developed text-to-speech program written in C++.
+ This program is written in C to keep memory usage low.
 endef
 
 CONFIGURE_ARGS += \
