@@ -65,9 +65,6 @@ CONFIGURE_ARGS+= \
 TARGET_LDFLAGS += \
 	-liconv
 
-TARGET_CFLAGS += \
-	-O1
-
 define Build/Configure
 	( cd $(PKG_BUILD_DIR); ./autogen.sh )
 	$(call Build/Configure/Default)

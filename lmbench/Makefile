@@ -4,64 +4,36 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2007
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lmbench
-PKG_VERSION:=3.0-a9
+PKG_VERSION:=3.0-a4
+PKG_REV:=701c6c35b0270d4634fb1dc5272721340322b8ed
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
-PKG_SOURCE_URL:=@SF/lmbench/
-PKG_HASH:=cbd5777d15f44eab7666dcac418054c3c09df99826961a397d9acf43d8a2a551
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/intel/lmbench.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_MIRROR_HASH:=4f763faa66ff789edc17cb710962e2e1ff281121b36c4311238e8c36c769622e
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/lmbench
-  SECTION:=utils
-  CATEGORY:=Utilities
-  TITLE:=lmbench microbenchmarks
-  URL:=http://sourceforge.net/projects/lmbench
-  MENU:=1
+	SECTION:=utils
+	CATEGORY:=Utilities
+	TITLE:=lmbench microbenchmarks
+	URL:=http://sourceforge.net/projects/lmbench
 endef
 
 define Package/lmbench/description
-  lmbench is a series of micro benchmarks intended to measure basic operating
-  system and hardware system metrics.
+ lmbench is a series of micro benchmarks intended to measure basic operating
+ system and hardware system metrics.
 endef
 
-define Package/lmbench/install
-	true
-endef
-
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR)/src \
-		CC="$(TARGET_CC)" \
-		AR="$(TARGET_CROSS)ar" \
-		OS="$(ARCH)" \
-		BASE="$(PKG_INSTALL_DIR)" \
-		LDLIBS="" \
-		COMPILE="$(TARGET_CC) $(TARGET_CFLAGS) $(TARGET_CPPFLAGS) $(TARGET_LDFLAGS)" \
-		lmbench install
-endef
-
-define PartGen
-define Package/lmbench-$(subst _,-,$(1))
-  SECTION:=utils
-  CATEGORY:=Utilities
-  TITLE:=$(1) microbenchmark
-  URL:=http://sourceforge.net/projects/lmbench
-  DEPENDS:=lmbench
-endef
-endef
-
-define PartInstall
-define Package/lmbench-$(subst _,-,$(1))/install
-	$(INSTALL_DIR) $$(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/bin/$(1) $$(1)/opt/sbin/$(1)
-endef
-endef
+MAKE_PATH:=src
 
 LMBENCH_FILES:= \
 	bw_file_rd \
@@ -70,15 +42,12 @@ LMBENCH_FILES:= \
 	bw_pipe \
 	bw_tcp \
 	bw_unix \
-	cache \
 	disk \
 	enough \
 	flushdisk \
 	hello \
-	lat_cmd \
 	lat_connect \
 	lat_ctx \
-	lat_dram_page \
 	lat_fcntl \
 	lat_fifo \
 	lat_fs \
@@ -88,9 +57,7 @@ LMBENCH_FILES:= \
 	lat_ops \
 	lat_pagefault \
 	lat_pipe \
-	lat_pmake \
 	lat_proc \
-	lat_rand \
 	lat_rpc \
 	lat_select \
 	lat_sem \
@@ -100,7 +67,6 @@ LMBENCH_FILES:= \
 	lat_udp \
 	lat_unix \
 	lat_unix_connect \
-	lat_usleep \
 	line \
 	lmdd \
 	lmhttp \
@@ -114,8 +80,9 @@ LMBENCH_FILES:= \
 	timing_o \
 	tlb
 
-$(foreach file,$(LMBENCH_FILES),$(eval $(call PartGen,$(file))))
-$(foreach file,$(LMBENCH_FILES),$(eval $(call PartInstall,$(file))))
+define Package/lmbench/install
+	$(INSTALL_DIR) $(1)/opt/bin
+	$(INSTALL_BIN) $(foreach bin,$(LMBENCH_FILES),$(PKG_BUILD_DIR)/bin/entware/$(bin)) $(1)/opt/bin
+endef
 
 $(eval $(call BuildPackage,lmbench))
-$(foreach file,$(LMBENCH_FILES),$(eval $(call BuildPackage,lmbench-$(subst _,-,$(file)))))
