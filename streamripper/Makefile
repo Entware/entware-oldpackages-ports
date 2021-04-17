@@ -21,7 +21,7 @@ PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_MIRROR_HASH:=fb99981cd5b8bb9a7f15a5afe91b018cf6efd3bee1b5e606639691c143824dad
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/cmake.mk
+include $(TOPDIR)/feeds/packages/devel/ninja/ninja-cmake.mk
 include $(INCLUDE_DIR)/nls.mk
 
 define Package/streamripper

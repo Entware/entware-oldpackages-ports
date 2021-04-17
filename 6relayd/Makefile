@@ -22,7 +22,7 @@ PKG_MIRROR_HASH:=4c931cc57d15da1c1e8807859f40a0abb781223f5673ec5ea4555c9bf24ab50
 PKG_MAINTAINER:=Steven Barth <steven@midlink.org>
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/cmake.mk
+include $(TOPDIR)/feeds/packages/devel/ninja/ninja-cmake.mk
 
 define Package/6relayd
   SECTION:=net
