@@ -1,6 +1,6 @@
 --- a/daemon/main/Options.cpp
 +++ b/daemon/main/Options.cpp
-@@ -182,10 +182,8 @@
+@@ -182,10 +182,8 @@ const int BoolCount = 12;
  const char* PossibleConfigLocations[] =
  	{
  		"~/.nzbget",

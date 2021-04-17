@@ -1,9 +1,6 @@
-diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
---- a/lfd_encrypt.c	2016-10-01 17:27:51.000000000 -0400
-+++ b/lfd_encrypt.c	2017-03-20 08:43:48.013308435 -0400
-@@ -93,15 +93,15 @@
- static int dec_init_first_time;
- static unsigned long sequence_num;
+--- a/lfd_encrypt.c
++++ b/lfd_encrypt.c
+@@ -95,11 +95,11 @@ static unsigned long sequence_num;
  static char * pkey;
  static char * iv_buf;
  
@@ -19,11 +16,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
  
  static int send_msg(int len, char *in, char **out);
  static int recv_msg(int len, char *in, char **out);
- static int send_ib_mesg(int *len, char **in);
- static int recv_ib_mesg(int *len, char **in);
-@@ -180,37 +180,37 @@
-       case VTUN_ENC_AES256CBC:
-          blocksize = 16;
+@@ -182,15 +182,15 @@ static int alloc_encrypt(struct vtun_hos
           keysize = 32;
           sb_init = 1;
           cipher_type = EVP_aes_256_ecb();
@@ -43,10 +36,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
           cipher_type = EVP_aes_256_ecb();
           strcpy(cipher_name,"AES-256-ECB");
        break;      
-       case VTUN_ENC_AES128OFB:
-       case VTUN_ENC_AES128CFB:
-       case VTUN_ENC_AES128CBC:
-          blocksize = 16;
+@@ -201,14 +201,14 @@ static int alloc_encrypt(struct vtun_hos
           keysize = 16;
           sb_init=1;
           cipher_type = EVP_aes_128_ecb();
@@ -65,11 +55,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
           cipher_type = EVP_aes_128_ecb();
           strcpy(cipher_name,"AES-128-ECB");
        break;
- 
-       case VTUN_ENC_BF256OFB:
-@@ -219,20 +219,20 @@
-          blocksize = 8;
-          keysize = 32;
+@@ -221,16 +221,16 @@ static int alloc_encrypt(struct vtun_hos
           var_key = 1;
           sb_init = 1;
           cipher_type = EVP_bf_ecb();
@@ -90,11 +76,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
           cipher_type = EVP_bf_ecb();
           strcpy(cipher_name,"Blowfish-256-ECB");
        break;
- 
-       case VTUN_ENC_BF128OFB:
-@@ -241,26 +241,28 @@
-          blocksize = 8;
-          keysize = 16;
+@@ -243,22 +243,24 @@ static int alloc_encrypt(struct vtun_hos
           var_key = 1;
           sb_init = 1;
           cipher_type = EVP_bf_ecb();
@@ -123,11 +105,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
     EVP_CIPHER_CTX_init(pctx_enc);
     EVP_CIPHER_CTX_init(pctx_dec);
     EVP_EncryptInit_ex(pctx_enc, cipher_type, NULL, NULL, NULL);
-    EVP_DecryptInit_ex(pctx_dec, cipher_type, NULL, NULL, NULL);
-    if (var_key)
-@@ -292,14 +294,14 @@
-    free_key(pkey); pkey = NULL;
- 
+@@ -294,10 +296,10 @@ static int free_encrypt()
     lfd_free(enc_buf); enc_buf = NULL;
     lfd_free(dec_buf); dec_buf = NULL;
  
@@ -142,11 +120,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
  
     return 0;
  }
- 
- static int encrypt_buf(int len, char *in, char **out)
-@@ -321,11 +323,11 @@
-    
-    memset(in_ptr+len, pad, pad);
+@@ -323,7 +325,7 @@ static int encrypt_buf(int len, char *in
     outlen=len+pad;
     if (pad == blocksize)
        RAND_bytes(in_ptr+len, blocksize-1);
@@ -155,11 +129,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
     *out = enc_buf;
  
     sequence_num++;
- 
-    return outlen+msg_len;
-@@ -341,11 +343,11 @@
-    in = *out;
-    in_ptr = in;
+@@ -343,7 +345,7 @@ static int decrypt_buf(int len, char *in
  
     outlen=len;
     if (!len) return 0;
@@ -168,11 +138,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
     recv_ib_mesg(&outlen, &out_ptr);
     if (!outlen) return 0;
     tmp_ptr = out_ptr + outlen; tmp_ptr--;
-    pad = *tmp_ptr;
-    if (pad < 1 || pad > blocksize) {
-@@ -429,17 +431,18 @@
-       /* if we're here, something weird's going on */
-          return -1;
+@@ -431,13 +433,14 @@ static int cipher_enc_init(char * iv)
        break;
     } /* switch(cipher) */
  
@@ -193,11 +159,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
     if (enc_init_first_time)
     {
        sprintf(tmpstr,"%s encryption initialized", cipher_name);
-       vtun_syslog(LOG_INFO, tmpstr);
-       enc_init_first_time = 0;
-@@ -519,17 +522,18 @@
-       /* if we're here, something weird's going on */
-          return -1;
+@@ -521,13 +524,14 @@ static int cipher_dec_init(char * iv)
        break;
     } /* switch(cipher) */
  
@@ -218,11 +180,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
     if (dec_init_first_time)
     {
        sprintf(tmpstr,"%s decryption initialized", cipher_name);
-       vtun_syslog(LOG_INFO, tmpstr);
-       dec_init_first_time = 0;
-@@ -557,11 +561,11 @@
-          memset(iv,0,blocksize); free(iv); iv = NULL;
-          RAND_bytes(in_ptr, in - in_ptr);
+@@ -559,7 +563,7 @@ static int send_msg(int len, char *in, c
  
           in_ptr = in - blocksize*2;
           outlen = blocksize*2;
@@ -231,11 +189,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
              &outlen, in_ptr, blocksize*2);
           *out = in_ptr;
           len = outlen;
-          cipher_enc_state = CIPHER_SEQUENCE;
-       break;
-@@ -584,11 +588,11 @@
-    {
-       case CIPHER_INIT:
+@@ -586,7 +590,7 @@ static int recv_msg(int len, char *in, c
           in_ptr = in;
           iv = malloc(blocksize);
           outlen = blocksize*2;
@@ -244,11 +198,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
           
           if ( !strncmp(in_ptr, "ivec", 4) )
           {
-             memcpy(iv, in_ptr+4, blocksize);
-             cipher_dec_init(iv);
-@@ -627,11 +631,11 @@
-                   "Max. gibberish threshold reached");
- #endif
+@@ -629,7 +633,7 @@ static int recv_msg(int len, char *in, c
                 if (cipher_enc_state != CIPHER_INIT)
                 {
                    cipher_enc_state = CIPHER_INIT;
@@ -257,11 +207,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
  #ifdef LFD_ENCRYPT_DEBUG
                    vtun_syslog(LOG_INFO, 
                       "Forcing local encryptor re-init");
- #endif
-                }
-@@ -708,11 +712,11 @@
-          *len -= blocksize;
- 
+@@ -710,7 +714,7 @@ static int recv_ib_mesg(int *len, char *
           if (cipher_enc_state != CIPHER_INIT)
           {
              cipher_enc_state = CIPHER_INIT;
@@ -270,11 +216,7 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
           }
  #ifdef LFD_ENCRYPT_DEBUG
           vtun_syslog(LOG_INFO, "Remote requests encryptor re-init");
- #endif
-       }
-@@ -722,11 +726,11 @@
- 
-          if (cipher_dec_state != CIPHER_INIT &&
+@@ -724,7 +728,7 @@ static int recv_ib_mesg(int *len, char *
               cipher_enc_state != CIPHER_REQ_INIT &&
               cipher_enc_state != CIPHER_INIT)
           {
@@ -283,5 +225,3 @@ diff -NarU5 a/lfd_encrypt.c b/lfd_encrypt.c
              cipher_dec_state = CIPHER_INIT;
              cipher_enc_state = CIPHER_REQ_INIT;
           }
- #ifdef LFD_ENCRYPT_DEBUG
-          vtun_syslog(LOG_INFO, "Local decryptor out of sync");

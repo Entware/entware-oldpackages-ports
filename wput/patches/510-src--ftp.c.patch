@@ -9,8 +9,6 @@ Signed-off-by: Jari Aalto <jari.aalto@cante.net>
  src/ftp.c |    8 ++++++--
  1 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/src/ftp.c b/src/ftp.c
-index dca07af..f4d6f98 100644
 --- a/src/ftp.c
 +++ b/src/ftp.c
 @@ -18,6 +18,10 @@
@@ -33,7 +31,7 @@ index dca07af..f4d6f98 100644
  	if(!strcmp(path, "."))
  		return mkd;
  	if(!strcmp(path, ".."))
-@@ -203,7 +207,7 @@ int check_timestamp(_fsession * fsession) {
+@@ -203,7 +207,7 @@ int check_timestamp(_fsession * fsession
  }
  
  int open_input_file(_fsession * fsession) {
@@ -42,6 +40,3 @@ index dca07af..f4d6f98 100644
  	int oflags = O_RDONLY;
  	char * cmd;
  	FILE * pipe;
--- 
-1.6.5
-

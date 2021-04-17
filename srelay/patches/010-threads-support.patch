@@ -1,6 +1,6 @@
 --- a/configure.in
 +++ b/configure.in
-@@ -150,7 +150,7 @@
+@@ -150,7 +150,7 @@ if test "$thread" != "no"; then
  	elif test "$OS" = "SOLARIS"; then
  	    LDFLAGS="$LDFLAGS -lpthread"
  	fi

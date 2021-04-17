@@ -1,6 +1,6 @@
 --- a/xdg/Menu.py
 +++ b/xdg/Menu.py
-@@ -614,7 +614,7 @@
+@@ -626,7 +626,7 @@ class XMLMenuBuilder(object):
              candidate = os.environ.get('XDG_MENU_PREFIX', '') + "applications.menu"
              filename = _get_menu_file_path(candidate)
          if not filename:
@@ -11,7 +11,7 @@
              raise ParsingError('Not a .menu file', filename)
 --- a/xdg/BaseDirectory.py
 +++ b/xdg/BaseDirectory.py
-@@ -32,13 +32,13 @@
+@@ -32,13 +32,13 @@ xdg_data_home = os.environ.get('XDG_DATA
              os.path.join(_home, '.local', 'share')
  
  xdg_data_dirs = [xdg_data_home] + \
@@ -27,7 +27,7 @@
  
  xdg_cache_home = os.environ.get('XDG_CACHE_HOME') or \
              os.path.join(_home, '.cache')
-@@ -130,7 +130,7 @@
+@@ -130,7 +130,7 @@ def get_runtime_dir(strict=True):
              raise
          
          import getpass

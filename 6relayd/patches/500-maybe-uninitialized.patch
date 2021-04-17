@@ -1,6 +1,6 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -6,7 +6,7 @@
+@@ -6,7 +6,7 @@ project(6relayd C)
  
  set(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -std=c99")

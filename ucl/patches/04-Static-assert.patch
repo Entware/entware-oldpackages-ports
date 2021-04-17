@@ -8,8 +8,6 @@ build failures with gcc-6 (closes: #811707)
  acc/acc_defs.h | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/acc/acc_defs.h b/acc/acc_defs.h
-index 866b7bd..5ee3761 100644
 --- a/acc/acc_defs.h
 +++ b/acc/acc_defs.h
 @@ -87,6 +87,9 @@

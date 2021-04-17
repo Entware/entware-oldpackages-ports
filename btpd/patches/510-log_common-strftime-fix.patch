@@ -1,6 +1,6 @@
 --- a/btpd/util.c
 +++ b/btpd/util.c
-@@ -93,9 +93,9 @@
+@@ -93,9 +93,9 @@ static void
  log_common(uint32_t type, const char *fmt, va_list ap)
  {
      if (type & btpd_logmask) {

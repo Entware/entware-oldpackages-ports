@@ -1,6 +1,6 @@
 --- a/ncftp/util.c
 +++ b/ncftp/util.c
-@@ -422,22 +422,8 @@
+@@ -422,22 +422,8 @@ InitOurDirectory(void)
  	cp = getenv("NCFTPDIR");
  	if (cp != NULL) {
  		(void) STRNCPY(gOurDirectoryPath, cp);
@@ -24,7 +24,7 @@
  	}
  
  	if (stat(gOurDirectoryPath, &st) < 0) {
-@@ -445,6 +431,7 @@
+@@ -445,6 +431,7 @@ InitOurDirectory(void)
  			gOurDirectoryPath[0] = '\0';
  		}
  	}

@@ -1,6 +1,6 @@
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -9,6 +9,7 @@
+@@ -9,6 +9,7 @@ CC= @CC@
  LDFLAGS+= @LDFLAGS@
  LIBS+= @LIBS@
  CFLAGS+= @CFLAGS@ @DEFS@ -W -Wall

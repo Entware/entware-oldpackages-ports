@@ -8,8 +8,6 @@ to gcc calls that compile assembly code.
  src/Makefile.am | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/src/Makefile.am b/src/Makefile.am
-index bdb99a0..043b8af 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
 @@ -56,10 +56,10 @@ UCL_ASM_OBJECTS = \

@@ -5,10 +5,8 @@ Last-Update: 2006-06-09
 Description: Add hardening 'CPPFLAGS' - 'LDFLAGS'
 Author: Adilson dos Reis <adilsondosreis@yahoo.com.br>
 Last-Update: 2015-08-20
-Index: cutter-1.03/Makefile
-===================================================================
---- cutter-1.03.orig/Makefile
-+++ cutter-1.03/Makefile
+--- a/Makefile
++++ b/Makefile
 @@ -1,5 +1,5 @@
  cutter: cutter.c
 -	cc cutter.c -o cutter

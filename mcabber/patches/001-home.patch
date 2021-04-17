@@ -1,6 +1,6 @@
 --- a/mcabber/settings.c
 +++ b/mcabber/settings.c
-@@ -121,7 +121,7 @@
+@@ -121,7 +121,7 @@ const gchar *settings_get_mcabber_config
    if (config_dir)
      return config_dir;
  

@@ -1,6 +1,6 @@
 --- a/daemon.c
 +++ b/daemon.c
-@@ -72,7 +72,7 @@
+@@ -72,7 +72,7 @@ cookie3 rcookie = 0;
  
  /* options and default values */
  int opt_detach = TRUE;
@@ -9,7 +9,7 @@
  int opt_cluster = FALSE;
  char *opt_cluster_path = "/";
  int opt_tcponly = FALSE;
-@@ -250,7 +250,7 @@
+@@ -250,7 +250,7 @@ static void parse_options(int argc, char
  		printf("\t-h          display this short option summary\n");
  		printf("\t-u          use unprivileged port for services\n");
  		printf("\t-d          do not detach from terminal\n");

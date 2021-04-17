@@ -9,7 +9,7 @@
  
  # Destination directory for downloaded files.
  #
-@@ -80,12 +80,12 @@
+@@ -80,12 +80,12 @@ ScriptDir=${MainDir}/scripts
  #
  # Set to empty value to disable the creating of the lock-file and the
  # check for another running instance (not recommended).
@@ -24,7 +24,7 @@
  
  # Configuration file template.
  #
-@@ -98,7 +98,7 @@
+@@ -98,7 +98,7 @@ LogFile=${MainDir}/nzbget.log
  # /usr/local/share/nzbget/nzbget.conf).
  #
  # Example: /usr/local/share/nzbget/nzbget.conf.

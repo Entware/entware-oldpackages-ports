@@ -6,10 +6,8 @@ Last-Update: 2015-08-31
 Description: Fix argument type from '%lx' (long unsigned int) to '%x' (unsigned int)
 Author: Adilson dos Reis <adilsondosreis@yahoo.com.br>
 Last-Update: 2015-08-20
-Index: cutter-1.03/cutter.c
-===================================================================
---- cutter-1.03.orig/cutter.c
-+++ cutter-1.03/cutter.c
+--- a/cutter.c
++++ b/cutter.c
 @@ -54,6 +54,7 @@
  #include <arpa/inet.h>
  #include <net/if.h>
@@ -18,7 +16,7 @@ Index: cutter-1.03/cutter.c
  
  #define ETHHDR	 sizeof(struct ethhdr)
  #define TCPHDR	 sizeof(struct tcphdr)
-@@ -129,7 +129,7 @@ int getnexthop(in_addr_t ip, char *intf,
+@@ -129,7 +130,7 @@ int getnexthop(in_addr_t ip, char *intf,
  		dest_ip = gateway_ip = flags = refcnt = use
  			= metric = mask = mtu = window = irtt = -1;
  
@@ -27,7 +25,7 @@ Index: cutter-1.03/cutter.c
  			iface, &dest_ip, &gateway_ip, &flags, &refcnt,
  			&use, &metric, &mask, &mtu, &window, &irtt
  		) == 11) {
-@@ -168,7 +168,6 @@ int getnexthop(in_addr_t ip, char *intf,
+@@ -168,7 +169,6 @@ int getnexthop(in_addr_t ip, char *intf,
  int getmac(in_addr_t ip, uchar *mac)
  {
  	FILE *id = fopen( "/proc/net/arp", "r" );

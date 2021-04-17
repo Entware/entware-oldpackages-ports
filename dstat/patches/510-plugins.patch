@@ -1,7 +1,6 @@
-diff -ur ./plugins.orig/dstat_gpfs_ops.py ./plugins/dstat_gpfs_ops.py
---- ./plugins.orig/dstat_gpfs_ops.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_gpfs_ops.py	2019-09-20 11:57:01.030549129 +0300
-@@ -14,9 +14,9 @@
+--- a/plugins/dstat_gpfs_ops.py
++++ b/plugins/dstat_gpfs_ops.py
+@@ -14,9 +14,9 @@ class dstat_plugin(dstat):
          self.scale = 1000
  
      def check(self): 
@@ -13,10 +12,9 @@ diff -ur ./plugins.orig/dstat_gpfs_ops.py ./plugins/dstat_gpfs_ops.py
                  self.stdin.write('reset\n')
                  readpipe(self.stdout)
              except IOError:
-diff -ur ./plugins.orig/dstat_gpfs.py ./plugins/dstat_gpfs.py
---- ./plugins.orig/dstat_gpfs.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_gpfs.py	2019-09-20 11:56:04.088683701 +0300
-@@ -11,9 +11,9 @@
+--- a/plugins/dstat_gpfs.py
++++ b/plugins/dstat_gpfs.py
+@@ -11,9 +11,9 @@ class dstat_plugin(dstat):
          self.vars = ('_br_', '_bw_')
  
      def check(self):
@@ -28,10 +26,9 @@ diff -ur ./plugins.orig/dstat_gpfs.py ./plugins/dstat_gpfs.py
                  self.stdin.write('reset\n')
                  readpipe(self.stdout)
              except IOError:
-diff -ur ./plugins.orig/dstat_innodb_buffer.py ./plugins/dstat_innodb_buffer.py
---- ./plugins.orig/dstat_innodb_buffer.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_innodb_buffer.py	2019-09-20 11:56:44.294000759 +0300
-@@ -13,10 +13,10 @@
+--- a/plugins/dstat_innodb_buffer.py
++++ b/plugins/dstat_innodb_buffer.py
+@@ -13,10 +13,10 @@ class dstat_plugin(dstat):
          self.scale = 1000
  
      def check(self): 
@@ -44,10 +41,9 @@ diff -ur ./plugins.orig/dstat_innodb_buffer.py ./plugins/dstat_innodb_buffer.py
          except IOError as e:
              raise Exception('Cannot interface with MySQL binary (%s)' % e)
  
-diff -ur ./plugins.orig/dstat_innodb_io.py ./plugins/dstat_innodb_io.py
---- ./plugins.orig/dstat_innodb_io.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_innodb_io.py	2019-09-20 11:57:34.951660681 +0300
-@@ -13,9 +13,9 @@
+--- a/plugins/dstat_innodb_io.py
++++ b/plugins/dstat_innodb_io.py
+@@ -13,9 +13,9 @@ class dstat_plugin(dstat):
          self.scale = 1000
  
      def check(self):
@@ -59,10 +55,9 @@ diff -ur ./plugins.orig/dstat_innodb_io.py ./plugins/dstat_innodb_io.py
              except IOError:
                  raise Exception('Cannot interface with MySQL binary')
              return True
-diff -ur ./plugins.orig/dstat_innodb_ops.py ./plugins/dstat_innodb_ops.py
---- ./plugins.orig/dstat_innodb_ops.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_innodb_ops.py	2019-09-20 11:55:44.152030734 +0300
-@@ -13,9 +13,9 @@
+--- a/plugins/dstat_innodb_ops.py
++++ b/plugins/dstat_innodb_ops.py
+@@ -13,9 +13,9 @@ class dstat_plugin(dstat):
          self.scale = 1000
  
      def check(self):
@@ -74,9 +69,8 @@ diff -ur ./plugins.orig/dstat_innodb_ops.py ./plugins/dstat_innodb_ops.py
              except IOError:
                  raise Exception('Cannot interface with MySQL binary')
              return True
-diff -ur ./plugins.orig/dstat_jvm_full.py ./plugins/dstat_jvm_full.py
---- ./plugins.orig/dstat_jvm_full.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_jvm_full.py	2019-09-20 11:54:22.837368440 +0300
+--- a/plugins/dstat_jvm_full.py
++++ b/plugins/dstat_jvm_full.py
 @@ -2,7 +2,7 @@
  #
  # NOTE: Edit the jcmd location according to your path or use update-alternatives.
@@ -86,10 +80,9 @@ diff -ur ./plugins.orig/dstat_jvm_full.py ./plugins/dstat_jvm_full.py
  
  
  class dstat_plugin(dstat):
-diff -ur ./plugins.orig/dstat_jvm_vm.py ./plugins/dstat_jvm_vm.py
---- ./plugins.orig/dstat_jvm_vm.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_jvm_vm.py	2019-09-20 11:55:03.446697823 +0300
-@@ -16,7 +16,7 @@
+--- a/plugins/dstat_jvm_vm.py
++++ b/plugins/dstat_jvm_vm.py
+@@ -16,7 +16,7 @@ class dstat_plugin(dstat):
          self.scale = 1000
  
      def check(self):
@@ -98,7 +91,7 @@ diff -ur ./plugins.orig/dstat_jvm_vm.py ./plugins/dstat_jvm_vm.py
              raise Exception('Needs jstat binary')
          try:
              self.jvm_pid = int(os.environ.get('JVM_PID', 0))
-@@ -38,7 +38,7 @@
+@@ -38,7 +38,7 @@ class dstat_plugin(dstat):
          from collections import namedtuple
          try:
              lines = self._cmd_splitlines(
@@ -107,11 +100,9 @@ diff -ur ./plugins.orig/dstat_jvm_vm.py ./plugins/dstat_jvm_vm.py
              headers = next(lines)
              DStatParser = namedtuple('DStatParser', headers)
              line = next(lines)
-             if os.access(mc, os.X_OK):
-diff -ur ./plugins.orig/dstat_mysql5_innodb.py ./plugins/dstat_mysql5_innodb.py
---- ./plugins.orig/dstat_mysql5_innodb.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_mysql5_innodb.py	2019-09-20 11:54:49.238232637 +0300
-@@ -74,7 +74,7 @@
+--- a/plugins/dstat_mysql5_innodb.py
++++ b/plugins/dstat_mysql5_innodb.py
+@@ -74,7 +74,7 @@ class dstat_plugin(dstat):
          self.vars = tuple( map((lambda e: e[0]), target_status) )
          self.nick = tuple( map((lambda e: e[1]), target_status) )
  
@@ -120,10 +111,9 @@ diff -ur ./plugins.orig/dstat_mysql5_innodb.py ./plugins/dstat_mysql5_innodb.py
          mysql_cmd = ''
          for mc in mysql_candidate:
              if os.access(mc, os.X_OK):
-diff -ur ./plugins.orig/dstat_mysql_io.py ./plugins/dstat_mysql_io.py
---- ./plugins.orig/dstat_mysql_io.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_mysql_io.py	2019-09-20 11:55:15.115079877 +0300
-@@ -8,10 +8,10 @@
+--- a/plugins/dstat_mysql_io.py
++++ b/plugins/dstat_mysql_io.py
+@@ -8,10 +8,10 @@ class dstat_plugin(dstat):
          self.vars = ('Bytes_received', 'Bytes_sent')
  
      def check(self): 
@@ -136,10 +126,9 @@ diff -ur ./plugins.orig/dstat_mysql_io.py ./plugins/dstat_mysql_io.py
          except IOError:
              raise Exception('Cannot interface with MySQL binary')
  
-diff -ur ./plugins.orig/dstat_mysql_keys.py ./plugins/dstat_mysql_keys.py
---- ./plugins.orig/dstat_mysql_keys.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_mysql_keys.py	2019-09-20 11:56:30.601552199 +0300
-@@ -11,10 +11,10 @@
+--- a/plugins/dstat_mysql_keys.py
++++ b/plugins/dstat_mysql_keys.py
+@@ -11,10 +11,10 @@ class dstat_plugin(dstat):
          self.scale = 1000
  
      def check(self): 
@@ -152,10 +141,9 @@ diff -ur ./plugins.orig/dstat_mysql_keys.py ./plugins/dstat_mysql_keys.py
          except IOError:
              raise Exception('Cannot interface with MySQL binary')
  
-diff -ur ./plugins.orig/dstat_squid.py ./plugins/dstat_squid.py
---- ./plugins.orig/dstat_squid.py	2019-09-20 11:54:07.192856394 +0300
-+++ ./plugins/dstat_squid.py	2019-09-20 11:57:21.751228101 +0300
-@@ -30,14 +30,14 @@
+--- a/plugins/dstat_squid.py
++++ b/plugins/dstat_squid.py
+@@ -30,14 +30,14 @@ class dstat_plugin(dstat):
              'objsz')
  
      def check(self):

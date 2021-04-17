@@ -9,8 +9,6 @@ Signed-off-by: Jari Aalto <jari.aalto@cante.net>
  src/wput.c |    8 ++++----
  1 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/src/wput.c b/src/wput.c
-index 3a40370..caecd6a 100644
 --- a/src/wput.c
 +++ b/src/wput.c
 @@ -583,9 +583,9 @@ void readwputrc(char * f) {
@@ -26,7 +24,7 @@ index 3a40370..caecd6a 100644
      free(line);
      ln++;
    }
-@@ -677,7 +677,7 @@ void commandlineoptions(int argc, char * argv[]){
+@@ -679,7 +679,7 @@ void commandlineoptions(int argc, char *
  #ifdef HAVE_SSL
                  fprintf(opt.output, "HAVE_SSL\n");
  #endif
@@ -35,6 +33,3 @@ index 3a40370..caecd6a 100644
                  exit(0);
              case 27: //skip-larger
                  opt.resume_table.small_large = RESUME_TABLE_SKIP;   break;
--- 
-1.6.5
-

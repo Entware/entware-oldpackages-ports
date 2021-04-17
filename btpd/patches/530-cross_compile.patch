@@ -1,6 +1,6 @@
 --- a/config.mk
-+++ c/config.mk
-@@ -3,7 +3,7 @@
++++ b/config.mk
+@@ -3,7 +3,7 @@ NAME = btpd
  VERSION = 0.16
  
  # paths
@@ -9,7 +9,7 @@
  MANPREFIX = ${PREFIX}/share/man
  
  MISC = ./misc
-@@ -11,16 +11,16 @@
+@@ -11,16 +11,16 @@ EVLOOP = ./evloop
  
  # includes and libs
  INCS = -I${MISC} -I${EVLOOP}

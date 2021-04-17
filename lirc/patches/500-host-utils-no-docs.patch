@@ -1,6 +1,6 @@
 --- a/configure.ac
 +++ b/configure.ac
-@@ -35,7 +35,7 @@
+@@ -35,7 +35,7 @@ if test x$PKGCONFIG = xno; then
  fi
  AC_CHECK_PROG([XSLTPROC],[xsltproc],[yes],[no])
  if test x$XSLTPROC != "xyes"; then
@@ -9,7 +9,7 @@
  fi
  AC_CHECK_PROG([MAN2HTML],[man2html],[yes],[no])
  AM_CONDITIONAL(HAVE_MAN2HTML, test x$MAN2HTML = xyes)
-@@ -43,7 +43,7 @@
+@@ -43,7 +43,7 @@ AC_CHECK_PROG([DOXYGEN],[doxygen],[yes],
  AM_CONDITIONAL(HAVE_DOXYGEN, test x$DOXYGEN = xyes)
  LT_INIT([disable-static])
  

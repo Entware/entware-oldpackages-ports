@@ -1,10 +1,8 @@
 Author: Georg Oechsler
 Subject: Fix no_verify_hostname option with recent versions of curl
 
-Index: curlftpfs-0.9.2/ftpfs.c
-===================================================================
---- curlftpfs-0.9.2.orig/ftpfs.c
-+++ curlftpfs-0.9.2/ftpfs.c
+--- a/ftpfs.c
++++ b/ftpfs.c
 @@ -1626,9 +1626,10 @@ static void set_common_curl_stuff(CURL*
    }
  

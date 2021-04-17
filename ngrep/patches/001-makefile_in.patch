@@ -1,6 +1,6 @@
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -28,13 +28,13 @@
+@@ -28,13 +28,13 @@ MANDIR_INSTALL = $(mandir)/man8
  
  INSTALL = ./install-sh
  

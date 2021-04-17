@@ -1,6 +1,6 @@
 --- a/deps/openssl/openssl/Makefile
 +++ b/deps/openssl/openssl/Makefile
-@@ -29,7 +29,7 @@
+@@ -29,7 +29,7 @@ INSTALL_PREFIX=
  INSTALLTOP=/usr/local/ssl
  
  # Do not edit this manually. Use Configure --openssldir=DIR do change this!

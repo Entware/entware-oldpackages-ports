@@ -24,8 +24,6 @@ Bugs-Debian: https://bugs.debian.org/907426
  src/n2e_d.c | 2 +-
  2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/src/n2b_d.c b/src/n2b_d.c
-index 26b6ca5..2725c59 100644
 --- a/src/n2b_d.c
 +++ b/src/n2b_d.c
 @@ -101,7 +101,7 @@
@@ -37,8 +35,6 @@ index 26b6ca5..2725c59 100644
          fail(m_off > olen, UCL_E_LOOKBEHIND_OVERRUN);
  #ifdef TEST_OVERLAP
          olen += m_len + 1;
-diff --git a/src/n2e_d.c b/src/n2e_d.c
-index efddb49..d40059d 100644
 --- a/src/n2e_d.c
 +++ b/src/n2e_d.c
 @@ -109,7 +109,7 @@

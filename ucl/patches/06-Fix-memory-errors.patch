@@ -11,11 +11,9 @@ Bugs-Debian: https://bugs.debian.org/804474
  src/ucl_swd.ch | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/src/ucl_swd.ch b/src/ucl_swd.ch
-index abc0ae1..575d4de 100644
 --- a/src/ucl_swd.ch
 +++ b/src/ucl_swd.ch
-@@ -330,7 +330,7 @@ int swd_init(ucl_swd_t *s, const ucl_bytep dict, ucl_uint dict_len)
+@@ -330,7 +330,7 @@ int swd_init(ucl_swd_t *s, const ucl_byt
      else
          s->rp += s->b_size - s->node_count;
  

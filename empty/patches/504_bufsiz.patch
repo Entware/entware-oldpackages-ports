@@ -1,6 +1,6 @@
 --- a/empty.c
 +++ b/empty.c
-@@ -685,7 +685,7 @@
+@@ -685,7 +685,7 @@ long pidbyppid(pid_t ppid, int lflg) {
  	while ((dent = readdir(dir)) != NULL) {
  		if (!strncmp(fmask, dent->d_name, len)) {
  			strncpy(fname, dent->d_name, sizeof(fname) - 1);

@@ -1,6 +1,6 @@
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -5,8 +5,6 @@
+@@ -5,8 +5,6 @@ ACLOCAL_AMFLAGS         = -I m4
  AUTOMAKE_OPTIONS        = 1.5 check-news dist-bzip2 -Wno-portability \
                            subdir-objects
  
@@ -9,7 +9,7 @@
  GIT_COMMIT      = $(shell git log -1 --pretty=format:%h || echo UNKNOWN)
  GIT_DATE        = $(shell git log -1 --pretty=format:%cd || echo UNKNOWN)
  GIT_REFS        = $(shell git log -1 --pretty=format:%d || echo UNKNOWN)
-@@ -16,17 +14,13 @@
+@@ -16,17 +14,13 @@ BASE_VERSION            = $(subst -rc,rc
  VERBOSE                 = $(subst 0,,$(V))
  AM_LIBTOOLFLAGS         = $(if $(VERBOSE),,--silent)
  
@@ -28,7 +28,7 @@
                            missing libtool plugins/Makefile.am
  
  
-@@ -34,13 +28,13 @@
+@@ -34,13 +28,13 @@ MANTAINERCLEANFILES     = config.sub ins
  AM_DISTCHECK_CONFIGURE_FLAGS = \
      --with-systemdsystemunitdir=$${dc_install_base}/lib/systemd/system
  
@@ -44,7 +44,7 @@
  
  if INSTALL_ETC
  
-@@ -61,8 +55,6 @@
+@@ -61,8 +55,6 @@ endif
  
  dist_doc_DATA           = VERSION
  
@@ -53,7 +53,7 @@
  pkgconfigdir            = $(libdir)/pkgconfig
  dist_pkgconfig_DATA     = lirc.pc lirc-driver.pc
  
-@@ -71,69 +63,6 @@
+@@ -71,69 +63,6 @@ nobase_header_HEADERS   = include/media/
                            include/linux/input-event-codes.h
  header_HEADERS          = drivers/irpipe/irpipe.h
  
@@ -123,7 +123,7 @@
  install-data-hook:
  	$(SED) -i -e '/^plugindir/s|/usr/lib|$(libdir)|' \
  	    $(DESTDIR)$(lirc_confdir)/lirc_options.conf
-@@ -144,7 +73,6 @@
+@@ -144,7 +73,6 @@ install-data-hook:
  uninstall-hook:
  	-chmod -R u+w $(DESTDIR)/$(pkgdatadir)/contrib
  	-rm -rf $(DESTDIR)/$(pkgdatadir) \
@@ -131,7 +131,7 @@
  	        $(DESTDIR)/$(pkgdatadir)/contrib \
  		$(DESTDIR)$(includedir)/lirc
  
-@@ -170,30 +98,6 @@
+@@ -170,30 +98,6 @@ fix-version: .phony
  	$(SED) -i '/DATE/s/=.*/="$(GIT_DATE)"/' $(distdir)/VERSION
  	$(SED) -i '/REFS/s|=.*|="$(GIT_REFS)"|' $(distdir)/VERSION
  

@@ -1,8 +1,6 @@
-Index: palantir-2.7/server/libgsm/Makefile
-===================================================================
---- palantir-2.7.orig/server/libgsm/Makefile	2008-04-07 22:35:39.000000000 +0200
-+++ palantir-2.7/server/libgsm/Makefile	2008-04-07 22:35:39.000000000 +0200
-@@ -53,7 +53,7 @@
+--- a/server/libgsm/Makefile
++++ b/server/libgsm/Makefile
+@@ -53,7 +53,7 @@ CC		= gcc
  endif
  
  CC		+= -ansi -pedantic
@@ -11,11 +9,9 @@ Index: palantir-2.7/server/libgsm/Makefile
  
  LD 		= $(CC)
  
-Index: palantir-2.7/server/Makefile
-===================================================================
---- palantir-2.7.orig/server/Makefile	2008-04-07 22:35:39.000000000 +0200
-+++ palantir-2.7/server/Makefile	2008-04-07 22:35:39.000000000 +0200
-@@ -47,7 +47,7 @@
+--- a/server/Makefile
++++ b/server/Makefile
+@@ -47,7 +47,7 @@ ENABLE_X11MON=	0
  .PHONY : tools man
  
  

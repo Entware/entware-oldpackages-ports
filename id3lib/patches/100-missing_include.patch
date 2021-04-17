@@ -1,6 +1,5 @@
-diff -urN id3lib-3.8.3/include/id3/id3lib_strings.h id3lib-3.8.3.new/include/id3/id3lib_strings.h
---- id3lib-3.8.3/include/id3/id3lib_strings.h	2003-03-02 01:23:00.000000000 +0100
-+++ id3lib-3.8.3.new/include/id3/id3lib_strings.h	2007-08-28 12:08:44.000000000 +0200
+--- a/include/id3/id3lib_strings.h
++++ b/include/id3/id3lib_strings.h
 @@ -30,6 +30,7 @@
  #define _ID3LIB_STRINGS_H_
  

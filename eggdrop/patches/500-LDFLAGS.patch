@@ -1,6 +1,6 @@
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -54,7 +54,7 @@
+@@ -54,7 +54,7 @@ RANLIB = @RANLIB@
  
  # make 'modegg'
  MOD_CC = @MOD_CC@

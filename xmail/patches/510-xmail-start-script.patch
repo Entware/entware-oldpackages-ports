@@ -22,7 +22,7 @@
  ulimit -s 128
  
  start_xmail()
-@@ -28,9 +28,11 @@
+@@ -28,9 +28,11 @@ start_xmail()
      export MAIL_ROOT
      MAIL_CMD_LINE=$XMAIL_CMD_LINE
      export MAIL_CMD_LINE
@@ -36,7 +36,7 @@
      do
          sleep 1
      done
-@@ -38,10 +40,10 @@
+@@ -38,10 +40,10 @@ start_xmail()
  
  stop_xmail()
  {
@@ -49,7 +49,7 @@
          while [ -f $XMAIL_ROOT/.shutdown ]
          do
              sleep 1
-@@ -54,7 +56,7 @@
+@@ -54,7 +56,7 @@ case "$1" in
    start)
        echo -n "Starting $DESC: "
        start_xmail
@@ -58,7 +58,7 @@
  	;;
    stop)
        echo -n "Stopping $DESC: "
-@@ -71,7 +73,7 @@
+@@ -71,7 +73,7 @@ case "$1" in
  	#
  	# echo "Reloading $DESC configuration files."
  	# start-stop-daemon --stop --signal 1 --quiet --pidfile \
@@ -67,7 +67,7 @@
    #;;
    restart|force-reload)
  	#
-@@ -83,7 +85,7 @@
+@@ -83,7 +85,7 @@ case "$1" in
  	stop_xmail
  	sleep 1
  	start_xmail

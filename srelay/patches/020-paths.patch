@@ -1,6 +1,6 @@
 --- a/srelay.h
 +++ b/srelay.h
-@@ -110,9 +110,9 @@
+@@ -110,9 +110,9 @@ typedef    u_int32_t    socklen_t;
  #endif
  #define CONFIG    SYSCONFDIR "/srelay.conf"
  #define PWDFILE   SYSCONFDIR "/srelay.passwd"

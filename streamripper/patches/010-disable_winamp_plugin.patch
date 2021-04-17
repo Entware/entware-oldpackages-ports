@@ -1,6 +1,6 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -224,4 +224,4 @@
+@@ -224,4 +224,4 @@ ENDIF (MSVC)
  ##  Install
  ##-----------------------------------------------------------------------------
  INSTALL(TARGETS streamripper DESTINATION bin)

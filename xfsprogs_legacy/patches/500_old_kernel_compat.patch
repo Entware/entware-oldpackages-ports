@@ -18,7 +18,7 @@
  
 --- a/include/xfs_inode.h
 +++ b/include/xfs_inode.h
-@@ -23,7 +23,15 @@ struct xfs_dir_ops;
+@@ -23,6 +23,14 @@ struct xfs_dir_ops;
  #define I_DIRTY_TIME		0
  #define I_DIRTY_TIME_EXPIRED	0
  
@@ -33,7 +33,6 @@
  #define IS_I_VERSION(inode)			(0)
  #define inode_maybe_inc_iversion(inode,flags)	(0)
  
- /*
 --- a/include/builddefs.in
 +++ b/include/builddefs.in
 @@ -13,7 +13,7 @@ OPTIMIZER = @opt_build@

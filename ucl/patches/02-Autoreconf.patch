@@ -17,8 +17,6 @@ The acc[123].m4 files were extracted from the original aclocal.m4 file.
  create mode 100644 m4/acc2.m4
  create mode 100644 m4/acc3.m4
 
-diff --git a/Makefile.am b/Makefile.am
-index 3570c33..f615f27 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -5,6 +5,8 @@
@@ -30,8 +28,6 @@ index 3570c33..f615f27 100644
  SUBDIRS = include src examples
  
  dist-hook:
-diff --git a/configure.ac b/configure.ac
-index 16adb1d..96ffde0 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -47,8 +47,10 @@ AC_CANONICAL_HOST
@@ -46,8 +42,6 @@ index 16adb1d..96ffde0 100644
  fi
  if test -r .Conf.settings1; then
      . ./.Conf.settings1
-diff --git a/examples/Makefile.am b/examples/Makefile.am
-index 4f1be03..bd33c6a 100644
 --- a/examples/Makefile.am
 +++ b/examples/Makefile.am
 @@ -3,7 +3,7 @@
@@ -59,9 +53,6 @@ index 4f1be03..bd33c6a 100644
  
  noinst_PROGRAMS = simple uclpack
  
-diff --git a/m4/acc1.m4 b/m4/acc1.m4
-new file mode 100644
-index 0000000..d1ccb5b
 --- /dev/null
 +++ b/m4/acc1.m4
 @@ -0,0 +1,97 @@
@@ -162,9 +153,6 @@ index 0000000..d1ccb5b
 +    ;;
 +esac
 +])# mfx_ACC_ACCCHK
-diff --git a/m4/acc2.m4 b/m4/acc2.m4
-new file mode 100644
-index 0000000..f0ce59b
 --- /dev/null
 +++ b/m4/acc2.m4
 @@ -0,0 +1,42 @@
@@ -210,9 +198,6 @@ index 0000000..f0ce59b
 +esac
 +])# mfx_PROG_CPPFLAGS
 +
-diff --git a/m4/acc3.m4 b/m4/acc3.m4
-new file mode 100644
-index 0000000..a6ff628
 --- /dev/null
 +++ b/m4/acc3.m4
 @@ -0,0 +1,143 @@
@@ -359,8 +344,6 @@ index 0000000..a6ff628
 +esac
 +fi
 +])#
-diff --git a/src/Makefile.am b/src/Makefile.am
-index 78d0e51..bdb99a0 100644
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
 @@ -6,9 +6,8 @@

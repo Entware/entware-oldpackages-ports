@@ -1,5 +1,3 @@
-diff --git a/btpd/btpd.c b/btpd/btpd.c
-index d193f7e..9c83ecb 100644
 --- a/btpd/btpd.c
 +++ b/btpd/btpd.c
 @@ -30,6 +30,7 @@ death_procedure(void)
@@ -18,8 +16,6 @@ index d193f7e..9c83ecb 100644
  
      evtimer_init(&m_heartbeat, heartbeat_cb, NULL);
      btpd_timer_add(&m_heartbeat, (& (struct timespec) { 1, 0 }));
-diff --git a/btpd/btpd.h b/btpd/btpd.h
-index e20cf04..fb8c3c7 100644
 --- a/btpd/btpd.h
 +++ b/btpd/btpd.h
 @@ -48,6 +48,7 @@
@@ -30,9 +26,6 @@ index e20cf04..fb8c3c7 100644
  
  #define BTPD_VERSION PACKAGE_NAME "/" PACKAGE_VERSION
  
-diff --git a/btpd/hook.c b/btpd/hook.c
-new file mode 100644
-index 0000000..aac6f92
 --- /dev/null
 +++ b/btpd/hook.c
 @@ -0,0 +1,106 @@
@@ -142,9 +135,6 @@ index 0000000..aac6f92
 +    }
 +}
 +
-diff --git a/btpd/hook.h b/btpd/hook.h
-new file mode 100644
-index 0000000..96bbeb3
 --- /dev/null
 +++ b/btpd/hook.h
 @@ -0,0 +1,19 @@
@@ -167,8 +157,6 @@ index 0000000..96bbeb3
 +hook_exec(hook_t type, const char *tr_name);
 +
 +#endif
-diff --git a/btpd/main.c b/btpd/main.c
-index 55bb73e..772cbb9 100644
 --- a/btpd/main.c
 +++ b/btpd/main.c
 @@ -126,6 +126,9 @@ usage(void)
@@ -199,8 +187,6 @@ index 55bb73e..772cbb9 100644
              default:
                  usage();
              }
-diff --git a/btpd/opts.c b/btpd/opts.c
-index 1b92bc4..6a70424 100644
 --- a/btpd/opts.c
 +++ b/btpd/opts.c
 @@ -14,3 +14,4 @@ const char *tr_ip_arg;
@@ -209,8 +195,6 @@ index 1b92bc4..6a70424 100644
  unsigned net_numwant = 50;
 +const char *hook_script;
 \ No newline at end of file
-diff --git a/btpd/opts.h b/btpd/opts.h
-index d06e731..56066b6 100644
 --- a/btpd/opts.h
 +++ b/btpd/opts.h
 @@ -14,5 +14,6 @@ extern int empty_start;
@@ -220,11 +204,9 @@ index d06e731..56066b6 100644
 +extern const char *hook_script;
  
  #endif
-diff --git a/btpd/torrent.c b/btpd/torrent.c
-index 0ec0b65..e513b59 100644
 --- a/btpd/torrent.c
 +++ b/btpd/torrent.c
-@@ -132,6 +132,7 @@ torrent_start(struct tlib *tl)
+@@ -130,6 +130,7 @@ torrent_start(struct tlib *tl)
          benc_dget_mem(benc_dget_dct(mi, "info"), "pieces", NULL) - mi;
  
      btpd_log(BTPD_L_BTPD, "Starting torrent '%s'.\n", torrent_name(tp));
@@ -232,7 +214,7 @@ index 0ec0b65..e513b59 100644
      tr_create(tp, mi);
      tl->tp = tp;
      net_create(tp);
-@@ -151,6 +152,7 @@ static
+@@ -149,6 +150,7 @@ static
  void become_ghost(struct torrent *tp)
  {
      btpd_log(BTPD_L_BTPD, "Stopped torrent '%s'.\n", torrent_name(tp));
@@ -240,7 +222,7 @@ index 0ec0b65..e513b59 100644
      tp->state = T_GHOST;
      if (tp->delete)
          tlib_del(tp->tl);
-@@ -208,6 +210,7 @@ torrent_on_tick(struct torrent *tp)
+@@ -206,6 +208,7 @@ torrent_on_tick(struct torrent *tp)
              tp->state = T_SEED;
              btpd_log(BTPD_L_BTPD, "Finished downloading '%s'.\n",
                  torrent_name(tp));
@@ -248,11 +230,9 @@ index 0ec0b65..e513b59 100644
              tr_complete(tp);
              BTPDQ_FOREACH_MUTABLE(p, &tp->net->peers, p_entry, next) {
                  assert(p->nwant == 0);
-diff --git a/doc/btpd.1 b/doc/btpd.1
-index 427beb8..2dbfd26 100644
 --- a/doc/btpd.1
 +++ b/doc/btpd.1
-@@ -54,6 +54,9 @@ Limit outgoing BitTorrent traffic to \fIn\fR kB/s.  Default is 0 which means unl
+@@ -54,6 +54,9 @@ Limit outgoing BitTorrent traffic to \fI
  .B \-\-empty\-start
  Start btpd without any active torrents.
  .TP
@@ -262,7 +242,7 @@ index 427beb8..2dbfd26 100644
  .B \-\-ip \fIaddr\fR
  Let the tracker distribute the given address instead of the one it sees btpd connect from.
  .TP
-@@ -98,6 +101,21 @@ It is recommended to specifiy the maximum number of uploads. Bittorrent employs
+@@ -98,6 +101,21 @@ It is recommended to specifiy the maximu
  .PP
  .B Note: 
  You should only need one instance of btpd regardless of how many torrents you want to share.

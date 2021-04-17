@@ -1,7 +1,7 @@
 CURLOPT_INFILESIZE does not support -1 arg. This fix bug #556012.
---- curlftpfs-0.9.2/ftpfs.c.old	2009-12-13 14:12:25.000000000 +0100
-+++ curlftpfs-0.9.2/ftpfs.c	2009-12-13 14:12:32.000000000 +0100
-@@ -503,7 +503,6 @@
+--- a/ftpfs.c
++++ b/ftpfs.c
+@@ -503,7 +503,6 @@ static void *ftpfs_write_thread(void *da
    
    curl_easy_setopt_or_die(fh->write_conn, CURLOPT_URL, fh->full_path);
    curl_easy_setopt_or_die(fh->write_conn, CURLOPT_UPLOAD, 1);

@@ -1,6 +1,6 @@
 --- a/lib/module.js
 +++ b/lib/module.js
-@@ -508,7 +508,8 @@
+@@ -508,7 +508,8 @@ Module._initPaths = function() {
      var homeDir = process.env.HOME;
    }
  

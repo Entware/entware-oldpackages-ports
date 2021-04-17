@@ -1,7 +1,6 @@
-diff -Naur wview-5.21.7.orig/alarms/Makefile.am wview-5.21.7/alarms/Makefile.am
---- wview-5.21.7.orig/alarms/Makefile.am	2014-05-28 04:22:49.000000000 +0400
-+++ wview-5.21.7/alarms/Makefile.am	2016-07-24 09:56:32.138525000 +0300
-@@ -8,7 +8,6 @@
+--- a/alarms/Makefile.am
++++ b/alarms/Makefile.am
+@@ -8,7 +8,6 @@ bin_PROGRAMS    = wvalarmd
  # define include directories
  INCLUDES = \
  		-I$(top_srcdir)/common \
@@ -9,7 +8,7 @@ diff -Naur wview-5.21.7.orig/alarms/Makefile.am wview-5.21.7/alarms/Makefile.am
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -35,10 +34,4 @@
+@@ -35,10 +34,4 @@ wvalarmd_SOURCES  = \
  # define libraries
  wvalarmd_LDADD   =
  
@@ -20,10 +19,9 @@ diff -Naur wview-5.21.7.orig/alarms/Makefile.am wview-5.21.7/alarms/Makefile.am
 -wvalarmd_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/cwop/Makefile.am wview-5.21.7/cwop/Makefile.am
---- wview-5.21.7.orig/cwop/Makefile.am	2014-05-28 04:22:50.000000000 +0400
-+++ wview-5.21.7/cwop/Makefile.am	2016-07-24 09:55:46.111523001 +0300
-@@ -8,7 +8,6 @@
+--- a/cwop/Makefile.am
++++ b/cwop/Makefile.am
+@@ -8,7 +8,6 @@ bin_PROGRAMS    = wvcwopd
  # define include directories
  INCLUDES = \
  		-I$(top_srcdir)/common \
@@ -31,7 +29,7 @@ diff -Naur wview-5.21.7.orig/cwop/Makefile.am wview-5.21.7/cwop/Makefile.am
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -31,10 +30,3 @@
+@@ -31,10 +30,3 @@ wvcwopd_SOURCES  = \
  # define libraries
  wvcwopd_LDADD   =
  
@@ -42,10 +40,9 @@ diff -Naur wview-5.21.7.orig/cwop/Makefile.am wview-5.21.7/cwop/Makefile.am
 -wvcwopd_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
 -
-diff -Naur wview-5.21.7.orig/ftp/Makefile.am wview-5.21.7/ftp/Makefile.am
---- wview-5.21.7.orig/ftp/Makefile.am	2014-05-28 04:22:51.000000000 +0400
-+++ wview-5.21.7/ftp/Makefile.am	2016-07-24 09:56:15.998458993 +0300
-@@ -7,7 +7,6 @@
+--- a/ftp/Makefile.am
++++ b/ftp/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS    = wviewftpd
  
  # define include directories
  INCLUDES = 	-I$(top_srcdir)/common \
@@ -53,7 +50,7 @@ diff -Naur wview-5.21.7.orig/ftp/Makefile.am wview-5.21.7/ftp/Makefile.am
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
  		-D_GNU_SOURCE
-@@ -32,10 +31,4 @@
+@@ -32,10 +31,4 @@ wviewftpd_SOURCES  = \
  # define libraries
  wviewftpd_LDADD   = -lssl -lcurl
  
@@ -64,10 +61,9 @@ diff -Naur wview-5.21.7.orig/ftp/Makefile.am wview-5.21.7/ftp/Makefile.am
 -wviewftpd_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/htmlgenerator/Makefile.am wview-5.21.7/htmlgenerator/Makefile.am
---- wview-5.21.7.orig/htmlgenerator/Makefile.am	2014-05-28 04:22:50.000000000 +0400
-+++ wview-5.21.7/htmlgenerator/Makefile.am	2016-07-24 09:56:23.198056999 +0300
-@@ -8,7 +8,6 @@
+--- a/htmlgenerator/Makefile.am
++++ b/htmlgenerator/Makefile.am
+@@ -8,7 +8,6 @@ bin_PROGRAMS       = htmlgend
  # define include directories
  INCLUDES = \
  		-I$(top_srcdir)/common \
@@ -75,7 +71,7 @@ diff -Naur wview-5.21.7.orig/htmlgenerator/Makefile.am wview-5.21.7/htmlgenerato
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -65,10 +64,4 @@
+@@ -65,10 +64,4 @@ htmlgend_SOURCES   = \
  # define libraries
  htmlgend_LDADD   =
  
@@ -86,10 +82,9 @@ diff -Naur wview-5.21.7.orig/htmlgenerator/Makefile.am wview-5.21.7/htmlgenerato
 -htmlgend_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/http/Makefile.am wview-5.21.7/http/Makefile.am
---- wview-5.21.7.orig/http/Makefile.am	2014-05-28 04:22:51.000000000 +0400
-+++ wview-5.21.7/http/Makefile.am	2016-07-24 09:55:57.385156970 +0300
-@@ -8,9 +8,6 @@
+--- a/http/Makefile.am
++++ b/http/Makefile.am
+@@ -8,9 +8,6 @@ bin_PROGRAMS    = wvhttpd
  # define include directories
  INCLUDES = \
  		-I$(top_srcdir)/common \
@@ -99,7 +94,7 @@ diff -Naur wview-5.21.7.orig/http/Makefile.am wview-5.21.7/http/Makefile.am
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -37,10 +34,4 @@
+@@ -37,10 +34,4 @@ wvhttpd_SOURCES  = \
  # define libraries
  wvhttpd_LDADD     = -lssl -lcurl
  
@@ -110,10 +105,9 @@ diff -Naur wview-5.21.7.orig/http/Makefile.am wview-5.21.7/http/Makefile.am
 -wvhttpd_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/procmon/Makefile.am wview-5.21.7/procmon/Makefile.am
---- wview-5.21.7.orig/procmon/Makefile.am	2014-05-28 04:22:51.000000000 +0400
-+++ wview-5.21.7/procmon/Makefile.am	2016-07-24 09:55:35.186062999 +0300
-@@ -8,7 +8,6 @@
+--- a/procmon/Makefile.am
++++ b/procmon/Makefile.am
+@@ -8,7 +8,6 @@ bin_PROGRAMS    = wvpmond
  # define include directories
  INCLUDES = \
  		-I$(top_srcdir)/common \
@@ -121,7 +115,7 @@ diff -Naur wview-5.21.7.orig/procmon/Makefile.am wview-5.21.7/procmon/Makefile.a
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -32,10 +31,4 @@
+@@ -32,10 +31,4 @@ wvpmond_SOURCES  = \
  # define libraries
  wvpmond_LDADD   =
  
@@ -132,10 +126,9 @@ diff -Naur wview-5.21.7.orig/procmon/Makefile.am wview-5.21.7/procmon/Makefile.a
 -wvpmond_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/ssh/Makefile.am wview-5.21.7/ssh/Makefile.am
---- wview-5.21.7.orig/ssh/Makefile.am	2014-05-28 04:22:50.000000000 +0400
-+++ wview-5.21.7/ssh/Makefile.am	2016-07-24 09:56:07.882403015 +0300
-@@ -7,7 +7,6 @@
+--- a/ssh/Makefile.am
++++ b/ssh/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS = wviewsshd
  
  # define include directories
  INCLUDES = 	-I$(top_srcdir)/common \
@@ -143,7 +136,7 @@ diff -Naur wview-5.21.7.orig/ssh/Makefile.am wview-5.21.7/ssh/Makefile.am
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
  		-D_GNU_SOURCE
-@@ -32,10 +31,4 @@
+@@ -32,10 +31,4 @@ wviewsshd_SOURCES  = \
  # define libraries
  wviewsshd_LDADD   =
  
@@ -154,10 +147,9 @@ diff -Naur wview-5.21.7.orig/ssh/Makefile.am wview-5.21.7/ssh/Makefile.am
 -wviewsshd_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/stations/Simulator/Makefile.am wview-5.21.7/stations/Simulator/Makefile.am
---- wview-5.21.7.orig/stations/Simulator/Makefile.am	2014-05-28 04:22:49.000000000 +0400
-+++ wview-5.21.7/stations/Simulator/Makefile.am	2016-07-24 09:58:01.779323024 +0300
-@@ -7,7 +7,6 @@
+--- a/stations/Simulator/Makefile.am
++++ b/stations/Simulator/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS    = wviewd_sim
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -165,7 +157,7 @@ diff -Naur wview-5.21.7.orig/stations/Simulator/Makefile.am wview-5.21.7/station
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -51,10 +50,4 @@
+@@ -51,10 +50,4 @@ wviewd_sim_SOURCES     = \
  # define libraries
  wviewd_sim_LDADD       =
  
@@ -176,10 +168,9 @@ diff -Naur wview-5.21.7.orig/stations/Simulator/Makefile.am wview-5.21.7/station
 -wviewd_sim_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/stations/TE923/Makefile.am wview-5.21.7/stations/TE923/Makefile.am
---- wview-5.21.7.orig/stations/TE923/Makefile.am	2014-05-17 05:06:19.000000000 +0400
-+++ wview-5.21.7/stations/TE923/Makefile.am	2016-07-24 09:53:44.062528993 +0300
-@@ -7,7 +7,6 @@
+--- a/stations/TE923/Makefile.am
++++ b/stations/TE923/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS	= wviewd_te923
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -187,10 +178,9 @@ diff -Naur wview-5.21.7.orig/stations/TE923/Makefile.am wview-5.21.7/stations/TE
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-diff -Naur wview-5.21.7.orig/stations/TWI/Makefile.am wview-5.21.7/stations/TWI/Makefile.am
---- wview-5.21.7.orig/stations/TWI/Makefile.am	2014-05-28 04:22:48.000000000 +0400
-+++ wview-5.21.7/stations/TWI/Makefile.am	2016-07-24 09:57:32.380631014 +0300
-@@ -7,7 +7,6 @@
+--- a/stations/TWI/Makefile.am
++++ b/stations/TWI/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS    = wviewd_twi
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -198,7 +188,7 @@ diff -Naur wview-5.21.7.orig/stations/TWI/Makefile.am wview-5.21.7/stations/TWI/
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -56,10 +55,4 @@
+@@ -56,10 +55,4 @@ wviewd_twi_SOURCES     = \
  # define libraries
  wviewd_twi_LDADD       =
  
@@ -209,10 +199,9 @@ diff -Naur wview-5.21.7.orig/stations/TWI/Makefile.am wview-5.21.7/stations/TWI/
 -wviewd_twi_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/stations/VantagePro/Makefile.am wview-5.21.7/stations/VantagePro/Makefile.am
---- wview-5.21.7.orig/stations/VantagePro/Makefile.am	2014-05-28 04:22:49.000000000 +0400
-+++ wview-5.21.7/stations/VantagePro/Makefile.am	2016-07-24 09:57:46.883878995 +0300
-@@ -9,7 +9,6 @@
+--- a/stations/VantagePro/Makefile.am
++++ b/stations/VantagePro/Makefile.am
+@@ -9,7 +9,6 @@ bin_PROGRAMS    = wviewd_vpro
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -220,7 +209,7 @@ diff -Naur wview-5.21.7.orig/stations/VantagePro/Makefile.am wview-5.21.7/statio
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -55,10 +54,4 @@
+@@ -55,10 +54,4 @@ wviewd_vpro_SOURCES     = \
  # define libraries
  wviewd_vpro_LDADD       =
  
@@ -231,10 +220,9 @@ diff -Naur wview-5.21.7.orig/stations/VantagePro/Makefile.am wview-5.21.7/statio
 -wviewd_vpro_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/stations/VantagePro/vpconfig/Makefile.am wview-5.21.7/stations/VantagePro/vpconfig/Makefile.am
---- wview-5.21.7.orig/stations/VantagePro/vpconfig/Makefile.am	2014-05-28 04:22:49.000000000 +0400
-+++ wview-5.21.7/stations/VantagePro/vpconfig/Makefile.am	2016-07-24 09:58:14.897878929 +0300
-@@ -13,7 +13,6 @@
+--- a/stations/VantagePro/vpconfig/Makefile.am
++++ b/stations/VantagePro/vpconfig/Makefile.am
+@@ -13,7 +13,6 @@ INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
  		-I$(top_srcdir)/stations/VantagePro \
@@ -242,7 +230,7 @@ diff -Naur wview-5.21.7.orig/stations/VantagePro/vpconfig/Makefile.am wview-5.21
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
  		-D_VP_CONFIG_ONLY \
-@@ -39,13 +38,6 @@
+@@ -39,13 +38,6 @@ vpconfig_SOURCES  = \
  # define libraries
  vpconfig_LDADD   =
  
@@ -256,10 +244,9 @@ diff -Naur wview-5.21.7.orig/stations/VantagePro/vpconfig/Makefile.am wview-5.21
  CLEANFILES = $(bin_SCRIPTS)
  
  vpinstall: $(srcdir)/vpinstall.sh
-diff -Naur wview-5.21.7.orig/stations/Virtual/Makefile.am wview-5.21.7/stations/Virtual/Makefile.am
---- wview-5.21.7.orig/stations/Virtual/Makefile.am	2014-05-28 04:22:49.000000000 +0400
-+++ wview-5.21.7/stations/Virtual/Makefile.am	2016-07-24 09:57:23.079983074 +0300
-@@ -7,7 +7,6 @@
+--- a/stations/Virtual/Makefile.am
++++ b/stations/Virtual/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS    = wviewd_virtual
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -267,7 +254,7 @@ diff -Naur wview-5.21.7.orig/stations/Virtual/Makefile.am wview-5.21.7/stations/
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -57,10 +56,3 @@
+@@ -57,10 +56,3 @@ wviewd_virtual_SOURCES     = \
  # define libraries
  wviewd_virtual_LDADD     =
  
@@ -278,10 +265,9 @@ diff -Naur wview-5.21.7.orig/stations/Virtual/Makefile.am wview-5.21.7/stations/
 -wviewd_virtual_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
 -
-diff -Naur wview-5.21.7.orig/stations/WH1080/Makefile.am wview-5.21.7/stations/WH1080/Makefile.am
---- wview-5.21.7.orig/stations/WH1080/Makefile.am	2014-05-17 05:05:54.000000000 +0400
-+++ wview-5.21.7/stations/WH1080/Makefile.am	2016-07-24 09:53:03.814415004 +0300
-@@ -7,7 +7,6 @@
+--- a/stations/WH1080/Makefile.am
++++ b/stations/WH1080/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS	= wviewd_wh1080
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -289,10 +275,9 @@ diff -Naur wview-5.21.7.orig/stations/WH1080/Makefile.am wview-5.21.7/stations/W
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-diff -Naur wview-5.21.7.orig/stations/WMR918/Makefile.am wview-5.21.7/stations/WMR918/Makefile.am
---- wview-5.21.7.orig/stations/WMR918/Makefile.am	2014-05-28 04:22:49.000000000 +0400
-+++ wview-5.21.7/stations/WMR918/Makefile.am	2016-07-24 09:57:39.640258999 +0300
-@@ -7,7 +7,6 @@
+--- a/stations/WMR918/Makefile.am
++++ b/stations/WMR918/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS    = wviewd_wmr918
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -300,7 +285,7 @@ diff -Naur wview-5.21.7.orig/stations/WMR918/Makefile.am wview-5.21.7/stations/W
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -55,10 +54,3 @@
+@@ -55,10 +54,3 @@ wviewd_wmr918_SOURCES     = \
  # define libraries
  wviewd_wmr918_LDADD       =
  
@@ -311,10 +296,9 @@ diff -Naur wview-5.21.7.orig/stations/WMR918/Makefile.am wview-5.21.7/stations/W
 -wviewd_wmr918_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
 -
-diff -Naur wview-5.21.7.orig/stations/WMRUSB/Makefile.am wview-5.21.7/stations/WMRUSB/Makefile.am
---- wview-5.21.7.orig/stations/WMRUSB/Makefile.am	2014-05-17 05:04:25.000000000 +0400
-+++ wview-5.21.7/stations/WMRUSB/Makefile.am	2016-07-24 09:53:14.863937037 +0300
-@@ -7,7 +7,6 @@
+--- a/stations/WMRUSB/Makefile.am
++++ b/stations/WMRUSB/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS    = wviewd_wmrusb
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -322,10 +306,9 @@ diff -Naur wview-5.21.7.orig/stations/WMRUSB/Makefile.am wview-5.21.7/stations/W
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-diff -Naur wview-5.21.7.orig/stations/WS-2300/Makefile.am wview-5.21.7/stations/WS-2300/Makefile.am
---- wview-5.21.7.orig/stations/WS-2300/Makefile.am	2014-05-28 04:22:49.000000000 +0400
-+++ wview-5.21.7/stations/WS-2300/Makefile.am	2016-07-24 09:57:16.032461028 +0300
-@@ -7,7 +7,6 @@
+--- a/stations/WS-2300/Makefile.am
++++ b/stations/WS-2300/Makefile.am
+@@ -7,7 +7,6 @@ bin_PROGRAMS    = wviewd_ws2300
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -333,7 +316,7 @@ diff -Naur wview-5.21.7.orig/stations/WS-2300/Makefile.am wview-5.21.7/stations/
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -55,10 +54,3 @@
+@@ -55,10 +54,3 @@ wviewd_ws2300_SOURCES     = \
  # define libraries
  wviewd_ws2300_LDADD       =
  
@@ -344,10 +327,9 @@ diff -Naur wview-5.21.7.orig/stations/WS-2300/Makefile.am wview-5.21.7/stations/
 -wviewd_ws2300_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
 -
-diff -Naur wview-5.21.7.orig/stations/WXT510/Makefile.am wview-5.21.7/stations/WXT510/Makefile.am
---- wview-5.21.7.orig/stations/WXT510/Makefile.am	2014-05-28 04:22:49.000000000 +0400
-+++ wview-5.21.7/stations/WXT510/Makefile.am	2016-07-24 09:57:54.319595000 +0300
-@@ -10,7 +10,6 @@
+--- a/stations/WXT510/Makefile.am
++++ b/stations/WXT510/Makefile.am
+@@ -10,7 +10,6 @@ bin_PROGRAMS    = wviewd_wxt510
  INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
@@ -355,7 +337,7 @@ diff -Naur wview-5.21.7.orig/stations/WXT510/Makefile.am wview-5.21.7/stations/W
  		-D_GNU_SOURCE \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -58,10 +57,4 @@
+@@ -58,10 +57,4 @@ wviewd_wxt510_SOURCES     = \
  # define libraries
  wviewd_wxt510_LDADD       =
  
@@ -366,10 +348,9 @@ diff -Naur wview-5.21.7.orig/stations/WXT510/Makefile.am wview-5.21.7/stations/W
 -wviewd_wxt510_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/stations/WXT510/wxt510config/Makefile.am wview-5.21.7/stations/WXT510/wxt510config/Makefile.am
---- wview-5.21.7.orig/stations/WXT510/wxt510config/Makefile.am	2014-05-28 04:22:49.000000000 +0400
-+++ wview-5.21.7/stations/WXT510/wxt510config/Makefile.am	2016-07-24 09:58:23.950402989 +0300
-@@ -8,7 +8,6 @@
+--- a/stations/WXT510/wxt510config/Makefile.am
++++ b/stations/WXT510/wxt510config/Makefile.am
+@@ -8,7 +8,6 @@ INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/common \
  		-I$(top_srcdir)/stations/WXT510 \
@@ -377,7 +358,7 @@ diff -Naur wview-5.21.7.orig/stations/WXT510/wxt510config/Makefile.am wview-5.21
  		-D_WXT510_CONFIG_ONLY \
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
-@@ -37,10 +36,4 @@
+@@ -37,10 +36,4 @@ wxt510config_SOURCES  = \
  # define libraries
  wxt510config_LDADD   =
  
@@ -388,10 +369,9 @@ diff -Naur wview-5.21.7.orig/stations/WXT510/wxt510config/Makefile.am wview-5.21
 -wxt510config_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/utilities/archive-be2le/Makefile.am wview-5.21.7/utilities/archive-be2le/Makefile.am
---- wview-5.21.7.orig/utilities/archive-be2le/Makefile.am	2014-05-28 04:22:50.000000000 +0400
-+++ wview-5.21.7/utilities/archive-be2le/Makefile.am	2016-07-24 09:56:39.118012998 +0300
-@@ -8,7 +8,6 @@
+--- a/utilities/archive-be2le/Makefile.am
++++ b/utilities/archive-be2le/Makefile.am
+@@ -8,7 +8,6 @@ INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/VantagePro \
  		-I$(top_srcdir)/utilities \
@@ -399,7 +379,7 @@ diff -Naur wview-5.21.7.orig/utilities/archive-be2le/Makefile.am wview-5.21.7/ut
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
  		-DBUILD_UTILITIES \
-@@ -30,10 +29,4 @@
+@@ -30,10 +29,4 @@ arc_be2le_SOURCES  = \
  # define libraries
  arc_be2le_LDADD   =
  
@@ -410,10 +390,9 @@ diff -Naur wview-5.21.7.orig/utilities/archive-be2le/Makefile.am wview-5.21.7/ut
 -arc_be2le_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/utilities/archive-le2be/Makefile.am wview-5.21.7/utilities/archive-le2be/Makefile.am
---- wview-5.21.7.orig/utilities/archive-le2be/Makefile.am	2014-05-28 04:22:50.000000000 +0400
-+++ wview-5.21.7/utilities/archive-le2be/Makefile.am	2016-07-24 09:56:54.717809025 +0300
-@@ -8,7 +8,6 @@
+--- a/utilities/archive-le2be/Makefile.am
++++ b/utilities/archive-le2be/Makefile.am
+@@ -8,7 +8,6 @@ INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/VantagePro \
  		-I$(top_srcdir)/utilities \
@@ -421,7 +400,7 @@ diff -Naur wview-5.21.7.orig/utilities/archive-le2be/Makefile.am wview-5.21.7/ut
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
  		-DBUILD_UTILITIES \
-@@ -30,10 +29,4 @@
+@@ -30,10 +29,4 @@ arc_le2be_SOURCES  = \
  # define libraries
  arc_le2be_LDADD   =
  
@@ -432,10 +411,9 @@ diff -Naur wview-5.21.7.orig/utilities/archive-le2be/Makefile.am wview-5.21.7/ut
 -arc_le2be_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/utilities/hilowcreate/Makefile.am wview-5.21.7/utilities/hilowcreate/Makefile.am
---- wview-5.21.7.orig/utilities/hilowcreate/Makefile.am	2014-05-28 04:22:51.000000000 +0400
-+++ wview-5.21.7/utilities/hilowcreate/Makefile.am	2016-07-24 09:57:08.364629000 +0300
-@@ -6,7 +6,6 @@
+--- a/utilities/hilowcreate/Makefile.am
++++ b/utilities/hilowcreate/Makefile.am
+@@ -6,7 +6,6 @@ bin_PROGRAMS = hilowcreate
  # define include directories
  INCLUDES = \
  		-I$(top_srcdir)/common \
@@ -443,7 +421,7 @@ diff -Naur wview-5.21.7.orig/utilities/hilowcreate/Makefile.am wview-5.21.7/util
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
  		-DBUILD_UTILITIES=1 \
-@@ -27,10 +26,4 @@
+@@ -27,10 +26,4 @@ hilowcreate_SOURCES  = \
  # define libraries
  hilowcreate_LDADD   =
  
@@ -454,10 +432,9 @@ diff -Naur wview-5.21.7.orig/utilities/hilowcreate/Makefile.am wview-5.21.7/util
 -hilowcreate_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
  
-diff -Naur wview-5.21.7.orig/utilities/sqlite2wlk/Makefile.am wview-5.21.7/utilities/sqlite2wlk/Makefile.am
---- wview-5.21.7.orig/utilities/sqlite2wlk/Makefile.am	2014-05-28 04:22:50.000000000 +0400
-+++ wview-5.21.7/utilities/sqlite2wlk/Makefile.am	2016-07-24 09:56:47.922413003 +0300
-@@ -8,7 +8,6 @@
+--- a/utilities/sqlite2wlk/Makefile.am
++++ b/utilities/sqlite2wlk/Makefile.am
+@@ -8,7 +8,6 @@ INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/VantagePro \
  		-I$(top_srcdir)/utilities \
@@ -465,7 +442,7 @@ diff -Naur wview-5.21.7.orig/utilities/sqlite2wlk/Makefile.am wview-5.21.7/utili
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
  		-DBUILD_UTILITIES \
-@@ -28,10 +27,3 @@
+@@ -28,10 +27,3 @@ sqlite2wlk_SOURCES  = \
  # define libraries
  sqlite2wlk_LDADD   =
  
@@ -476,10 +453,9 @@ diff -Naur wview-5.21.7.orig/utilities/sqlite2wlk/Makefile.am wview-5.21.7/utili
 -sqlite2wlk_LDFLAGS += $(prefix)/lib/crt1.o $(prefix)/lib/crti.o $(prefix)/lib/crtn.o
 -endif
 -
-diff -Naur wview-5.21.7.orig/utilities/wlk2sqlite/Makefile.am wview-5.21.7/utilities/wlk2sqlite/Makefile.am
---- wview-5.21.7.orig/utilities/wlk2sqlite/Makefile.am	2014-05-28 04:22:51.000000000 +0400
-+++ wview-5.21.7/utilities/wlk2sqlite/Makefile.am	2016-07-24 09:57:01.577236999 +0300
-@@ -8,7 +8,6 @@
+--- a/utilities/wlk2sqlite/Makefile.am
++++ b/utilities/wlk2sqlite/Makefile.am
+@@ -8,7 +8,6 @@ INCLUDES = \
  		-I$(top_srcdir)/common \
  		-I$(top_srcdir)/stations/VantagePro \
  		-I$(top_srcdir)/utilities \
@@ -487,7 +463,7 @@ diff -Naur wview-5.21.7.orig/utilities/wlk2sqlite/Makefile.am wview-5.21.7/utili
  		-DWV_CONFIG_DIR=\"$(sysconfdir)/wview\" \
  		-DWV_RUN_DIR=\"$(localstatedir)/wview\" \
  		-DBUILD_UTILITIES \
-@@ -28,10 +27,4 @@
+@@ -28,10 +27,4 @@ wlk2sqlite_SOURCES  = \
  # define libraries
  wlk2sqlite_LDADD   =
  

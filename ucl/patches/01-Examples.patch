@@ -9,8 +9,6 @@ Fix examples.
  examples/uclpack.c | 2 +-
  3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/examples/portab.h b/examples/portab.h
-index 6cf0752..719839c 100644
 --- a/examples/portab.h
 +++ b/examples/portab.h
 @@ -28,7 +28,7 @@
@@ -22,8 +20,6 @@ index 6cf0752..719839c 100644
  
  #include "examples/portab_a.h"
  
-diff --git a/examples/simple.c b/examples/simple.c
-index 5fd54be..faecf60 100644
 --- a/examples/simple.c
 +++ b/examples/simple.c
 @@ -32,7 +32,7 @@
@@ -35,8 +31,6 @@ index 5fd54be..faecf60 100644
  
  
  /*************************************************************************
-diff --git a/examples/uclpack.c b/examples/uclpack.c
-index a340c24..a104876 100644
 --- a/examples/uclpack.c
 +++ b/examples/uclpack.c
 @@ -60,7 +60,7 @@

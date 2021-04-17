@@ -1,5 +1,3 @@
-diff --git a/include/id3/id3lib_strings.h b/include/id3/id3lib_strings.h
-index 02a9aba..101b797 100644
 --- a/include/id3/id3lib_strings.h
 +++ b/include/id3/id3lib_strings.h
 @@ -29,6 +29,7 @@
@@ -10,8 +8,6 @@ index 02a9aba..101b797 100644
  #include <string>
  #include <streambuf>
  
-diff --git a/include/id3/writers.h b/include/id3/writers.h
-index 1cbb0dc..4bc8f77 100644
 --- a/include/id3/writers.h
 +++ b/include/id3/writers.h
 @@ -30,7 +30,7 @@

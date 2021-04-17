@@ -1,6 +1,6 @@
---- a/src/ifaces.c	2009-11-28 18:45:44.000000000 +0000
-+++ b/src/ifaces.c	2009-11-28 18:47:46.000000000 +0000
-@@ -32,14 +32,14 @@
+--- a/src/ifaces.c
++++ b/src/ifaces.c
+@@ -32,14 +32,14 @@ details.
  #include "error.h"
  
  extern int accept_unsupported_interfaces;
@@ -17,9 +17,9 @@
  };
  
  char *ltrim(char *buf)
---- a/src/packet.c	2009-11-28 18:45:44.000000000 +0000
-+++ b/src/packet.c	2009-11-28 18:48:06.000000000 +0000
-@@ -104,6 +104,8 @@
+--- a/src/packet.c
++++ b/src/packet.c
+@@ -104,6 +104,8 @@ unsigned short getlinktype(unsigned shor
              result = LINK_ETHERNET;
          else if (strncmp(ifname, "tap", 3) == 0)
              result = LINK_ETHERNET;
@@ -28,9 +28,9 @@
          else if ((strncmp(ifname, "isdn", 4) == 0) && (isdn_fd != -1)) {
              isdnent = isdn_table_lookup(isdnlist, ifname, isdn_fd);
  
---- a/src/promisc.c	2009-11-28 18:45:44.000000000 +0000
-+++ b/src/promisc.c	2009-11-28 18:48:28.000000000 +0000
-@@ -82,6 +82,7 @@
+--- a/src/promisc.c
++++ b/src/promisc.c
+@@ -82,6 +82,7 @@ void init_promisc_list(struct promisc_st
  
              if ((strncmp(buf, "eth", 3) == 0) ||
                  (strncmp(buf, "tr", 2) == 0) ||
