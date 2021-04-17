@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=amule
 PKG_VERSION:=2.3.3
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/amule-project/amule/tar.gz/$(PKG_VERSION)?
@@ -28,7 +28,8 @@ define Package/amule
 	SUBMENU:=P2P
 	TITLE:=A multi-platform eMule-like ed2k client
 	URL:=http://www.amule.org/
-	DEPENDS:=+libpng +libncurses +libreadline +libwxbase +libcryptopp +libbfd
+	DEPENDS:=+libbfd +libcryptopp +libncurses +libpng +libreadline \
+		 +libwxbase $(ICONV_DEPENDS)
 endef
 
 CONFIGURE_ARGS+= \
@@ -72,9 +73,9 @@ endef
 
 define Package/amule/install
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/amule{cmd,d,web} $(1)/opt/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/amule{cmd,d,web} $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/share
-	$(CP) $(PKG_INSTALL_DIR)/opt/share/amule $(1)/opt/share/
+	$(CP) $(PKG_INSTALL_DIR)/opt/share/amule $(1)/opt/share
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S57amuled $(1)/opt/etc/init.d
 	$(INSTALL_DIR) $(1)/opt/var/amule
