@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
-PKG_VERSION:=3.0.1
+PKG_VERSION:=3.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://weechat.org/files/src
-PKG_HASH:=781d9bfc7e1321447de9949263b82e3ee45639b7d71693558f40ff87211ca6dd
+PKG_HASH:=a55a2975aa119f76983412507e3ddb3fe68d0744e08739681ddc17744e77a4f7
 
 PKG_BUILD_DEPENDS:=perl python3
 
@@ -25,13 +25,13 @@ include $(TOPDIR)/feeds/packages/lang/perl/perlver.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-version.mk
 
 define Package/weechat
-  SUBMENU:=Instant Messaging
-  SECTION:=net
-  CATEGORY:=Network
-  TITLE:=Lightweight IRC client
-  URL:=https://weechat.org/
-  DEPENDS:= +libcurl +libgnutls +libgcrypt +libaspell +libncursesw \
-	$(ICONV_DEPENDS) $(INTL_DEPENDS)
+	SUBMENU:=Instant Messaging
+	SECTION:=net
+	CATEGORY:=Network
+	TITLE:=Lightweight IRC client
+	URL:=https://weechat.org/
+	DEPENDS:=+libcurl +libgnutls +libgcrypt +libaspell +libncursesw \
+		$(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
 
 define Package/weechat/description
@@ -50,12 +50,11 @@ CMAKE_OPTIONS += \
 	-DPERL_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/usr/bin/perl" \
 	-DPERL_INCLUDE_PATH="$(STAGING_DIR)/opt/lib/perl5/$(PERL_VERSION2)/CORE" \
 	-DPERL_LIBRARY="$(STAGING_DIR)/opt/lib/perl5/$(PERL_VERSION2)/CORE/libperl.so" \
-	-DENABLE_JAVASCRIPT=OFF \
-	-DENABLE_GUILE=OFF \
-	-DENABLE_LUA=OFF \
 	-DENABLE_PHP=OFF \
 	-DENABLE_RUBY=OFF \
-	-DENABLE_TCL=OFF
+	-DENABLE_LUA=OFF \
+	-DENABLE_TCL=OFF \
+	-DENABLE_GUILE=OFF
 
 define CheckDependencies
 endef
