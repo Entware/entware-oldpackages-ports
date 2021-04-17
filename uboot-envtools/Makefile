@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=uboot-envtools
 PKG_DISTNAME:=u-boot
-PKG_VERSION:=2020.04
+PKG_VERSION:=2021.04
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_DISTNAME)-$(PKG_VERSION).tar.bz2
@@ -17,27 +17,24 @@ PKG_SOURCE_URL:= \
 	https://ftp.denx.de/pub/u-boot \
 	https://mirror.cyberbits.eu/u-boot \
 	ftp://ftp.denx.de/pub/u-boot
-PKG_HASH:=fe732aaf037d9cc3c0909bad8362af366ae964bbdac6913a34081ff4ad565372
+PKG_HASH:=0d438b1bb5cceb57a18ea2de4a0d51f7be5b05b98717df05938636e0aadfe11a
+
 PKG_SOURCE_SUBDIR:=$(PKG_DISTNAME)-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_DISTNAME)-$(PKG_VERSION)
 
-#PKG_BUILD_DEPENDS:=fstools
-
 PKG_LICENSE:=GPL-2.0 GPL-2.0+
 PKG_LICENSE_FILES:=Licenses/README
-
-#PKG_FLAGS:=nonshared
 
 PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
 define Package/uboot-envtools
-  SECTION:=utils
-  CATEGORY:=Utilities
-  SUBMENU:=Boot Loaders
-  TITLE:=read/modify U-Boot bootloader environment
-  URL:=http://www.denx.de/wiki/U-Boot
+	SECTION:=utils
+	CATEGORY:=Utilities
+	SUBMENU:=Boot Loaders
+	TITLE:=read/modify U-Boot bootloader environment
+	URL:=http://www.denx.de/wiki/U-Boot
 endef
 
 define Package/uboot-envtools/description
