@@ -9,21 +9,20 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xmail
 PKG_VERSION:=1.27
-PKG_RELEASE:=1b
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.xmailserver.org/
 PKG_HASH:=e91341b779ffd3d70af6f00028bcd7f65ae664fedf947a27c42311102a84784e
 
-include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/xmail
-  SECTION:=mail
-  CATEGORY:=Mail
-  DEPENDS:=+libopenssl +libpthread $(CXX_DEPENDS)
-  TITLE:=advanced, fast and reliable ESMTP/POP3 mail server
-  URL:=http://www.xmailserver.org/
+	SECTION:=mail
+	CATEGORY:=Mail
+	DEPENDS:=+libopenssl +libpthread +libstdcpp
+	TITLE:=advanced, fast and reliable ESMTP/POP3 mail server
+	URL:=http://www.xmailserver.org/
 endef
 
 define Package/xmail/description
@@ -45,10 +44,10 @@ define Build/Compile
 endef
 
 define Package/xmail/install
-	$(INSTALL_DIR) $(1)/opt/bin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/{CtrlClnt,MkUsers,XMCrypt,XMail,sendmail} $(1)/opt/bin/
+	$(INSTALL_DIR) $(1)/opt/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/{CtrlClnt,MkUsers,XMCrypt,XMail,sendmail} $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/etc
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/MailRoot.tar.bz2 $(1)/opt/etc/
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/MailRoot.tar.bz2 $(1)/opt/etc
 endef
 
 $(eval $(call BuildPackage,xmail))

@@ -4,7 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# The newer versions is incompatible with kernel 2.6.22
+# Abandoned in 2014. The newer versions is incompatible with kernel 2.6.22
 
 include $(TOPDIR)/rules.mk
 
