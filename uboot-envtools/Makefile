@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=uboot-envtools
 PKG_DISTNAME:=u-boot
 PKG_VERSION:=2021.04
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_DISTNAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:= \
@@ -63,7 +63,7 @@ define Package/uboot-envtools/install
 	$(INSTALL_DIR) $(1)/opt/bin  $(1)/opt/etc
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tools/env/fw_printenv $(1)/opt/bin
 	$(LN) fw_printenv $(1)/opt/bin/fw_setenv
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/tools/env/fw_env.config $(1)/opt/etc/fw_env.config
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/tools/env/fw_env.config $(1)/opt/etc/fw_env.config
 endef
 
 $(eval $(call BuildPackage,uboot-envtools))
