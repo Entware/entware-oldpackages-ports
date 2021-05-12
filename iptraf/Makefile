@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=iptraf
 PKG_VERSION:=3.0.1
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://iptraf.seul.org/pub/iptraf/ \
@@ -51,7 +51,7 @@ endef
 define Package/iptraf/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/{iptraf,rvnamed} $(1)/opt/bin
-	$(INSTALL_DIR) $(1)/opt/var/{log,lib}/iptraf
+	$(INSTALL_DIR) $(1)/opt/var/{log,lib,run}/iptraf
 endef
 
 $(eval $(call BuildPackage,iptraf))

@@ -1,0 +1,11 @@
+--- a/src/dirs.h
++++ b/src/dirs.h
+@@ -46,7 +46,7 @@
+  */
+ 
+ #ifndef LOCKDIR
+-#define LOCKDIR		"/var/run/iptraf"
++#define LOCKDIR		"/opt/var/run/iptraf"
+ #endif
+ 
+ /***
