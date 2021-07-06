@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mercurial
-PKG_VERSION:=5.7.1
+PKG_VERSION:=5.8
 PKG_RELEASE:=1
 
 PYPI_NAME:=$(PKG_NAME)
-PKG_HASH:=cb5139144ccb2ef648f36963c8606d47dea1cb0e22aa2c055d6f860ce3fde7b0
+PKG_HASH:=fc5d6a8f6478d88ef83cdd0ab6d86ad68ee722bbdf4964e6a0b47c3c6ba5309f
 
 PKG_BUILD_DEPENDS:=zstd
 
@@ -34,12 +34,12 @@ define Package/mercurial/description
   handling of very large distributed projects.
 endef
 
-PZSTD=zstandard-0.15.1
+PZSTD=zstandard-0.15.2
 
 define Download/pzstd
-  URL:=https://github.com/indygreg/python-zstandard/releases/download/0.15.1
+  URL:=https://github.com/indygreg/python-zstandard/releases/download/0.15.2
   FILE:=$(PZSTD).tar.gz
-  HASH:=cb7c6a6f7d62350b9f5539045da54422975630e34dd9069584cc776b9917115f
+  HASH:=52de08355fd5cfb3ef4533891092bb96229d43c2069703d4aff04fdbedf9c92f
 endef
 $(eval $(call Download,pzstd))
 
@@ -48,7 +48,6 @@ define Build/Prepare
 	rm -rf $(PKG_BUILD_DIR)/contrib/python-zstandard/*
 	tar --strip-components=1 -C $(PKG_BUILD_DIR)/contrib/python-zstandard -xvzf $(DL_DIR)/$(PZSTD).tar.gz
 endef
-
 
 $(eval $(call Py3Package,mercurial))
 $(eval $(call BuildPackage,mercurial))
