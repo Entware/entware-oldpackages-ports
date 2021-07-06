@@ -8,12 +8,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ipv6calc
-PKG_VERSION:=3.0.2
+PKG_VERSION:=3.1.1
+PKG_REV:=629eb38e8419f70afbdcc957f26e1268b8d3cadb
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=ftp://ftp.bieringer.de/pub/linux/IPv6/ipv6calc
-PKG_HASH:=509e5456ed76e143b05adece1180fe78f09f4b8526e0c3cbf0c9f0188207b160
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=https://github.com/pbiering/ipv6calc.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_MIRROR_HASH:=acc5cee97abf39a2d522a5815aa95b12685fb6fd87eada4c90d12337d75b6f52
 
 PKG_INSTALL:=1
 
@@ -36,8 +40,7 @@ endef
 
 define Package/ipv6calc
   $(call Package/ipv6calc/Default)
-  TITLE:=IPv6 addresses calculations (full)
-  VARIANT:=full
+  TITLE:=IPv6 addresses calculations
 endef
 
 define Package/ipv6calc/description
@@ -45,39 +48,15 @@ define Package/ipv6calc/description
   This package contains an ipv6calc with the internal databases enabled.
 endef
 
-define Package/ipv6calc-mini
-  $(call Package/ipv6calc/Default)
-  TITLE:=IPv6 addresses calculations (mini)
-  VARIANT:=mini
-endef
-
-define Package/ipv6calc-mini/description
-  $(call Package/ipv6calc/Default/description)
-  This package contains an ipv6calc with the internal databases disabled.
-endef
-
 define Package/ipv6log
   $(call Package/ipv6calc/Default)
-  TITLE:=Webserver log helper programs (full)
-  VARIANT:=full
+  TITLE:=Webserver log helper programs
 endef
 
 define Package/ipv6log/description
   $(call Package/ipv6calc/Default/description)
   This package contains webserver log anonymization, conversion, and statistics
   helper programs with the internal databases enabled.
-endef
-
-define Package/ipv6log-mini
-  $(call Package/ipv6calc/Default)
-  TITLE:=Webserver log helper programs (mini)
-  VARIANT:=mini
-endef
-
-define Package/ipv6log-mini/description
-  $(call Package/ipv6calc/Default/description)
-  This package contains webserver log anonymization, conversion, and statistics
-  helper programs with the internal databases disabled.
 endef
 
 CONFIGURE_ARGS += \
@@ -89,42 +68,16 @@ CONFIGURE_ARGS += \
 	--enable-bundled-md5 \
 	--enable-bundled-getopt
 
-ifeq ($(BUILD_VARIANT),full)
-	CONFIGURE_ARGS += \
-		--enable-db-ieee \
-		--enable-db-ipv4 \
-		--enable-db-ipv6
-endif
-
-ifeq ($(BUILD_VARIANT),mini)
-	CONFIGURE_ARGS += \
-		--disable-db-ieee \
-		--disable-db-ipv4 \
-		--disable-db-ipv6 \
-		--disable-db-as-registry
-endif
-
-define Build/Compile
-	$(call Build/Compile/Default,clean)
-	$(call Build/Compile/Default)
-endef
-
 define Package/ipv6calc/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ipv6calc $(1)/opt/bin
 	$(INSTALL_DIR) $(1)/opt/share/{ipv6calc/db,GeoIP,IP2Location,DBIP}
 endef
 
-Package/ipv6calc-mini/install = $(Package/ipv6calc/install)
-
 define Package/ipv6log/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ipv6log* $(1)/opt/bin
 endef
 
-Package/ipv6log-mini/install = $(Package/ipv6log/install)
-
 $(eval $(call BuildPackage,ipv6calc))
-$(eval $(call BuildPackage,ipv6calc-mini))
 $(eval $(call BuildPackage,ipv6log))
-$(eval $(call BuildPackage,ipv6log-mini))
