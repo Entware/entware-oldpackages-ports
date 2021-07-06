@@ -4,6 +4,8 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# 1.12 requires never kernel (?) with NVME susbsystem
+# sg_pt_linux_nvme.c:1913:9: error: 'vb' undeclared (first use in this function)
 
 include $(TOPDIR)/rules.mk
 
