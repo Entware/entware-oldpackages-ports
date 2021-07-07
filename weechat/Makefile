@@ -19,7 +19,7 @@ PKG_HASH:=39a8adf374e80653c9dd2be06870341594ea081b3a9c3690132e556abf9d87a8
 PKG_BUILD_DEPENDS:=perl python3
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/devel/ninja/ninja-cmake.mk
+include $(INCLUDE_DIR)/cmake.mk
 include $(INCLUDE_DIR)/nls.mk
 include $(TOPDIR)/feeds/packages/lang/perl/perlver.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-version.mk
