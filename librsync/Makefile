@@ -22,7 +22,7 @@ PKG_MIRROR_HASH:=2fb599a11d4535262a6a2896a13771748c1b309071496b5983aeaf8638d77d4
 CMAKE_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/devel/ninja/ninja-cmake.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/librsync
   SECTION:=libs
