@@ -1,0 +1,28 @@
+--- a/deps/v8/src/codegen/mips/constants-mips.h
++++ b/deps/v8/src/codegen/mips/constants-mips.h
+@@ -137,7 +137,11 @@ const uint32_t kLeastSignificantByteInIn
+ namespace v8 {
+ namespace internal {
+ 
++#ifdef __MIPSEB__
++constexpr size_t kMaxPCRelativeCodeRangeInMB = 1024;
++#else
+ constexpr size_t kMaxPCRelativeCodeRangeInMB = 4096;
++#endif /* __MIPSEB__ */
+ 
+ // -----------------------------------------------------------------------------
+ // Registers and FPURegisters.
+--- a/deps/v8/src/common/globals.h
++++ b/deps/v8/src/common/globals.h
+@@ -206,7 +206,11 @@ constexpr size_t kMinimumCodeRangeSize =
+ constexpr size_t kMinExpectedOSPageSize = 64 * KB;  // OS page on PPC Linux
+ #elif V8_TARGET_ARCH_MIPS
+ constexpr bool kRequiresCodeRange = false;
++#ifdef __MIPSEB__
++constexpr size_t kMaximalCodeRangeSize = 512 * MB;
++#else
+ constexpr size_t kMaximalCodeRangeSize = 2048LL * MB;
++#endif /* __MIPSEB__ */
+ constexpr size_t kMinimumCodeRangeSize = 0 * MB;
+ constexpr size_t kMinExpectedOSPageSize = 4 * KB;  // OS page.
+ #else

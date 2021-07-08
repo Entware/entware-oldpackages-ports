@@ -1,0 +1,55 @@
+--- a/deps/v8/src/base/debug/stack_trace_posix.cc
++++ b/deps/v8/src/base/debug/stack_trace_posix.cc
+@@ -29,7 +29,7 @@
+ #define HAVE_EXECINFO_H 1
+ #endif
+ 
+-#if HAVE_EXECINFO_H
++#if HAVE_EXECINFO_H && !defined (__UCLIBC__)
+ #include <cxxabi.h>
+ #include <execinfo.h>
+ #endif
+@@ -72,7 +72,7 @@ const char kMangledSymbolPrefix[] = "_Z"
+ const char kSymbolCharacters[] =
+     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+ 
+-#if HAVE_EXECINFO_H
++#if HAVE_EXECINFO_H && !defined (__UCLIBC__)
+ // Demangles C++ symbols in the given text. Example:
+ //
+ // "out/Debug/base_unittests(_ZN10StackTraceC1Ev+0x20) [0x817778c]"
+@@ -128,7 +128,7 @@ class BacktraceOutputHandler {
+   virtual ~BacktraceOutputHandler() = default;
+ };
+ 
+-#if HAVE_EXECINFO_H
++#if HAVE_EXECINFO_H && !defined (__UCLIBC__)
+ void OutputPointer(void* pointer, BacktraceOutputHandler* handler) {
+   // This should be more than enough to store a 64-bit number in hex:
+   // 16 hex digits + 1 for null-terminator.
+@@ -364,7 +364,7 @@ StackTrace::StackTrace() {
+   // NOTE: This code MUST be async-signal safe (it's used by in-process
+   // stack dumping signal handler). NO malloc or stdio is allowed here.
+ 
+-#if HAVE_EXECINFO_H
++#if HAVE_EXECINFO_H && !defined (__UCLIBC__)
+   // Though the backtrace API man page does not list any possible negative
+   // return values, we take no chance.
+   count_ = static_cast<size_t>(backtrace(trace_, arraysize(trace_)));
+@@ -377,14 +377,14 @@ void StackTrace::Print() const {
+   // NOTE: This code MUST be async-signal safe (it's used by in-process
+   // stack dumping signal handler). NO malloc or stdio is allowed here.
+ 
+-#if HAVE_EXECINFO_H
++#if HAVE_EXECINFO_H && !defined (__UCLIBC__)
+   PrintBacktraceOutputHandler handler;
+   ProcessBacktrace(trace_, count_, &handler);
+ #endif
+ }
+ 
+ void StackTrace::OutputToStream(std::ostream* os) const {
+-#if HAVE_EXECINFO_H
++#if HAVE_EXECINFO_H && !defined (__UCLIBC__)
+   StreamBacktraceOutputHandler handler(os);
+   ProcessBacktrace(trace_, count_, &handler);
+ #endif
