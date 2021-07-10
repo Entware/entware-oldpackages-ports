@@ -4,17 +4,19 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# XXX Entware specific: for mips BE only
+# XXX for mips BE only
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=node
+PKG_NAME:=node-12x
 PKG_VERSION:=v12.22.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=node-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://nodejs.org/dist/$(PKG_VERSION)
 PKG_HASH:=dd650df7773a6ed3e390320ba51ef33cba6499f0e9397709ea3d1debdcbcb989
+
+PKG_BUILD_DIR:=$(BUILD_DIR)/node-$(PKG_VERSION)
 
 PKG_MAINTAINER:=Hirokazu MORIKAWA <morikw2@gmail.com>, Adrian Panella <ianchi74@outlook.com>
 PKG_LICENSE:=MIT
@@ -42,7 +44,7 @@ define Package/node-12x
   DEPENDS:= @mips \
 	   +libstdcpp +libopenssl +zlib +libnghttp2 +libuv \
 	   +libcares +libatomic +NODEJS_12x_ICU_SYSTEM:icu +NODEJS_12x_ICU_SYSTEM:icu-full-data
-  PROVIDES:= node node-npm
+  PROVIDES:=node node-npm
 endef
 
 define Package/node-12x/description
@@ -97,10 +99,10 @@ ifneq ($(CONFIG_ARCH_64BIT),y)
 FORCE_32BIT:=-m32
 endif
 
-#MAKE_VARS+= \
-#	DESTCPU=$(NODEJS_CPU) \
-#	NO_LOAD='cctest.target.mk embedtest.target.mk node_mksnapshot.target.mk' \
-#	LD_LIBRARY_PATH=$(STAGING_DIR_HOSTPKG)/share/icu/current/lib
+MAKE_VARS+= \
+	DESTCPU=$(NODEJS_CPU) \
+	NO_LOAD='cctest.target.mk embedtest.target.mk node_mksnapshot.target.mk' \
+	LD_LIBRARY_PATH=$(STAGING_DIR_HOSTPKG)/share/icu/current/lib
 
 #HOST_MAKE_VARS+=NO_LOAD='cctest.target.mk embedtest.target.mk'
 
