@@ -41,10 +41,12 @@ define Package/node-12x
   SUBMENU:=Node.js
   TITLE:=Node.js is a platform built on Chrome's JavaScript runtime
   URL:=https://nodejs.org/
-  DEPENDS:= @mips \
+  DEPENDS:= @TARGET_mips_3_4 \
 	   +libstdcpp +libopenssl +zlib +libnghttp2 +libuv \
 	   +libcares +libatomic +NODEJS_12x_ICU_SYSTEM:icu +NODEJS_12x_ICU_SYSTEM:icu-full-data
+ifdef CONFIG_TARGET_mips_3_4
   PROVIDES:=node node-npm
+endif
 endef
 
 define Package/node-12x/description
@@ -76,7 +78,7 @@ define Package/node-12x/config
 	if PACKAGE_node-12x
 	choice
 		prompt "i18n features"
-		default NODEJS_12x_ICU_SMALL
+		default NODEJS_12x_ICU_NONE
 		help
 		 Select i18n features
 
