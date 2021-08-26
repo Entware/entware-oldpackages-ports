@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oidentd
-PKG_VERSION:=2.5.1
-PKG_REV:=09ab0342e40e84816d3dc7340bd3d435e66d80fb
+PKG_VERSION:=3.0.0
+PKG_REV:=279457da146a173b7be66841de7da39dd7171a95
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -17,7 +17,7 @@ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/janikrabe/oidentd.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=77b48eb9f32efad754983763225c0e117654a2cfd341b49133bd6467f96ba7a9
+PKG_MIRROR_HASH:=8ba19703aa8e7be9d8e0013e497948af4d6845ec9a3fd0dbee25cc4ea8ba6316
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -35,6 +35,9 @@ endef
 define Package/oidentd/description
  A nat aware identd server that will correctly forwared requests to clients.
 endef
+
+CONFIGURE_ARGS += \
+	--disable-debug
 
 define Package/oidentd/conffiles
 /opt/etc/oidentd.conf
