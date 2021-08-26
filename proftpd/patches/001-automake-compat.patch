@@ -1,6 +1,6 @@
 --- a/configure.in
 +++ b/configure.in
-@@ -727,24 +727,8 @@ AC_ARG_ENABLE(dso,
+@@ -734,24 +734,8 @@ AC_ARG_ENABLE(dso,
        ac_core_modules="$ac_core_modules mod_dso.o"
        ac_build_core_modules="$ac_build_core_modules modules/mod_dso.o"
  

@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=proftpd
-PKG_VERSION:=1.3.7a
-PKG_RELEASE:=2
+PKG_VERSION:=1.3.7b
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.proftpd.org/distrib/source
-PKG_HASH:=8b7bbf9757988935352d9dec5ebf96b6a1e6b63a6cdac2e93202ac6c42c4cd96
+PKG_HASH:=d1560d191f81ee9c0b295aea76f44e2d6c0b2d0f912c835c80bc1bbca473471e
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
