@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ngrep
 PKG_VERSION:=1.47
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -18,6 +18,7 @@ PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=351ac491358f89a7860bbbe9963cb4bc7d60000f
 PKG_MIRROR_HASH:=b764133dfdac84b7b833ede94e425c7b3a772e1679c6eb7623ca209b5898f9b9
 
+PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -42,15 +43,13 @@ endef
 TARGET_CFLAGS += -D_DEFAULT_SOURCE
 
 CONFIGURE_ARGS += \
-	--with-pcap-includes=$(STAGING_DIR)/opt/include \
 	--enable-pcre \
-	--with-pcre=$(STAGING_DIR)/opt \
 	--disable-dropprivs \
-	LDFLAGS="$(TARGET_LDFLAGS) -lpcre"
+	--with-pcap-includes=$(STAGING_DIR)/opt/include
 
 define Package/ngrep/install	
 	$(INSTALL_DIR) $(1)/opt/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/bin/ngrep $(1)/opt/bin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ngrep $(1)/opt/bin
 endef
 
 $(eval $(call BuildPackage,ngrep))
