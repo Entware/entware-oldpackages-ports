@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
-PKG_VERSION:=3.2
+PKG_VERSION:=3.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://weechat.org/files/src
-PKG_HASH:=39a8adf374e80653c9dd2be06870341594ea081b3a9c3690132e556abf9d87a8
+PKG_HASH:=cafeab8af8be4582ccfd3e74fd40e5086a1efa158231f2c26b8b05c3950fcbdf
 
 PKG_BUILD_DEPENDS:=perl python3
 
