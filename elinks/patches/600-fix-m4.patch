@@ -1,0 +1,16 @@
+--- a/config/m4/codeset.m4
++++ b/config/m4/codeset.m4
+@@ -1,4 +1,4 @@
+-#serial AM1
++dnl #serial AM1
+ 
+ dnl From Bruno Haible.
+ 
+--- a/config/m4/iconv.m4
++++ b/config/m4/iconv.m4
+@@ -1,4 +1,4 @@
+-#serial AM2
++dnl #serial AM2
+ 
+ dnl From Bruno Haible.
+ 
