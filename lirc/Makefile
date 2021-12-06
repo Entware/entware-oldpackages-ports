@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lirc
 PKG_VERSION:=0.10.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)
@@ -20,13 +20,12 @@ PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_DEPENDS:=python3/host
 
-#include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 
 define Package/lirc
     SECTION:=utils
     CATEGORY:=Utilities
-    DEPENDS:=+libusb-compat +libftdi1 +alsa-lib +libstdcpp +USE_GLIBC:libudev
+    DEPENDS:=+libusb-compat +libftdi1 +alsa-lib +libstdcpp +libudev
     TITLE:=LIRC - Linux Infrared Remote Control
     URL:=http://lirc.org/
 endef
@@ -38,12 +37,12 @@ endef
 
 CONFIGURE_ARGS += \
 	--with-lockdir=/opt/var/lock/lockdev \
-	--without-x \
-	ac_cv_file__usr_lib_systemd_system=no \
+	--without-x
 
 CONFIGURE_VARS += \
 	PYTHON=python \
 	HAVE_WORKING_POLL=yes \
+	ac_cv_file__usr_lib_systemd_system=no
 
 define Package/lirc/conffiles
 /opt/etc/lirc/lirc_options.conf
