@@ -1,7 +1,7 @@
---- a/www/rem2html
-+++ b/www/rem2html
+--- a/rem2html/rem2html
++++ b/rem2html/rem2html
 @@ -1,4 +1,4 @@
--#!/usr/bin/perl
+-#!perl
 +#!/opt/bin/perl
  
  use strict;
