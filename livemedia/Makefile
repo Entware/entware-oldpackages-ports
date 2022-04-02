@@ -18,6 +18,8 @@ PKG_HASH:=aa20ffebcc1db4376b753cf92bd0357fc682b81c813ea4b892116eaa461aa224
 
 PKG_INSTALL:=1
 
+PKG_BUILD_DEPENDS:=openssl
+
 include $(INCLUDE_DIR)/package.mk
 
 PKG_UNPACK:=gzip -dc $(DL_DIR)/$(PKG_SOURCE) | $(TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xf -
