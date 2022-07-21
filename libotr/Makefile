@@ -5,7 +5,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libotr
 PKG_VERSION:=4.1.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://otr.cypherpunks.ca
@@ -30,8 +30,7 @@ define Package/libotr/description
   instant messaging.
 endef
 
-TARGET_LDFLAGS += \
-	-lssp
+TARGET_LDFLAGS += $(if $(CONFIG_GCC_LIBSSP),-lssp)
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include $(1)/opt/lib $(1)/opt/lib/pkgconfig
