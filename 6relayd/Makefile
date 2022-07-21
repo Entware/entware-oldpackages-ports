@@ -5,6 +5,7 @@
 # See /LICENSE for more information.
 #
 # Abandoned in 2013
+# Superseded by odhcpd, but odhcpd is tied to OpenWrt system libraries
 
 include $(TOPDIR)/rules.mk
 
