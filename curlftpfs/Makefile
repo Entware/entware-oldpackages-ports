@@ -13,7 +13,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/curlftpfs
 PKG_HASH:=4eb44739c7078ba0edde177bdd266c4cfb7c621075f47f64c85a06b12b3c6958
 
-PKG_BUILD_DEPENDS:=libiconv
+PKG_BUILD_DEPENDS:=libiconv-full
 PKG_FIXUP:=autoreconf
 
 include $(INCLUDE_DIR)/package.mk
