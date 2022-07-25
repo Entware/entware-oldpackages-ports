@@ -5,6 +5,7 @@
 # See /LICENSE for more information.
 #
 # Downgraded from r182 - the last one working with kernel 2.6
+# No chance to get stable PKG_MIRROR_HASH from SVN sources
 
 include $(TOPDIR)/rules.mk
 
@@ -19,7 +20,7 @@ PKG_SOURCE_URL:=https://svn.code.sf.net/p/mjpg-streamer/code/mjpg-streamer
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=svn
-PKG_MIRROR_HASH:=890594453083d2d652f7d7bc00ffedb8362fb0ae77c66c8658cb077facbec90d
+PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=LICENSE
