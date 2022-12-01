@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dialog
-PKG_VERSION:=1.3-20220526
+PKG_VERSION:=1.3-20220728
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=ftp://ftp.invisible-island.net/dialog \
 	https://invisible-mirror.net/archives/dialog
-PKG_HASH:=858c9a625b20fde19fb7b19949ee9e9efcade23c56d917b1adb30e98ff6d6b33
+PKG_HASH:=54418973d559a461b00695fafe68df62f2bc73d506b436821d77ca3df454190b
 
 include $(INCLUDE_DIR)/package.mk
 
