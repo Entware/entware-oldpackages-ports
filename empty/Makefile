@@ -8,14 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=empty
-PKG_VERSION:=0.6.21b
+PKG_VERSION:=0.6.22b
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=@SF/empty
-PKG_HASH:=2fccd0faa1b3deaec1add679cbde3f34250e45872ad5df463badd4bb4edeb797
-
-PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) -xzf $(DL_DIR)/$(PKG_SOURCE)
+PKG_HASH:=f581d560e1fa857f5304586e3c2107b5838bcf11dedcccec4a7191fa9e261b69
 
 include $(INCLUDE_DIR)/package.mk
 
