@@ -1,6 +1,6 @@
 --- a/configure.ac
 +++ b/configure.ac
-@@ -174,9 +174,6 @@ AH_TEMPLATE([HAVE_IOKIT_IOCFPLUGIN_H],
+@@ -179,9 +179,6 @@ AH_TEMPLATE([HAVE_IOKIT_IOCFPLUGIN_H],
  
  AH_TEMPLATE([HAVE_LIBALSA], [Define if the ALSA library is installed])
  
@@ -10,7 +10,7 @@
  AH_TEMPLATE([HAVE_LIBUSB], [Define if libusb is installed])
  
  AH_TEMPLATE([HAVE_LINUX_DEVINPUT],
-@@ -253,10 +250,6 @@ else
+@@ -252,10 +249,6 @@ else
    AM_CONDITIONAL([BUILD_FTDI],[false])
  fi
  
@@ -21,7 +21,7 @@
  dnl audio_alsa driver requires ALSA library installed and some linker flags
  have_alsa=no
  AC_CHECK_HEADERS(alsa/asoundlib.h,[
-@@ -556,7 +549,6 @@ host:                           $host
+@@ -548,7 +541,6 @@ host:                           $host
  host_os:                        $host_os
  forkpty:                        $forkpty
  LIBUSB_LIBS:                    $LIBUSB_LIBS
@@ -29,7 +29,7 @@
  
  Conditionals:
  ])
-@@ -567,7 +559,6 @@ AX_REPORT_CONDITIONAL([BUILD_FTDI])
+@@ -559,7 +551,6 @@ AX_REPORT_CONDITIONAL([BUILD_FTDI])
  AX_REPORT_CONDITIONAL([BUILD_HIDDEV])
  AX_REPORT_CONDITIONAL([BUILD_I2CUSER])
  AX_REPORT_CONDITIONAL([BUILD_LIBALSA])

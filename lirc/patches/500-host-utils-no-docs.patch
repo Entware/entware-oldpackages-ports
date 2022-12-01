@@ -1,20 +1,20 @@
 --- a/configure.ac
 +++ b/configure.ac
-@@ -35,7 +35,7 @@ if test x$PKGCONFIG = xno; then
+@@ -36,7 +36,7 @@ if test x$PKGCONFIG = xno; then
  fi
  AC_CHECK_PROG([XSLTPROC],[xsltproc],[yes],[no])
  if test x$XSLTPROC != "xyes"; then
 -    AC_MSG_ERROR([xsltproc is required. It sometimes comes with libxml])
 +    AC_MSG_WARN([xsltproc is required. It sometimes comes with libxml])
  fi
- AC_CHECK_PROG([MAN2HTML],[man2html],[yes],[no])
- AM_CONDITIONAL(HAVE_MAN2HTML, test x$MAN2HTML = xyes)
-@@ -43,7 +43,7 @@ AC_CHECK_PROG([DOXYGEN],[doxygen],[yes],
+ AC_MSG_CHECKING([Checking for usable man2html])
+ AM_CONDITIONAL(HAVE_MAN2HTML,[
+@@ -47,7 +47,7 @@ AC_CHECK_PROG([DOXYGEN],[doxygen],[yes],
  AM_CONDITIONAL(HAVE_DOXYGEN, test x$DOXYGEN = xyes)
  LT_INIT([disable-static])
  
 -AM_PATH_PYTHON([3.1],,)
 +AM_PATH_PYTHON([2.7],,)
  PKG_CHECK_MODULES([PYTHON],[python-${PYTHON_VERSION}m],,[true])
- test -z "$PYTHON_LIBS" && \
+ test -z "$PYTHON_CFLAGS" && \
      PKG_CHECK_MODULES([PYTHON], [python-$PYTHON_VERSION],,[true])
