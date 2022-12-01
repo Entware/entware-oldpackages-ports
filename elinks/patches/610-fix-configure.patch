@@ -9,7 +9,7 @@
  
  AC_CHECK_PROG(ACLOCAL,[aclocal],[aclocal],[config/missing aclocal])
  AC_CHECK_PROG(AUTOCONF,[autoconf],[autoconf],[config/missing autoconf])
-@@ -1430,7 +1430,8 @@ AC_CHECK_HEADERS(execinfo.h, HAVE_EXECIN
+@@ -1438,7 +1438,8 @@ AC_CHECK_HEADERS(execinfo.h, HAVE_EXECIN
  
  ALL_LINGUAS="af be bg ca cs da de el es et fi fr gl hr hu id is it ja lt nl nb pl pt pt_BR ro ru sk sr sv tr uk"
  
@@ -19,7 +19,7 @@
  
  # iconv is always used
  LIBS="$LIBS $LIBICONV"
-@@ -1816,7 +1817,9 @@ AC_LINK_IFELSE([AC_LANG_PROGRAM([[#inclu
+@@ -1836,7 +1837,9 @@ AC_LINK_IFELSE([AC_LANG_PROGRAM([[#inclu
  	#endif ]])],[cf_result=yes],[cf_result=no])
  
  if test "$cf_result" = "yes"; then
