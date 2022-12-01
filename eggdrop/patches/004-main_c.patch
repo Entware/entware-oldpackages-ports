@@ -1,6 +1,6 @@
 --- a/src/main.c
 +++ b/src/main.c
-@@ -1125,15 +1125,6 @@ int main(int arg_c, char **arg_v)
+@@ -1109,15 +1109,6 @@ int main(int arg_c, char **arg_v)
  
    printf("\n%s\n", version);
  
