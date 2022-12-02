@@ -6,13 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pugixml
-PKG_VERSION:=1.12.1
+PKG_VERSION:=1.13
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/zeux/pugixml/releases/download/v$(PKG_VERSION)
 PKG_HASH:=dcf671a919cc4051210f08ffd3edf9e4247f79ad583c61577a13ee93af33afc7
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-1.12
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=MIT
