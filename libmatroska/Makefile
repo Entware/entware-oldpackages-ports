@@ -6,12 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libmatroska
-PKG_VERSION:=1.6.3
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_VERSION:=1.7.1
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/Matroska-Org/libmatroska/tar.gz/release-$(PKG_VERSION)?
-PKG_HASH:=0c8c875ae26ac69a722f7fd0f4a4fecb4fdff681f2a165f09c06a40cbf1d0de6
+PKG_HASH:=64763443947833e6c17f1f555f4bb0df6c9f91881810d9d5e0f0bad3622d308b
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-release-$(PKG_VERSION)
 
 PKG_MAINTAINER:=
