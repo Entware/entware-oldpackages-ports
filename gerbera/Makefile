@@ -8,65 +8,45 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gerbera
-PKG_VERSION:=1.11.0
+PKG_VERSION:=1.12.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/gerbera/gerbera/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=0c13049792a28ec0e3086ba61c7f9675626a1dbadb043650a452192727418be7
+PKG_HASH:=bb04a4e4432b8ae149bdd5ea7f33f3af39cb226d3d52ec0aed3f8273023f1edd
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=LICENSE.md
 
 PKG_BUILD_DEPENDS:=libmatroska pugixml spdlog
-PKG_CONFIG_DEPENDS:=CONFIG_BUILD_PATENTED
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/nls.mk
-include $(INCLUDE_DIR)/meson.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/gerbera
   SECTION:=multimedia
   CATEGORY:=Multimedia
-  DEPENDS:=+file +libnpupnp +libsqlite3 +libexif +libuuid +libfmt +libatomic +taglib +BUILD_PATENTED:libffmpeg $(ICONV_DEPENDS)
-  DEPENDS+=+curl +duktape +libffmpegthumbnailer
+  DEPENDS:=+file +libupnp +libsqlite3 +libexif +libuuid +libfmt +curl +duktape +libffmpegthumbnailer
   TITLE:=A free media server
   URL:=https://gerbera.io
 endef
 
 define Package/gerbera/description
-  Gerbera - UPnP Media Server based on Mediatomb.
+ Gerbera - UPnP Media Server based on Mediatomb.
 endef
 
 define Package/gerbera/conffiles
 /opt/etc/gerbera/config.xml
 endef
 
-MESON_ARGS += \
-	-Db_lto=true \
-	-Davcodec=$(if $(CONFIG_BUILD_PATENTED),en,dis)abled \
-	-Dcurl=enabled \
-	-Dexif=enabled \
-	-Dexiv2=disabled \
-	-Dffmpegthumbnailer=enabled \
-	-Dinotify=enabled \
-	-Djs=enabled \
-	-Dlastfm=disabled \
-	-Dmagic=enabled \
-	-Dmatroska=enabled \
-	-Dmysql=disabled \
-	-Dnpupnp=enabled \
-	-Dsystemd=disabled \
-	-Dtaglib=enabled \
-	-Dtests=disabled \
-	-Dwavpack=disabled
-
-TARGET_CFLAGS += \
-	-ffunction-sections \
-	-fdata-sections
-
-TARGET_LDFLAGS += -Wl,--gc-sections
+CMAKE_OPTIONS += \
+	-DWITH_MYSQL=0 \
+	-DWITH_TAGLIB=0 \
+	-DWITH_AVCODEC=1 \
+	-DWITH_FFMPEGTHUMBNAILER=1 \
+	-DWITH_SYSTEMD=0 \
+	-DWITH_DEBUG=0
 
 define Package/gerbera/install
 	$(INSTALL_DIR) $(1)/opt/bin
