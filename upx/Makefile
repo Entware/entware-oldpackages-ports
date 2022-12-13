@@ -43,6 +43,7 @@ MAKE_PATH:= src
 MAKE_VARS += exeext=""
 
 TARGET_CXXFLAGS += -DUCL_NO_ASM
+TARGET_LDFLAGS += -lssp
 
 define Package/upx/install
 	$(INSTALL_DIR) $(1)/opt/bin
