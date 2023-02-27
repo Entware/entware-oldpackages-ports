@@ -8,16 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=eggdrop
-PKG_VERSION:=1.9.3
-PKG_REV:=d75f25603f1067bb1761db171e913182c8a32193
+PKG_VERSION:=1.9.4
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/eggheads/eggdrop.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=4b86547bcf20fa4045b4974b46e8fb1fce5d78dedb38a120ee242f535e2edd65
+PKG_SOURCE_VERSION:=e01fd930e5004b9d44b9e2f68403273edd984612
+PKG_SOURCE_URL:=https://github.com/eggheads/eggdrop.git
+PKG_MIRROR_HASH:=afaba4ba553b1991a870f5db5d7604017c3812734f4fc074ceeb8b61c55038d1
 
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
@@ -28,17 +25,19 @@ define Package/eggdrop
 	SECTION:=lang
 	CATEGORY:=Languages
 	TITLE:=EggDrop IRC BOT
-	DEPENDS:=+tcl +libopenssl +libpthread
+	DEPENDS:=+tcl +libopenssl
 	URL:=http://www.eggheads.org
 endef
 
 define Package/eggdrop/description
- EggDrop IRC BOT
+ EggDrop IRC BOT.
 endef
+
+TCL_VERSION:=$(shell grep ^TCL_MAJOR_VERSION ../../packages/lang/tcl/Makefile | cut -d= -f2)
 
 CONFIGURE_ARGS += \
 	--prefix="$(PKG_INSTALL_DIR)/opt/eggdrop" \
-	--with-tcllib="$(STAGING_DIR)/opt/lib/libtcl8.5.so" \
+	--with-tcllib="$(STAGING_DIR)/opt/lib/libtcl$(TCL_VERSION).so" \
 	--with-tclinc="$(STAGING_DIR)/opt/include/tcl.h"
 
 define Build/Compile
