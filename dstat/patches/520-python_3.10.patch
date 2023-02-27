@@ -9,7 +9,7 @@
  import fnmatch
  import getopt
  import getpass
-@@ -512,7 +512,7 @@
+@@ -512,7 +512,7 @@ class dstat:
                  scale = self.scales[i]
              else:
                  scale = self.scale
