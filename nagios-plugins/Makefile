@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nagios-plugins
 PKG_VERSION:=2.0.3
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://nagios-plugins.org/download
@@ -56,6 +56,8 @@ define Package/nagios-plugins/install
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/* $(1)/opt/lib
 	$(SED) 's,/bin/bash,/opt/bin/bash,g' \
 	    $(1)/opt/lib/check_{log,oracle,sensors}
+	$(SED) 's,$(STAGING_DIR_HOST),/opt,' \
+	    $(1)/opt/lib/check_log
 endef
 
 $(eval $(call BuildPackage,nagios-plugins))
