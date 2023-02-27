@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=proftpd
-PKG_VERSION:=1.3.7e
+PKG_VERSION:=1.3.8
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://ftp.proftpd.org/distrib/source
-PKG_HASH:=6e716a3b53ee069290399fce6dccf4c229fafe6ec2cb14db3778b7aa3f9a8c92
+PKG_HASH:=f7139e7377a2cb059b8b9b14d76a6df5f440e3181cb15ae890d43bbcae574748
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -28,7 +28,7 @@ define Package/proftpd
   TITLE:=ProFTPD FTP server
   URL:=http://www.proftpd.org/
   MAINTAINER:=Cezary Jackiewicz <cezary@eko.one.pl>
-  DEPENDS:=+libncursesw +libattr +libidn +libopenssl $(ICONV_DEPENDS) $(INTL_DEPENDS)
+  DEPENDS:=+libattr +libidn +libidn2 +libncursesw +libopenssl $(ICONV_DEPENDS) $(INTL_DEPENDS)
 endef
 
 define Package/proftpd/conffiles
