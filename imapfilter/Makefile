@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=imapfilter
-PKG_VERSION:=2.7.6
+PKG_VERSION:=2.8.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/lefcha/imapfilter/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=e9063ca210cefe6c47771b400c9f3620bd7a5dce2dfd4d46aeaa86f4cac1d87d
+PKG_HASH:=758a0f78aff30935916426c878d2cc803bdcd31c74982fbfcd2372e6744262cc
 
 include $(INCLUDE_DIR)/package.mk
 
