@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=memtester
-PKG_VERSION:=4.5.1
+PKG_VERSION:=4.6.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://pyropus.ca/software/memtester/old-versions
-PKG_HASH:=1c5fc2382576c084b314cfd334d127a66c20bd63892cac9f445bc1d8b4ca5a47
+PKG_SOURCE_URL:=https://pyropus.ca./software/memtester/old-versions
+PKG_HASH:=c9fe4eb7e80c8cef5202f9065c4c0682f5616647c0455e916a5700f98e3dbb2e
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -21,7 +21,7 @@ define Package/memtester
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=Userspace utility for testing the memory subsystem for faults
-  URL:=http://pyropus.ca/software/memtester/
+  URL:=https://pyropus.ca/software/memtester/
 endef
 
 define Package/memtester/description
