@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libinklevel
-PKG_VERSION:=0.9.4
+PKG_VERSION:=0.9.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/libinklevel
-PKG_HASH:=274704682e6fe2768ee06194cdd7d5e79901ecacc0faafafeb88b9cb95dba7d4
+PKG_HASH:=3e889cf7e3400524f514084775d653eeae0b1b7320f28741a343cbc95d7c980a
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -25,7 +25,7 @@ define Package/libinklevel
   CATEGORY:=Libraries
   TITLE:=Printers Ink Level Library
   URL:=http://libinklevel.sourceforge.net/
-  DEPENDS:=+libusb-compat
+  DEPENDS:=+libusb-compat +libxml2
 endef
 
 define Package/libinklevel/description
