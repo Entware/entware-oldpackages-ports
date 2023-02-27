@@ -62,8 +62,7 @@ CONFIGURE_ARGS += \
 TARGET_CFLAGS += \
 	-std=gnu99
 
-TARGET_LDFLAGS += \
-	-lssp
+TARGET_LDFLAGS += $(if $(CONFIG_GCC_LIBSSP),-lssp)
 
 define Package/radvd/install
 	$(INSTALL_DIR) $(1)/opt/sbin
