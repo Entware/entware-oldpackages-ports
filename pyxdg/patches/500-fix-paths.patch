@@ -27,7 +27,7 @@
  
  xdg_cache_home = os.environ.get('XDG_CACHE_HOME') or \
              os.path.join(_home, '.cache')
-@@ -130,7 +130,7 @@ def get_runtime_dir(strict=True):
+@@ -144,7 +144,7 @@ def get_runtime_dir(strict=True):
              raise
          
          import getpass
