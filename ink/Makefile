@@ -16,6 +16,7 @@ PKG_HASH:=2d318fb6a826ef3a2c7cd1e889f42971fd7ae682e3e0ba471c8a0016375a60ba
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/nls.mk
 
 define Package/ink
   SECTION:=utils
