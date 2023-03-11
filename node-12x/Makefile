@@ -101,6 +101,9 @@ ifneq ($(CONFIG_ARCH_64BIT),y)
 FORCE_32BIT:=-m32
 endif
 
+# XXX OpenSSL 3.x
+TARGET_CXXFLAGS += -fpermissive
+
 MAKE_VARS+= \
 	DESTCPU=$(NODEJS_CPU) \
 	NO_LOAD='cctest.target.mk embedtest.target.mk node_mksnapshot.target.mk' \
