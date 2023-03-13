@@ -12,7 +12,8 @@ PKG_VERSION:=4.6.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://pyropus.ca./software/memtester/old-versions
+PKG_SOURCE_URL:=https://pyropus.ca./software/memtester/old-versions \
+	https://fossies.org/linux/misc
 PKG_HASH:=c9fe4eb7e80c8cef5202f9065c4c0682f5616647c0455e916a5700f98e3dbb2e
 
 include $(INCLUDE_DIR)/package.mk
