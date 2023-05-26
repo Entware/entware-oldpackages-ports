@@ -17,7 +17,6 @@ PKG_SOURCE_URL:=http://nagios-plugins.org/download
 PKG_HASH:=8f0021442dce0138f0285ca22960b870662e28ae8973d49d439463588aada04a
 
 PKG_BUILD_DEPENDS:=bind
-PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
