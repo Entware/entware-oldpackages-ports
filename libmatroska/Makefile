@@ -20,6 +20,7 @@ PKG_LICENSE_FILES:=LICENSE.LGPL
 
 CMAKE_INSTALL:=1
 PKG_BUILD_DEPENDS:=libebml
+PKG_BUILD_FLAGS:=gc-sections
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -43,7 +44,5 @@ CMAKE_OPTIONS += \
 	-DDISABLE_CMAKE_CONFIG=OFF
 
 TARGET_CFLAGS += -fPIC
-
-TARGET_LDFLAGS += -Wl,--gc-sections
 
 $(eval $(call BuildPackage,libmatroska))
