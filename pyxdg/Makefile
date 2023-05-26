@@ -18,9 +18,6 @@ include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
-# XXX error: option --single-version-externally-managed not recognized
-PYTHON3_PKG_SETUP_ARGS:=
-
 define Package/python3-pyxdg
   SECTION:=lang
   CATEGORY:=Languages
