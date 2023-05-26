@@ -8,15 +8,13 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=node-12x
-PKG_VERSION:=v12.22.1
+PKG_NAME:=node
+PKG_VERSION:=v12.22.12
 PKG_RELEASE:=1
 
-PKG_SOURCE:=node-$(PKG_VERSION).tar.xz
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://nodejs.org/dist/$(PKG_VERSION)
-PKG_HASH:=dd650df7773a6ed3e390320ba51ef33cba6499f0e9397709ea3d1debdcbcb989
-
-PKG_BUILD_DIR:=$(BUILD_DIR)/node-$(PKG_VERSION)
+PKG_HASH:=bc42b7f8495b9bfc7f7850dd180bb02a5bdf139cc232b8c6f02a6967e20714f2
 
 PKG_MAINTAINER:=Hirokazu MORIKAWA <morikw2@gmail.com>, Adrian Panella <ianchi74@outlook.com>
 PKG_LICENSE:=MIT
@@ -29,7 +27,7 @@ PKG_CPE_ID:=cpe:/a:nodejs:node.js
 PKG_BUILD_DEPENDS:=python3/host
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
-PKG_USE_MIPS16:=0
+PKG_BUILD_FLAGS:=no-mips16
 PKG_ASLR_PIE:=0
 
 #include $(INCLUDE_DIR)/host-build.mk
