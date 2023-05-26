@@ -17,30 +17,28 @@ PKG_HASH:=86e2826b784ec3ea4ef187d936ee5f15277422c4077efa0156ef67e3139ea08e
 PKG_LICENSE:=GPL-2.0-or-later
 PKG_LICENSE_FILES:=COPYING
 
+PKG_BUILD_DEPENDS:=python-setuptools-scm/host
+
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python3-package.mk
 
-define Package/rdiff-backup/Default
+define Package/python3-rdiff-backup
   SUBMENU:=Backup
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=Incremental backup utility
   URL:=https://rdiff-backup.net/
-endef
-
-define Package/python3-rdiff-backup
-$(call Package/rdiff-backup/Default)
-  DEPENDS+=+python3-light +librsync
+  DEPENDS:=+librsync +python3-urllib +python3-yaml
 endef
 
 define Package/python3-rdiff-backup/description
-	rdiff-backup backs up one directory to another, possibly over a
-	network. The target directory ends up a copy of the source directory,
-	but extra reverse diffs are stored in a special subdirectory of that
-	target directory, so you can still recover files lost some time ago.
-	The idea is to combine the best features of a mirror and an incremental
-	backup.
+  rdiff-backup backs up one directory to another, possibly over a
+  network. The target directory ends up a copy of the source directory,
+  but extra reverse diffs are stored in a special subdirectory of that
+  target directory, so you can still recover files lost some time ago.
+  The idea is to combine the best features of a mirror and an incremental
+  backup.
 endef
 
 $(eval $(call Py3Package,python3-rdiff-backup))
