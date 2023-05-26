@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=Mako
 PKG_VERSION:=1.2.4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PYPI_NAME:=$(PKG_NAME)
 PKG_HASH:=d60a3903dc3bb01a18ad6a89cdbe2e4eadc69c0bc8ef1e3773ba53d44c3f7a34
@@ -26,7 +26,7 @@ define Package/python3-mako
   SUBMENU:=Python
   TITLE:=Mako
   URL:=https://www.makotemplates.org/
-  DEPENDS:=+python3-light
+  DEPENDS:=+python3-markupsafe
 endef
 
 define Package/python3-mako/description
