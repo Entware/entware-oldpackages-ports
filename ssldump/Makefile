@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ssldump
-PKG_VERSION:=1.6
+PKG_VERSION:=1.7
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/adulau/ssldump/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=3a9c0b1ac22b14194342ac961f0a08920a10026c9faadf5b4524b68c73b4830b
+PKG_HASH:=f0857a97212898e2c0583d7240b58d6d2fe0ddf0f7a84cf31975ed01820409c3
 
 PKG_FIXUP:=autoreconf
 
