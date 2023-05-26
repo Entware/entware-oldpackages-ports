@@ -15,8 +15,6 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@GNU/time
 PKG_HASH:=fbacf0c81e62429df3e33bda4cee38756604f18e01d977338e23306a3e3b521e
 
-PKG_FIXUP:=autoreconf
-
 include $(INCLUDE_DIR)/package.mk
 
 define Package/time
