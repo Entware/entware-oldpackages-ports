@@ -1,6 +1,6 @@
 --- a/meson.build
 +++ b/meson.build
-@@ -910,4 +910,4 @@ endif
+@@ -917,4 +917,4 @@ endif
  subdir('po')
  subdir('src')
  subdir('contrib')

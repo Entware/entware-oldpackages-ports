@@ -1,18 +1,11 @@
 --- a/src/main.c
 +++ b/src/main.c
-@@ -1109,15 +1109,6 @@ int main(int arg_c, char **arg_v)
+@@ -1105,7 +1105,7 @@ int main(int arg_c, char **arg_v)
  
    printf("\n%s\n", version);
  
 -#ifndef CYGWIN_HACKS
--  /* Don't allow eggdrop to run as root
--   * This check isn't useful under cygwin and has been
--   * reported to cause trouble in some situations.
--   */
--  if (((int) getuid() == 0) || ((int) geteuid() == 0))
--    fatal("ERROR: Eggdrop will not run as root!", 0);
--#endif
--
- #ifndef REPLACE_NOTIFIER
-   init_threaddata(1);
- #endif
++#if 0
+   /* Don't allow eggdrop to run as root
+    * This check isn't useful under cygwin and has been
+    * reported to cause trouble in some situations.
