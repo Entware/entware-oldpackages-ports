@@ -18,6 +18,8 @@ PKG_MIRROR_HASH:=77c04ca942fb9222f102224b3ee8268c0046f558318aaa439c9ae2de33e67f9
 
 CMAKE_BINARY_SUBDIR:=openwrt-build
 
+PKG_BUILD_FLAGS:=no-mips16
+
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
