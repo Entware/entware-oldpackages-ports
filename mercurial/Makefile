@@ -14,7 +14,7 @@ PKG_RELEASE:=1
 PYPI_NAME:=$(PKG_NAME)
 PKG_HASH:=a77fb62d325934a83a00b2fc6db109f44c67b86768fc40490366f513640c7f64
 
-PKG_BUILD_DEPENDS:=zstd
+PKG_BUILD_DEPENDS:=zstd python-wheel/host
 
 include $(TOPDIR)/feeds/packages/lang/python/pypi.mk
 include $(INCLUDE_DIR)/package.mk
@@ -44,7 +44,7 @@ endef
 $(eval $(call Download,pzstd))
 
 define Build/Prepare
-	$(PKG_UNPACK)
+	$(call Build/Prepare/Default)
 	rm -rf $(PKG_BUILD_DIR)/contrib/python-zstandard/*
 	tar --strip-components=1 -C $(PKG_BUILD_DIR)/contrib/python-zstandard -xvzf $(DL_DIR)/$(PZSTD).tar.gz
 endef
