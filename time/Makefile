@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=time
 PKG_VERSION:=1.9
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@GNU/time
@@ -22,6 +22,7 @@ define Package/time
   CATEGORY:=Utilities
   TITLE:=The GNU time utility
   URL:=http://www.gnu.org/software/time/
+  ALTERNATIVES:=300:/opt/bin/time:/opt/libexec/time-gnu
 endef
 
 define Package/time/description
@@ -33,8 +34,8 @@ define Package/time/description
 endef
 
 define Package/time/install
-	$(INSTALL_DIR) $(1)/opt/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/time $(1)/opt/bin
+	$(INSTALL_DIR) $(1)/opt/libexec
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/time $(1)/opt/libexec/time-gnu
 endef
 
 $(eval $(call BuildPackage,time))
