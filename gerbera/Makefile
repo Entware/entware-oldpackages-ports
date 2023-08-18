@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gerbera
 PKG_VERSION:=1.12.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/gerbera/gerbera/tar.gz/v$(PKG_VERSION)?
@@ -27,7 +27,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/gerbera
   SECTION:=multimedia
   CATEGORY:=Multimedia
-  DEPENDS:=+file +libupnp +libsqlite3 +libexif +libuuid +libfmt +curl +duktape +libffmpegthumbnailer
+  DEPENDS:=+libmagic +libupnp +libsqlite3 +libexif +libuuid +libfmt +curl +duktape +libffmpegthumbnailer
   TITLE:=A free media server
   URL:=https://gerbera.io
 endef
