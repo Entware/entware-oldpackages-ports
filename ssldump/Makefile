@@ -8,16 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ssldump
-PKG_VERSION:=1.7
+PKG_VERSION:=1.8
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/adulau/ssldump/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=f0857a97212898e2c0583d7240b58d6d2fe0ddf0f7a84cf31975ed01820409c3
-
-PKG_FIXUP:=autoreconf
+PKG_HASH:=fa1bb14034385487cc639fb32c12a5da0f8fbfee4603f4e101221848e46e72b3
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/ssldump
   SECTION:=net
@@ -36,7 +35,7 @@ endef
 
 define Package/ssldump/install
 	$(INSTALL_DIR) $(1)/opt/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ssldump $(1)/opt/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/ssldump $(1)/opt/sbin
 endef
 
 $(eval $(call BuildPackage,ssldump))
