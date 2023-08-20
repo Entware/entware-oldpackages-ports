@@ -57,7 +57,7 @@ $(call Package/livemedia/Default)
   TITLE+= (vobStreamer)
 endef
 
-TARGET_CFLAGS += -DNO_OPENSSL=1
+TARGET_CFLAGS += -DNO_OPENSSL=1 -DNO_STD_LIB
 
 define Build/Configure
 	$(FIND) $(PKG_BUILD_DIR) -name Makefile.* -exec \
