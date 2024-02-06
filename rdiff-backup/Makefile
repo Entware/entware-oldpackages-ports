@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rdiff-backup
 PKG_VERSION:=2.2.5
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PYPI_NAME:=rdiff-backup
 PKG_HASH:=86e2826b784ec3ea4ef187d936ee5f15277422c4077efa0156ef67e3139ea08e
