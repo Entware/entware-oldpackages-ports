@@ -8,14 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ncftp
-PKG_VERSION:=3.2.6
+PKG_VERSION:=3.2.7
 PKG_RELEASE:=1
 
 PKG_INSTALL:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
-PKG_SOURCE_URL:=ftp://ftp.ncftp.com/ncftp
-PKG_HASH:=129e5954850290da98af012559e6743de193de0012e972ff939df9b604f81c23
+PKG_SOURCE_URL:=https://www.ncftp.com/public_ftp/ncftp
+PKG_HASH:=dbde0d3b4d28ba3a445621e10deaee57a6ba3ced277cc9dbce4052bcddf6cb2a
 
 include $(INCLUDE_DIR)/package.mk
 
