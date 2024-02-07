@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mercurial
-PKG_VERSION:=6.5.1
-PKG_RELEASE:=2
+PKG_VERSION:=6.6.2
+PKG_RELEASE:=1
 
 PYPI_NAME:=$(PKG_NAME)
-PKG_HASH:=33f7de8d8b3607fa2b408cde4b8725e117eb0ad41926a787eaab409ca8a4fc2f
+PKG_HASH:=cb494d7be7ddc2fc9d3171c88830af9c02b21c753e3e5113defac9c0373b4b60
 
 PKG_BUILD_DEPENDS:=zstd python-wheel/host
 
@@ -34,12 +34,12 @@ define Package/mercurial/description
   handling of very large distributed projects.
 endef
 
-PZSTD=zstandard-0.20.0
+PZSTD=zstandard-0.22.0
 
 define Download/pzstd
-  URL:=https://github.com/indygreg/python-zstandard/releases/download/0.20.0
+  URL:=https://github.com/indygreg/python-zstandard/releases/download/0.22.0
   FILE:=$(PZSTD).tar.gz
-  HASH:=613daadd72c71b1488742cafb2c3b381c39d0c9bb8c6cc157aa2d5ea45cc2efc
+  HASH:=8226a33c542bcb54cd6bd0a366067b610b41713b64c9abec1bc4533d69f51e70
 endef
 $(eval $(call Download,pzstd))
 
