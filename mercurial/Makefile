@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mercurial
-PKG_VERSION:=6.6.2
+PKG_VERSION:=6.8
 PKG_RELEASE:=1
 
 PYPI_NAME:=$(PKG_NAME)
-PKG_HASH:=cb494d7be7ddc2fc9d3171c88830af9c02b21c753e3e5113defac9c0373b4b60
+PKG_HASH:=08e4d0e5da8af1132b51e6bc3350180ad57adcd935f097b6d0bc119a2c2c0a10
 
 PKG_BUILD_DEPENDS:=zstd python-wheel/host
 
