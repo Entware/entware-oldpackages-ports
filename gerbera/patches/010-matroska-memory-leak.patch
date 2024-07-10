@@ -10,7 +10,7 @@ Signed-off-by: Rosen Penev <rosenp@gmail.com>
 
 --- a/src/metadata/matroska_handler.cc
 +++ b/src/metadata/matroska_handler.cc
-@@ -139,8 +139,6 @@ void MatroskaHandler::parseMKV(const std
+@@ -156,8 +156,6 @@ void MatroskaHandler::parseMKV(const std
  
              delete (elL1->SkipData(ebmlStream, EBML_CONTEXT(elL1)));
              delete elL1;
@@ -18,4 +18,4 @@ Signed-off-by: Rosen Penev <rosenp@gmail.com>
 -                break;
          } // while elementLevel1
  
-         delete (elL0->SkipData(ebmlStream, LIBMATROSKA_NAMESPACE::KaxSegment_Context));
+         delete (elL0->SkipData(ebmlStream, EBML_CLASS_CONTEXT(KaxSegment)));
