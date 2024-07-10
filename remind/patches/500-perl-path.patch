@@ -1,5 +1,5 @@
---- a/rem2html/rem2html
-+++ b/rem2html/rem2html
+--- a/rem2html/rem2html.in
++++ b/rem2html/rem2html.in
 @@ -1,4 +1,4 @@
 -#!perl
 +#!/opt/bin/perl
