@@ -6,12 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=spdlog
-PKG_VERSION:=1.13.0
+PKG_VERSION:=1.14.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/gabime/spdlog/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=534f2ee1a4dcbeb22249856edfb2be76a1cf4f708a20b0ac2ed090ee24cfdbc9
+PKG_HASH:=1586508029a7d0670dfcb2d97575dcdc242d3868a259742b69f100801ab4e16b
 
 PKG_MAINTAINER:=
 PKG_LICENSE:=MIT
