@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=vtun
 PKG_VERSION:=3.0.4
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/vtun
@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/vtun
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+VTUN_LZO:liblzo +VTUN_LZO:zlib +VTUN_SSL:libopenssl
+  DEPENDS:=+libbsd +VTUN_LZO:liblzo +VTUN_LZO:zlib +VTUN_SSL:libopenssl
   TITLE:=VPN tunneling daemon
   URL:=http://vtun.sourceforge.net
   SUBMENU:=VPN
