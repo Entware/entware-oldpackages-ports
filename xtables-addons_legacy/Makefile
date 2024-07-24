@@ -11,10 +11,11 @@ include $(INCLUDE_DIR)/kernel.mk
 PKG_NAME:=xtables-addons_legacy
 PKG_VERSION:=1.47.1
 PKG_RELEASE:=2
-PKG_HASH:=06535dbefaa7725870750048842b4b53f5a4f8d8b16d5ce61bb4cc28e0b99326
 
 PKG_SOURCE:=xtables-addons-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=@SF/xtables-addons
+PKG_SOURCE_URL:=https://inai.de/files/xtables-addons/
+PKG_HASH:=06535dbefaa7725870750048842b4b53f5a4f8d8b16d5ce61bb4cc28e0b99326
+
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
 PKG_CHECK_FORMAT_SECURITY:=0
@@ -32,7 +33,7 @@ define Package/xtables-addons_legacy
   SUBMENU:=Firewall
   DEPENDS:=+iptables
   TITLE:=Extensions not distributed in the main Xtables (1.47.1 legacy version)
-  URL:=http://xtables-addons.sourceforge.net/
+  URL:=https://inai.de/projects/xtables-addons/
 endef
 
 # uses GNU configure
