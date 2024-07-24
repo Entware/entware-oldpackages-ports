@@ -13,8 +13,8 @@ PKG_NAME:=rrdtool
 PKG_VERSION:=1.2.30
 PKG_RELEASE:=3a
 
-PKG_SOURCE_URL:=http://oss.oetiker.ch/rrdtool/pub/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://oss.oetiker.ch/rrdtool/pub/archive/
 PKG_HASH:=3190efea410a6dd035799717948b2df09910f608d72d23ee81adad4cd0184ae9
 
 #PKG_BUILD_DEPENDS:=python
@@ -34,7 +34,7 @@ define Package/rrdtool/Default
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=Round Robin Database (RRD)
-  URL:=http://oss.oetiker.ch/rrdtool/
+  URL:=https://oss.oetiker.ch/rrdtool/
 endef
 
 define Package/librrd
