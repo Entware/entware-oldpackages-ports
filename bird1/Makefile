@@ -10,8 +10,10 @@ PKG_NAME:=bird1
 PKG_VERSION:=1.6.8
 PKG_RELEASE:=2
 
+PKG_VERSION_MAJOR:=$(subst $(space),.,$(wordlist 1,2,$(subst .,$(space),$(PKG_VERSION))))
+
 PKG_SOURCE:=bird-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=ftp://bird.network.cz/pub/bird
+PKG_SOURCE_URL:=https://bird.network.cz/download/$(PKG_VERSION_MAJOR)
 PKG_HASH:=6c61ab5d2ef59d2559a8735b8252b5a0238013b43e5fb8a96c5d9d06e7bc00b2
 PKG_BUILD_DEPENDS:=ncurses readline
 PKG_MAINTAINER:=Álvaro Fernández Rojas <noltari@gmail.com>
