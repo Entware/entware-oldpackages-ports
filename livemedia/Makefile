@@ -8,13 +8,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=livemedia
-PKG_VERSION:=2024.06.26
+PKG_VERSION:=2024.11.28
 PKG_RELEASE:=1
 
 PKG_SOURCE:=live.$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://www.live555.com/liveMedia/public \
-	https://download.videolan.org/pub/contrib/live555
-PKG_HASH:=97e9fa015fc6559808955ec7a0c90fe4000b868f04c58794ff627f8a562d2f1c
+		https://download.videolan.org/pub/contrib/live555
+PKG_HASH:=a9af16f46d2f4c7ccdbfc4b617480503d27cccb46fa5abb7dfd8a25951b44cc3
+
+PKG_LICENSE:=GPL-3.0-or-later LGPL-3.0-or-later
+PKG_LICENSE_FILES:=COPYING COPYING.LESSER
 
 PKG_INSTALL:=1
 
@@ -60,7 +63,7 @@ endef
 TARGET_CFLAGS += -DNO_OPENSSL=1 -DNO_STD_LIB
 
 define Build/Configure
-	$(FIND) $(PKG_BUILD_DIR) -name Makefile.* -exec \
+	$(FIND) $(PKG_BUILD_DIR) -name "Makefile.*" -exec \
 		$(SED) 's|PREFIX =.*$$$$|PREFIX = /opt|g' {} \;
 	( cd $(PKG_BUILD_DIR); \
 		$(SED) 's|@CROSS_COMPILE@|$(TARGET_CROSS)|g;  \
