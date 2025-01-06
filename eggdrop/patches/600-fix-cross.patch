@@ -1,0 +1,99 @@
+checking for b64_ntop... configure: error: in `.../eggdrop-1.10.0':
+configure: error: cannot run test program while cross compiling
+See `config.log' for more details
+...
+./configure: line 12576: ./tmpfile: cannot execute binary file: Exec format error
+
+---
+
+--- a/aclocal.m4
++++ b/aclocal.m4
+@@ -96,7 +96,7 @@ int main(void) {
+  return 0;
+ }
+ EOF
+-    $CC $SSL_INCLUDES tmp.c -o "$tmpout" >/dev/null 2>&1
++    gcc $SSL_INCLUDES tmp.c -o "$tmpout" >/dev/null 2>&1
+     if test -x "./$tmpout"; then
+       tls_version=$("./$tmpout")
+       tls_versionf=
+@@ -317,48 +317,42 @@ AC_DEFUN([EGG_FUNC_B64_NTOP],
+ 
+   # Check for b64_ntop. If we have b64_ntop, we assume b64_pton as well.
+   AC_MSG_CHECKING(for b64_ntop)
+-  AC_RUN_IFELSE([AC_LANG_PROGRAM([[
+-      #include <sys/types.h>
+-      #include <netinet/in.h>
+-      #include <resolv.h>
+-    ]], [[b64_ntop(NULL, 0, NULL, 0);]])],[found_b64_ntop=yes],[found_b64_ntop=no
+-  ])
++  AC_TRY_LINK(
++	[
++		#include <sys/types.h>
++		#include <netinet/in.h>
++		#include <resolv.h>
++	],
++	[b64_ntop(NULL, 0, NULL, 0);],
++	found_b64_ntop=yes,
++	found_b64_ntop=no
++  )
+   if test "x$found_b64_ntop" = xno; then
+-    AC_MSG_RESULT(no)
++	AC_MSG_RESULT(no)
+ 
+-    AC_MSG_CHECKING(for b64_ntop with -lresolv)
+-    OLD_LIBS="$LIBS"
+-    LIBS="$LIBS -lresolv"
+-    AC_RUN_IFELSE([AC_LANG_PROGRAM([[
+-        #include <sys/types.h>
+-        #include <netinet/in.h>
+-        #include <resolv.h>
+-      ]], [[b64_ntop(NULL, 0, NULL, 0);]])],[found_b64_ntop=yes],[found_b64_ntop=no
+-    ])
+-    if test "x$found_b64_ntop" = xno; then
+-      LIBS="$OLD_LIBS"
+-      AC_MSG_RESULT(no)
+-
+-      AC_MSG_CHECKING(for b64_ntop with -lnetwork)
+-      OLD_LIBS="$LIBS"
+-      LIBS="-lnetwork"
+-      AC_RUN_IFELSE([AC_LANG_PROGRAM([[
+-        #include <sys/types.h>
+-        #include <netinet/in.h>
+-        #include <resolv.h>
+-        ]], [[b64_ntop(NULL, 0, NULL, 0);]])],[found_b64_ntop=yes],[found_b64_ntop=no
+-      ])
+-      if test "x$found_b64_ntop" = xno; then
+-        LIBS="$OLD_LIBS"
+-        AC_MSG_RESULT(no)
+-      fi
+-    fi
++	AC_MSG_CHECKING(for b64_ntop with -lresolv)
++	OLD_LIBS="$LIBS"
++	LIBS="$LIBS -lresolv"
++	AC_TRY_LINK(
++		[
++			#include <sys/types.h>
++			#include <netinet/in.h>
++			#include <resolv.h>
++		],
++		[b64_ntop(NULL, 0, NULL, 0);],
++		found_b64_ntop=yes,
++		found_b64_ntop=no
++	)
++	if test "x$found_b64_ntop" = xno; then
++		LIBS="$OLD_LIBS"
++		AC_MSG_RESULT(no)
++	fi
+   fi
+   if test "x$found_b64_ntop" = xyes; then
+-    AC_DEFINE([HAVE_BASE64], [1], [Define if b64_ntop exists.])
+-    AC_MSG_RESULT(yes)
++	AC_DEFINE([HAVE_BASE64], [1], [Define if b64_ntop exists.])
++	AC_MSG_RESULT(yes)
+   else
+-    AC_LIBOBJ(base64)
++	AC_LIBOBJ(base64)
+   fi
+ ])
+ 
