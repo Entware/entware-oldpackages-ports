@@ -4,7 +4,7 @@
    weechat-perl-api.c weechat-perl-api.h
  )
  set_target_properties(perl PROPERTIES PREFIX "")
-+set(PERL_LFLAGS "-Wl,-rpath,/opt/lib/perl5/5.40/CORE")
++set(PERL_LFLAGS "-Wl,-rpath,/opt/lib/perl5/@PERL_VERSION2@/CORE")
  
  if(PERL_FOUND)
    if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")

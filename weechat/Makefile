@@ -9,12 +9,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
-PKG_VERSION:=4.3.4
+PKG_VERSION:=4.4.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://weechat.org/files/src
-PKG_HASH:=cad458022f4699120b7d72e062b346c4d0e78359cc9785fa2e1686fd74ba7f67
+PKG_HASH:=295612f8dc24af28c918257d3014eb53342a5d077d5e3d9a3eadf303bd8febfa
+
+PKG_LICENSE:=GPL-3.0-only
+PKG_LICENSE_FILES:=COPYING
 
 PKG_BUILD_DEPENDS:=perl python3
 
@@ -50,13 +53,19 @@ CMAKE_OPTIONS += \
 	-DPERL_EXECUTABLE="$(STAGING_DIR_HOSTPKG)/usr/bin/perl" \
 	-DPERL_INCLUDE_PATH="$(STAGING_DIR)/opt/lib/perl5/$(PERL_VERSION2)/CORE" \
 	-DPERL_LIBRARY="$(STAGING_DIR)/opt/lib/perl5/$(PERL_VERSION2)/CORE/libperl.so" \
+	-DENABLE_CJSON=OFF \
 	-DENABLE_GUILE=OFF \
 	-DENABLE_JAVASCRIPT=OFF \
 	-DENABLE_LUA=OFF \
 	-DENABLE_PHP=OFF \
 	-DENABLE_RUBY=OFF \
-	-DENABLE_TCL=OFF \
-	-DENABLE_CJSON=OFF
+	-DENABLE_TCL=OFF
+
+define FixPerlVersion
+	$(SED) 's,@PERL_VERSION2@,$(PERL_VERSION2),' \
+		$(PKG_BUILD_DIR)/src/plugins/perl/CMakeLists.txt
+endef
+Hooks/Configure/Pre += FixPerlVersion
 
 define CheckDependencies
 endef
@@ -64,7 +73,7 @@ endef
 define Package/weechat/install
 	$(INSTALL_DIR) $(1)/opt/bin $(1)/opt/var/weechat
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/weechat-curses $(1)/opt/bin
-	ln -sf weechat-curses $(1)/opt/bin/weechat
+	$(LN) weechat-curses $(1)/opt/bin/weechat
 	$(INSTALL_DIR) $(1)/opt/lib/weechat/plugins
 	$(CP) \
 		$(PKG_INSTALL_DIR)/opt/lib/weechat/plugins/*.so \
