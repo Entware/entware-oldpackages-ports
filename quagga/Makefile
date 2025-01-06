@@ -12,7 +12,8 @@ PKG_VERSION:=1.2.4
 PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SAVANNAH/quagga/
+PKG_SOURCE_URL:=@SAVANNAH/quagga/ \
+		https://github.com/Quagga/quagga/releases/download/$(PKG_NAME)-$(PKG_VERSION)/
 PKG_HASH:=e364c082c3309910e1eb7b068bf39ee298e2f2f3f31a6431a5c115193bd653d3
 
 PKG_MAINTAINER:=Vasilis Tsiligiannis <acinonyx@openwrt.gr>
