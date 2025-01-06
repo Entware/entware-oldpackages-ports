@@ -8,12 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libinklevel
-PKG_VERSION:=0.9.5
+PKG_VERSION:=0.9.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/libinklevel
-PKG_HASH:=3e889cf7e3400524f514084775d653eeae0b1b7320f28741a343cbc95d7c980a
+PKG_HASH:=c69848f9f2ca71f7a3a4f8415132933ed8d4b5882158c7c543181222081b5134
+
+PKG_LICENSE:=GPL-2.0-only
+PKG_LICENSE_FILES:=COPYING
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -24,12 +27,13 @@ define Package/libinklevel
   SECTION:=libs
   CATEGORY:=Libraries
   TITLE:=Printers Ink Level Library
-  URL:=http://libinklevel.sourceforge.net/
+  URL:=https://libinklevel.sourceforge.net/
   DEPENDS:=+libusb-compat +libxml2
 endef
 
 define Package/libinklevel/description
-  Libinklevel is a library for checking the ink level of your printer on a system which runs Linux.
+  Libinklevel is a library for checking the ink level of your printer
+  on a system which runs Linux.
 endef
 
 TARGET_CFLAGS += \
@@ -40,21 +44,14 @@ MAKE_ARGS += LIBS="$(TARGET_LIBS)"
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/opt/include
-	$(INSTALL_DATA) \
-		$(PKG_INSTALL_DIR)/opt/include/inklevel.h \
-		$(1)/opt/include/
-
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/inklevel.h $(1)/opt/include
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) \
-		$(PKG_INSTALL_DIR)/opt/lib/libinklevel.so* \
-		$(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libinklevel.so* $(1)/opt/lib
 endef
 
 define Package/libinklevel/install
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) \
-		$(PKG_INSTALL_DIR)/opt/lib/libinklevel.so* \
-		$(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libinklevel.so* $(1)/opt/lib
 endef
 
 $(eval $(call BuildPackage,libinklevel))
