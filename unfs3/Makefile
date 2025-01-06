@@ -4,24 +4,25 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2015
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=unfs3
-PKG_VERSION:=0.9.23-20150511
-PKG_REV:=5aa8be4012b552b0633b3cbdcd016104a0290167
+PKG_REAL_VERSION:=0.10.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=https://github.com/allspace/eunfs3.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_MIRROR_HASH:=8180a3b024ad27476ea9a24d64aad34664ca88f4df9570204f63a213699aba5b
+PKG_SOURCE_DATE:=2024-09-23
+PKG_SOURCE_VERSION:=e032ed86c9a3b5f3206d994e9ec544b8d0968650
+PKG_SOURCE_URL:=https://github.com/unfs3/unfs3
+PKG_MIRROR_HASH:=1e1dfc6c63d82233adb79fa96c141bdda3c143148c4312b22161d62fa822c18c
+
+PKG_VERSION:=$(PKG_REAL_VERSION)_git$(subst -,,$(PKG_SOURCE_DATE))~$(call version_abbrev,$(PKG_SOURCE_VERSION))
+
+PKG_LICENSE:=BSD-3-Clause
+PKG_LICENSE_FILES:=LICENSE
 
 PKG_FIXUP:=autoreconf
-PKG_BUILD_PARALLEL:=0
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -29,31 +30,27 @@ define Package/unfs3
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Filesystem
-  DEPENDS:=+rpcbind +libacl
   TITLE:=User-space NFSv3 Server
-  URL:=http://unfs3.sourceforge.net/
+  URL:=https://unfs3.github.io/
+  DEPENDS:=+libacl +libtirpc +rpcbind
 endef
 
-CONFIGURE_ARGS += \
-	--without-afp-prefix
-
 define Package/unfs3/description
-	UNFS3 is a user-space implementation of the NFSv3 server
-	specification. It provides a daemon for the MOUNT and NFS
-	protocols, which are used by NFS clients for accessing files
-	on the server.
+  UNFS3 is a user-space implementation of the NFS (Network File System)
+  version 3 server specification. It provides a daemon that supports both
+  the MOUNT and NFS protocol.
+endef
+
+define Package/unfs3/conffiles
+/opt/etc/exports
 endef
 
 define Package/unfs3/install
 	$(INSTALL_DIR) $(1)/opt/etc/init.d
 	$(INSTALL_BIN) ./files/S56unfsd $(1)/opt/etc/init.d
-	$(INSTALL_DATA) ./files/$(PKG_NAME).exports $(1)/opt/etc/exports
+	$(INSTALL_DATA) ./files/unfs3.exports $(1)/opt/etc/exports
 	$(INSTALL_DIR) $(1)/opt/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/unfsd $(1)/opt/sbin
-endef
-
-define Package/unfs3/conffiles
-/opt/etc/exports
 endef
 
 $(eval $(call BuildPackage,unfs3))

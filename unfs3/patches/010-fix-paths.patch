@@ -1,6 +1,6 @@
 --- a/daemon.c
 +++ b/daemon.c
-@@ -72,7 +72,7 @@ cookie3 rcookie = 0;
+@@ -65,7 +65,7 @@ cookie3 rcookie = 0;
  
  /* options and default values */
  int opt_detach = TRUE;
@@ -9,12 +9,23 @@
  int opt_cluster = FALSE;
  char *opt_cluster_path = "/";
  int opt_tcponly = FALSE;
-@@ -250,7 +250,7 @@ static void parse_options(int argc, char
+@@ -266,7 +266,7 @@ static void parse_options(int argc, char
  		printf("\t-h          display this short option summary\n");
  		printf("\t-u          use unprivileged port for services\n");
  		printf("\t-d          do not detach from terminal\n");
 -		printf("\t-e <file>   file to use instead of /etc/exports\n");
 +		printf("\t-e <file>   file to use instead of /opt/etc/exports\n");
- 		printf("\t-E          disable exports list procedure\n");
  		printf("\t-i <file>   write daemon pid to given file\n");
  #ifdef WANT_CLUSTER
+ 		printf("\t-c          enable cluster extensions\n");
+--- a/password.c
++++ b/password.c
+@@ -45,7 +45,7 @@ int gen_nonce(char *nonce)
+ 
+     /* No /dev/random; do it by hand */
+     arr = (unsigned int *) nonce;
+-    backend_stat("/tmp", &st);
++    backend_stat("/opt/tmp", &st);
+     arr[0] = st.st_mtime;
+     arr[1] = st.st_atime;
+     arr[2] = st.st_ctime;
