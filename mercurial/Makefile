@@ -8,11 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mercurial
-PKG_VERSION:=6.8
+PKG_VERSION:=6.9
 PKG_RELEASE:=1
 
 PYPI_NAME:=$(PKG_NAME)
-PKG_HASH:=08e4d0e5da8af1132b51e6bc3350180ad57adcd935f097b6d0bc119a2c2c0a10
+PKG_HASH:=629604293df2be8171ec856bf4f8b4faa8e4305af13607dce0f89f74132836d6
+
+PKG_LICENSE:=GPL-2.0-or-later
+PKG_LICENSE_FILES:=COPYING
 
 PKG_BUILD_DEPENDS:=zstd python-wheel/host
 
@@ -34,20 +37,31 @@ define Package/mercurial/description
   handling of very large distributed projects.
 endef
 
-PZSTD=zstandard-0.22.0
+PZSTD_VERSION:=0.23.0
+PZSTD_FILE:=python-zstandard-$(PZSTD_VERSION).tar.gz
 
 define Download/pzstd
-  URL:=https://github.com/indygreg/python-zstandard/releases/download/0.22.0
-  FILE:=$(PZSTD).tar.gz
-  HASH:=8226a33c542bcb54cd6bd0a366067b610b41713b64c9abec1bc4533d69f51e70
+  FILE:=$(PZSTD_FILE)
+  URL:=https://codeload.github.com/indygreg/python-zstandard/tar.gz/refs/tags/$(PZSTD_VERSION)?
+  HASH:=f29233338bcef11f233737eb58aba85074f0fd3163bec1a20303de1270e6fb16
 endef
-$(eval $(call Download,pzstd))
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	rm -rf $(PKG_BUILD_DIR)/contrib/python-zstandard/*
-	tar --strip-components=1 -C $(PKG_BUILD_DIR)/contrib/python-zstandard -xvzf $(DL_DIR)/$(PZSTD).tar.gz
+	$(TAR) -xf $(DL_DIR)/$(PZSTD_FILE) --strip-components=1 -C $(PKG_BUILD_DIR)/contrib/python-zstandard
 endef
 
+define Package/mercurial/postrm
+#!/bin/sh
+
+rm -rf $(PYTHON3_PKG_DIR)/hgdemandimport
+rm -rf $(PYTHON3_PKG_DIR)/hgext
+rm -rf $(PYTHON3_PKG_DIR)/hgext3rd
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)
+rm -rf $(PYTHON3_PKG_DIR)/$(PYPI_NAME)-$(PKG_VERSION).dist-info
+endef
+
+$(eval $(call Download,pzstd))
 $(eval $(call Py3Package,mercurial))
 $(eval $(call BuildPackage,mercurial))
