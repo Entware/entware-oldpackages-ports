@@ -8,12 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mrouted
-PKG_VERSION:=4.5
+PKG_VERSION:=4.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/troglobit/mrouted/tar.gz/$(PKG_VERSION)?
-PKG_HASH:=e8d51f43f41ac120fc2b2747e863f9029a051cc75b5650ba0ec190be5a0ffc37
+PKG_HASH:=a51f6826b48d6144ed24844d5bb20078d1cf8f8ce8321c0be76206934ec05c26
+
+PKG_LICENSE:=BSD-3-Clause
+PKG_LICENSE_FILES:=LICENSE
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -25,14 +28,13 @@ define Package/mrouted
   CATEGORY:=Network
   SUBMENU:=Routing and Redirection
   TITLE:=multicast routing daemon
-  URL:=https://github.com/troglobit/mrouted
+  URL:=https://troglobit.com/projects/mrouted/
 endef
 
 define Package/mrouted/description
- routed is a 3-clause BSD licensed implementation of the DVMRP multicast
- routing protocol. It can run on any UNIX based system, from embedded Linux
- systems to workstations, turning them into multicast routers with tunnel
- support, which can be used to cross non-multicast-aware routers.
+  An implementation of the DVMRP multicast routing protocol. It turns
+  a UNIX workstation into a DVMRP multicast router with tunnel support, in order
+  to cross non-multicast-aware routers.
 endef
 
 define Package/mrouted/conffiles
