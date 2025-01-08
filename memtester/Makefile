@@ -12,7 +12,7 @@ PKG_VERSION:=4.7.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://pyropus.ca./software/memtester/old-versions \
+PKG_SOURCE_URL:=https://pyropus.ca/software/memtester/old-versions \
 		https://fossies.org/linux/misc
 PKG_HASH:=33271805f8aa30c119fbbf5ec4e7a298e9f4c2bc9d2d9302022a3ed301eb7028
 
