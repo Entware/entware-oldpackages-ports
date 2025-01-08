@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=elinks
 PKG_VERSION:=0.16.1.1
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=c39887cd864782d37a1f9b220d368f0ccd09abba
@@ -42,7 +42,8 @@ MESON_ARGS += \
 	-Dterminfo=true \
 	-Dtre=false \
 	-Dxterm=true \
-	-Dzstd=true
+	-Dzstd=true \
+	-Dftp=false
 
 TARGET_LDFLAGS += $(if $(ICONV_FULL),-liconv)
 
