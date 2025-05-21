@@ -3,7 +3,7 @@
 
 --- a/setup.py
 +++ b/setup.py
-@@ -744,11 +744,11 @@ class hgbuildpy(build_py):
+@@ -487,11 +487,11 @@ class hgbuildpy(build_py):
              self.distribution.ext_modules = exts
          else:
              h = os.path.join(get_python_inc(), 'Python.h')
@@ -19,4 +19,4 @@
 +#                )
  
      def run(self):
-         basepath = os.path.join(self.build_lib, 'mercurial')
+         rust = self.distribution.rust
