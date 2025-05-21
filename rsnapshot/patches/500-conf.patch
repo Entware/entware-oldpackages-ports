@@ -61,7 +61,7 @@
  
  # By default, rsnapshot check lockfile, check if PID is running
  # and if not, consider lockfile as stale, then start
-@@ -222,10 +222,22 @@ lockfile	/var/run/rsnapshot.pid
+@@ -234,10 +234,22 @@ lockfile	/var/run/rsnapshot.pid
  ### BACKUP POINTS / SCRIPTS ###
  ###############################
  

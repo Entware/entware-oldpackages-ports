@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rsnapshot
-PKG_VERSION:=1.4.5
+PKG_VERSION:=1.5.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/rsnapshot/rsnapshot/releases/download/$(PKG_VERSION)
-PKG_HASH:=10b75e01ca25511e8266aacd495531975ad1a8ad556216b6a57c76d028b38242
+PKG_HASH:=8f6af8046ee6b0293b26389d08cb6950c7f7ddfffc1f74eefcb087bd49d44f62
 
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
