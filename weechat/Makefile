@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
-PKG_VERSION:=4.4.3
+PKG_VERSION:=4.6.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://weechat.org/files/src
-PKG_HASH:=295612f8dc24af28c918257d3014eb53342a5d077d5e3d9a3eadf303bd8febfa
+PKG_HASH:=5c0b5efa969b873c4be582019b18523ee403e7430b8223825bcdb44a89f5815d
 
 PKG_LICENSE:=GPL-3.0-only
 PKG_LICENSE_FILES:=COPYING
@@ -43,6 +43,7 @@ endef
 
 TARGET_LDFLAGS += $(if $(ICONV_FULL),-liconv)
 TARGET_LDFLAGS += $(if $(INTL_FULL),-lintl)
+TARGET_LDFLAGS += -ldl
 
 CMAKE_OPTIONS += \
 	-DWEECHAT_HOME="/opt/var/weechat" \
