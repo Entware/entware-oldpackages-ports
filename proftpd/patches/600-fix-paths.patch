@@ -8,10 +8,10 @@
 +  default_tz = ":/opt/etc/localtime";
  #endif
  
-   tz = pr_env_get(session.pool, "TZ"); 
+   tz = pr_env_get(session.pool, "TZ");
 --- a/src/ctrls.c
 +++ b/src/ctrls.c
-@@ -1256,7 +1256,7 @@ int pr_ctrls_connect(const char *socket_
+@@ -1262,7 +1262,7 @@ int pr_ctrls_connect(const char *socket_
  
    cl_sock.sun_family = AF_UNIX;
    pr_snprintf(cl_sock.sun_path, sizeof(cl_sock.sun_path) - 1, "%s%05u",
@@ -20,7 +20,7 @@
    len = sizeof(cl_sock);
  
    /* Make sure the file doesn't already exist */
-@@ -1639,7 +1639,7 @@ static int ctrls_get_creds_basic(struct
+@@ -1654,7 +1654,7 @@ static int ctrls_get_creds_basic(struct
  
    /* Parse the PID out of the path */
    tmp = sock->sun_path;
@@ -60,7 +60,7 @@
    }
 --- a/src/main.c
 +++ b/src/main.c
-@@ -2076,7 +2076,7 @@ static struct option opts[] = {
+@@ -2072,7 +2072,7 @@ static struct option opts[] = {
   *   https://www.freedesktop.org/software/systemd/man/os-release.html
   */
  static void show_os_release(void) {
@@ -82,7 +82,7 @@
  
 --- a/configure.in
 +++ b/configure.in
-@@ -4231,9 +4231,9 @@ locale_dir="`eval echo ${localedir}`"
+@@ -4430,9 +4430,9 @@ locale_dir="`eval echo ${localedir}`"
  locale_dir="`eval echo ${locale_dir}`"
  AC_DEFINE_UNQUOTED(PR_LOCALE_DIR, "`eval echo "${locale_dir}"`", [Define the locale directory])
  
