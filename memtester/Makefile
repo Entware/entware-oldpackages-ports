@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=memtester
-PKG_VERSION:=4.7.0
+PKG_VERSION:=4.7.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://pyropus.ca/software/memtester/old-versions \
-		https://fossies.org/linux/misc
-PKG_HASH:=33271805f8aa30c119fbbf5ec4e7a298e9f4c2bc9d2d9302022a3ed301eb7028
+PKG_SOURCE_URL:=https://pyropus.ca./software/memtester/old-versions \
+		https://distfiles.gentoo.org/distfiles/99
+PKG_HASH:=e427de663f7bd22d1ebee8af12506a852c010bd4fcbca1e0e6b02972d298b5bb
 
 PKG_LICENSE:=GPL-2.0-only
 PKG_LICENSE_FILES:=COPYING
