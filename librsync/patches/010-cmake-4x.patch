@@ -1,0 +1,12 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -16,8 +16,8 @@
+ # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ 
+ 
++cmake_minimum_required(VERSION 3.10)
+ project(librsync C)
+-cmake_minimum_required(VERSION 3.6)
+ 
+ INCLUDE(CMakeDependentOption)
+ include(GNUInstallDirs)
