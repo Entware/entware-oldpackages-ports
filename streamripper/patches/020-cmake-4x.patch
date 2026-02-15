@@ -1,0 +1,14 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,9 +1,9 @@
+ ##-----------------------------------------------------------------------------
+ ##  Welcome to Streamripper
+ ##-----------------------------------------------------------------------------
+-PROJECT (STREAMRIPPER)
++CMAKE_MINIMUM_REQUIRED (VERSION 2.6.0...3.10)
+ 
+-CMAKE_MINIMUM_REQUIRED (VERSION 2.6.0)
++PROJECT (STREAMRIPPER)
+ 
+ ## Tell CMake to be quiet
+ CMAKE_POLICY (SET CMP0003 NEW)
