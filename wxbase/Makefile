@@ -8,6 +8,8 @@
 
 include $(TOPDIR)/rules.mk
 
+override CONFIG_AUTOREMOVE=
+
 PKG_NAME:=wxbase
 PKG_VERSION:=2.8.12
 PKG_RELEASE:=1
