@@ -8,15 +8,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ngrep
-PKG_VERSION:=1.47
-PKG_RELEASE:=2
+PKG_VERSION:=1.49.0
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/jpr5/ngrep.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=351ac491358f89a7860bbbe9963cb4bc7d60000f
-PKG_MIRROR_HASH:=b764133dfdac84b7b833ede94e425c7b3a772e1679c6eb7623ca209b5898f9b9
+PKG_SOURCE_VERSION:=7a2204f6f62f1b85d72ac197900419593c1cea86
+PKG_MIRROR_HASH:=719502c5ab0f98e2d46512bbaa9a33fadb578a492efaa4572ceecae867d72c11
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -26,7 +26,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/ngrep
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+libpcap +libpcre
+  DEPENDS:=+libpcap +libpcre2
   TITLE:=network grep
   URL:=http://ngrep.sourceforge.net
 endef
@@ -43,7 +43,7 @@ endef
 TARGET_CFLAGS += -D_DEFAULT_SOURCE
 
 CONFIGURE_ARGS += \
-	--enable-pcre \
+	--enable-pcre2 \
 	--disable-dropprivs \
 	--with-pcap-includes=$(STAGING_DIR)/opt/include
 
