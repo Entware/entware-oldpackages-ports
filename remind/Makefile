@@ -6,12 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=remind
-PKG_VERSION:=05.03.07
-PKG_RELEASE:=2
+PKG_VERSION:=06.03.01
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://dianne.skoll.ca/projects/remind/download
-PKG_HASH:=d296e5dc4b10d08fbc29e3e0ced7a32abde74ba241bdcd8ba314193877c1e51d
+PKG_HASH:=16161aba1b0494bbdac375a7fffd4a22d8e46648dc62608f4c00e731e985b7ad
 
 PKG_LICENSE:=GPL-2.0-only
 PKG_LICENSE_FILES:=COPYRIGHT
@@ -25,7 +25,7 @@ define Package/remind
   CATEGORY:=Utilities
   TITLE:=a sophisticated calendar and alarm program
   URL:=https://dianne.skoll.ca/projects/remind
-  DEPENDS:=+perl-json-maybexs
+  DEPENDS:=+libreadline +perl-json-maybexs
 endef
 
 define Package/remind/description
