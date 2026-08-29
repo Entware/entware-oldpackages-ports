@@ -1,11 +1,11 @@
---- a/configure.in
-+++ b/configure.in
-@@ -150,7 +150,7 @@ if test "$thread" != "no"; then
+--- a/configure.ac
++++ b/configure.ac
+@@ -125,7 +125,7 @@ if test "$thread" != "no"; then
  	elif test "$OS" = "SOLARIS"; then
  	    LDFLAGS="$LDFLAGS -lpthread"
  	fi
--	AC_RUN_IFELSE([AC_LANG_SOURCE([
-+	AC_LINK_IFELSE([AC_LANG_SOURCE([
- [#include <pthread.h>
- void
- init_routine()
+-	AC_RUN_IFELSE([AC_LANG_SOURCE([[
++	AC_LINK_IFELSE([AC_LANG_SOURCE([[
+ #include <pthread.h>
+ void init_routine() { return; }
+ int main() {

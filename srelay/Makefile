@@ -4,17 +4,15 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Abandoned in 2019
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=srelay
-PKG_VERSION:=0.4.8
+PKG_VERSION:=0.4.9
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=@SF/socks-relay
-PKG_HASH:=74dfee1d24a397a25b75ccbaa9bde3061aa9bc6785905227cddb79ac0a00c6ea
+PKG_SOURCE_URL:=@SF/socks-relay/socks-relay/srelay-$(PKG_VERSION)
+PKG_HASH:=9dbc5b2cfa5cd4cb72d8d68408429937c800a7cd3d5da35e8b315bf6984d2edc
 
 PKG_FIXUP:=autoreconf
 
@@ -26,7 +24,7 @@ define Package/srelay
   DEPENDS:=+libwrap +libpthread
   SUBMENU:=Web Servers/Proxies
   TITLE:=A socks 4/5 proxy server
-  URL:=http://www.c-wind.com/srelay/
+  URL:=https://socks-relay.sourceforge.io/
 endef
 
 define Package/srelay/conffiles
