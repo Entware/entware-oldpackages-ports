@@ -1,10 +1,10 @@
 --- a/src/plugins/perl/CMakeLists.txt
 +++ b/src/plugins/perl/CMakeLists.txt
-@@ -22,6 +22,7 @@ add_library(perl MODULE
+@@ -26,6 +26,7 @@ add_library(perl MODULE
    weechat-perl-api.c weechat-perl-api.h
  )
  set_target_properties(perl PROPERTIES PREFIX "")
 +set(PERL_LFLAGS "-Wl,-rpath,/opt/lib/perl5/@PERL_VERSION2@/CORE")
  
- if(PERL_FOUND)
-   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+   # remove "-arch xxx" on macOS

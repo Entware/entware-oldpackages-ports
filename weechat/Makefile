@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=weechat
-PKG_VERSION:=4.6.3
+PKG_VERSION:=4.10.0
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://weechat.org/files/src
-PKG_HASH:=5c0b5efa969b873c4be582019b18523ee403e7430b8223825bcdb44a89f5815d
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/weechat/weechat/tar.gz/refs/tags/v$(PKG_VERSION)?
+PKG_HASH:=4358214ad10718e9907d8b2a7755d3a28879b81f57ebb0d0ce9d8cdd26bfb9af
 
 PKG_LICENSE:=GPL-3.0-only
 PKG_LICENSE_FILES:=COPYING
