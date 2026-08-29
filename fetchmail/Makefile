@@ -8,14 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fetchmail
-PKG_VERSION:=6.5.2
+PKG_VERSION:=6.6.7
 PKG_RELEASE:=1
 
 PKG_VERSION_TAG:=$(subst $(space),.,$(wordlist 1,2,$(subst .,$(space),$(PKG_VERSION))))
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)/branch_$(PKG_VERSION_TAG)
-PKG_HASH:=8fd0477408620ae382c1d0ef83d8946a95e5be0c2e582dd4ebe55cba513a45fe
+PKG_HASH:=bece8aaaa68e029eed9fd55fffd2adc7dd6cd5e9574d5bf92e2d9208bd97a881
 
 PKG_LICENSE:=GPL-2.0-only
 PKG_LICENSE_FILES:=COPYING
