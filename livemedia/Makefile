@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=livemedia
-PKG_VERSION:=2025.05.08
+PKG_VERSION:=2026.08.25
 PKG_RELEASE:=1
 
 PKG_SOURCE:=live.$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.live555.com/liveMedia/public \
+PKG_SOURCE_URL:=https://download.live555.com \
 		https://download.videolan.org/pub/contrib/live555
-PKG_HASH:=52f6ad40580c00693dbc382e0e7e2aabc1b1bb0d6dcf1fc45f7d491fdcd023ef
+PKG_HASH:=5f3d151358117c7a400c61ae026032a46f140fbe1a80a12da31ef025f7c6e93d
 
 PKG_LICENSE:=GPL-3.0-or-later LGPL-3.0-or-later
 PKG_LICENSE_FILES:=COPYING COPYING.LESSER
@@ -31,7 +31,7 @@ define Package/livemedia/Default
   SECTION:=multimedia
   CATEGORY:=Multimedia
   TITLE:=LIVE555 Streaming Media
-  URL:=http://www.live555.com/
+  URL:=https://www.live555.com/
   DEPENDS:=+libstdcpp
 endef
 
