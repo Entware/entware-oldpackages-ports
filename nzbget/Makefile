@@ -4,17 +4,17 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-# Project acrhived
+# 23.0+ requires a CMake build with additional bundled projects
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nzbget
-PKG_VERSION:=21.1
-PKG_RELEASE:=2
+PKG_VERSION:=22.0
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-src.tar.gz
-PKG_SOURCE_URL:=https://github.com/nzbget/nzbget/releases/download/v$(PKG_VERSION)
-PKG_HASH:=4e8fc1beb80dc2af2d6a36a33a33f44dedddd4486002c644f4c4793043072025
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/nzbgetcom/nzbget/tar.gz/refs/tags/v$(PKG_VERSION)?
+PKG_HASH:=2bec63a0c5c0fed0779adca488499f890f603dcc8f161ae6bcff62e866b1d24b
 
 PKG_INSTALL:=1
 
@@ -26,7 +26,7 @@ define Package/nzbget
   SECTION:=net
   CATEGORY:=Network
   DEPENDS:=+libxml2 +libopenssl +libncurses +libstdcpp
-  URL:=http://nzbget.net
+  URL:=https://nzbget.com/
   TITLE:=Binary newsgrabber for nzb-files
   MAINTAINER:=Artur Wronowski <arteqw@gmail.com>
 endef
