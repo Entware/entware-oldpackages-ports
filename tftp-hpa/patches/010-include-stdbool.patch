@@ -1,0 +1,10 @@
+--- a/config.h
++++ b/config.h
+@@ -34,6 +34,7 @@
+ #include <signal.h>
+ #include <limits.h>
+ #include <stdarg.h>
++#include <stdbool.h>
+ 
+ #ifdef HAVE_SYS_TYPES_H
+ #include <sys/types.h>
