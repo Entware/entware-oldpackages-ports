@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=amule
 PKG_VERSION:=2.3.3
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/amule-project/amule/tar.gz/$(PKG_VERSION)?
@@ -63,8 +63,7 @@ CONFIGURE_ARGS+= \
 	--with-libiconv-prefix="$(ICONV_PREFIX)" \
 	--with-libintl-prefix="$(INTL_PREFIX)"
 
-TARGET_LDFLAGS += \
-	-liconv
+TARGET_LDFLAGS += $(if $(ICONV_FULL),-liconv)
 
 define Build/Configure
 	( cd $(PKG_BUILD_DIR); ./autogen.sh )
