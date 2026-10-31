@@ -6,10 +6,12 @@
 #
 
 include $(TOPDIR)/rules.mk
+include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=oprofile
 PKG_VERSION:=1.4.0
-PKG_RELEASE:=1
+# XXX binutils (libbfd) bumped
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/oprofile/
@@ -27,7 +29,6 @@ PKG_BUILD_FLAGS:=no-mips16
 PKG_BUILD_DEPENDS:=binutils
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/kernel.mk
 include $(INCLUDE_DIR)/nls.mk
 
 define Package/oprofile
@@ -35,7 +36,7 @@ define Package/oprofile
   CATEGORY:=Development
   TITLE:=OProfile System Profiler
   URL:=http://oprofile.sourceforge.net
-  DEPENDS:=+libpopt +libstdcpp +objdump +librt @!LINUX_2_6_22
+  DEPENDS:=+libbfd +libpopt +libstdcpp $(INTL_DEPENDS)
 endef
 
 define Package/oprofile/description
@@ -47,7 +48,7 @@ define Package/oprofile-utils
   CATEGORY:=Development
   TITLE:=OProfile System Profiler (extra utilities)
   URL:=http://oprofile.sourceforge.net
-  DEPENDS:=oprofile
+  DEPENDS:=+oprofile
 endef
 
 CONFIGURE_ARGS += \
