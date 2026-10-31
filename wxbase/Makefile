@@ -40,7 +40,12 @@ define Package/libwxbase/description
  etc.) allowing you to write portable programs easily.
 endef
 
-TARGET_CFLAGS += $(FPIC)
+# .../crt1.o: in function `__start':
+# (.text+0xc): undefined reference to `main'
+EXCLUDE_FLAGS:= -Wl,-z,max-page-size=4096
+TARGET_CXXFLAGS:=$(filter-out $(EXCLUDE_FLAGS),$(TARGET_CXXFLAGS))
+
+TARGET_CXXFLAGS += $(FPIC)
 
 # XXX: aMule *needs* the following configure options to be enabled:
 #	--enable-intl
