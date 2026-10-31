@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=iptraf
 PKG_VERSION:=3.0.1
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=ftp://iptraf.seul.org/pub/iptraf/ \
@@ -33,6 +33,8 @@ define Package/iptraf/description
   statistics and activity indicators, TCP/UDP traffic breakdowns, and LAN
   station packet and byte counts.
 endef
+
+TARGET_CPPFLAGS += -I$(STAGING_DIR)/opt/include/ncursesw
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR)/src \

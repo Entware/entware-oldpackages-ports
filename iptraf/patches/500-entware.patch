@@ -1,5 +1,24 @@
 --- a/src/dirs.h
 +++ b/src/dirs.h
+@@ -26,15 +26,15 @@
+  */
+ 
+ #ifndef WORKDIR
+-#define WORKDIR		"/var/local/iptraf"
++#define WORKDIR		"/opt/var/local/iptraf"
+ #endif
+ 
+ #ifndef LOGDIR
+-#define LOGDIR		"/var/log/iptraf"
++#define LOGDIR		"/opt/var/log/iptraf"
+ #endif
+ 
+ #ifndef EXECDIR
+-#define EXECDIR		"/usr/local/bin"
++#define EXECDIR		"/opt/bin"
+ #endif
+ 
+ /*
 @@ -46,7 +46,7 @@
   */
  
