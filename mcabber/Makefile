@@ -9,7 +9,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mcabber
 PKG_VERSION:=1.1.2
-PKG_RELEASE:=1
+# libgpgme bumped
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=https://mcabber.com/files
