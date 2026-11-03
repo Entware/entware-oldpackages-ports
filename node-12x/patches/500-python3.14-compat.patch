@@ -1,0 +1,239 @@
+--- a/configure
++++ b/configure
+@@ -1,28 +1,34 @@
+ #!/bin/sh
+ 
+ # Locate python2 interpreter and re-execute the script.  Note that the
+ # mix of single and double quotes is intentional, as is the fact that
+ # the ] goes on a new line.
+ _=[ 'exec' '/bin/sh' '-c' '''
+-which python2.7 >/dev/null && exec python2.7 "$0" "$@"
+-which python2 >/dev/null && exec python2 "$0" "$@"
++command -v python3.14 >/dev/null && exec python3.14 "$0" "$@"
++command -v python3.13 >/dev/null && exec python3.13 "$0" "$@"
++command -v python3.12 >/dev/null && exec python3.12 "$0" "$@"
++command -v python3.11 >/dev/null && exec python3.11 "$0" "$@"
++command -v python3.10 >/dev/null && exec python3.10 "$0" "$@"
++command -v python3 >/dev/null && exec python3 "$0" "$@"
+ exec python "$0" "$@"
+ ''' "$0" "$@"
+ ]
+ del _
+ 
+ import sys
+-from distutils.spawn import find_executable as which
+-if sys.version_info[:2] != (2, 7):
+-  sys.stderr.write('Please use Python 2.7')
++from shutil import which
+ 
+-  python2 = which('python2') or which('python2.7')
+-
+-  if python2:
+-    sys.stderr.write(':\n\n')
+-    sys.stderr.write('  ' + python2 + ' ' + ' '.join(sys.argv))
+-
+-  sys.stderr.write('\n')
++print('Node.js configure: Found Python {0}.{1}.{2}...'.format(*sys.version_info))
++acceptable_pythons = ((3, 14), (3, 13), (3, 12), (3, 11), (3, 10))
++if sys.version_info[:2] in acceptable_pythons:
++  import configure
++else:
++  python_cmds = ['python{0}.{1}'.format(*vers) for vers in acceptable_pythons]
++  sys.stderr.write('Please use {0}.\n'.format(' or '.join(python_cmds)))
++  for python_cmd in python_cmds:
++    python_cmd_path = which(python_cmd)
++    if python_cmd_path:
++      sys.stderr.write('\t{0} {1}\n'.format(python_cmd_path,
++                                             ' '.join(sys.argv[:1])))
+   sys.exit(1)
+ 
+-import configure
+--- a/configure.py
++++ b/configure.py
+@@ -5,7 +5,6 @@ import sys
+ import errno
+ import optparse
+ import os
+-import pipes
+ import pprint
+ import re
+ import shlex
+@@ -13,8 +12,8 @@ import subprocess
+ import shutil
+ import io
+ 
+-from distutils.spawn import find_executable as which
+-from distutils.version import StrictVersion
++from shutil import which
++from packaging.version import Version
+ 
+ # If not run from node/, cd to node/.
+ os.chdir(os.path.dirname(__file__) or '.')
+@@ -1326,10 +1325,10 @@ def configure_openssl(o):
+     # supported asm compiler for AVX2. See https://github.com/openssl/openssl/
+     # blob/OpenSSL_1_1_0-stable/crypto/modes/asm/aesni-gcm-x86_64.pl#L52-L69
+     openssl110_asm_supported = \
+-      ('gas_version' in variables and StrictVersion(variables['gas_version']) >= StrictVersion('2.23')) or \
+-      ('xcode_version' in variables and StrictVersion(variables['xcode_version']) >= StrictVersion('5.0')) or \
+-      ('llvm_version' in variables and StrictVersion(variables['llvm_version']) >= StrictVersion('3.3')) or \
+-      ('nasm_version' in variables and StrictVersion(variables['nasm_version']) >= StrictVersion('2.10'))
++      ('gas_version' in variables and Version(variables['gas_version']) >= Version('2.23')) or \
++      ('xcode_version' in variables and Version(variables['xcode_version']) >= Version('5.0')) or \
++      ('llvm_version' in variables and Version(variables['llvm_version']) >= Version('3.3')) or \
++      ('nasm_version' in variables and Version(variables['nasm_version']) >= Version('2.10'))
+ 
+     if is_x86 and not openssl110_asm_supported:
+       error('''Did not find a new enough assembler, install one or build with
+@@ -1761,7 +1760,7 @@ write('config.gypi', do_not_edit +
+       pprint.pformat(output, indent=2) + '\n')
+ 
+ write('config.status', '#!/bin/sh\nset -x\nexec ./configure ' +
+-      ' '.join([pipes.quote(arg) for arg in original_argv]) + '\n')
++      ' '.join([shlex.quote(arg) for arg in original_argv]) + '\n')
+ os.chmod('config.status', 0o775)
+ 
+ 
+--- a/tools/gyp/pylib/gyp/input.py
++++ b/tools/gyp/pylib/gyp/input.py
+@@ -19,7 +19,7 @@ import sys
+ import threading
+ import time
+ import traceback
+-from distutils.version import StrictVersion
++from packaging.version import Version
+ from gyp.common import GypError
+ from gyp.common import OrderedSet
+ 
+@@ -231,7 +231,7 @@ def LoadOneBuildFile(build_file_path, da
+       # node-gyp produces ebcdic files, do not use that mode.
+       build_file_contents = open(build_file_path, 'r').read()
+     else:
+-      build_file_contents = open(build_file_path, 'rU').read()
++      build_file_contents = open(build_file_path, 'r').read()
+   else:
+     raise GypError("%s not found (cwd: %s)" % (build_file_path, os.getcwd()))
+ 
+@@ -1096,7 +1096,7 @@ def EvalSingleCondition(
+     else:
+       ast_code = compile(cond_expr_expanded, '<string>', 'eval')
+       cached_conditions_asts[cond_expr_expanded] = ast_code
+-    env = {'__builtins__': {}, 'v': StrictVersion}
++    env = {'__builtins__': {}, 'v': Version}
+     if eval(ast_code, env, variables):
+       return true_dict
+     return false_dict
+--- a/tools/configure.d/nodedownload.py
++++ b/tools/configure.d/nodedownload.py
+@@ -7,10 +7,7 @@ import sys
+ import zipfile
+ import tarfile
+ import contextlib
+-try:
+-    from urllib.request import FancyURLopener, URLopener
+-except ImportError:
+-    from urllib import FancyURLopener, URLopener
++from urllib.request import build_opener, install_opener, urlretrieve
+ 
+ def formatSize(amt):
+     """Format a size as a string in MB"""
+@@ -21,11 +18,6 @@ def spin(c):
+     spin = ".:|'"
+     return (spin[c % len(spin)])
+ 
+-class ConfigOpener(FancyURLopener):
+-    """fancy opener used by retrievefile. Set a UA"""
+-    # append to existing version (UA)
+-    version = '%s node.js/configure' % URLopener.version
+-
+ def reporthook(count, size, total):
+     """internal hook used by retrievefile"""
+     sys.stdout.write(' Fetch: %c %sMB total, %sMB downloaded   \r' %
+@@ -38,7 +30,12 @@ def retrievefile(url, targetfile):
+     try:
+         sys.stdout.write(' <%s>\nConnecting...\r' % url)
+         sys.stdout.flush()
+-        ConfigOpener().retrieve(url, targetfile, reporthook=reporthook)
++        opener = build_opener()
++        opener.addheaders = [
++            ('User-agent', 'Python-urllib/%d.%d node.js/configure' %
++             (sys.version_info.major, sys.version_info.minor))]
++        install_opener(opener)
++        urlretrieve(url, targetfile, reporthook=reporthook)
+         print('')  # clear the line
+         return targetfile
+     except IOError as err:
+--- a/deps/v8/tools/node/node_common.py
++++ b/deps/v8/tools/node/node_common.py
+@@ -7,7 +7,7 @@
+ from __future__ import print_function
+ 
+ import os
+-import pipes
++import shlex
+ import shutil
+ import stat
+ import subprocess
+@@ -29,8 +29,8 @@ def EnsureDepotTools(v8_path, fetch_if_n
+       print("Checking out depot_tools.")
+       # shell=True needed on Windows to resolve git.bat.
+       subprocess.check_call("git clone {} {}".format(
+-          pipes.quote(DEPOT_TOOLS_URL),
+-          pipes.quote(depot_tools)), shell=True)
++          shlex.quote(DEPOT_TOOLS_URL),
++          shlex.quote(depot_tools)), shell=True)
+       # Using check_output to hide warning messages.
+       subprocess.check_output(
+           [sys.executable, gclient_path, "metrics", "--opt-out"],
+--- a/deps/v8/third_party/jinja2/sandbox.py
++++ b/deps/v8/third_party/jinja2/sandbox.py
+@@ -14,7 +14,7 @@
+ """
+ import types
+ import operator
+-from collections import Mapping
++from collections.abc import Mapping
+ from jinja2.environment import Environment
+ from jinja2.exceptions import SecurityError
+ from jinja2._compat import string_types, PY2
+@@ -79,7 +79,7 @@ except ImportError:
+     pass
+ 
+ #: register Python 2.6 abstract base classes
+-from collections import MutableSet, MutableMapping, MutableSequence
++from collections.abc import MutableSet, MutableMapping, MutableSequence
+ _mutable_set_types += (MutableSet,)
+ _mutable_mapping_types += (MutableMapping,)
+ _mutable_sequence_types += (MutableSequence,)
+--- a/deps/v8/third_party/jinja2/tests.py
++++ b/deps/v8/third_party/jinja2/tests.py
+@@ -10,7 +10,7 @@
+ """
+ import operator
+ import re
+-from collections import Mapping
++from collections.abc import Mapping
+ from jinja2.runtime import Undefined
+ from jinja2._compat import text_type, string_types, integer_types
+ import decimal
+--- a/deps/v8/third_party/jinja2/utils.py
++++ b/deps/v8/third_party/jinja2/utils.py
+@@ -482,7 +482,7 @@ class LRUCache(object):
+ 
+ # register the LRU cache as mutable mapping if possible
+ try:
+-    from collections import MutableMapping
++    from collections.abc import MutableMapping
+     MutableMapping.register(LRUCache)
+ except ImportError:
+     pass
+--- a/deps/v8/third_party/jinja2/runtime.py
++++ b/deps/v8/third_party/jinja2/runtime.py
+@@ -315,7 +315,7 @@ class Context(with_metaclass(ContextMeta
+ 
+ # register the context as mapping if possible
+ try:
+-    from collections import Mapping
++    from collections.abc import Mapping
+     Mapping.register(Context)
+ except ImportError:
+     pass
