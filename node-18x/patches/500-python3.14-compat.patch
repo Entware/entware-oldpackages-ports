@@ -1,0 +1,120 @@
+Python removed distutils in 3.12, but Node 18 still imports
+distutils.version.StrictVersion from configure.py and its bundled GYP.
+Python 3.14 also removed the deprecated FancyURLopener API.  Reuse the
+packaging module already vendored by npm's node-gyp, backport the current
+urllib implementation, and accept the Python 3.14 host interpreter provided
+by the build system.
+
+--- a/configure
++++ b/configure
+@@ -4,6 +4,7 @@
+ # Note that the mix of single and double quotes is intentional,
+ # as is the fact that the ] goes on a new line.
+ _=[ 'exec' '/bin/sh' '-c' '''
++command -v python3.14 >/dev/null && exec python3.14 "$0" "$@"
+ command -v python3.13 >/dev/null && exec python3.13 "$0" "$@"
+ command -v python3.12 >/dev/null && exec python3.12 "$0" "$@"
+ command -v python3.11 >/dev/null && exec python3.11 "$0" "$@"
+@@ -25,7 +26,7 @@ except ImportError:
+   from distutils.spawn import find_executable as which
+ 
+ print('Node.js configure: Found Python {}.{}.{}...'.format(*sys.version_info))
+-acceptable_pythons = ((3, 13), (3, 12), (3, 11), (3, 10), (3, 9), (3, 8), (3, 7), (3, 6))
++acceptable_pythons = ((3, 14), (3, 13), (3, 12), (3, 11), (3, 10), (3, 9), (3, 8), (3, 7), (3, 6))
+ if sys.version_info[:2] in acceptable_pythons:
+   import configure
+ else:
+--- a/configure.py
++++ b/configure.py
+@@ -14,7 +14,10 @@ import bz2
+ import io
+ from pathlib import Path
+ 
+-from distutils.version import StrictVersion
++sys.path.insert(0, str(Path(__file__).parent /
++                       'deps/npm/node_modules/node-gyp/gyp/pylib'))
++
++from packaging.version import Version
+ 
+ # If not run from node/, cd to node/.
+ os.chdir(Path(__file__).parent)
+@@ -1605,10 +1608,10 @@ def configure_openssl(o):
+     # supported asm compiler for AVX2. See https://github.com/openssl/openssl/
+     # blob/OpenSSL_1_1_0-stable/crypto/modes/asm/aesni-gcm-x86_64.pl#L52-L69
+     openssl110_asm_supported = \
+-      ('gas_version' in variables and StrictVersion(variables['gas_version']) >= StrictVersion('2.23')) or \
+-      ('xcode_version' in variables and StrictVersion(variables['xcode_version']) >= StrictVersion('5.0')) or \
+-      ('llvm_version' in variables and StrictVersion(variables['llvm_version']) >= StrictVersion('3.3')) or \
+-      ('nasm_version' in variables and StrictVersion(variables['nasm_version']) >= StrictVersion('2.10'))
++      ('gas_version' in variables and Version(variables['gas_version']) >= Version('2.23')) or \
++      ('xcode_version' in variables and Version(variables['xcode_version']) >= Version('5.0')) or \
++      ('llvm_version' in variables and Version(variables['llvm_version']) >= Version('3.3')) or \
++      ('nasm_version' in variables and Version(variables['nasm_version']) >= Version('2.10'))
+ 
+     if is_x86 and not openssl110_asm_supported:
+       error('''Did not find a new enough assembler, install one or build with
+--- a/tools/gyp/pylib/gyp/input.py
++++ b/tools/gyp/pylib/gyp/input.py
+@@ -16,7 +16,12 @@ import subprocess
+ import sys
+ import threading
+ import traceback
+-from distutils.version import StrictVersion
++
++sys.path.insert(0, os.path.normpath(os.path.join(
++    os.path.dirname(__file__),
++    '../../../../deps/npm/node_modules/node-gyp/gyp/pylib')))
++
++from packaging.version import Version
+ from gyp.common import GypError
+ from gyp.common import OrderedSet
+ 
+@@ -1190,7 +1195,7 @@ def EvalSingleCondition(cond_expr, true_
+         else:
+             ast_code = compile(cond_expr_expanded, "<string>", "eval")
+             cached_conditions_asts[cond_expr_expanded] = ast_code
+-        env = {"__builtins__": {}, "v": StrictVersion}
++        env = {"__builtins__": {}, "v": Version}
+         if eval(ast_code, env, variables):
+             return true_dict
+         return false_dict
+--- a/tools/configure.d/nodedownload.py
++++ b/tools/configure.d/nodedownload.py
+@@ -7,10 +7,7 @@ import sys
+ import zipfile
+ import tarfile
+ import contextlib
+-try:
+-    from urllib.request import FancyURLopener, URLopener
+-except ImportError:
+-    from urllib import FancyURLopener, URLopener
++from urllib.request import build_opener, install_opener, urlretrieve
+ 
+ def formatSize(amt):
+     """Format a size as a string in MB"""
+@@ -21,11 +18,6 @@ def spin(c):
+     spin = ".:|'"
+     return (spin[c % len(spin)])
+ 
+-class ConfigOpener(FancyURLopener):
+-    """fancy opener used by retrievefile. Set a UA"""
+-    # append to existing version (UA)
+-    version = '%s node.js/configure' % URLopener.version
+-
+ def reporthook(count, size, total):
+     """internal hook used by retrievefile"""
+     sys.stdout.write(' Fetch: %c %sMB total, %sMB downloaded   \r' %
+@@ -38,7 +30,12 @@ def retrievefile(url, targetfile):
+     try:
+         sys.stdout.write(' <%s>\nConnecting...\r' % url)
+         sys.stdout.flush()
+-        ConfigOpener().retrieve(url, targetfile, reporthook=reporthook)
++        opener = build_opener()
++        opener.addheaders = [
++            ('User-agent', 'Python-urllib/%d.%d node.js/configure' %
++             (sys.version_info.major, sys.version_info.minor))]
++        install_opener(opener)
++        urlretrieve(url, targetfile, reporthook=reporthook)
+         print('')  # clear the line
+         return targetfile
+     except IOError as err:
